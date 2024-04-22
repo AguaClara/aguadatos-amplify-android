@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-aguadatosapp-dev-83b51-authRole",
+      "UnauthRoleArn": "arn:aws:iam::767397891564:role/amplify-aguadatosapp-dev-83b51-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::767397891564:role/amplify-aguadatosapp-dev-83b51-authRole",
+      "Region": "sa-east-1",
+      "DeploymentBucketName": "amplify-aguadatosapp-dev-83b51-deployment",
+      "UnauthRoleName": "amplify-aguadatosapp-dev-83b51-unauthRole",
+      "StackName": "amplify-aguadatosapp-dev-83b51",
+      "StackId": "arn:aws:cloudformation:sa-east-1:767397891564:stack/amplify-aguadatosapp-dev-83b51/65a487a0-00a5-11ef-ae8e-0632c1f35be5",
+      "AmplifyAppId": "d22qe0gua6gf31"
+    }
+  }
+}
