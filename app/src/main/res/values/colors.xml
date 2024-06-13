@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue">#3f8be1</color>
+    <color name="light_blue">#b0d0f0</color>
+    <color name="background_blue">#e3eefc</color>
+    <color name="turbidity_graph_background_blue">#eef5fd</color>
+    <color name="dark_teal">#0779a4</color>
+    <color name="med_teal">#80bcd0</color>
+    <color name="mild_teal">#afd3e0</color>
+    <color name="dark_gray">#232222</color>
+    <color name="center_blue_coag_form">#bdd8f7</color>
 </resources>
