@@ -1,0 +1,14 @@
+<!-- res/drawable/bottom_stroke_layer.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background shape -->
+    <item>
+        <shape> </shape>
+    </item>
+    <!-- Bottom stroke shape -->
+    <item android:bottom="0dp">
+        <shape>
+            <size android:height="2dp" /> <!-- Stroke height -->
+            <solid android:color="@color/light_gray" /> <!-- Stroke color -->
+        </shape>
+    </item>
+</layer-list>

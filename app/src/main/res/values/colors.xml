@@ -16,4 +16,7 @@
     <color name="mild_teal">#afd3e0</color>
     <color name="dark_gray">#232222</color>
     <color name="center_blue_coag_form">#bdd8f7</color>
+    <color name="button_green">#7cbc84</color>
+    <color name="light_gray">#C2B6B6</color>
+    <color name="gradient_button_blue">#5696df</color>
 </resources>
