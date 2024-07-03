@@ -21,5 +21,26 @@
         <action
             android:id="@+id/action_coag_page_to_home"
             app:destination="@id/navigation_home"/>
+        <action
+            android:id="@+id/action_coag_page_to_coag_confirm_entry"
+            app:destination="@+id/navigation_coag_confirm_entry" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_coag_confirm_entry"
+        android:name="com.example.aguadatosapp.CoagConfirmSubmissionFragment"
+        android:label="Coagulant Dosing Confirm Submission"
+        tools:layout="@layout/fragment_coag_dosing_confirm_entry" >
+        <action
+            android:id="@+id/action_coag_confirm_to_coag_page"
+            app:destination="@id/navigation_coag_page" />
+        <action
+            android:id="@+id/action_coag_confirm_to_coag_view_submission"
+            app:destination="@id/navigation_coag_view_entry" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_coag_view_entry"
+        android:name="com.example.aguadatosapp.CoagViewSubmissionFragment"
+        android:label="Coagulant Dosing View Submission"
+        tools:layout="@layout/fragment_coag_dosage_submission" >
     </fragment>
 </navigation>

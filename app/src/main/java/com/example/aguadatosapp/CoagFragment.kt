@@ -26,6 +26,12 @@ class CoagFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        view.findViewById<Button>(R.id.submit_button).setOnClickListener {
+            //set temporary  variables (slider position, inflow rate, sv, ev, time, chem dose, flow rate)
+            //in a list? all numerical
+            findNavController().navigate(R.id.action_coag_page_to_coag_confirm_entry)
+        }
+
         return view
     }
 

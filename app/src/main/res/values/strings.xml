@@ -56,4 +56,9 @@
     <string name="volume_of_tank_1">Volume of Tank 1:</string>
     <string name="submit">Submit</string>
     <string name="coagulant_dosage_title">COAGULANT DOSAGE</string>
+    <string name="coagulant_dosage_caps">COAGULANT DOSAGE</string>
+    <string name="please_confirm_your_entry">Please confirm your entry:</string>
+    <string name="coagulant_dosage_submission">COAGULANT DOSAGE SUBMISSION</string>
+    <string name="submitted">Submitted:</string>
+    <string name="confirm_submission">CONFIRM SUBMISSION</string>
 </resources>
