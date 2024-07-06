@@ -42,5 +42,8 @@
         android:name="com.example.aguadatosapp.CoagViewSubmissionFragment"
         android:label="Coagulant Dosing View Submission"
         tools:layout="@layout/fragment_coag_dosage_submission" >
+        <action
+            android:id="@+id/action_coag_view_to_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 </navigation>
