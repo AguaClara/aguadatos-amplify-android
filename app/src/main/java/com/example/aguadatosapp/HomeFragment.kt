@@ -43,9 +43,9 @@ class HomeFragment : Fragment() {
 //        root.findViewById<Button>(R.id.rawWaterNavButton).setOnClickListener {
 //            findNavController().navigate(R.id.action_home_to_raw_water_page)
 //        }
-//        root.findViewById<Button>(R.id.coagNavButton).setOnClickListener {
-//            findNavController().navigate(R.id.action_home_to_coag_page)
-//        }
+        root.findViewById<Button>(R.id.coagNavButton).setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_coag_page)
+        }
 //        root.findViewById<Button>(R.id.filteredTurbNavButton).setOnClickListener {
 //            findNavController().navigate(R.id.action_home_to_filtered_turbidity_page)
 //        }

@@ -54,6 +54,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+
     // Amplify API and Datastore dependencies
     implementation("com.amplifyframework:aws-api:2.14.11")
     implementation("com.amplifyframework:aws-datastore:2.14.11")

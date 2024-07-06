@@ -8,5 +8,39 @@
         android:id="@+id/navigation_home"
         android:name="com.example.aguadatosapp.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_coag_page"
+            app:destination="@id/navigation_coag_page"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_coag_page"
+        android:name="com.example.aguadatosapp.CoagFragment"
+        android:label="Coagulant Dosing"
+        tools:layout="@layout/fragment_coag_dosing" >
+        <action
+            android:id="@+id/action_coag_page_to_home"
+            app:destination="@id/navigation_home"/>
+        <action
+            android:id="@+id/action_coag_page_to_coag_confirm_entry"
+            app:destination="@+id/navigation_coag_confirm_entry" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_coag_confirm_entry"
+        android:name="com.example.aguadatosapp.CoagConfirmSubmissionFragment"
+        android:label="Coagulant Dosing Confirm Submission"
+        tools:layout="@layout/fragment_coag_dosing_confirm_entry" >
+        <action
+            android:id="@+id/action_coag_confirm_to_coag_page"
+            app:destination="@id/navigation_coag_page" />
+        <action
+            android:id="@+id/action_coag_confirm_to_coag_view_submission"
+            app:destination="@id/navigation_coag_view_entry" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_coag_view_entry"
+        android:name="com.example.aguadatosapp.CoagViewSubmissionFragment"
+        android:label="Coagulant Dosing View Submission"
+        tools:layout="@layout/fragment_coag_dosage_submission" >
+    </fragment>
 </navigation>

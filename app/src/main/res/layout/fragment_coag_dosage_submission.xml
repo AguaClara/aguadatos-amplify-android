@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+    android:background="@color/background_blue"
+    android:paddingBottom="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/coag_dosage_title"
+        android:text="@string/coagulant_dosage_submission"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/entry_box" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:id="@+id/entry_box"
+        android:background="@drawable/rounded_white2"
+        app:layout_constraintTop_toBottomOf="@id/coag_dosage_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/date_text"
+            android:paddingVertical="5dp"
+            android:text="Date: __/__/__"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="25dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/chem_type_text" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chem_type_text"
+            android:text="@string/chemical_type_pac"
+            android:layout_marginVertical="7dp"
+            android:layout_marginHorizontal="25dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/date_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/calibration_text" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/calibration_text"
+            android:text="@string/calibration"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:paddingVertical="15dp"
+            app:layout_constraintTop_toBottomOf="@id/chem_type_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/slider_pos_info" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/slider_pos_info"
+            android:textStyle="bold"
+            android:text="Slider Position: ___ %"
+            android:textSize="15sp"
+            android:paddingHorizontal="70dp"
+            app:layout_constraintTop_toBottomOf="@id/calibration_text"
+            app:layout_constraintBottom_toTopOf="@id/infow_rate_info"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/infow_rate_info"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="Inflow Rate: ___ mL/s"
+            android:paddingHorizontal="70dp"
+            app:layout_constraintTop_toBottomOf="@id/slider_pos_info"
+            app:layout_constraintBottom_toTopOf="@id/sv_info"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sv_info"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="Start Volume: ___ mL"
+            android:paddingHorizontal="70dp"
+            app:layout_constraintTop_toBottomOf="@id/infow_rate_info"
+            app:layout_constraintBottom_toTopOf="@id/ev_info"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ev_info"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="End Volume: ___ mL"
+            android:paddingHorizontal="70dp"
+            app:layout_constraintTop_toBottomOf="@id/sv_info"
+            app:layout_constraintBottom_toTopOf="@id/time_elapsed_info"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/time_elapsed_info"
+            android:text="Time Elapsed: ___ s"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:paddingHorizontal="70dp"
+            app:layout_constraintTop_toBottomOf="@id/ev_info"
+            app:layout_constraintBottom_toTopOf="@id/output_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/output_text"
+            android:text="@string/output"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginVertical="15dp"
+            app:layout_constraintTop_toBottomOf="@id/time_elapsed_info"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/chem_dose_info" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chem_dose_info"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="Chemical Dose: ___ mg/L"
+            android:paddingHorizontal="70dp"
+            app:layout_constraintTop_toBottomOf="@id/output_text"
+            app:layout_constraintBottom_toTopOf="@id/chem_flow_info"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/chem_flow_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="70dp"
+            android:text="Chemical Flow Rate: ___ mL/s"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/submitted_text"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chem_dose_info" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submitted_text"
+            android:text="@string/submitted"
+            android:textSize="17sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/chem_flow_info"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/submit_date_time" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit_date_time"
+            android:text="Monday, March 25, 2004 at 9:25:43 PM"
+            android:textSize="17sp"
+            android:gravity="center"
+            android:layout_marginHorizontal="85dp"
+            app:layout_constraintTop_toBottomOf="@id/submitted_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
