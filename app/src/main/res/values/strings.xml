@@ -62,4 +62,12 @@
     <string name="submitted">Submitted:</string>
     <string name="confirm_submission">CONFIRM SUBMISSION</string>
     <string name="return_home">Return Home</string>
+    <string name="raw_water_caps">RAW WATER</string>
+    <string name="turbidity_ntu">Turbidity (NTU):</string>
+    <string name="notes">Notes:</string>
+    <string name="turbidity">Turbidity:</string>
+    <string name="ntu">NTU</string>
+    <string name="plant_flow_caps">PLANT FLOW</string>
+    <string name="inflow_rate">Inflow Rate:</string>
+    <string name="lts_sec">lts/sec</string>
 </resources>
