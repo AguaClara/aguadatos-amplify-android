@@ -42,7 +42,6 @@ class CoagFragment : Fragment() {
                 replace(R.id.fragmentContainer, CoagCalibrationFragment())
             }
         }
-
         return view
     }
 
