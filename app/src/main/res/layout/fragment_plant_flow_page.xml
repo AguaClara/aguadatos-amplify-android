@@ -103,7 +103,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
     <EditText
-        android:layout_width="360dp"
+        android:layout_width="320dp"
         android:layout_height="300dp"
         android:id="@+id/plant_inflow_notes_input"
         android:background="@drawable/rounded_white"

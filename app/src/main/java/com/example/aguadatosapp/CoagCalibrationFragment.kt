@@ -73,7 +73,7 @@ class CoagCalibrationFragment : Fragment() {
                     entry[4] = timeElapsedText.toDouble()
                 }
                 //update viewModel to store new entry data
-                viewModel.data.value = entry.toDoubleArray()
+                viewModel.coagData.value = entry.toDoubleArray()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -92,7 +92,7 @@ class CoagCalibrationFragment : Fragment() {
                 // Update the first element of the array to store seekbar progress
                 entry[0] = progress.toDouble()
                 //update viewModel
-                viewModel.data.value = entry.toDoubleArray()
+                viewModel.coagData.value = entry.toDoubleArray()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {

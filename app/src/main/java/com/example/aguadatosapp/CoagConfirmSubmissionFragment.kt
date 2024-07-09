@@ -47,7 +47,7 @@ class CoagConfirmSubmissionFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
         // Observe the data from ViewModel
-        viewModel.data.observe(viewLifecycleOwner, Observer { entry ->
+        viewModel.coagData.observe(viewLifecycleOwner, Observer { entry ->
             // Update UI based on the received data
             if (entry != null) {
                 //Update all text views to contain the data numbers
