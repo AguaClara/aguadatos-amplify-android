@@ -10,6 +10,12 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
+            android:id="@+id/action_home_to_plant_flow_page"
+            app:destination="@id/navigation_plant_flow_page"/>
+        <action
+            android:id="@+id/action_home_to_raw_water_page"
+            app:destination="@id/navigation_raw_water_page"/>
+        <action
             android:id="@+id/action_home_to_coag_page"
             app:destination="@id/navigation_coag_page"/>
     </fragment>
@@ -42,5 +48,20 @@
         android:name="com.example.aguadatosapp.CoagViewSubmissionFragment"
         android:label="Coagulant Dosing View Submission"
         tools:layout="@layout/fragment_coag_dosage_submission" >
+        <action
+            android:id="@+id/action_coag_view_to_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_raw_water_page"
+        android:name="com.example.aguadatosapp.RawWaterFragment"
+        android:label="Raw Water"
+        tools:layout="@layout/fragment_raw_water_page" >
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_plant_flow_page"
+        android:name="com.example.aguadatosapp.PlantFlowFragment"
+        android:label="Plant Flow"
+        tools:layout="@layout/fragment_plant_flow_page" >
     </fragment>
 </navigation>

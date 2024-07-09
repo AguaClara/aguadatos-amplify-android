@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingVertical="10dp"
+    android:background="@color/background_blue"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/plant_flow_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <LinearLayout
+            android:id="@+id/plant_flow_page_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/back_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/back_button"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:layout_height="wrap_content"
+                android:text="@string/plant_flow_caps"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:paddingVertical="20dp"
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chem_type_text"
+        android:textStyle="bold"
+        android:text="@string/chemical_type_pac"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintTop_toBottomOf="@id/plant_flow_top_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/plant_inflow_rate_text" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plant_inflow_rate_text"
+        android:textStyle="bold"
+        android:text="@string/inflow_rate"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintTop_toBottomOf="@id/chem_type_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/notes_box" />
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/plant_inflow_rate_input"
+        android:background="@drawable/rounded_white2"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintTop_toBottomOf="@id/chem_type_text"
+        app:layout_constraintLeft_toRightOf="@id/plant_inflow_rate_text"
+        app:layout_constraintBottom_toTopOf="@id/notes_box" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plant_inflow_units_text"
+        android:textStyle="bold"
+        android:text="@string/lts_sec"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/chem_type_text"
+        app:layout_constraintLeft_toRightOf="@id/plant_inflow_rate_input"
+        app:layout_constraintBottom_toTopOf="@id/notes_box" />
+    <View
+        android:layout_width="360dp"
+        android:layout_height="330dp"
+        android:background="@drawable/rounded_white"
+        android:id="@+id/notes_box"
+        app:layout_constraintTop_toBottomOf="@id/plant_inflow_rate_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/plant_flow_submit_button" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/notes"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintTop_toTopOf="@id/notes_box"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <EditText
+        android:layout_width="360dp"
+        android:layout_height="300dp"
+        android:id="@+id/plant_inflow_notes_input"
+        android:background="@drawable/rounded_white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/notes_box" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="85dp"
+        android:layout_height="30dp"
+        android:background="@drawable/green_button_background"
+        android:id="@+id/plant_flow_submit_button"
+        android:text="@string/submit"
+        android:textColor="@color/white"
+        android:layout_marginVertical="30dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintTop_toBottomOf="@id/notes_box"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

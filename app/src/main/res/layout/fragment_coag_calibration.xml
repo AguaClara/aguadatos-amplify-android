@@ -20,8 +20,10 @@
         <SeekBar
             android:id="@+id/slider_seek_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progressDrawable="@drawable/rounded_white"
+            android:layout_height="24dp"
+            android:thumb="@drawable/seekbar_thumb"
+            android:progress="50"
+            android:progressDrawable="@drawable/seekbar_progress_background"
             app:layout_constraintTop_toBottomOf="@id/slider_position_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -197,7 +199,8 @@
         <TextView
             android:id="@+id/timer_text"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="5dp"
             android:layout_weight="5"
             android:text="0:00:00"
             android:layout_marginHorizontal="15dp"
@@ -211,7 +214,7 @@
         android:id="@+id/line_separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/dark_gray"
+        android:background="@color/light_gray"
         app:layout_constraintTop_toBottomOf="@id/timer_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -255,6 +258,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
+        android:layout_marginVertical="5dp"
         android:textColor="@color/black"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/output_text"
@@ -291,6 +295,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
+        android:layout_marginVertical="5dp"
         android:background="@color/white"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/chem_dose_text"
@@ -310,4 +315,22 @@
         app:layout_constraintLeft_toRightOf="@id/chem_flow_display"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

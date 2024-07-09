@@ -37,12 +37,12 @@ class HomeFragment : Fragment() {
         //    textView.text = it
         //}
 
-//        root.findViewById<Button>(R.id.plantFlowNavButton).setOnClickListener {
-//            findNavController().navigate(R.id.action_home_to_plant_flow_page)
-//        }
-//        root.findViewById<Button>(R.id.rawWaterNavButton).setOnClickListener {
-//            findNavController().navigate(R.id.action_home_to_raw_water_page)
-//        }
+        root.findViewById<Button>(R.id.plantFlowNavButton).setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_plant_flow_page)
+        }
+        root.findViewById<Button>(R.id.rawWaterNavButton).setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_raw_water_page)
+        }
         root.findViewById<Button>(R.id.coagNavButton).setOnClickListener {
             findNavController().navigate(R.id.action_home_to_coag_page)
         }
