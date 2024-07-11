@@ -29,7 +29,7 @@ class CoagFragment : Fragment() {
 
         //listener for back button (<)
         view.findViewById<Button>(R.id.back_button).setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_coag_page_to_home)
         }
         //listener for submit button
         view.findViewById<Button>(R.id.submit_button).setOnClickListener {
@@ -56,6 +56,8 @@ class CoagFragment : Fragment() {
 
         //swap embedded fragment to change dose
         changeDoseNavButton.setOnClickListener {
+            //FIXME: only allow if accessAdjustDosage is true, otherwise pop a toast maybe?
+            //FIXME: only allow submission if accessAdjustDosage is true, otherwise pop a toast
             if(showingCalibrationFragment) {
                 //update button appearances
                 changeDoseNavButton.background = ContextCompat.getDrawable(requireContext(), R.drawable.change_dose_primary_background)

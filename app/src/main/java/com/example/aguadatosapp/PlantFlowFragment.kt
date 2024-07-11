@@ -28,7 +28,7 @@ class PlantFlowFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_plant_flow_page, container, false)
 
         view.findViewById<Button>(R.id.back_button).setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_plant_flow_to_home)
         }
         view.findViewById<Button>(R.id.plant_flow_submit_button).setOnClickListener {
             findNavController().navigate(R.id.action_plant_flow_page_to_plant_flow_confirm_entry)

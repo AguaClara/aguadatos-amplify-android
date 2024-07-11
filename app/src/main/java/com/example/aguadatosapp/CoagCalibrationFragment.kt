@@ -20,7 +20,7 @@ import androidx.navigation.fragment.findNavController
 class CoagCalibrationFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
     //entry contains: slider position, inflow rate, start volume, end volume, time elapsed, chemical dose, and chemical flow rate
-    private val entry = mutableListOf(0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+    private val entry = mutableListOf(-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0)
     companion object {
         fun newInstance(): CoagCalibrationFragment {
             return CoagCalibrationFragment()
@@ -72,6 +72,21 @@ class CoagCalibrationFragment : Fragment() {
                 if (timeElapsedText.isNotEmpty()) {
                     entry[4] = timeElapsedText.toDouble()
                 }
+
+                //calculate chemical dose and chemical flow rate
+                viewModel.accessAdjustDosage.value = true
+                for(i in 1..4) {
+                    if (entry[i] < 0.0) {
+                        viewModel.accessAdjustDosage.value = false
+                    }
+                }
+                if (viewModel.accessAdjustDosage.value == true) {
+                    //FIXME: update display in UI
+                    entry[6] = (entry[2] - entry[3]) / entry[4]
+                    entry[5] = entry[6] * 2
+                    //FIXME: change 2 to configuration chemical concentration once it is implemented
+                }
+
                 //update viewModel to store new entry data
                 viewModel.coagData.value = entry.toDoubleArray()
             }

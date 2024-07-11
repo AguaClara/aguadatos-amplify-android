@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
-    <!--FIXME: change navigate up for back buttons to go home actions -->
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.aguadatosapp.HomeFragment"
@@ -61,6 +60,9 @@
         <action
             android:id="@+id/action_raw_water_page_to_raw_water_confirm_entry"
             app:destination="@id/navigation_raw_water_confirm_entry_page" />
+        <action
+            android:id="@+id/action_raw_water_to_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/navigation_plant_flow_page"
@@ -70,6 +72,9 @@
         <action
             android:id="@+id/action_plant_flow_page_to_plant_flow_confirm_entry"
             app:destination="@id/navigation_plant_flow_confirm_entry_page" />
+        <action
+            android:id="@+id/action_plant_flow_to_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/navigation_raw_water_confirm_entry_page"

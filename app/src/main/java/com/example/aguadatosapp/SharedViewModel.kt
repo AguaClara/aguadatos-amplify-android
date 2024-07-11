@@ -8,6 +8,7 @@ import java.util.Locale
 // SharedViewModel.kt
 class SharedViewModel : ViewModel() {
     val coagData: MutableLiveData<DoubleArray> = MutableLiveData()
+    val accessAdjustDosage: MutableLiveData<Boolean> = MutableLiveData()
     val rawWaterData: MutableLiveData<Double> = MutableLiveData()
     val rawWaterNotes: MutableLiveData<String> = MutableLiveData()
     val plantFlowData: MutableLiveData<Double> = MutableLiveData()

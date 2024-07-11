@@ -28,7 +28,7 @@ class RawWaterFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_raw_water_page, container, false)
         //listener for back button
         view.findViewById<Button>(R.id.back_button).setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_raw_water_to_home)
         }
         //listener for submit button
         view.findViewById<Button>(R.id.raw_water_submit_button).setOnClickListener {

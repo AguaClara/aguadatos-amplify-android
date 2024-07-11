@@ -52,6 +52,10 @@ class CoagViewSubmissionFragment : Fragment() {
                 evInfoView.text = "End Volume: "+entry[3]+" mL"
                 val timeElapsedView: TextView = view.findViewById(R.id.time_elapsed_info)
                 timeElapsedView.text = "Time Elapsed: "+entry[4]+" s"
+                val chemDoseView: TextView = view.findViewById(R.id.chem_dose_info)
+                chemDoseView.text = "Chemical Dose: "+entry[5]+" mg/L"
+                val chemFlowRateView: TextView = view.findViewById(R.id.chem_flow_info)
+                chemFlowRateView.text = "Chemical Flow Rate: "+entry[6]+" mL/s"
             }
         })
         //display date at the top
