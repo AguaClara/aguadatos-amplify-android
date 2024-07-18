@@ -7,12 +7,14 @@ import java.util.Locale
 
 // SharedViewModel.kt
 class SharedViewModel : ViewModel() {
-    val coagData: MutableLiveData<DoubleArray> = MutableLiveData()
-    val accessAdjustDosage: MutableLiveData<Boolean> = MutableLiveData()
+    private val defaultArray = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
+    val coagData = MutableLiveData<DoubleArray>(defaultArray)
+    val tempCoagData: MutableLiveData<DoubleArray> = MutableLiveData()
+    val accessAdjustDosage = MutableLiveData<Boolean>().apply { value = false }
     val rawWaterData: MutableLiveData<Double> = MutableLiveData()
     val rawWaterNotes: MutableLiveData<String> = MutableLiveData()
     val plantFlowData: MutableLiveData<Double> = MutableLiveData()
     val plantFlowNotes: MutableLiveData<String> = MutableLiveData()
-    val date: MutableLiveData<SimpleDateFormat> = MutableLiveData()
-    val time: MutableLiveData<SimpleDateFormat> = MutableLiveData()
+    val date: MutableLiveData<String> = MutableLiveData()
+    val time: MutableLiveData<String> = MutableLiveData()
 }

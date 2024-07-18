@@ -1,0 +1,22 @@
+<!-- res/drawable/custom_seekbar_progress.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background layer for the track -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <size android:height="8dp" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+
+    <!-- Progress layer for the part of the track up to the thumb -->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape android:shape="rectangle">
+                <solid android:color="@color/light_gray" />
+                <size android:height="8dp" />
+                <corners android:radius="12dp" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

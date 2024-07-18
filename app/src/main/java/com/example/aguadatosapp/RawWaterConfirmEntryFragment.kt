@@ -65,8 +65,8 @@ class RawWaterConfirmEntryFragment : Fragment() {
         })
 
         //add date and time to submission
-        viewModel.date.value = SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
-        viewModel.time.value = SimpleDateFormat("HH:mm:ss", java.util.Locale.getDefault())
+        //viewModel.date.value = SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+        //viewModel.time.value = SimpleDateFormat("HH:mm:ss", java.util.Locale.getDefault())
 
         //display date
         val dateView: TextView = view.findViewById(R.id.date_text)

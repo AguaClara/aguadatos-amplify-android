@@ -8,18 +8,18 @@ import androidx.fragment.app.Fragment
 import com.example.aguadatosapp.R
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.aguadatosapp.databinding.FragmentHomeBinding
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+//FIXME: add string resources for concatenated strings
 // CoagFragment.kt
 class CoagConfirmSubmissionFragment : Fragment() {
+    // This view model contains the coagulant dosing data entry
     private lateinit var viewModel: SharedViewModel
-    // This view model contains the mutable entry array
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +33,22 @@ class CoagConfirmSubmissionFragment : Fragment() {
         }
         //listener for confirm entry button
         view.findViewById<Button>(R.id.confirm_button).setOnClickListener {
-            //FIXME: commit temporary variables to backend and clear values
+            //FIXME: @POST TEAM, this is where variables in ViewModel will be sent to backend
+            //clear entry values
+            val entry = viewModel.coagData.value
+            if(entry != null) {
+                viewModel.tempCoagData.value = entry.clone()
+                entry[0] = 50.0
+                for(i in 1..6) {
+                    entry[i] = -1.0
+                }
+            }
+            //add time to submission
+            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+            val timeText = LocalTime.now().format(timeFormatter)
+            viewModel.time.value = timeText
+
+            //navigate to next page
             findNavController().navigate(R.id.action_coag_confirm_to_coag_view_submission)
         }
 
@@ -43,7 +58,7 @@ class CoagConfirmSubmissionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //view model stores mutable entry array
+        // This view model contains the coagulant dosing data entry
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
         // Observe the data from ViewModel
@@ -68,16 +83,14 @@ class CoagConfirmSubmissionFragment : Fragment() {
             }
         })
 
-        //add date and time to submission
-        viewModel.date.value = SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
-        viewModel.time.value = SimpleDateFormat("HH:mm:ss", java.util.Locale.getDefault())
+        //add date to submission
+        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val dateText = LocalDate.now().format(dateFormatter)
+        viewModel.date.value = dateText
 
         //display date
         val dateView: TextView = view.findViewById(R.id.date_text)
-        val dateVal = viewModel.date.value
-        if (dateVal != null) {
-            dateView.text = "Date: "+dateVal.format(Date())
-        }
+        dateView.text = "Date: "+dateText
     }
 
 }

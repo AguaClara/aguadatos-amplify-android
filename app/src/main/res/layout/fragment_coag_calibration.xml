@@ -19,8 +19,10 @@
             app:layout_constraintBottom_toTopOf="@id/slider_seek_bar" />
         <SeekBar
             android:id="@+id/slider_seek_bar"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:splitTrack="false"
             android:thumb="@drawable/seekbar_thumb"
             android:progress="50"
             android:progressDrawable="@drawable/seekbar_progress_background"

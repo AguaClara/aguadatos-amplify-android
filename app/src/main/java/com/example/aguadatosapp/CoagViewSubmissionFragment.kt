@@ -12,16 +12,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import java.util.Date
-
+//FIXME: add string resources for concatenated strings
 // CoagViewSubmissionFragment.kt
 class CoagViewSubmissionFragment : Fragment() {
+    // This view model contains the coagulant dosing data entry
     private lateinit var viewModel: SharedViewModel
-    // This view model contains the mutable entry array
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        //inflaate layout
         val view = inflater.inflate(R.layout.fragment_coag_dosage_submission, container, false)
 
         //listener for return home button
@@ -34,11 +34,11 @@ class CoagViewSubmissionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //view model stores mutable entry array
+        // This view model contains the coagulant dosing data entry
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
         // Observe the data from ViewModel
-        viewModel.coagData.observe(viewLifecycleOwner, Observer { entry ->
+        viewModel.tempCoagData.observe(viewLifecycleOwner, Observer { entry ->
             // Update UI based on the received data
             if (entry != null) {
                 //Update all text views to contain the data numbers
@@ -62,13 +62,13 @@ class CoagViewSubmissionFragment : Fragment() {
         val dateView: TextView = view.findViewById(R.id.date_text)
         val dateVal = viewModel.date.value
         if (dateVal != null) {
-            dateView.text = "Date: "+dateVal.format(Date())
+            dateView.text = "Date: "+dateVal
         }
         //display submission date and time at the bottom
         val dateTimeView: TextView = view.findViewById(R.id.submit_date_time)
         val timeVal = viewModel.time.value
         if (timeVal != null && dateVal != null) {
-            dateTimeView.text = dateVal.format(Date())+" at "+timeVal.format(Date())
+            dateTimeView.text = dateVal+" at "+timeVal
         }
     }
 }
