@@ -55,15 +55,6 @@ class CoagChangeDoseFragment : Fragment() {
 
             inputSlider.isEnabled = false
             outputSlider.isEnabled = false
-            val grayThumb = ContextCompat.getDrawable(requireContext(), R.drawable.gray_seekbar_thumb)
-            val blueThumb = ContextCompat.getDrawable(requireContext(), R.drawable.seekbar_thumb)
-            val progressDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.seekbar_progress_background)
-            if (progressDrawable != null) {
-                outputSlider.progressDrawable = progressDrawable
-                DrawableCompat.setTint(progressDrawable, ContextCompat.getColor(requireContext(), R.color.light_gray))
-
-            }
-            outputSlider.thumb = grayThumb
 
             chemDose.text = ""+entry[5]
             chemFlow.text = ""+entry[6]
@@ -85,11 +76,6 @@ class CoagChangeDoseFragment : Fragment() {
                     if(targetDose > 0.0 || targetDose == 0.0) {
                         val newSliderPosition = targetDose * entry[0] / entry[5]
                         outputSlider.progress = newSliderPosition.toInt()
-                        outputSlider.thumb = blueThumb
-                        if (progressDrawable != null) {
-                            DrawableCompat.setTintList(progressDrawable, null)
-                        }
-                        outputSlider.progressDrawable = progressDrawable
                     }
                 }
 

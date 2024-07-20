@@ -43,6 +43,8 @@ class CoagCalibrationFragment : Fragment() {
 
     }
     //FIXME: truncate output values to 2 decimal places
+    //FIXME: add input to change seekbar position manually
+    //FIXME: only number keyboard
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
@@ -60,7 +62,6 @@ class CoagCalibrationFragment : Fragment() {
             if(entry[0] > 0.0 || entry[0] == 0.0) {
                 sliderSeekbar.progress = entry[0].toInt()
             }
-            //FIXME: move 50% to next to slider position and update percentage?
             val waterInflowRate: EditText = view.findViewById(R.id.water_inflow_rate_input)
             if(entry[1] > 0.0 || entry[1] == 0.0)
                 waterInflowRate.setText(""+entry[1])

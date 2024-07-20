@@ -9,6 +9,8 @@ import java.util.Locale
 class SharedViewModel : ViewModel() {
     private val defaultArray = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
     val coagData = MutableLiveData<DoubleArray>(defaultArray)
+    private val defaultVolumesArray = doubleArrayOf(0.0, 0.0)
+    val tankVolumes = MutableLiveData<DoubleArray>(defaultVolumesArray)
     val tempCoagData: MutableLiveData<DoubleArray> = MutableLiveData()
     val accessAdjustDosage = MutableLiveData<Boolean>().apply { value = false }
     val rawWaterData: MutableLiveData<Double> = MutableLiveData()

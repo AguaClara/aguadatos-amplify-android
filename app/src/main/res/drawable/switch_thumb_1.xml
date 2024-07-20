@@ -2,8 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/seekbar_gray"/>
+            <solid android:color="@color/light_switch_green"/>
             <size android:height="26dp" android:width="26dp" />
+            <stroke android:width="3dp" android:color="@color/button_green" />
         </shape>
     </item>
 </selector>

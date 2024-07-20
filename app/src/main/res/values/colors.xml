@@ -19,4 +19,6 @@
     <color name="button_green">#7cbc84</color>
     <color name="light_gray">#C2B6B6</color>
     <color name="gradient_button_blue">#5696df</color>
+    <color name="seekbar_gray">#82889E</color>
+    <color name="light_switch_green">#D8EDDB</color>
 </resources>
