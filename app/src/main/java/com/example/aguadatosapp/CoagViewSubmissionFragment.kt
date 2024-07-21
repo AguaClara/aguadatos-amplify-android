@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import java.util.Date
-//FIXME: add string resources for concatenated strings
 // CoagViewSubmissionFragment.kt
 class CoagViewSubmissionFragment : Fragment() {
     // This view model contains the coagulant dosing data entry

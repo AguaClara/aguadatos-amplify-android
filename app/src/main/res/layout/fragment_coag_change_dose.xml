@@ -34,6 +34,7 @@
             android:layout_weight="1"
             android:text="@string/chemical_flow_rate"
             android:textStyle="bold"
+            android:textSize="16dp"
             app:layout_constraintTop_toBottomOf="@id/input_display"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/chem_dose_text2"
@@ -45,6 +46,7 @@
             android:layout_weight="1"
             android:text="@string/chemical_dose"
             android:textStyle="bold"
+            android:textSize="16dp"
             app:layout_constraintTop_toBottomOf="@id/input_display"
             app:layout_constraintLeft_toRightOf="@id/chem_flow_text2"
             app:layout_constraintRight_toRightOf="parent"
@@ -57,7 +59,7 @@
             android:background="@drawable/rounded_white2"
             android:textStyle="bold"
             android:gravity="center"
-            android:textSize="25dp"
+            android:textSize="20dp"
             app:layout_constraintTop_toBottomOf="@id/chem_flow_text2"
             app:layout_constraintBottom_toTopOf="@id/slider_position_text2"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -82,7 +84,7 @@
             android:background="@drawable/rounded_white2"
             android:textStyle="bold"
             android:gravity="center"
-            android:textSize="25dp"
+            android:textSize="20dp"
             app:layout_constraintTop_toBottomOf="@id/chem_flow_text2"
             app:layout_constraintBottom_toTopOf="@id/slider_position_text2"
             app:layout_constraintLeft_toRightOf="@id/sv_mls_text"
@@ -101,13 +103,40 @@
             app:layout_constraintBottom_toTopOf="@id/slider_position_text2" />
         <TextView
             android:id="@+id/slider_position_text2"
-            android:layout_width="0dp"
+            android:layout_width="195dp"
             android:padding="5dp"
             android:layout_height="wrap_content"
-            android:text="@string/slider_position_over_dose"
+            android:text="@string/slider_position"
             android:textStyle="bold"
+            android:textSize="16dp"
             app:layout_constraintTop_toBottomOf="@id/chem_flow_display2"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/slider_input"
+            app:layout_constraintBottom_toTopOf="@id/slider_seek_bar2" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/slider_input"
+            android:gravity="right"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:paddingHorizontal="10dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/chem_flow_display2"
+            app:layout_constraintLeft_toRightOf="@id/slider_position_text2"
+            app:layout_constraintRight_toLeftOf="@id/percent_text"
+            app:layout_constraintBottom_toTopOf="@id/slider_seek_bar2" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/percent_text"
+            android:text="%"
+            android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            app:layout_constraintTop_toBottomOf="@id/chem_flow_display2"
+            app:layout_constraintLeft_toRightOf="@id/slider_input"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@id/slider_seek_bar2" />
         <SeekBar
@@ -132,17 +161,6 @@
             android:text="0%"
             app:layout_constraintTop_toBottomOf="@id/slider_seek_bar2"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/slider_labels_502"
-            app:layout_constraintBottom_toTopOf="@id/target_chem_dose_text" />
-        <TextView
-            android:id="@+id/slider_labels_502"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="50%"
-            app:layout_constraintTop_toBottomOf="@id/slider_seek_bar2"
-            app:layout_constraintLeft_toRightOf="@id/slider_labels_02"
-            app:layout_constraintRight_toLeftOf="@id/slider_labels_1002"
             app:layout_constraintBottom_toTopOf="@id/target_chem_dose_text" />
         <TextView
             android:id="@+id/slider_labels_1002"
@@ -161,6 +179,7 @@
             android:layout_height="wrap_content"
             android:text="@string/target_chemical_dose"
             android:textStyle="bold"
+            android:textSize="16dp"
             app:layout_constraintTop_toBottomOf="@id/slider_labels_02"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -211,8 +230,35 @@
             android:layout_height="wrap_content"
             android:text="@string/new_slider_position"
             android:textStyle="bold"
+            android:textSize="16dp"
             app:layout_constraintTop_toBottomOf="@id/output_text"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/slider_seek_bar3" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/slider_input2"
+            android:gravity="right"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:paddingHorizontal="10dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/output_text"
+            app:layout_constraintLeft_toRightOf="@id/slider_position_text2"
+            app:layout_constraintRight_toLeftOf="@id/percent_text2"
+            app:layout_constraintBottom_toTopOf="@id/slider_seek_bar3" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/percent_text2"
+            android:text="%"
+            android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            app:layout_constraintTop_toBottomOf="@id/output_text"
+            app:layout_constraintLeft_toRightOf="@id/slider_input2"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@id/slider_seek_bar3" />
         <SeekBar
@@ -237,17 +283,6 @@
             android:text="0%"
             app:layout_constraintTop_toBottomOf="@id/slider_seek_bar3"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/slider_labels_503"
-            app:layout_constraintBottom_toBottomOf="parent" />
-        <TextView
-            android:id="@+id/slider_labels_503"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="50%"
-            app:layout_constraintTop_toBottomOf="@id/slider_seek_bar3"
-            app:layout_constraintLeft_toRightOf="@id/slider_labels_03"
-            app:layout_constraintRight_toLeftOf="@id/slider_labels_1003"
             app:layout_constraintBottom_toBottomOf="parent" />
         <TextView
             android:id="@+id/slider_labels_1003"

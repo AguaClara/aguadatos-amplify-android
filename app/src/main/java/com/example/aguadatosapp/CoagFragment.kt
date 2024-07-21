@@ -43,9 +43,11 @@ class CoagFragment : Fragment() {
         //listener for submit button
         view.findViewById<Button>(R.id.submit_button).setOnClickListener {
             if(viewModel.accessAdjustDosage.value == true) {
+                //swap fragment
                 findNavController().navigate(R.id.action_coag_page_to_coag_confirm_entry)
             }
             else {
+                //pop error message
                 Toast.makeText(context,"Please ensure all inputs are filled before submitting.",Toast.LENGTH_SHORT).show()
             }
         }
@@ -59,14 +61,18 @@ class CoagFragment : Fragment() {
         return view
     }
 
+    //helper function to determine if a string value is a decimal number
     fun isDouble(value: String): Boolean {
         return value.toDoubleOrNull() != null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
+        // This view model contains the coagulant dosing data entry
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+
+        // set variables to access each necessary element
         val calibrationNavButton: androidx.appcompat.widget.AppCompatButton =
             view.findViewById(R.id.calibration_nav_button)
         val changeDoseNavButton: androidx.appcompat.widget.AppCompatButton =
@@ -98,6 +104,7 @@ class CoagFragment : Fragment() {
                     showingCalibrationFragment = false
                 }
             } else {
+                //pop error message
                 Toast.makeText(
                     context,
                     "Please ensure all inputs are filled before changing the dosage.",
@@ -128,6 +135,7 @@ class CoagFragment : Fragment() {
         }
 
         //handle tank volumes
+        // set variables to access each necessary element
         val tankSwitch: SwitchCompat = view.findViewById(R.id.tank_switch)
         val text1: TextView = view.findViewById(R.id.vol_tank1_text)
         val input1: EditText = view.findViewById(R.id.vol_tank1_input)
@@ -150,7 +158,7 @@ class CoagFragment : Fragment() {
 
         //update if switch is changed
         tankSwitch.setOnClickListener() {
-            if (tankSwitch.isChecked()) {
+            if (tankSwitch.isChecked) {
                 //active tank is 2
                 text2.setTextColor(Color.BLACK)
                 unit2.setTextColor(Color.BLACK)
@@ -184,10 +192,10 @@ class CoagFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //ensure inputs are non-null decimals, if so read into ViewModel
                 if(volumesEntry != null && isDouble(input1.text.toString()) && isDouble(input2.text.toString())) {
                     volumesEntry[0] = input1.text.toString().toDouble()
                     volumesEntry[1] = input2.text.toString().toDouble()
-                    unit1.setText(volumesEntry[0].toString()+", "+volumesEntry[1].toString())
                 }
             }
 

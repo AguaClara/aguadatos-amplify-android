@@ -18,7 +18,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
-// CoagFragment.kt
+// CoagChangeDoseFragment.kt
 class CoagChangeDoseFragment : Fragment() {
     companion object {
         fun newInstance(): CoagChangeDoseFragment {
@@ -34,9 +34,13 @@ class CoagChangeDoseFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_coag_change_dose, container, false)
 
     }
-
+    //helper function to determine if a string value is a double
     fun isDouble(value: String): Boolean {
         return value.toDoubleOrNull() != null
+    }
+    //helper function to determine if a string value is an int
+    fun isInt(value: String): Boolean {
+        return value.toIntOrNull() != null
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,19 +50,22 @@ class CoagChangeDoseFragment : Fragment() {
         var targetDose: Double = -1.0
 
         if(entry != null) {
-            //access layout elements we need
+            // set variables to access each necessary element
             val chemFlow: TextView = view.findViewById(R.id.chem_flow_display2)
             val chemDose: TextView = view.findViewById(R.id.chem_dose_display2)
             val inputSlider: SeekBar = view.findViewById(R.id.slider_seek_bar2)
             val targetChemDose: EditText = view.findViewById(R.id.target_chem_dose_input)
             val outputSlider: SeekBar = view.findViewById(R.id.slider_seek_bar3)
+            val slider1Display: TextView = view.findViewById(R.id.slider_input)
+            val slider2Display: TextView = view.findViewById(R.id.slider_input2)
 
             inputSlider.isEnabled = false
             outputSlider.isEnabled = false
 
-            chemDose.text = ""+entry[5]
-            chemFlow.text = ""+entry[6]
+            chemDose.text = entry[5].toString()
+            chemFlow.text = entry[6].toString()
             inputSlider.progress = entry[0].toInt()
+            slider1Display.text = inputSlider.progress.toString()
 
 
             //watch input elements to update entry data whenever an input is added
@@ -76,6 +83,8 @@ class CoagChangeDoseFragment : Fragment() {
                     if(targetDose > 0.0 || targetDose == 0.0) {
                         val newSliderPosition = targetDose * entry[0] / entry[5]
                         outputSlider.progress = newSliderPosition.toInt()
+                        //update outputSlider's slider position display
+                        slider2Display.text = outputSlider.progress.toString()
                     }
                 }
 
@@ -83,25 +92,8 @@ class CoagChangeDoseFragment : Fragment() {
                     // Do nothing
                 }
             }
-            //FIXME: generally, implement try-catch logic for inputs. only attempt to convert to a number if it is a number
             //watch each user input
             targetChemDose.addTextChangedListener(textWatcher)
-
-            //watch to see if seekbar is updated
-            inputSlider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    // Update the first element of the array to store seekbar progress
-                    entry[0] = progress.toDouble()
-                }
-
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                    // Do nothing
-                }
-
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    // Do nothing
-                }
-            })
         }
     }
 

@@ -15,8 +15,7 @@ import androidx.navigation.fragment.findNavController
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-//FIXME: add string resources for concatenated strings
-// CoagFragment.kt
+// CoagConfirmSubmissionFragment.kt
 class CoagConfirmSubmissionFragment : Fragment() {
     // This view model contains the coagulant dosing data entry
     private lateinit var viewModel: SharedViewModel
@@ -33,7 +32,7 @@ class CoagConfirmSubmissionFragment : Fragment() {
         }
         //listener for confirm entry button
         view.findViewById<Button>(R.id.confirm_button).setOnClickListener {
-            //FIXME: @POST TEAM, this is where variables in ViewModel will be sent to backend
+            //TODO: @POST TEAM FA'24, this is where variables in ViewModel will be sent to backend
             //clear entry values
             val entry = viewModel.coagData.value
             if(entry != null) {

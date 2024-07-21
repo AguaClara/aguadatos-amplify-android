@@ -36,7 +36,7 @@
     <string name="clarified_water_turbidity">Clarified Water Turbidity</string>
     <string name="feedback">Feedback</string>
     <string name="chemical_type_pac">Chemical Type: PAC</string>
-    <string name="slider_position">Slider Position</string>
+    <string name="slider_position">Slider Position:</string>
     <string name="water_inflow_rate">Water Inflow Rate:</string>
     <string name="start_volume">Start Volume:</string>
     <string name="end_volume">End Volume:</string>
