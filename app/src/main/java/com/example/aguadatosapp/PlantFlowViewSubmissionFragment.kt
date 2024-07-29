@@ -46,7 +46,7 @@ class PlantFlowViewSubmissionFragment : Fragment() {
             if (inflowRate != null) {
                 //Update all text views to contain the data numbers
                 val inflowRateView: TextView = view.findViewById(R.id.inflow_rate_text)
-                inflowRateView.text = "Inflow Rate: "+inflowRate+" lts/sec"
+                inflowRateView.text = "Inflow Rate: "+inflowRate+" L/s"
             }
         })
         viewModel.plantFlowNotes.observe(viewLifecycleOwner, Observer { notes ->

@@ -154,7 +154,7 @@
             android:id="@+id/chem_flow_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="70dp"
+            android:paddingLeft="70dp"
             android:text="Chemical Flow Rate: ___ mL/s"
             android:textSize="15sp"
             android:textStyle="bold"
