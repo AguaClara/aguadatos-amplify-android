@@ -62,8 +62,8 @@ class CoagChangeDoseFragment : Fragment() {
             inputSlider.isEnabled = false
             outputSlider.isEnabled = false
 
-            chemDose.text = entry[5].toString()
-            chemFlow.text = entry[6].toString()
+            chemDose.text = String.format("%.${6}f", entry[5])
+            chemFlow.text = String.format("%.${6}f", entry[6])
             inputSlider.progress = entry[0].toInt()
             slider1Display.text = inputSlider.progress.toString()
 

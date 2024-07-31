@@ -21,6 +21,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import java.time.Duration
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 // CoagCalibrationFragment.kt
 class CoagCalibrationFragment : Fragment() {
@@ -36,6 +40,7 @@ class CoagCalibrationFragment : Fragment() {
     private lateinit var endVolumeText: TextView
     private lateinit var mlText: TextView
     private var timeElapsed = 0
+    private var prevTimeElapsed = 0
     companion object {
         fun newInstance(): CoagCalibrationFragment {
             return CoagCalibrationFragment()
@@ -51,7 +56,11 @@ class CoagCalibrationFragment : Fragment() {
     fun isInt(value: String): Boolean {
         return value.toIntOrNull() != null
     }
-
+    //TODO: get most recent plant flow from plant flow submission
+    //TODO: default chemical concentration set to 160 g/L
+    //TODO: remove unnecessary inputs from change dose calculator, add new chemical flow rate
+    //TODO: ... update tank volume and message
+    //TODO: change dose submission, different submission from calibration
     //start timer countdown
     private fun startCountdown(timeInSeconds: Long) {
         countdownTimer?.cancel()
@@ -63,6 +72,7 @@ class CoagCalibrationFragment : Fragment() {
                 val modSecondsLeft = secondsLeft % 60
                 minutesView.setText(minutesLeft.toString())
                 secondsView.setText(String.format("%02d", modSecondsLeft))
+                minutesView.setText(String.format("%02d",minutesLeft))
             }
 
             override fun onFinish() {
@@ -79,9 +89,11 @@ class CoagCalibrationFragment : Fragment() {
         minutesView.isEnabled = true
         secondsView.isEnabled = true
         startButton.isEnabled = true
-        timeElapsed = 0
-        minutesView.setText("")
-        secondsView.setText("")
+        //timeElapsed = 0
+        val mins = timeElapsed / 60
+        val secs = timeElapsed % 60
+        minutesView.setText(String.format("%02d", mins))
+        secondsView.setText(String.format("%02d",secs))
         startButton.background = ContextCompat.getDrawable(requireContext(),R.drawable.play_button)
         resetButton.background = ContextCompat.getDrawable(requireContext(),R.drawable.gray_reset_button)
         countdownTimer?.cancel()
@@ -101,7 +113,7 @@ class CoagCalibrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        val entry: DoubleArray? = viewModel.coagData.value
+        val entry = viewModel.coagData.value
 
         if(entry != null) {
             //update accessChangeDose
@@ -127,17 +139,22 @@ class CoagCalibrationFragment : Fragment() {
                 endVolume.setText(entry[3].toString())
             val chemDose: TextView = view.findViewById(R.id.chem_dose_display)
             val chemFlowRate: TextView = view.findViewById(R.id.chem_flow_display)
+            minutesView = view.findViewById(R.id.timer_minutes)
+            secondsView = view.findViewById(R.id.timer_seconds)
             //if accessChangeDose is true, display outputs
             if(viewModel.accessAdjustDosage.value == true) {
-                chemDose.text = entry[5].toString()
-                chemFlowRate.text = entry[6].toString()
+                chemDose.text = String.format("%.${6}f", entry[5])
+                chemFlowRate.text = String.format("%.${6}f", entry[6])
+                timeElapsed = entry[4].toInt()
+                val mins = timeElapsed / 60
+                val secs = timeElapsed % 60
+                minutesView.setText(String.format("%02d", mins))
+                secondsView.setText(String.format("%02d",secs))
             }
 
             //timer functionality
 
             // set variables to access each necessary element
-            minutesView = view.findViewById(R.id.timer_minutes)
-            secondsView = view.findViewById(R.id.timer_seconds)
             startButton = view.findViewById(R.id.play_button)
             resetButton = view.findViewById(R.id.reset_button)
             endVolumeText = view.findViewById(R.id.end_volume_text)
@@ -156,8 +173,11 @@ class CoagCalibrationFragment : Fragment() {
                 val minutesText = minutesView.text.toString()
                 val secondsText = secondsView.text.toString()
                 //ensure input is valid, calculate time elapsed in seconds
-                if(minutesText.isNotEmpty() && secondsText.isNotEmpty()) {
-                    timeElapsed += minutesText.toInt() * 60
+                timeElapsed = 0
+                if(minutesText.isNotEmpty()) {
+                    timeElapsed += (minutesText.toInt() * 60)
+                }
+                if(secondsText.isNotEmpty()) {
                     timeElapsed += secondsText.toInt()
                 }
                 //ensure values have been entered

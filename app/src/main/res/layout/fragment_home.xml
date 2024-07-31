@@ -114,8 +114,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_white"
-                android:paddingVertical="12dp"
-                android:text="@string/raw_water"
+                android:text="@string/raw_water_turbidity"
                 android:textColor="@color/dark_gray" />
 
             <Button
@@ -158,18 +157,16 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_gray"
                 android:text="@string/clarified_water_turbidity"
-
                 android:background="@drawable/rounded_white" />
             <Button
-                android:id="@+id/feedbackNavButton"
+                android:id="@+id/chlorineNavButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_gray"
-                android:text="@string/feedback"
-                android:paddingHorizontal="0dp"
-                android:paddingVertical="20dp"
+                android:text="@string/chlorine_dosage"
+                android:paddingVertical="12dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/rounded_white" />
         </LinearLayout>

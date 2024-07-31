@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,13 +20,21 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import java.time.LocalDateTime
+import java.time.Duration
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 // CoagFragment.kt
 class CoagFragment : Fragment() {
     //var to store which embedded fragment is showing
     private var showingCalibrationFragment = true
+    private var tank1vol = 0.0
+    private var tank2vol = 0.0
+    private lateinit var tankRunOutMessageView: TextView
     // This view model contains the coagulant dosing data entry
     private lateinit var viewModel: SharedViewModel
     override fun onCreateView(
@@ -66,6 +75,34 @@ class CoagFragment : Fragment() {
         return value.toDoubleOrNull() != null
     }
 
+    //helper function to calculate when the active tank will run out of coagulant
+    private fun calculateRunOutTime() {
+        val coagFlowRate = viewModel.coagData.value?.get(6)
+        val currentDateTime = LocalDateTime.now()
+        var activeTankVolume = -1.0
+        if(coagFlowRate != null && coagFlowRate > -1) {
+            if(tank1vol > 0.0) {
+                activeTankVolume = tank1vol
+            }
+            else if(tank2vol > 0.0) {
+                activeTankVolume = tank2vol
+            }
+            if(activeTankVolume > -1.0) {
+                val secondsToRunOut = ((activeTankVolume * 1000) / coagFlowRate).toLong()
+                val newDateTime = currentDateTime.plus(Duration.ofSeconds(secondsToRunOut))
+                val formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd 'at' HH:mm:ss", Locale.ENGLISH)
+                val formattedDateTime = newDateTime.format(formatter)
+                viewModel.coagulantRunOutTime.value = formattedDateTime
+                showRunOutMessage(formattedDateTime)
+            }
+        }
+    }
+
+    //helper function to display run out message
+    private fun showRunOutMessage(dateTimeString: String) {
+        tankRunOutMessageView.text = "Coagulant will run out on $dateTimeString"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -80,6 +117,15 @@ class CoagFragment : Fragment() {
         val calibrationHorizLine: View = view.findViewById(R.id.horiz_line_calibration)
         val changeDoseHorizLine: View = view.findViewById(R.id.horiz_line_change_dose)
         val lightGrayColor = ContextCompat.getColor(requireContext(), R.color.light_gray)
+        tankRunOutMessageView = view.findViewById(R.id.tank_run_out_message)
+
+        //if run out time has been calculated, display run out message
+        if(viewModel.coagulantRunOutTime.value != null) {
+            showRunOutMessage(viewModel.coagulantRunOutTime.value!!)
+        }
+        else {
+            tankRunOutMessageView.text = ""
+        }
 
         //swap embedded fragment to change dose
         changeDoseNavButton.setOnClickListener {
@@ -196,6 +242,9 @@ class CoagFragment : Fragment() {
                 if(volumesEntry != null && isDouble(input1.text.toString()) && isDouble(input2.text.toString())) {
                     volumesEntry[0] = input1.text.toString().toDouble()
                     volumesEntry[1] = input2.text.toString().toDouble()
+                    viewModel.tankVolumes.value = volumesEntry
+                    tank1vol = volumesEntry[0]
+                    tank2vol = volumesEntry[1]
                 }
             }
 
@@ -207,5 +256,18 @@ class CoagFragment : Fragment() {
         //add text changed listeners to each input field
         input1.addTextChangedListener(textWatcher)
         input2.addTextChangedListener(textWatcher)
+
+        //add message indicating when coagulant in active tank will run out
+        viewModel.tankVolumes.observe(viewLifecycleOwner, Observer {
+            calculateRunOutTime()
+        })
+        viewModel.coagData.observe(viewLifecycleOwner, Observer {
+            calculateRunOutTime()
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("FragmentNavigation", "CoagFragment is now visible")
     }
 }

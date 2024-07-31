@@ -1,6 +1,7 @@
 package com.example.aguadatosapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.aguadatosapp.R
 import com.example.aguadatosapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -52,9 +52,9 @@ class HomeFragment : Fragment() {
 //        root.findViewById<Button>(R.id.clarifiedTurbNavButton).setOnClickListener {
 //            findNavController().navigate(R.id.action_home_to_clarified_turbidity_page)
 //        }
-//        root.findViewById<Button>(R.id.feedbackNavButton).setOnClickListener {
-//            findNavController().navigate(R.id.action_home_to_feedback_page)
-//        }
+        root.findViewById<Button>(R.id.chlorineNavButton).setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_config_page_TEMP)
+        }
 
         return root
     }
@@ -63,5 +63,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("FragmentNavigation", "HomeFragment is now visible")
     }
 }

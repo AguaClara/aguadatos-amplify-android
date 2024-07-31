@@ -35,7 +35,7 @@
     <string name="filtered_water_turbidity">Filtered Water Turbidity</string>
     <string name="clarified_water_turbidity">Clarified Water Turbidity</string>
     <string name="feedback">Feedback</string>
-    <string name="chemical_type_pac">Chemical Type: PAC</string>
+    <string name="chemical_type_pac">Chemical Type: PACl</string>
     <string name="slider_position">Slider Position:</string>
     <string name="water_inflow_rate">Water Inflow Rate:</string>
     <string name="start_volume">Start Volume:</string>
@@ -70,4 +70,26 @@
     <string name="plant_flow_caps">PLANT FLOW</string>
     <string name="inflow_rate">Inflow Rate:</string>
     <string name="lts_sec">lts/sec</string>
+    <string name="configuration">CONFIGURATION</string>
+    <string name="operator_name">Operator Name:</string>
+    <string name="plant_name">Plant Name:</string>
+    <string name="dosage_presets">Dosage Presets</string>
+    <string name="filter_presets">Filter Presets</string>
+    <string name="coagulant_dose">Coagulant Dose:</string>
+    <string name="coagulant_flow_rate">Coagulant Flow Rate:</string>
+    <string name="_0">0%</string>
+    <string name="_100">100%</string>
+    <string name="percent_symbol">%</string>
+    <string name="coagulant_dosage_colon">Coagulant Dosage:</string>
+    <string name="chlorination">CHLORINATION</string>
+    <string name="records">Records</string>
+    <string name="graphs">Graphs</string>
+    <string name="config">Configuration</string>
+    <string name="type_of_chemical">Type of Chemical:</string>
+    <string name="chemical_concentration">Chemical Concentration:</string>
+    <string name="sync_data">Sync Data</string>
+    <string name="save">SAVE</string>
+    <string name="number_of_filters">Number of Filters:</string>
+    <string name="raw_water_turbidity">Raw Water Turbidity</string>
+    <string name="chlorine_dosage">Chlorine Dosage</string>
 </resources>

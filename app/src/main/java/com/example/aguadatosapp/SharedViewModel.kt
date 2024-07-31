@@ -19,4 +19,5 @@ class SharedViewModel : ViewModel() {
     val plantFlowNotes: MutableLiveData<String> = MutableLiveData()
     val date: MutableLiveData<String> = MutableLiveData()
     val time: MutableLiveData<String> = MutableLiveData()
+    val coagulantRunOutTime: MutableLiveData<String> = MutableLiveData()
 }
