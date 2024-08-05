@@ -44,12 +44,13 @@ class CoagChangeDoseFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // This view model contains the coagulant dosing data entry
+        // This view model contains the coagulant dosing data entries
         val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        val entry: DoubleArray? = viewModel.coagData.value
+        val calibrationEntry: DoubleArray? = viewModel.coagData.value
+        val changeDoseEntry: DoubleArray? = viewModel.changeDoseData.value
         var targetDose: Double = -1.0
 
-        if(entry != null) {
+        if(calibrationEntry != null && changeDoseEntry != null) {
             // set variables to access each necessary element
             val chemFlow: TextView = view.findViewById(R.id.chem_flow_display2)
             val chemDose: TextView = view.findViewById(R.id.chem_dose_display2)
@@ -62,11 +63,25 @@ class CoagChangeDoseFragment : Fragment() {
             inputSlider.isEnabled = false
             outputSlider.isEnabled = false
 
-            chemDose.text = String.format("%.${6}f", entry[5])
-            chemFlow.text = String.format("%.${6}f", entry[6])
-            inputSlider.progress = entry[0].toInt()
+            changeDoseEntry[0] = calibrationEntry[5]
+            changeDoseEntry[1] = calibrationEntry[6]
+            chemDose.text = String.format("%.${5}f", calibrationEntry[5])
+            chemFlow.text = String.format("%.${5}f", calibrationEntry[6])
+            inputSlider.progress = calibrationEntry[0].toInt()
             slider1Display.text = inputSlider.progress.toString()
 
+//TODO: CHECK ON RUN OUT DATE, SEEMS SUS
+
+            if(changeDoseEntry != null) {
+                // set variables to access each necessary element
+                val newSliderView: SeekBar = view.findViewById(R.id.slider_seek_bar3)
+                val targetChemDoseView: EditText = view.findViewById(R.id.target_chem_dose_input)
+                if(changeDoseEntry[4] >= 0.0 && changeDoseEntry[2] >= 0.0) {
+                    newSliderView.progress = changeDoseEntry[4].toInt()
+                    targetChemDoseView.setText(changeDoseEntry[1].toString())
+                    viewModel.changeDoseFilled.value = true
+                }
+            }
 
             //watch input elements to update entry data whenever an input is added
             val textWatcher = object : TextWatcher {
@@ -81,7 +96,12 @@ class CoagChangeDoseFragment : Fragment() {
                         targetDose = targetChemDoseText.toDouble()
                     }
                     if(targetDose > 0.0 || targetDose == 0.0) {
-                        val newSliderPosition = targetDose * entry[0] / entry[5]
+                        viewModel.changeDoseFilled.value = true
+                        changeDoseEntry[2] = targetDose
+                        val newSliderPosition = targetDose * calibrationEntry[0] / calibrationEntry[5]
+                        changeDoseEntry[3] = targetDose / 2
+                        //FIXME: replace 2 with configuration chemical concentration
+                        changeDoseEntry[4] = newSliderPosition
                         outputSlider.progress = newSliderPosition.toInt()
                         //update outputSlider's slider position display
                         slider2Display.text = outputSlider.progress.toString()

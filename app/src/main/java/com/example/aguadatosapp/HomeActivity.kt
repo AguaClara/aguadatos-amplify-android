@@ -8,6 +8,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.aguadatosapp.databinding.ActivityMainBinding
+import android.util.Log
+import androidx.navigation.ui.NavigationUI
 
 class HomeActivity : AppCompatActivity() {
 
@@ -31,5 +33,13 @@ class HomeActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        // Adding logging to detect item clicks
+        navView.setOnItemSelectedListener { item ->
+            Log.d("HomeActivity", "Navigation item selected: ${item.itemId}")
+            val handled = NavigationUI.onNavDestinationSelected(item, navController)
+            Log.d("HomeActivity", "Navigation handled: $handled")
+            handled
+        }
     }
 }

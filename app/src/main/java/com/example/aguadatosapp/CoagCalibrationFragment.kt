@@ -60,7 +60,8 @@ class CoagCalibrationFragment : Fragment() {
     //TODO: default chemical concentration set to 160 g/L
     //TODO: remove unnecessary inputs from change dose calculator, add new chemical flow rate
     //TODO: ... update tank volume and message
-    //TODO: change dose submission, different submission from calibration
+    //TODO: add tank and volume to calibration submission
+    //TODO: add sound when timer finishes
     //start timer countdown
     private fun startCountdown(timeInSeconds: Long) {
         countdownTimer?.cancel()
@@ -107,6 +108,7 @@ class CoagCalibrationFragment : Fragment() {
         // Inflate the layout for this fragment
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         viewModel.accessAdjustDosage.value = false
+        viewModel.changeDoseFilled.value = false
         return inflater.inflate(R.layout.fragment_coag_calibration, container, false)
 
     }

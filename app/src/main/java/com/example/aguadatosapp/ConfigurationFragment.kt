@@ -30,8 +30,9 @@ class ConfigurationFragment : Fragment() {
         view.findViewById<Button>(R.id.back_button).setOnClickListener {
             findNavController().navigate(R.id.action_config_page_to_home)
         }
+        Log.d("FragmentNavigation", "ConfigurationFragment is created")
 
-            return view
+        return view
     }
     override fun onResume() {
         super.onResume()

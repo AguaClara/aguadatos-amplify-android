@@ -52,8 +52,17 @@ class CoagFragment : Fragment() {
         //listener for submit button
         view.findViewById<Button>(R.id.submit_button).setOnClickListener {
             if(viewModel.accessAdjustDosage.value == true) {
-                //swap fragment
-                findNavController().navigate(R.id.action_coag_page_to_coag_confirm_entry)
+                if(showingCalibrationFragment) {
+                    //swap fragment
+                    findNavController().navigate(R.id.action_coag_page_to_coag_confirm_entry)
+                }
+                else if(viewModel.changeDoseFilled.value == true) {
+                    findNavController().navigate(R.id.action_coag_page_to_change_dose_confirm_entry)
+                }
+                else {
+                    //pop error message
+                    Toast.makeText(context,"Please ensure all inputs are filled before submitting.",Toast.LENGTH_SHORT).show()
+                }
             }
             else {
                 //pop error message
