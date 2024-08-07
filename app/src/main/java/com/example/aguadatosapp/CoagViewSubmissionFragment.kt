@@ -35,6 +35,11 @@ class CoagViewSubmissionFragment : Fragment() {
 
         // This view model contains the coagulant dosing data entry
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
+
+        //display chemical type set in configuration
+        val chemTypeText = viewModel.chemType.value
+        chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
         // Observe the data from ViewModel
         viewModel.tempCoagData.observe(viewLifecycleOwner, Observer { entry ->
@@ -60,6 +65,25 @@ class CoagViewSubmissionFragment : Fragment() {
                 chemFlowRateView.text = "Chemical Flow Rate: "+chemFlowRateText+" mL/s"
             }
         })
+
+        //observe tank volume data from ViewModel
+        viewModel.tankVolumes.observe(viewLifecycleOwner, Observer { entry ->
+            // Update UI based on the received data
+            if (entry != null) {
+                var activeTank = 1
+                var activeTankVol = entry[0]
+                if(entry[1] > 0.0) {
+                    activeTank = 2
+                    activeTankVol = entry[1]
+                }
+                //Update all text views to contain the data numbers
+                val activeTankView: TextView = view.findViewById(R.id.active_tank_info)
+                activeTankView.text = "Active Tank: "+activeTank
+                val activeTankVolView: TextView = view.findViewById(R.id.tank_vol_info)
+                activeTankVolView.text = "Active Tank Volume: "+activeTankVol+" L"
+            }
+        })
+
         //display date at the top
         val dateView: TextView = view.findViewById(R.id.date_text)
         val dateVal = viewModel.date.value

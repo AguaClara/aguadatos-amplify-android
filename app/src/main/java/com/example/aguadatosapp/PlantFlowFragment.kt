@@ -2,7 +2,10 @@ package com.example.aguadatosapp
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.SpannableString
+import android.text.Spanned
 import android.text.TextWatcher
+import android.text.style.SubscriptSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +14,7 @@ import com.example.aguadatosapp.R
 import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
@@ -38,11 +42,18 @@ class PlantFlowFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
         // set variables to access each input element
         val waterInflowRate: EditText = view.findViewById(R.id.plant_inflow_rate_input)
         val notesInput: EditText = view.findViewById(R.id.plant_inflow_notes_input)
+        val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
+
+        //display chemical type set in configuration
+        val chemTypeText = viewModel.chemType.value
+        chemTypeView.text = getString(R.string.chem_type, chemTypeText)
+
+
         //watch input elements to update entry data whenever an input is added
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

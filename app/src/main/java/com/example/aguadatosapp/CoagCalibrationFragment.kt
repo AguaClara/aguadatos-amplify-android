@@ -57,10 +57,7 @@ class CoagCalibrationFragment : Fragment() {
         return value.toIntOrNull() != null
     }
     //TODO: get most recent plant flow from plant flow submission
-    //TODO: default chemical concentration set to 160 g/L
-    //TODO: remove unnecessary inputs from change dose calculator, add new chemical flow rate
-    //TODO: ... update tank volume and message
-    //TODO: add tank and volume to calibration submission
+    //FIXME: tank volume message is wrong
     //TODO: add sound when timer finishes
     //start timer countdown
     private fun startCountdown(timeInSeconds: Long) {
@@ -234,10 +231,9 @@ class CoagCalibrationFragment : Fragment() {
                     }
                     if (viewModel.accessAdjustDosage.value == true) {
                         entry[6] = (entry[2] - entry[3]) / entry[4]
-                        entry[5] = entry[6] * 2
+                        entry[5] = entry[6] * viewModel.chemConcentration.value!!
                         chemDose.text = String.format("%.${6}f", entry[5])
                         chemFlowRate.text = String.format("%.${6}f", entry[6])
-                        //TODO: change 2 to configuration chemical concentration once it is implemented
                     }
 
                     //update viewModel to store new entry data

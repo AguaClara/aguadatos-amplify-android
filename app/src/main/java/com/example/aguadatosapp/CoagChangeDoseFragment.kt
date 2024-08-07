@@ -52,31 +52,24 @@ class CoagChangeDoseFragment : Fragment() {
 
         if(calibrationEntry != null && changeDoseEntry != null) {
             // set variables to access each necessary element
-            val chemFlow: TextView = view.findViewById(R.id.chem_flow_display2)
-            val chemDose: TextView = view.findViewById(R.id.chem_dose_display2)
-            val inputSlider: SeekBar = view.findViewById(R.id.slider_seek_bar2)
             val targetChemDose: EditText = view.findViewById(R.id.target_chem_dose_input)
             val outputSlider: SeekBar = view.findViewById(R.id.slider_seek_bar3)
-            val slider1Display: TextView = view.findViewById(R.id.slider_input)
             val slider2Display: TextView = view.findViewById(R.id.slider_input2)
+            val newCoagFlowDisplay: TextView = view.findViewById(R.id.new_coag_flow_display)
 
-            inputSlider.isEnabled = false
             outputSlider.isEnabled = false
 
             changeDoseEntry[0] = calibrationEntry[5]
             changeDoseEntry[1] = calibrationEntry[6]
-            chemDose.text = String.format("%.${5}f", calibrationEntry[5])
-            chemFlow.text = String.format("%.${5}f", calibrationEntry[6])
-            inputSlider.progress = calibrationEntry[0].toInt()
-            slider1Display.text = inputSlider.progress.toString()
 
-//TODO: CHECK ON RUN OUT DATE, SEEMS SUS
+//FIXME: CHECK ON RUN OUT DATE, SEEMS SUS
 
             if(changeDoseEntry != null) {
                 // set variables to access each necessary element
                 val newSliderView: SeekBar = view.findViewById(R.id.slider_seek_bar3)
                 val targetChemDoseView: EditText = view.findViewById(R.id.target_chem_dose_input)
                 if(changeDoseEntry[4] >= 0.0 && changeDoseEntry[2] >= 0.0) {
+                    newCoagFlowDisplay.setText(changeDoseEntry[3].toString())
                     newSliderView.progress = changeDoseEntry[4].toInt()
                     targetChemDoseView.setText(changeDoseEntry[1].toString())
                     viewModel.changeDoseFilled.value = true
@@ -99,8 +92,8 @@ class CoagChangeDoseFragment : Fragment() {
                         viewModel.changeDoseFilled.value = true
                         changeDoseEntry[2] = targetDose
                         val newSliderPosition = targetDose * calibrationEntry[0] / calibrationEntry[5]
-                        changeDoseEntry[3] = targetDose / 2
-                        //FIXME: replace 2 with configuration chemical concentration
+                        changeDoseEntry[3] = targetDose / (viewModel.chemConcentration.value!!)
+                        newCoagFlowDisplay.text = changeDoseEntry[3].toString()
                         changeDoseEntry[4] = newSliderPosition
                         outputSlider.progress = newSliderPosition.toInt()
                         //update outputSlider's slider position display

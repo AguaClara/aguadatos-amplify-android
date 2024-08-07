@@ -11,6 +11,7 @@ import com.example.aguadatosapp.R
 import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
@@ -44,6 +45,12 @@ class RawWaterFragment : Fragment() {
         // set variables to access each input element
         val turbidity: EditText = view.findViewById(R.id.turbidity_input)
         val notesInput: EditText = view.findViewById(R.id.raw_water_notes_input)
+        val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
+
+        //display chemical type set in configuration
+        val chemTypeText = viewModel.chemType.value
+        chemTypeView.text = getString(R.string.chem_type, chemTypeText)
+
         //watch input elements to update entry data whenever an input is added
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

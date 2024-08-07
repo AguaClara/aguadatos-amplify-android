@@ -30,4 +30,11 @@ class SharedViewModel : ViewModel() {
 
     val date: MutableLiveData<String> = MutableLiveData()
     val time: MutableLiveData<String> = MutableLiveData()
+
+    val plantOperatorName: MutableLiveData<String> = MutableLiveData("")
+    val plantName: MutableLiveData<String> = MutableLiveData("")
+    val chemType: MutableLiveData<String> = MutableLiveData("PACl")
+    val chemConcentration: MutableLiveData<Double> = MutableLiveData(1.6)
+    val numFilters: MutableLiveData<Int> = MutableLiveData(1)
+
 }

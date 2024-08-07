@@ -127,6 +127,11 @@ class CoagFragment : Fragment() {
         val changeDoseHorizLine: View = view.findViewById(R.id.horiz_line_change_dose)
         val lightGrayColor = ContextCompat.getColor(requireContext(), R.color.light_gray)
         tankRunOutMessageView = view.findViewById(R.id.tank_run_out_message)
+        val chemTypeView: TextView = view.findViewById(R.id.chemical_type_text)
+
+        //display chemical type set in configuration
+        val chemTypeText = viewModel.chemType.value
+        chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
         //if run out time has been calculated, display run out message
         if(viewModel.coagulantRunOutTime.value != null) {

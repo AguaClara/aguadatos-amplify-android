@@ -39,6 +39,11 @@ class PlantFlowViewSubmissionFragment : Fragment() {
 
         //view model stores mutable entry array
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
+
+        //display chemical type set in configuration
+        val chemTypeText = viewModel.chemType.value
+        chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
         // Observe the data from ViewModel
         viewModel.plantFlowData.observe(viewLifecycleOwner, Observer { inflowRate ->

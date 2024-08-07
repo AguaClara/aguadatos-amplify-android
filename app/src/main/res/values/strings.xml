@@ -100,4 +100,9 @@
     <string name="active_tank_volume_l">Active Tank Volume: ___ L</string>
     <string name="new_slider_position_">New Slider Position: ___%</string>
     <string name="new_coagulant_flow_rate_ml_s">New Coagulant Flow Rate: ___ mL/s</string>
+    <string name="new_coagulant_flow_rate">New Coagulant Flow Rate:</string>
+    <string name="target_coagulant_dose">Target Coagulant Dose:</string>
+    <string name="chemical_type_switch">Chemical Type Switch</string>
+    <string name="chemical_type">Chemical Type:</string>
+    <string name="chem_type">Chemical Type: %1$s</string>
 </resources>

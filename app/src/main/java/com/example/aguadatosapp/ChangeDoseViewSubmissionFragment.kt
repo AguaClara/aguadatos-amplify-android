@@ -35,6 +35,11 @@ class ChangeDoseViewSubmissionFragment : Fragment() {
 
         // This view model contains the coagulant dosing data entry
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
+
+        //display chemical type set in configuration
+        val chemTypeText = viewModel.chemType.value
+        chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
         // Observe the data from ViewModel
         viewModel.tempChangeDoseData.observe(viewLifecycleOwner, Observer { entry ->

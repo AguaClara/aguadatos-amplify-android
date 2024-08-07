@@ -95,28 +95,20 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/chem_conc_box">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/type_chem_text"
-            android:text="@string/type_of_chemical"
-            android:textSize="17sp" />
-        <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/chem_type_switch"
-            android:textOn="Al2(SO4)2"
-            android:textOff="PACl"
-            android:elevation="10dp"
-            android:textStyle="bold"
-            app:showText="true"
-            app:track="@drawable/green_switch_background"
-            android:thumb="@drawable/dark_green_switch_thumb"
-            android:textColor="@color/black"
-            android:paddingHorizontal="20dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/active_tank_text"
-            app:layout_constraintBottom_toTopOf="@id/vol_tank1_text" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chemical_type"
+                android:textSize="17sp" />
+
+        <ImageView
+                android:id="@+id/chem_type_switch"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chem_type_switch_off"
+                android:contentDescription="@string/chemical_type_switch" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -136,6 +128,7 @@
         <EditText
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
             android:background="@color/white"
             android:layout_marginStart="10dp"
             android:id="@+id/chem_conc_input" />
@@ -169,7 +162,8 @@
         <EditText
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:id="@+id/filter_input_box"
+            android:id="@+id/num_filters_input"
+            android:inputType="number"
             android:background="@color/white"
             android:layout_marginStart="10dp" />
     </LinearLayout>
