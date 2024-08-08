@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.aguadatosapp.R
 import android.widget.Button
 import android.widget.EditText
-import android.widget.SeekBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -18,20 +16,17 @@ import androidx.navigation.fragment.findNavController
 // PlantFlowFragment.kt
 class RawWaterFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
-    //entry contains: slider position, inflow rate, start volume, end volume, time elapsed, chemical dose, and chemical flow rate
-    private val entry = mutableListOf(0.0)
-    private val notes = mutableListOf("")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_raw_water_page, container, false)
-        //listener for back button
+        // Handle logic for back button
         view.findViewById<Button>(R.id.back_button).setOnClickListener {
             findNavController().navigate(R.id.action_raw_water_to_home)
         }
-        //listener for submit button
+        // Handle logic for submit button
         view.findViewById<Button>(R.id.raw_water_submit_button).setOnClickListener {
             findNavController().navigate(R.id.action_raw_water_page_to_raw_water_confirm_entry)
         }
@@ -40,7 +35,7 @@ class RawWaterFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
         // set variables to access each input element
         val turbidity: EditText = view.findViewById(R.id.turbidity_input)
@@ -61,16 +56,13 @@ class RawWaterFragment : Fragment() {
                 //get user input, convert to double, and add to entry (for each input)
                 val turbidityText = turbidity.text.toString()
                 if (turbidityText.isNotEmpty()) {
-                    entry[0] = turbidityText.toDouble()
+                    viewModel.rawWaterData.value = turbidityText.toDouble()
                 }
 
                 val notesText = notesInput.text.toString()
                 if (notesText.isNotEmpty()) {
-                    notes[0] = notesText
+                    viewModel.rawWaterNotes.value = notesText
                 }
-                //update viewModel to store new entry data
-                viewModel.rawWaterData.value = entry[0]
-                viewModel.rawWaterNotes.value = notes[0]
             }
 
             override fun afterTextChanged(s: Editable?) {

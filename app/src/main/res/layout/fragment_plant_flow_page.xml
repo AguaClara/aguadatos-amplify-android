@@ -70,6 +70,7 @@
         android:id="@+id/plant_inflow_rate_input"
         android:background="@drawable/rounded_white2"
         android:layout_marginVertical="10dp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/chem_type_text"
         app:layout_constraintLeft_toRightOf="@id/plant_inflow_rate_text"
         app:layout_constraintBottom_toTopOf="@id/notes_box" />
@@ -105,6 +106,7 @@
     <EditText
         android:layout_width="320dp"
         android:layout_height="300dp"
+        android:textColor="@color/black"
         android:id="@+id/plant_inflow_notes_input"
         android:background="@drawable/rounded_white"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -5,16 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.aguadatosapp.R
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.aguadatosapp.databinding.FragmentHomeBinding
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 
 // RawWaterConfirmEntryFragment.kt
 class RawWaterConfirmEntryFragment : Fragment() {
@@ -25,15 +20,16 @@ class RawWaterConfirmEntryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        // Inflate layout for this fragment
         val view = inflater.inflate(R.layout.fragment_raw_water_confirm_entry, container, false)
 
-        //listener for back button (X)
+        // Handle logic for X button
         view.findViewById<Button>(R.id.raw_water_x_button).setOnClickListener {
             findNavController().navigate(R.id.action_raw_water_confirm_to_raw_water_page)
         }
-        //listener for confirm entry button
+        // Handle logic for confirm entry button
         view.findViewById<Button>(R.id.raw_water_confirm_button).setOnClickListener {
-            //FIXME: commit temporary variables to backend and clear values
+            //TODO: @POST TEAM FA'24, this is where data from the ViewModel will be sent to the backend
             findNavController().navigate(R.id.action_raw_water_confirm_to_raw_water_view)
         }
 
@@ -44,7 +40,7 @@ class RawWaterConfirmEntryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //view model stores mutable entry array
-        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
 
         //display chemical type set in configuration
@@ -52,32 +48,28 @@ class RawWaterConfirmEntryFragment : Fragment() {
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
         // Observe the data from ViewModel
-        viewModel.rawWaterData.observe(viewLifecycleOwner, Observer { turbidity ->
+        viewModel.rawWaterData.observe(viewLifecycleOwner) { turbidity ->
             // Update UI based on the received data
             if (turbidity != null) {
                 //Update all text views to contain the data numbers
                 val turbidityView: TextView = view.findViewById(R.id.turbidity_text)
-                turbidityView.text = "Turbidity: "+turbidity+" NTU"
+                turbidityView.text = getString(R.string.turbidity_with_input,turbidity)
             }
-        })
-        viewModel.rawWaterNotes.observe(viewLifecycleOwner, Observer { notes ->
+        }
+        viewModel.rawWaterNotes.observe(viewLifecycleOwner) { notes ->
             // Update UI based on the received data
             if (notes != null) {
                 //Update all text views to contain the data numbers
                 val notesView: TextView = view.findViewById(R.id.raw_water_notes_text)
                 notesView.text = notes
             }
-        })
-
-        //add date and time to submission
-        //viewModel.date.value = SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
-        //viewModel.time.value = SimpleDateFormat("HH:mm:ss", java.util.Locale.getDefault())
+        }
 
         //display date
         val dateView: TextView = view.findViewById(R.id.date_text)
         val dateVal = viewModel.date.value
         if (dateVal != null) {
-            dateView.text = "Date: "+dateVal.format(Date())
+            dateView.text = getString(R.string.date, dateVal.format(Date()))
         }
     }
 

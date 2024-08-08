@@ -90,7 +90,7 @@
     <string name="sync_data">Sync Data</string>
     <string name="save">SAVE</string>
     <string name="number_of_filters">Number of Filters:</string>
-    <string name="raw_water_turbidity">Raw Water Turbidity</string>
+    <string name="raw_water_turbidity">Raw\n Water Turbidity</string>
     <string name="chlorine_dosage">Chlorine Dosage</string>
     <string name="coagulant_dosage_mg_l">Coagulant Dosage: ___ mg/L</string>
     <string name="coagulant_flow_rate_ml_s">Coagulant Flow Rate: ___ mL/s</string>
@@ -105,4 +105,8 @@
     <string name="chemical_type_switch">Chemical Type Switch</string>
     <string name="chemical_type">Chemical Type:</string>
     <string name="chem_type">Chemical Type: %1$s</string>
+    <string name="inflow_rate_with_input">Inflow Rate: %1$f L/s</string>
+    <string name="date">Date: %1$s</string>
+    <string name="date_and_time">%1$s at %2$s</string>
+    <string name="turbidity_with_input">Turbidity: %f NTU</string>
 </resources>

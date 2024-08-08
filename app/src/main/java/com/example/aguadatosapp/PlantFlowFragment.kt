@@ -2,18 +2,13 @@ package com.example.aguadatosapp
 
 import android.os.Bundle
 import android.text.Editable
-import android.text.SpannableString
-import android.text.Spanned
 import android.text.TextWatcher
-import android.text.style.SubscriptSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.aguadatosapp.R
 import android.widget.Button
 import android.widget.EditText
-import android.widget.SeekBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -21,9 +16,6 @@ import androidx.navigation.fragment.findNavController
 // PlantFlowFragment.kt
 class PlantFlowFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
-    //entry contains: slider position, inflow rate, start volume, end volume, time elapsed, chemical dose, and chemical flow rate
-    private val entry = mutableListOf(0.0)
-    private val notes = mutableListOf("")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,9 +23,12 @@ class PlantFlowFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_plant_flow_page, container, false)
 
+        //set up logic for back button
         view.findViewById<Button>(R.id.back_button).setOnClickListener {
             findNavController().navigate(R.id.action_plant_flow_to_home)
         }
+
+        //set up logic for submit button
         view.findViewById<Button>(R.id.plant_flow_submit_button).setOnClickListener {
             findNavController().navigate(R.id.action_plant_flow_page_to_plant_flow_confirm_entry)
         }
@@ -42,9 +37,11 @@ class PlantFlowFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //initialize view model
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
-        // set variables to access each input element
+        // set variables to access each necessary UI elements
         val waterInflowRate: EditText = view.findViewById(R.id.plant_inflow_rate_input)
         val notesInput: EditText = view.findViewById(R.id.plant_inflow_notes_input)
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
@@ -64,16 +61,13 @@ class PlantFlowFragment : Fragment() {
                 //get user input, convert to double, and add to entry (for each input)
                 val waterInflowRateText = waterInflowRate.text.toString()
                 if (waterInflowRateText.isNotEmpty()) {
-                    entry[0] = waterInflowRateText.toDouble()
+                    viewModel.plantFlowData.value = waterInflowRateText.toDouble()
                 }
-
+                //send data to view model
                 val notesText = notesInput.text.toString()
                 if (notesText.isNotEmpty()) {
-                    notes[0] = notesText
+                    viewModel.plantFlowNotes.value = notesText
                 }
-                //update viewModel to store new entry data
-                viewModel.plantFlowData.value = entry[0]
-                viewModel.plantFlowNotes.value = notes[0]
             }
 
             override fun afterTextChanged(s: Editable?) {
