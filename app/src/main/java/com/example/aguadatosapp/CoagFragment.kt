@@ -9,18 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.aguadatosapp.R
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import java.time.LocalDateTime
@@ -30,12 +25,14 @@ import java.util.Locale
 
 // CoagFragment.kt
 class CoagFragment : Fragment() {
-    //var to store which embedded fragment is showing
+    // var to store which embedded fragment is showing
     private var showingCalibrationFragment = true
+    // record volume of each tank
     private var tank1vol = 0.0
     private var tank2vol = 0.0
+    // message to show when tank will run out of coagulant
     private lateinit var tankRunOutMessageView: TextView
-    // This view model contains the coagulant dosing data entry
+
     private lateinit var viewModel: SharedViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,18 +42,19 @@ class CoagFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_coag_dosing, container, false)
 
-        //listener for back button (<)
+        // handle logic for back button (<)
         view.findViewById<Button>(R.id.back_button).setOnClickListener {
             findNavController().navigate(R.id.action_coag_page_to_home)
         }
-        //listener for submit button
+        // handle logic for submit button
         view.findViewById<Button>(R.id.submit_button).setOnClickListener {
             if(viewModel.accessAdjustDosage.value == true) {
                 if(showingCalibrationFragment) {
-                    //swap fragment
+                    // proceed to calibration data submission
                     findNavController().navigate(R.id.action_coag_page_to_coag_confirm_entry)
                 }
                 else if(viewModel.changeDoseFilled.value == true) {
+                    // proceed to change dose data submission
                     findNavController().navigate(R.id.action_coag_page_to_change_dose_confirm_entry)
                 }
                 else {
@@ -90,6 +88,7 @@ class CoagFragment : Fragment() {
         val currentDateTime = LocalDateTime.now()
         var activeTankVolume = -1.0
         if(coagFlowRate != null && coagFlowRate > -1) {
+            // only calculate if given flow rate . . .
             if(tank1vol > 0.0) {
                 activeTankVolume = tank1vol
             }
@@ -97,6 +96,7 @@ class CoagFragment : Fragment() {
                 activeTankVolume = tank2vol
             }
             if(activeTankVolume > -1.0) {
+                // . . . and tank volume
                 val secondsToRunOut = ((activeTankVolume * 1000) / coagFlowRate).toLong()
                 val newDateTime = currentDateTime.plus(Duration.ofSeconds(secondsToRunOut))
                 val formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd 'at' HH:mm:ss", Locale.ENGLISH)
@@ -109,16 +109,15 @@ class CoagFragment : Fragment() {
 
     //helper function to display run out message
     private fun showRunOutMessage(dateTimeString: String) {
-        tankRunOutMessageView.text = "Coagulant will run out on $dateTimeString"
+        tankRunOutMessageView.text = getString(R.string.coag_run_out_message,dateTimeString)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // This view model contains the coagulant dosing data entry
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
-        // set variables to access each necessary element
+        // set variables to access each necessary UI element
         val calibrationNavButton: androidx.appcompat.widget.AppCompatButton =
             view.findViewById(R.id.calibration_nav_button)
         val changeDoseNavButton: androidx.appcompat.widget.AppCompatButton =
@@ -141,9 +140,10 @@ class CoagFragment : Fragment() {
             tankRunOutMessageView.text = ""
         }
 
-        //swap embedded fragment to change dose
+        // handle logic for change dose button
         changeDoseNavButton.setOnClickListener {
             if (viewModel.accessAdjustDosage.value == true) {
+                // only swap if on calibration page
                 if (showingCalibrationFragment) {
                     //update button appearances
                     changeDoseNavButton.background = ContextCompat.getDrawable(
@@ -173,8 +173,9 @@ class CoagFragment : Fragment() {
             }
         }
 
-        //swap embedded fragment to calibration
+        // handle logic for calibration button
         calibrationNavButton.setOnClickListener {
+            // only swap if on change dose page
             if (!showingCalibrationFragment) {
                 //update button appearances
                 calibrationNavButton.background =
@@ -195,7 +196,7 @@ class CoagFragment : Fragment() {
         }
 
         //handle tank volumes
-        // set variables to access each necessary element
+        // set variables to access each necessary UI element
         val tankSwitch: SwitchCompat = view.findViewById(R.id.tank_switch)
         val text1: TextView = view.findViewById(R.id.vol_tank1_text)
         val input1: EditText = view.findViewById(R.id.vol_tank1_input)
@@ -215,9 +216,11 @@ class CoagFragment : Fragment() {
         input2.setTextColor(Color.GRAY)
         input2.isEnabled = false
         input2.setText("0.0")
+        //FIXME: inputs should NOT be formatted to 6 decimal places!
+        // How to handle large decimal inputs though? Will it be a problem?
 
         //update if switch is changed
-        tankSwitch.setOnClickListener() {
+        tankSwitch.setOnClickListener {
             if (tankSwitch.isChecked) {
                 //active tank is 2
                 text2.setTextColor(Color.BLACK)
@@ -244,6 +247,7 @@ class CoagFragment : Fragment() {
                 input2.setText("0.0")
             }
         }
+
         //get active tank volumes from EditTexts
         val volumesEntry = viewModel.tankVolumes.value
         val textWatcher = object : TextWatcher {
@@ -259,6 +263,7 @@ class CoagFragment : Fragment() {
                     viewModel.tankVolumes.value = volumesEntry
                     tank1vol = volumesEntry[0]
                     tank2vol = volumesEntry[1]
+                    calculateRunOutTime()
                 }
             }
 
@@ -271,13 +276,10 @@ class CoagFragment : Fragment() {
         input1.addTextChangedListener(textWatcher)
         input2.addTextChangedListener(textWatcher)
 
-        //add message indicating when coagulant in active tank will run out
-        viewModel.tankVolumes.observe(viewLifecycleOwner, Observer {
+        //if coagData (calibration page inputs) are changed, try to calculate run out time
+        viewModel.coagData.observe(viewLifecycleOwner) {
             calculateRunOutTime()
-        })
-        viewModel.coagData.observe(viewLifecycleOwner, Observer {
-            calculateRunOutTime()
-        })
+        }
     }
 
     override fun onResume() {

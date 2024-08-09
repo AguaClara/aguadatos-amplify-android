@@ -1,8 +1,6 @@
 package com.example.aguadatosapp
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Switch
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.aguadatosapp.R
-import com.example.aguadatosapp.databinding.FragmentHomeBinding
 
 class ConfigurationFragment : Fragment() {
 
@@ -32,7 +24,7 @@ class ConfigurationFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_configuration, container, false)
 
-        //listener for back button (<)
+        // listener for back button (<)
         view.findViewById<Button>(R.id.back_button).setOnClickListener {
             findNavController().navigate(R.id.action_config_page_to_home)
         }
@@ -44,6 +36,7 @@ class ConfigurationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+
         //set variables to access necessary UI elements
         val opNameInput: EditText = view.findViewById(R.id.operator_name_input)
         val plantNameInput: EditText = view.findViewById(R.id.plant_name_input)
@@ -54,7 +47,7 @@ class ConfigurationFragment : Fragment() {
         val syncButton: Button = view.findViewById(R.id.sync_button)
         var switchChecked = false
 
-        //set current values
+        //set up UI using current configuration
         opNameInput.setText(viewModel.plantOperatorName.value)
         plantNameInput.setText(viewModel.plantName.value)
         chemConcInput.setText(viewModel.chemConcentration.value.toString())
@@ -71,16 +64,19 @@ class ConfigurationFragment : Fragment() {
         //listener for chemical type switch
         chemTypeSwitch.setOnClickListener {
             if(switchChecked) {
+                //flip switch off
                 chemTypeSwitch.setImageResource(R.drawable.chem_type_switch_off)
             }
             else {
+                //flip switch on
                 chemTypeSwitch.setImageResource(R.drawable.chem_type_switch_on)
             }
             switchChecked = !switchChecked
         }
 
-        //listener for save button
+        // handle logic for save button
         saveButton.setOnClickListener {
+            // update configuration data in viewModel
             viewModel.plantOperatorName.value = opNameInput.text.toString()
             viewModel.plantName.value = plantNameInput.text.toString()
             if(switchChecked) {
@@ -91,10 +87,12 @@ class ConfigurationFragment : Fragment() {
             }
             viewModel.chemConcentration.value = chemConcInput.text.toString().toDouble()
             viewModel.numFilters.value = numFiltersInput.text.toString().toInt()
+            // pop a toast to let user know changes are saved
             Toast.makeText(context,"Your changes have been saved.",Toast.LENGTH_SHORT).show()
         }
 
-        syncButton.setOnClickListener() {
+        // handle logic for sync button
+        syncButton.setOnClickListener {
             //TODO: @POST TEAM FA'24, this is where data will be sent from local backend to AWS
         }
     }

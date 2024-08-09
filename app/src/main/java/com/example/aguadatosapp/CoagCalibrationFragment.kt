@@ -5,30 +5,20 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.aguadatosapp.R
 import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import java.time.Duration
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 // CoagCalibrationFragment.kt
 class CoagCalibrationFragment : Fragment() {
-    // This view model contains the coagulant dosing data entry
     private lateinit var viewModel: SharedViewModel
     // set variables to access each necessary element
     private var countdownTimer: CountDownTimer? = null
@@ -39,13 +29,8 @@ class CoagCalibrationFragment : Fragment() {
     private lateinit var endVolume: EditText
     private lateinit var endVolumeText: TextView
     private lateinit var mlText: TextView
+    // temporary variable used in timer functionality
     private var timeElapsed = 0
-    private var prevTimeElapsed = 0
-    companion object {
-        fun newInstance(): CoagCalibrationFragment {
-            return CoagCalibrationFragment()
-        }
-    }
 
     //helper method to check if a string is a double
     fun isDouble(value: String): Boolean {
@@ -56,8 +41,7 @@ class CoagCalibrationFragment : Fragment() {
     fun isInt(value: String): Boolean {
         return value.toIntOrNull() != null
     }
-    //TODO: get most recent plant flow from plant flow submission
-    //FIXME: tank volume message is wrong
+    //TODO: stop clearing viewModel for all data submissions
     //TODO: add sound when timer finishes
     //start timer countdown
     private fun startCountdown(timeInSeconds: Long) {
@@ -65,16 +49,21 @@ class CoagCalibrationFragment : Fragment() {
 
         countdownTimer = object : CountDownTimer(timeInSeconds * 1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
+                // update timer display every second
                 val secondsLeft = millisUntilFinished / 1000
                 val minutesLeft = secondsLeft / 60
                 val modSecondsLeft = secondsLeft % 60
                 minutesView.setText(minutesLeft.toString())
+                //FIXME: find way to resolve this warning
                 secondsView.setText(String.format("%02d", modSecondsLeft))
                 minutesView.setText(String.format("%02d",minutesLeft))
             }
 
             override fun onFinish() {
+                // reset timer, timer display
+                // allow user to access endVolume field
                 endVolume.isEnabled = true
+                endVolume.setTextColor(Color.BLACK)
                 endVolumeText.setTextColor(Color.BLACK)
                 mlText.setTextColor(Color.BLACK)
                 resetTimer()
@@ -102,10 +91,12 @@ class CoagCalibrationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         viewModel.accessAdjustDosage.value = false
         viewModel.changeDoseFilled.value = false
+
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_coag_calibration, container, false)
 
     }
@@ -123,23 +114,26 @@ class CoagCalibrationFragment : Fragment() {
                 }
             }
             // set variables to access each necessary element
+            // if data is already entered, display on UI
             val sliderSeekbar: SeekBar = view.findViewById(R.id.slider_seek_bar)
-            if(entry[0] > 0.0 || entry[0] == 0.0) {
+            if(entry[0] >= 0.0) {
                 sliderSeekbar.progress = entry[0].toInt()
             }
             val waterInflowRate: EditText = view.findViewById(R.id.water_inflow_rate_input)
-            if(entry[1] > 0.0 || entry[1] == 0.0)
+            if(entry[1] >= 0.0)
                 waterInflowRate.setText(entry[1].toString())
             val startVolume: EditText = view.findViewById(R.id.start_volume_input)
-            if(entry[2] > 0.0 || entry[2] == 0.0)
+            if(entry[2] >= 0.0)
                 startVolume.setText(entry[2].toString())
             endVolume = view.findViewById(R.id.end_volume_input)
-            if(entry[3] > 0.0 || entry[3] == 0.0)
+            if(entry[3] >= 0.0) {
                 endVolume.setText(entry[3].toString())
+            }
             val chemDose: TextView = view.findViewById(R.id.chem_dose_display)
             val chemFlowRate: TextView = view.findViewById(R.id.chem_flow_display)
             minutesView = view.findViewById(R.id.timer_minutes)
             secondsView = view.findViewById(R.id.timer_seconds)
+
             //if accessChangeDose is true, display outputs
             if(viewModel.accessAdjustDosage.value == true) {
                 chemDose.text = String.format("%.${6}f", entry[5])
@@ -152,7 +146,6 @@ class CoagCalibrationFragment : Fragment() {
             }
 
             //timer functionality
-
             // set variables to access each necessary element
             startButton = view.findViewById(R.id.play_button)
             resetButton = view.findViewById(R.id.reset_button)
@@ -166,7 +159,8 @@ class CoagCalibrationFragment : Fragment() {
                 mlText.setTextColor(Color.BLACK)
                 endVolume.isEnabled = true
             }
-
+            //FIXME: if timer is run, endVolume filled, then timer set to another value
+            // but not run, should end volume be updated with the new time?
             //handle start button logic
             startButton.setOnClickListener() {
                 val minutesText = minutesView.text.toString()
@@ -219,7 +213,13 @@ class CoagCalibrationFragment : Fragment() {
                     }
                     val endVolumeText = endVolume.text.toString()
                     if (endVolumeText.isNotEmpty() && isDouble(endVolumeText)) {
-                        entry[3] = endVolumeText.toDouble()
+                        val endVol = endVolumeText.toDouble()
+                        if(endVol < entry[2]) {
+                            entry[3] = endVolumeText.toDouble()
+                        }
+                        else {
+                            Toast.makeText(context,"End volume must be less than start volume.",Toast.LENGTH_SHORT).show()
+                        }
                     }
 
                     //check if accessAdjustDosage has changed
@@ -229,15 +229,13 @@ class CoagCalibrationFragment : Fragment() {
                             viewModel.accessAdjustDosage.value = false
                         }
                     }
+                    // if calibration form is filled, calculate and display outputs
                     if (viewModel.accessAdjustDosage.value == true) {
                         entry[6] = (entry[2] - entry[3]) / entry[4]
                         entry[5] = entry[6] * viewModel.chemConcentration.value!!
                         chemDose.text = String.format("%.${6}f", entry[5])
                         chemFlowRate.text = String.format("%.${6}f", entry[6])
                     }
-
-                    //update viewModel to store new entry data
-                    viewModel.coagData.value = entry
                 }
 
                 override fun afterTextChanged(s: Editable?) {
@@ -251,6 +249,7 @@ class CoagCalibrationFragment : Fragment() {
 
             // connect seekbar progress with slider position input
             val sliderInput: EditText = view.findViewById(R.id.slider_input)
+            // if seekbar data is already entered, display on UI
             if(entry[0] > 0 || entry[0] == 0.0) {
                 sliderInput.setText(entry[0].toInt().toString())
             }

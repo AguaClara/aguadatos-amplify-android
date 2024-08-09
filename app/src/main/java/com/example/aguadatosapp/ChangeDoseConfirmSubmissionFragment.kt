@@ -5,11 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.aguadatosapp.R
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import java.time.LocalDate
@@ -17,30 +14,22 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 // CoagConfirmSubmissionFragment.kt
 class ChangeDoseConfirmSubmissionFragment : Fragment() {
-    // This view model contains the coagulant dosing data entry
     private lateinit var viewModel: SharedViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        // inflate layout
         val view = inflater.inflate(R.layout.fragment_change_dose_confirm_entry, container, false)
 
-        //listener for back button (X)
+        // handle logic for back button (X)
         view.findViewById<Button>(R.id.x_button).setOnClickListener {
             findNavController().navigate(R.id.action_change_dose_confirm_entry_to_coag_page)
         }
-        //listener for confirm entry button
+        // handle logic for confirm entry button
         view.findViewById<Button>(R.id.confirm_button).setOnClickListener {
             //TODO: @POST TEAM FA'24, this is where variables in ViewModel will be sent to backend
-            //clear entry values
-            val entry = viewModel.changeDoseData.value
-            if(entry != null) {
-                viewModel.tempChangeDoseData.value = entry.clone()
-                for(i in 0..4) {
-                    entry[i] = -1.0
-                }
-            }
             //add time to submission
             val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
             val timeText = LocalTime.now().format(timeFormatter)
@@ -56,8 +45,7 @@ class ChangeDoseConfirmSubmissionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // This view model contains the coagulant dosing data entry
-        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
 
         //display chemical type set in configuration
@@ -65,25 +53,25 @@ class ChangeDoseConfirmSubmissionFragment : Fragment() {
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
         // Observe the change dose data from ViewModel
-        viewModel.changeDoseData.observe(viewLifecycleOwner, Observer { entry ->
+        viewModel.changeDoseData.observe(viewLifecycleOwner) { entry ->
             // Update UI based on the received data
             if (entry != null) {
                 //Update all text views to contain the data numbers
                 val oldCoagDoseView: TextView = view.findViewById(R.id.old_coag_dose_info)
-                oldCoagDoseView.text = "Coagulant Dosage: "+String.format("%.${6}f", entry[0])+" mg/L"
+                oldCoagDoseView.text = getString(R.string.chemical_dose_with_input,String.format("%.${6}f", entry[0]))
                 val oldFlowRateView: TextView = view.findViewById(R.id.old_coag_flow_rate_info)
-                oldFlowRateView.text = "Coagulant Flow Rate: "+String.format("%.${6}f", entry[1])+" mL/s"
+                oldFlowRateView.text = getString(R.string.chemical_flow_rate_with_input,String.format("%.${6}f", entry[1]))
                 val targetCoagDoseView: TextView = view.findViewById(R.id.target_flow_rate_info)
-                targetCoagDoseView.text = "Target Coagulant Dosage: "+entry[2]+" mL/s"
-                val newCoagDoseView: TextView = view.findViewById(R.id.new_coag_flow_info)
-                newCoagDoseView.text = "New Coagulant Flow Rate: "+String.format("%.${6}f", entry[3])+" mg/L"
+                targetCoagDoseView.text = getString(R.string.target_coag_dose,entry[2])
+                val newCoagFlowView: TextView = view.findViewById(R.id.new_coag_flow_info)
+                newCoagFlowView.text = getString(R.string.new_coag_flow_rate,String.format("%.${6}f", entry[3]))
                 val newSliderPosView: TextView = view.findViewById(R.id.new_slider_pos_info)
-                newSliderPosView.text = "New Slider Position: "+entry[4]+"%"
+                newSliderPosView.text = getString(R.string.new_slider_pos,entry[4])
             }
-        })
+        }
 
         //observe tank volume data from ViewModel
-        viewModel.tankVolumes.observe(viewLifecycleOwner, Observer { entry ->
+        viewModel.tankVolumes.observe(viewLifecycleOwner) { entry ->
             // Update UI based on the received data
             if (entry != null) {
                 var activeTank = 1
@@ -94,11 +82,11 @@ class ChangeDoseConfirmSubmissionFragment : Fragment() {
                 }
                 //Update all text views to contain the data numbers
                 val activeTankView: TextView = view.findViewById(R.id.active_tank_info)
-                activeTankView.text = "Active Tank: "+activeTank
+                activeTankView.text = getString(R.string.active_tank_with_input,activeTank)
                 val activeTankVolView: TextView = view.findViewById(R.id.tank_vol_info)
-                activeTankVolView.text = "Active Tank Volume: "+activeTankVol+" L"
+                activeTankVolView.text = getString(R.string.active_tank_volume,activeTankVol)
             }
-        })
+        }
 
         //add date to submission
         val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -107,7 +95,7 @@ class ChangeDoseConfirmSubmissionFragment : Fragment() {
 
         //display date
         val dateView: TextView = view.findViewById(R.id.date_text)
-        dateView.text = "Date: "+dateText
+        dateView.text = getString(R.string.date,dateText)
     }
 
 }
