@@ -42,6 +42,11 @@ class RawWaterFragment : Fragment() {
         val notesInput: EditText = view.findViewById(R.id.raw_water_notes_input)
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
 
+        //set starting value if data has already been entered
+        if(viewModel.rawWaterData.value != null) {
+            turbidity.setText(viewModel.rawWaterData.value.toString())
+        }
+
         //display chemical type set in configuration
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)

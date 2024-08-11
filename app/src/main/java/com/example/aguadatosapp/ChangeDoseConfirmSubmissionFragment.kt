@@ -58,13 +58,13 @@ class ChangeDoseConfirmSubmissionFragment : Fragment() {
             if (entry != null) {
                 //Update all text views to contain the data numbers
                 val oldCoagDoseView: TextView = view.findViewById(R.id.old_coag_dose_info)
-                oldCoagDoseView.text = getString(R.string.chemical_dose_with_input,String.format("%.${6}f", entry[0]))
+                oldCoagDoseView.text = getString(R.string.chemical_dose_with_input,entry[0])
                 val oldFlowRateView: TextView = view.findViewById(R.id.old_coag_flow_rate_info)
-                oldFlowRateView.text = getString(R.string.chemical_flow_rate_with_input,String.format("%.${6}f", entry[1]))
+                oldFlowRateView.text = getString(R.string.chemical_flow_rate_with_input,entry[1])
                 val targetCoagDoseView: TextView = view.findViewById(R.id.target_flow_rate_info)
                 targetCoagDoseView.text = getString(R.string.target_coag_dose,entry[2])
                 val newCoagFlowView: TextView = view.findViewById(R.id.new_coag_flow_info)
-                newCoagFlowView.text = getString(R.string.new_coag_flow_rate,String.format("%.${6}f", entry[3]))
+                newCoagFlowView.text = getString(R.string.new_coag_flow_rate,entry[3])
                 val newSliderPosView: TextView = view.findViewById(R.id.new_slider_pos_info)
                 newSliderPosView.text = getString(R.string.new_slider_pos,entry[4])
             }

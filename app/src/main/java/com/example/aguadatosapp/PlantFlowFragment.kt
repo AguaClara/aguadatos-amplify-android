@@ -46,6 +46,11 @@ class PlantFlowFragment : Fragment() {
         val notesInput: EditText = view.findViewById(R.id.plant_inflow_notes_input)
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
 
+        //set starting value if data has already been entered
+        if(viewModel.plantFlowData.value != null) {
+            waterInflowRate.setText(viewModel.plantFlowData.value.toString())
+        }
+
         //display chemical type set in configuration
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
@@ -56,7 +61,6 @@ class PlantFlowFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 //do nothing
             }
-    //FIXME: don't want 6 digit formatting for raw water and plant flow
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 //get user input, convert to double, and add to entry (for each input)
                 val waterInflowRateText = waterInflowRate.text.toString()

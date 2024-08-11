@@ -47,8 +47,6 @@ class RawWaterConfirmEntryFragment : Fragment() {
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
-        //FIXME: pull data for UI if already filled (same for plant flow)
-
         // Observe the data from ViewModel
         viewModel.rawWaterData.observe(viewLifecycleOwner) { turbidity ->
             // Update UI based on the received data

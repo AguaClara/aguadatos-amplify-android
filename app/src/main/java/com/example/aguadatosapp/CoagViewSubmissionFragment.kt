@@ -43,9 +43,6 @@ class CoagViewSubmissionFragment : Fragment() {
         viewModel.coagData.observe(viewLifecycleOwner) { entry ->
             // Update UI based on the received data
             if (entry != null) {
-                //format chemical dose and chemical flow rate to 6 decimal places
-                val chemDoseText = String.format("%.${6}f", entry[5])
-                val chemFlowRateText = String.format("%.${6}f", entry[6])
                 //Update all text views to contain the data numbers
                 val sliderPosView: TextView = view.findViewById(R.id.slider_pos_info)
                 sliderPosView.text = getString(R.string.slider_position_with_input, entry[0])
@@ -58,9 +55,9 @@ class CoagViewSubmissionFragment : Fragment() {
                 val timeElapsedView: TextView = view.findViewById(R.id.time_elapsed_info)
                 timeElapsedView.text = getString(R.string.time_elapsed_with_input, entry[4])
                 val chemDoseView: TextView = view.findViewById(R.id.chem_dose_info)
-                chemDoseView.text = getString(R.string.chemical_dose_with_input, chemDoseText)
+                chemDoseView.text = getString(R.string.chemical_dose_with_input, entry[5])
                 val chemFlowRateView: TextView = view.findViewById(R.id.chem_flow_info)
-                chemFlowRateView.text = getString(R.string.chemical_flow_rate_with_input, chemFlowRateText)
+                chemFlowRateView.text = getString(R.string.chemical_flow_rate_with_input, entry[6])
             }
         }
 

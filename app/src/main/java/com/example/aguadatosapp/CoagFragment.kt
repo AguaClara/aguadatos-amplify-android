@@ -216,8 +216,6 @@ class CoagFragment : Fragment() {
         input2.setTextColor(Color.GRAY)
         input2.isEnabled = false
         input2.setText("0.0")
-        //FIXME: inputs should NOT be formatted to 6 decimal places!
-        // How to handle large decimal inputs though? Will it be a problem?
 
         //update if switch is changed
         tankSwitch.setOnClickListener {

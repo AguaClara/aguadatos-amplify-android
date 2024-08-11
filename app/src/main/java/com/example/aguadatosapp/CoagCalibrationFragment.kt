@@ -1,6 +1,7 @@
 package com.example.aguadatosapp
 
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -16,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import java.util.Locale
 
 // CoagCalibrationFragment.kt
 class CoagCalibrationFragment : Fragment() {
@@ -41,8 +43,7 @@ class CoagCalibrationFragment : Fragment() {
     fun isInt(value: String): Boolean {
         return value.toIntOrNull() != null
     }
-    //TODO: stop clearing viewModel for all data submissions
-    //TODO: add sound when timer finishes
+
     //start timer countdown
     private fun startCountdown(timeInSeconds: Long) {
         countdownTimer?.cancel()
@@ -54,18 +55,21 @@ class CoagCalibrationFragment : Fragment() {
                 val minutesLeft = secondsLeft / 60
                 val modSecondsLeft = secondsLeft % 60
                 minutesView.setText(minutesLeft.toString())
-                //FIXME: find way to resolve this warning
-                secondsView.setText(String.format("%02d", modSecondsLeft))
-                minutesView.setText(String.format("%02d",minutesLeft))
+                secondsView.setText(String.format(Locale.US,"%02d", modSecondsLeft))
+                minutesView.setText(String.format(Locale.US,"%02d",minutesLeft))
             }
 
             override fun onFinish() {
-                // reset timer, timer display
+                //TODO: Ensure sound is working properly
+                //Initialize MediaPlayer, play sound
+                val mediaPlayer = MediaPlayer.create(context, R.raw.beep)
+                mediaPlayer.start()
                 // allow user to access endVolume field
                 endVolume.isEnabled = true
                 endVolume.setTextColor(Color.BLACK)
                 endVolumeText.setTextColor(Color.BLACK)
                 mlText.setTextColor(Color.BLACK)
+                // reset timer, timer display
                 resetTimer()
             }
         }.start()
@@ -79,8 +83,8 @@ class CoagCalibrationFragment : Fragment() {
         //timeElapsed = 0
         val mins = timeElapsed / 60
         val secs = timeElapsed % 60
-        minutesView.setText(String.format("%02d", mins))
-        secondsView.setText(String.format("%02d",secs))
+        minutesView.setText(String.format(Locale.US,"%02d", mins))
+        secondsView.setText(String.format(Locale.US,"%02d",secs))
         startButton.background = ContextCompat.getDrawable(requireContext(),R.drawable.play_button)
         resetButton.background = ContextCompat.getDrawable(requireContext(),R.drawable.gray_reset_button)
         countdownTimer?.cancel()
@@ -141,8 +145,8 @@ class CoagCalibrationFragment : Fragment() {
                 timeElapsed = entry[4].toInt()
                 val mins = timeElapsed / 60
                 val secs = timeElapsed % 60
-                minutesView.setText(String.format("%02d", mins))
-                secondsView.setText(String.format("%02d",secs))
+                minutesView.setText(String.format(Locale.US,"%02d", mins))
+                secondsView.setText(String.format(Locale.US,"%02d",secs))
             }
 
             //timer functionality
@@ -159,10 +163,8 @@ class CoagCalibrationFragment : Fragment() {
                 mlText.setTextColor(Color.BLACK)
                 endVolume.isEnabled = true
             }
-            //FIXME: if timer is run, endVolume filled, then timer set to another value
-            // but not run, should end volume be updated with the new time?
             //handle start button logic
-            startButton.setOnClickListener() {
+            startButton.setOnClickListener {
                 val minutesText = minutesView.text.toString()
                 val secondsText = secondsView.text.toString()
                 //ensure input is valid, calculate time elapsed in seconds
@@ -190,7 +192,7 @@ class CoagCalibrationFragment : Fragment() {
             }
 
             //handle reset button logic
-            resetButton.setOnClickListener() {
+            resetButton.setOnClickListener {
                 resetTimer()
             }
 
@@ -287,7 +289,7 @@ class CoagCalibrationFragment : Fragment() {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                     //update slider input if seekbar is updated by user
                     if(!inputChanged) {
-                        sliderInput.setText(progress.toInt().toString())
+                        sliderInput.setText(progress.toString())
                     }
                     // update the first element of the data entry to store slider position
                     entry[0] = progress.toDouble()
