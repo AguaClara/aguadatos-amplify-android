@@ -6,32 +6,18 @@
     android:background="@color/background_blue"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="55dp" >
-    <LinearLayout
-        android:id="@+id/config_page_header"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/config_page_header"
+        android:text="@string/configuration"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:paddingVertical="20dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/back_button"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:background="@drawable/back_button"
-            android:textColor="@color/black"
-            android:textSize="40sp" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
-            android:text="@string/configuration"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textColor="@color/black"
-            android:paddingVertical="20dp" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,6 +39,9 @@
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:id="@+id/operator_name_input"
+            android:autofillHints=""
+            android:hint="@string/space"
+            android:inputType="text"
             android:textColor="@color/black"/>
     </LinearLayout>
     <LinearLayout
@@ -76,6 +65,9 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:id="@+id/plant_name_input"
+            android:autofillHints=""
+            android:hint="@string/space"
+            android:inputType="text"
             android:textColor="@color/black" />
     </LinearLayout>
     <TextView
@@ -89,30 +81,20 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/chemical_type_box" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/chemical_type_box"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/dosage_presets_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/chem_conc_box">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chemical_type"
-                android:textSize="17sp" />
-
-        <ImageView
-                android:id="@+id/chem_type_switch"
-                android:layout_marginHorizontal="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/chem_type_switch_off"
-                android:contentDescription="@string/chemical_type_switch" />
-    </LinearLayout>
+    <TextView
+            android:id="@+id/chemical_type_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/chemical_type"
+            android:textSize="17sp"
+            android:drawablePadding="10dp"
+            app:drawableEndCompat="@drawable/chem_type_switch_off"
+            app:layout_constraintTop_toBottomOf="@id/dosage_presets_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/chem_conc_box"
+            android:contentDescription="@string/chemical_type_switch"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -131,11 +113,17 @@
         <EditText
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="numberDecimal"
             android:background="@color/white"
             android:layout_marginStart="10dp"
             android:id="@+id/chem_conc_input"
             android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/g_l"
+            android:layout_marginHorizontal="10dp" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -167,6 +155,8 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:id="@+id/num_filters_input"
+            android:autofillHints=""
+            android:hint="@string/space"
             android:inputType="number"
             android:background="@color/white"
             android:textColor="@color/black"

@@ -51,7 +51,6 @@ class CoagConfirmSubmissionFragment : Fragment() {
         //display chemical type set in configuration
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
-    //TODO: add units for chemical concentration to configuration
         // Observe the data from ViewModel
         viewModel.coagData.observe(viewLifecycleOwner) { entry ->
             // Update UI based on the received data

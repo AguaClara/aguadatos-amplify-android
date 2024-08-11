@@ -35,7 +35,6 @@ class HomeActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        //FIXME: navigation bar not working
 
         // Adding logging to detect item clicks
         navView.setOnItemSelectedListener { item ->

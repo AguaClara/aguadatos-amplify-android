@@ -50,10 +50,9 @@ class HomeFragment : Fragment() {
 //        }
 
         // handle logic for "CHLORINE DOSAGE" button
-        root.findViewById<Button>(R.id.chlorineNavButton).setOnClickListener {
-            findNavController().navigate(R.id.action_home_to_config_page_TEMP)
-            //FIXME: change to chlorine once nav bar is fixed
-        }
+        //root.findViewById<Button>(R.id.chlorineNavButton).setOnClickListener {
+            //findNavController().navigate(R.id.action_home_to_config_page_TEMP)
+        //}
 
         return root
     }

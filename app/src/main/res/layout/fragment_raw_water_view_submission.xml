@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/date_text"
             android:paddingVertical="5dp"
-            android:text="Date: __/__/__"
+            android:layout_marginTop="20dp"
+            android:text="@string/date_default"
             android:textSize="20sp"
             android:layout_marginHorizontal="25dp"
             app:layout_constraintTop_toTopOf="parent"
@@ -67,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/turbidity_text"
-            android:text="__ NTU"
+            android:text="@string/_ntu"
             android:gravity="center_horizontal"
             android:paddingVertical="5dp"
             android:textSize="20sp"
@@ -91,11 +92,11 @@
             app:layout_constraintBottom_toTopOf="@id/raw_water_notes_text" />
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="0dp"
             android:id="@+id/raw_water_notes_text"
             android:textSize="20sp"
             android:paddingVertical="5dp"
-            android:text="__"
+            android:text="@string/__"
             android:gravity="center"
             android:paddingHorizontal="70dp"
             app:layout_constraintTop_toBottomOf="@id/notes_header"
@@ -119,6 +120,7 @@
             android:id="@+id/submit_date_time"
             android:textSize="17sp"
             android:gravity="center"
+            android:layout_marginBottom="20dp"
             android:layout_marginHorizontal="85dp"
             app:layout_constraintTop_toBottomOf="@id/submitted_text"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -126,8 +128,9 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="200dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
         android:id="@+id/raw_water_return_home"
         android:background="@drawable/green_button_background"
         android:text="@string/return_home"

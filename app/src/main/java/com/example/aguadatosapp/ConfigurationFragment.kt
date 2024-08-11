@@ -24,10 +24,6 @@ class ConfigurationFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_configuration, container, false)
 
-        // listener for back button (<)
-        view.findViewById<Button>(R.id.back_button).setOnClickListener {
-            findNavController().navigate(R.id.action_config_page_to_home)
-        }
         Log.d("FragmentNavigation", "ConfigurationFragment is created")
 
         return view

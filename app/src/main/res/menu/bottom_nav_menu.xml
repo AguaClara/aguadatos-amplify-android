@@ -7,8 +7,23 @@
         android:title="@string/title_home" />
 
     <item
+            android:id="@+id/navigation_records"
+            android:icon="@drawable/records_icon"
+            android:title="@string/records" />
+
+    <item
+            android:id="@+id/navigation_graphs"
+            android:icon="@drawable/graph_icon"
+            android:title="@string/graphs" />
+
+    <item
         android:id="@+id/navigation_configuration"
         android:icon="@drawable/config_icon"
         android:title="@string/config" />
+
+    <item
+            android:id="@+id/navigation_feedback"
+            android:icon="@drawable/feedback_icon"
+            android:title="@string/feedback" />
 
 </menu>
