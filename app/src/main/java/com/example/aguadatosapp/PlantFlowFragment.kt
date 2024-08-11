@@ -21,7 +21,7 @@ class PlantFlowFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_plant_flow_page, container, false)
+        val view = inflater.inflate(R.layout.fragment_plant_flow, container, false)
 
         //set up logic for back button
         view.findViewById<Button>(R.id.back_button).setOnClickListener {

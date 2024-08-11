@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import java.util.Date
 
-// PlantFlowViewSubmissionFragment.kt
-class PlantFlowViewSubmissionFragment : Fragment() {
+// PlantFlowViewEntryFragment.kt
+class PlantFlowViewEntryFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
     // This view model contains the mutable entry array
     override fun onCreateView(
@@ -20,7 +20,7 @@ class PlantFlowViewSubmissionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //inflate layout
-        val view = inflater.inflate(R.layout.fragment_plant_flow_view_submission, container, false)
+        val view = inflater.inflate(R.layout.fragment_plant_flow_view_entry, container, false)
 
         //handle logic for return home button
         view.findViewById<Button>(R.id.plant_flow_return_home).setOnClickListener {

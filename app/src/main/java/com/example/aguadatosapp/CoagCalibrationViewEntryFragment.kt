@@ -10,19 +10,20 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
-// CoagViewSubmissionFragment.kt
-class ChangeDoseViewSubmissionFragment : Fragment() {
+// CoagCalibrationViewEntryFragment.kt
+class CoagCalibrationViewEntryFragment : Fragment() {
+
     private lateinit var viewModel: SharedViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // inflate layout
-        val view = inflater.inflate(R.layout.fragment_change_dose_view_submission, container, false)
+        //inflate layout
+        val view = inflater.inflate(R.layout.fragment_coag_calibration_view_entry, container, false)
 
         // handle logic for return home button
         view.findViewById<Button>(R.id.go_home_button).setOnClickListener {
-            findNavController().navigate(R.id.action_change_dose_view_entry_to_home)
+            findNavController().navigate(R.id.action_coag_view_to_home)
         }
 
         return view
@@ -30,6 +31,7 @@ class ChangeDoseViewSubmissionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // This view model contains the coagulant dosing data entry
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
 
@@ -38,20 +40,24 @@ class ChangeDoseViewSubmissionFragment : Fragment() {
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
         // Observe the data from ViewModel
-        viewModel.changeDoseData.observe(viewLifecycleOwner) { entry ->
+        viewModel.coagData.observe(viewLifecycleOwner) { entry ->
             // Update UI based on the received data
             if (entry != null) {
                 //Update all text views to contain the data numbers
-                val oldCoagDoseView: TextView = view.findViewById(R.id.old_coag_dose_info)
-                oldCoagDoseView.text = getString(R.string.chemical_dose_with_input,entry[0])
-                val oldFlowRateView: TextView = view.findViewById(R.id.old_coag_flow_rate_info)
-                oldFlowRateView.text = getString(R.string.chemical_flow_rate_with_input,entry[1])
-                val targetCoagDoseView: TextView = view.findViewById(R.id.target_flow_rate_info)
-                targetCoagDoseView.text = getString(R.string.target_coag_dose,entry[2])
-                val newCoagDoseView: TextView = view.findViewById(R.id.new_coag_flow_info)
-                newCoagDoseView.text = getString(R.string.new_coag_flow_rate,entry[3])
-                val newSliderPosView: TextView = view.findViewById(R.id.new_slider_pos_info)
-                newSliderPosView.text = getString(R.string.new_slider_pos,entry[4])
+                val sliderPosView: TextView = view.findViewById(R.id.slider_pos_info)
+                sliderPosView.text = getString(R.string.slider_position_with_input, entry[0])
+                val inflowRateView: TextView = view.findViewById(R.id.inflow_rate_info)
+                inflowRateView.text = getString(R.string.inflow_rate_with_input2, entry[1])
+                val svInfoView: TextView = view.findViewById(R.id.sv_info)
+                svInfoView.text = getString(R.string.start_volume_with_input, entry[2])
+                val evInfoView: TextView = view.findViewById(R.id.ev_info)
+                evInfoView.text = getString(R.string.end_volume_with_input, entry[3])
+                val timeElapsedView: TextView = view.findViewById(R.id.time_elapsed_info)
+                timeElapsedView.text = getString(R.string.time_elapsed_with_input, entry[4])
+                val chemDoseView: TextView = view.findViewById(R.id.chem_dose_info)
+                chemDoseView.text = getString(R.string.chemical_dose_with_input, entry[5])
+                val chemFlowRateView: TextView = view.findViewById(R.id.chem_flow_info)
+                chemFlowRateView.text = getString(R.string.chemical_flow_rate_with_input, entry[6])
             }
         }
 
@@ -61,15 +67,15 @@ class ChangeDoseViewSubmissionFragment : Fragment() {
             if (entry != null) {
                 var activeTank = 1
                 var activeTankVol = entry[0]
-                if(entry[1] > 0.0) {
+                if (entry[1] > 0.0) {
                     activeTank = 2
                     activeTankVol = entry[1]
                 }
                 //Update all text views to contain the data numbers
                 val activeTankView: TextView = view.findViewById(R.id.active_tank_info)
-                activeTankView.text = getString(R.string.active_tank_with_input,activeTank)
+                activeTankView.text = getString(R.string.active_tank_with_input, activeTank)
                 val activeTankVolView: TextView = view.findViewById(R.id.tank_vol_info)
-                activeTankVolView.text = getString(R.string.active_tank_volume,activeTankVol)
+                activeTankVolView.text = getString(R.string.active_tank_volume, activeTankVol)
             }
         }
 

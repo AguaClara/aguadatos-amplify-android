@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-
+    //FIXME: run out message only showing if calibration is finished first
         // inflate layout
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,13 +33,5 @@ class MainActivity : AppCompatActivity() {
         )
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        // Adding logging to detect item clicks
-        navView.setOnItemSelectedListener { item ->
-            Log.d("HomeActivity", "Navigation item selected: ${item.itemId}")
-            val handled = NavigationUI.onNavDestinationSelected(item, navController)
-            Log.d("HomeActivity", "Navigation handled: $handled")
-            handled
-        }
     }
 }

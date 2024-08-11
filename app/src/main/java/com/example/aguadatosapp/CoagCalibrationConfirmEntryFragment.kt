@@ -9,36 +9,48 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-
-// CoagViewSubmissionFragment.kt
-class CoagViewSubmissionFragment : Fragment() {
-
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+// CoagCalibrationConfirmEntryFragment.kt
+class CoagCalibrationConfirmEntryFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //inflate layout
-        val view = inflater.inflate(R.layout.fragment_coag_dosage_submission, container, false)
 
-        // handle logic for return home button
-        view.findViewById<Button>(R.id.go_home_button).setOnClickListener {
-            findNavController().navigate(R.id.action_coag_view_to_home)
+        // inflate layout
+        val view = inflater.inflate(R.layout.fragment_coag_calibration_confirm_entry, container, false)
+
+        // handle logic for back button (X)
+        view.findViewById<Button>(R.id.x_button).setOnClickListener {
+            findNavController().navigate(R.id.action_coag_confirm_to_coag_page)
+        }
+        // handle logic for confirm entry button
+        view.findViewById<Button>(R.id.confirm_button).setOnClickListener {
+            //TODO: @POST TEAM FA'24, this is where variables in ViewModel will be sent to backend
+            //add time to submission
+            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+            val timeText = LocalTime.now().format(timeFormatter)
+            viewModel.time.value = timeText
+
+            //navigate to next page
+            findNavController().navigate(R.id.action_coag_confirm_to_coag_view_submission)
         }
 
         return view
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // This view model contains the coagulant dosing data entry
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
 
         //display chemical type set in configuration
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
-
         // Observe the data from ViewModel
         viewModel.coagData.observe(viewLifecycleOwner) { entry ->
             // Update UI based on the received data
@@ -47,7 +59,7 @@ class CoagViewSubmissionFragment : Fragment() {
                 val sliderPosView: TextView = view.findViewById(R.id.slider_pos_info)
                 sliderPosView.text = getString(R.string.slider_position_with_input, entry[0])
                 val inflowRateView: TextView = view.findViewById(R.id.inflow_rate_info)
-                inflowRateView.text = getString(R.string.inflow_rate_with_input2, entry[1])
+                inflowRateView.text = getString(R.string.inflow_rate_with_input, entry[1])
                 val svInfoView: TextView = view.findViewById(R.id.sv_info)
                 svInfoView.text = getString(R.string.start_volume_with_input, entry[2])
                 val evInfoView: TextView = view.findViewById(R.id.ev_info)
@@ -79,17 +91,13 @@ class CoagViewSubmissionFragment : Fragment() {
             }
         }
 
-        //display date at the top
+        //add date to submission
+        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val dateText = LocalDate.now().format(dateFormatter)
+        viewModel.date.value = dateText
+
+        //display date
         val dateView: TextView = view.findViewById(R.id.date_text)
-        val dateVal = viewModel.date.value
-        if (dateVal != null) {
-            dateView.text = getString(R.string.date,dateVal)
-        }
-        //display submission date and time at the bottom
-        val dateTimeView: TextView = view.findViewById(R.id.submit_date_time)
-        val timeVal = viewModel.time.value
-        if (timeVal != null && dateVal != null) {
-            dateTimeView.text = getString(R.string.date_and_time,dateVal,timeVal)
-        }
+        dateView.text = getString(R.string.date,dateText)
     }
 }

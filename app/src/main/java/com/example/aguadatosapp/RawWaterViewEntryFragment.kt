@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import java.util.Date
 
-// ClarifiedWaterViewSubmissionFragment.kt
-class ClarifiedWaterViewSubmissionFragment : Fragment() {
+// RawWaterViewEntryFragment.kt
+class RawWaterViewEntryFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
     // This view model contains the mutable entry array
     override fun onCreateView(
@@ -21,11 +20,11 @@ class ClarifiedWaterViewSubmissionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_clarified_water_view_entry_page, container, false)
+        val view = inflater.inflate(R.layout.fragment_raw_water_view_entry, container, false)
 
         //listener for return home button
-        view.findViewById<Button>(R.id.clarified_water_return_home).setOnClickListener {
-            findNavController().navigate(R.id.action_clarified_water_view_to_home)
+        view.findViewById<Button>(R.id.raw_water_return_home).setOnClickListener {
+            findNavController().navigate(R.id.action_raw_water_view_to_home)
         }
 
         return view
@@ -45,7 +44,7 @@ class ClarifiedWaterViewSubmissionFragment : Fragment() {
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
         // Observe the data from ViewModel
-        viewModel.clarifiedWaterData.observe(viewLifecycleOwner) { turbidity ->
+        viewModel.rawWaterData.observe(viewLifecycleOwner) { turbidity ->
             // Update UI based on the received data
             if (turbidity != null) {
                 //Update all text views to contain the data numbers
@@ -53,11 +52,11 @@ class ClarifiedWaterViewSubmissionFragment : Fragment() {
                 turbidityView.text = getString(R.string.turbidity_with_input,turbidity)
             }
         }
-        viewModel.clarifiedWaterNotes.observe(viewLifecycleOwner) { notes ->
+        viewModel.rawWaterNotes.observe(viewLifecycleOwner) { notes ->
             // Update UI based on the received data
             if (notes != null) {
                 //Update all text views to contain the data numbers
-                val notesView: TextView = view.findViewById(R.id.clarified_water_notes_text)
+                val notesView: TextView = view.findViewById(R.id.raw_water_notes_text)
                 notesView.text = notes
             }
         }

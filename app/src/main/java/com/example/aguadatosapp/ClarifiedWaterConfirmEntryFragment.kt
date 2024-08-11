@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-import java.util.Date
 
 // ClarifiedWaterConfirmEntryFragment.kt
 class ClarifiedWaterConfirmEntryFragment : Fragment() {
@@ -24,7 +23,7 @@ class ClarifiedWaterConfirmEntryFragment : Fragment() {
     ): View? {
 
         // Inflate layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_clarified_water_confirm_entry_page, container, false)
+        val view = inflater.inflate(R.layout.fragment_clarified_water_confirm_entry, container, false)
 
         // Handle logic for X button
         view.findViewById<Button>(R.id.clarified_water_x_button).setOnClickListener {
