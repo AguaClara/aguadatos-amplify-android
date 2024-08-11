@@ -9,6 +9,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.util.Date
 
 // RawWaterConfirmEntryFragment.kt
@@ -30,6 +33,10 @@ class RawWaterConfirmEntryFragment : Fragment() {
         // Handle logic for confirm entry button
         view.findViewById<Button>(R.id.raw_water_confirm_button).setOnClickListener {
             //TODO: @POST TEAM FA'24, this is where data from the ViewModel will be sent to the backend
+            //add time to submission
+            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+            val timeText = LocalTime.now().format(timeFormatter)
+            viewModel.time.value = timeText
             findNavController().navigate(R.id.action_raw_water_confirm_to_raw_water_view)
         }
 
@@ -65,12 +72,14 @@ class RawWaterConfirmEntryFragment : Fragment() {
             }
         }
 
+        //add date to submission
+        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val dateText = LocalDate.now().format(dateFormatter)
+        viewModel.date.value = dateText
+
         //display date
         val dateView: TextView = view.findViewById(R.id.date_text)
-        val dateVal = viewModel.date.value
-        if (dateVal != null) {
-            dateView.text = getString(R.string.date, dateVal.format(Date()))
-        }
+        dateView.text = getString(R.string.date,dateText)
     }
 
 }

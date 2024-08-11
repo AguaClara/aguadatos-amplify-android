@@ -39,15 +39,15 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_home_to_coag_page)
         }
 
-        // handle logic for "FILTERED TURBIDITY" button
+        // handle logic for "FILTERED WATER TURBIDITY" button
 //        root.findViewById<Button>(R.id.filteredTurbNavButton).setOnClickListener {
 //            findNavController().navigate(R.id.action_home_to_filtered_turbidity_page)
 //        }
 
-        // handle logic for "CLARIFIED TURBIDITY" button
-//        root.findViewById<Button>(R.id.clarifiedTurbNavButton).setOnClickListener {
-//            findNavController().navigate(R.id.action_home_to_clarified_turbidity_page)
-//        }
+        // handle logic for "CLARIFIED WATER TURBIDITY" button
+        root.findViewById<Button>(R.id.clarifiedTurbNavButton).setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_clarified_water_page)
+        }
 
         // handle logic for "CHLORINE DOSAGE" button
         //root.findViewById<Button>(R.id.chlorineNavButton).setOnClickListener {

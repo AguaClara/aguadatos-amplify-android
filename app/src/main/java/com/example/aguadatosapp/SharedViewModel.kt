@@ -23,13 +23,21 @@ class SharedViewModel : ViewModel() {
     // this variable holds the time in seconds before the coagulant in the active tank runs out
     val coagulantRunOutTime: MutableLiveData<String> = MutableLiveData()
 
+    // this is the data for the plant flow data submission
+    val plantFlowData: MutableLiveData<Double> = MutableLiveData()
+    val plantFlowNotes: MutableLiveData<String> = MutableLiveData()
+
     // this is the data for the raw water data submission
     val rawWaterData: MutableLiveData<Double> = MutableLiveData()
     val rawWaterNotes: MutableLiveData<String> = MutableLiveData()
 
-    // this is the data for the plant flow data submission
-    val plantFlowData: MutableLiveData<Double> = MutableLiveData()
-    val plantFlowNotes: MutableLiveData<String> = MutableLiveData()
+    // this is the data for the filtered water data submission
+    val filteredWaterData: MutableLiveData<DoubleArray> = MutableLiveData()
+    val filteredWaterNotes: MutableLiveData<String> = MutableLiveData()
+
+    // this is the data for the clarified water turbidity
+    val clarifiedWaterData: MutableLiveData<Double> = MutableLiveData()
+    val clarifiedWaterNotes: MutableLiveData<String> = MutableLiveData()
 
     // this holds submission time and date
     val date: MutableLiveData<String> = MutableLiveData()

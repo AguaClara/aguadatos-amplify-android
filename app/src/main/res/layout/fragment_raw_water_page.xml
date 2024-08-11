@@ -88,8 +88,9 @@
         app:layout_constraintLeft_toRightOf="@id/turbidity_input"
         app:layout_constraintBottom_toTopOf="@id/notes_box" />
     <View
-        android:layout_width="360dp"
-        android:layout_height="330dp"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:layout_marginHorizontal="20dp"
         android:background="@drawable/rounded_white"
         android:id="@+id/notes_box"
         app:layout_constraintTop_toBottomOf="@id/turbidity_text"
@@ -107,8 +108,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
     <EditText
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="300dp"
+        android:layout_marginHorizontal="40dp"
         android:id="@+id/raw_water_notes_input"
         android:autofillHints=""
         android:hint="@string/space"
