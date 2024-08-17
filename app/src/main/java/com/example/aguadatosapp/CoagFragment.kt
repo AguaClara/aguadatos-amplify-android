@@ -22,10 +22,13 @@ import java.time.LocalDateTime
 import java.time.Duration
 import java.time.format.DateTimeFormatter
 import java.util.Locale
-
-// CoagFragment.kt
+//FIXME: why is target coagulant dose updating based on calibration?
+//FIXME: truncate new coagulant flow rate
+//CoagFragment.kt
 class CoagFragment : Fragment() {
-    // var to store which embedded fragment is showing
+    //FIXME: run out message only showing if calibration is finished first
+    //FIXME: organize and clean mobile_navigation.xml
+    //var to store which embedded fragment is showing
     private var showingCalibrationFragment = true
     // record volume of each tank
     private var tank1vol = 0.0
@@ -48,12 +51,12 @@ class CoagFragment : Fragment() {
         }
         // handle logic for submit button
         view.findViewById<Button>(R.id.submit_button).setOnClickListener {
-            if(viewModel.accessAdjustDosage.value == true) {
+            if(viewModel.coagAccessAdjustDosage.value == true) {
                 if(showingCalibrationFragment) {
                     // proceed to calibration data submission
                     findNavController().navigate(R.id.action_coag_page_to_coag_confirm_entry)
                 }
-                else if(viewModel.changeDoseFilled.value == true) {
+                else if(viewModel.coagChangeDoseFilled.value == true) {
                     // proceed to change dose data submission
                     findNavController().navigate(R.id.action_coag_page_to_change_dose_confirm_entry)
                 }
@@ -84,7 +87,7 @@ class CoagFragment : Fragment() {
 
     //helper function to calculate when the active tank will run out of coagulant
     private fun calculateRunOutTime() {
-        val coagFlowRate = viewModel.coagData.value?.get(6)
+        val coagFlowRate = viewModel.coagCalibrationData.value?.get(6)
         val currentDateTime = LocalDateTime.now()
         var activeTankVolume = -1.0
         if(coagFlowRate != null && coagFlowRate > -1) {
@@ -142,7 +145,7 @@ class CoagFragment : Fragment() {
 
         // handle logic for change dose button
         changeDoseNavButton.setOnClickListener {
-            if (viewModel.accessAdjustDosage.value == true) {
+            if (viewModel.coagAccessAdjustDosage.value == true) {
                 // only swap if on calibration page
                 if (showingCalibrationFragment) {
                     //update button appearances
@@ -247,7 +250,7 @@ class CoagFragment : Fragment() {
         }
 
         //get active tank volumes from EditTexts
-        val volumesEntry = viewModel.tankVolumes.value
+        val volumesEntry = viewModel.coagTankVolumes.value
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 //do nothing
@@ -258,7 +261,7 @@ class CoagFragment : Fragment() {
                 if(volumesEntry != null && isDouble(input1.text.toString()) && isDouble(input2.text.toString())) {
                     volumesEntry[0] = input1.text.toString().toDouble()
                     volumesEntry[1] = input2.text.toString().toDouble()
-                    viewModel.tankVolumes.value = volumesEntry
+                    viewModel.coagTankVolumes.value = volumesEntry
                     tank1vol = volumesEntry[0]
                     tank2vol = volumesEntry[1]
                     calculateRunOutTime()
@@ -275,7 +278,7 @@ class CoagFragment : Fragment() {
         input2.addTextChangedListener(textWatcher)
 
         //if coagData (calibration page inputs) are changed, try to calculate run out time
-        viewModel.coagData.observe(viewLifecycleOwner) {
+        viewModel.coagCalibrationData.observe(viewLifecycleOwner) {
             calculateRunOutTime()
         }
     }

@@ -34,8 +34,8 @@ class CoagChangeDoseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         // read view model data into arrays
-        val calibrationEntry: DoubleArray? = viewModel.coagData.value
-        val changeDoseEntry: DoubleArray? = viewModel.changeDoseData.value
+        val calibrationEntry: DoubleArray? = viewModel.coagCalibrationData.value
+        val changeDoseEntry: DoubleArray? = viewModel.coagChangeDoseData.value
         var targetDose: Double = -1.0
 
         if(calibrationEntry != null && changeDoseEntry != null) {
@@ -57,7 +57,7 @@ class CoagChangeDoseFragment : Fragment() {
                 newCoagFlowDisplay.text = changeDoseEntry[3].toString()
                 outputSlider.progress = changeDoseEntry[4].toInt()
                 targetChemDose.setText(changeDoseEntry[1].toString())
-                viewModel.changeDoseFilled.value = true
+                viewModel.coagChangeDoseFilled.value = true
             }
 
             //watch input elements to update entry data whenever an input is added
@@ -74,7 +74,7 @@ class CoagChangeDoseFragment : Fragment() {
                     }
                     // if targetDose is valid, use it to calculate and display output
                     if(targetDose > 0.0 || targetDose == 0.0) {
-                        viewModel.changeDoseFilled.value = true
+                        viewModel.coagChangeDoseFilled.value = true
                         changeDoseEntry[2] = targetDose
                         val newSliderPosition = targetDose * calibrationEntry[0] / calibrationEntry[5]
                         changeDoseEntry[3] = targetDose / (viewModel.chemConcentration.value!!)

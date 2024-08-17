@@ -15,23 +15,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
-    //FIXME: run out message only showing if calibration is finished first
+
         // inflate layout
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //set up bottom nav bar
         val navView: BottomNavigationView = binding.navView
 
+        //set up nav controller
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_configuration
-            )
-        )
-        //setupActionBarWithNavController(navController, appBarConfiguration)
+
+        //link nav controller with nav bar
         navView.setupWithNavController(navController)
     }
 }

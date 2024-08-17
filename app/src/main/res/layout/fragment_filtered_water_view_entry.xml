@@ -1,6 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:paddingHorizontal="20dp"
+        android:background="@color/background_blue"
+        android:paddingBottom="50dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/filtered_water_title"
+            android:text="@string/filtered_water"
+            android:layout_marginVertical="20dp"
+            android:gravity="center"
+            android:textSize="30sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/entry_box" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/entry_box"
+            android:background="@drawable/rounded_white2"
+            app:layout_constraintTop_toBottomOf="@id/filtered_water_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/filtered_water_return_home" >
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/date_text"
+                android:paddingVertical="5dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/date_default"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="25dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/chem_type_text" />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chem_type_text"
+                android:text="@string/chemical_type_pac"
+                android:layout_marginHorizontal="25dp"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/date_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/turbidity_header" />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turbidity_header"
+                android:text="@string/turbidity"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:paddingVertical="15dp"
+                app:layout_constraintTop_toBottomOf="@id/chem_type_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/turbidity_text" />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turbidity_text"
+                android:text="@string/_ntu"
+                android:gravity="center_horizontal"
+                android:paddingVertical="5dp"
+                android:textSize="20sp"
+                android:paddingHorizontal="70dp"
+                app:layout_constraintTop_toBottomOf="@id/turbidity_header"
+                app:layout_constraintBottom_toTopOf="@id/notes_header"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/notes_header"
+                android:text="@string/notes"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginVertical="15dp"
+                app:layout_constraintTop_toBottomOf="@id/turbidity_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/filtered_water_notes_text" />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/filtered_water_notes_text"
+                android:textSize="20sp"
+                android:paddingVertical="5dp"
+                android:text="@string/__"
+                android:gravity="center"
+                android:paddingHorizontal="70dp"
+                app:layout_constraintTop_toBottomOf="@id/notes_header"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/submitted_text"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/submitted_text"
+                android:text="@string/submitted"
+                android:textSize="17sp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/filtered_water_notes_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/submit_date_time" />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/submit_date_time"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="85dp"
+                app:layout_constraintTop_toBottomOf="@id/submitted_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:id="@+id/filtered_water_return_home"
+            android:background="@drawable/green_button_background"
+            android:text="@string/return_home"
+            android:layout_marginVertical="20dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/entry_box"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

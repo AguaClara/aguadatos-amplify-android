@@ -97,8 +97,8 @@ class CoagCalibrationFragment : Fragment() {
     ): View? {
 
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        viewModel.accessAdjustDosage.value = false
-        viewModel.changeDoseFilled.value = false
+        viewModel.coagAccessAdjustDosage.value = false
+        viewModel.coagChangeDoseFilled.value = false
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_coag_calibration, container, false)
@@ -107,14 +107,14 @@ class CoagCalibrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        val entry = viewModel.coagData.value
+        val entry = viewModel.coagCalibrationData.value
 
         if(entry != null) {
             //update accessChangeDose
-            viewModel.accessAdjustDosage.value = true
+            viewModel.coagAccessAdjustDosage.value = true
             for(i in 1..4) {
                 if (entry[i] < 0.0) {
-                    viewModel.accessAdjustDosage.value = false
+                    viewModel.coagAccessAdjustDosage.value = false
                 }
             }
             // set variables to access each necessary element
@@ -139,7 +139,7 @@ class CoagCalibrationFragment : Fragment() {
             secondsView = view.findViewById(R.id.timer_seconds)
 
             //if accessChangeDose is true, display outputs
-            if(viewModel.accessAdjustDosage.value == true) {
+            if(viewModel.coagAccessAdjustDosage.value == true) {
                 chemDose.text = String.format("%.${6}f", entry[5])
                 chemFlowRate.text = String.format("%.${6}f", entry[6])
                 timeElapsed = entry[4].toInt()
@@ -158,7 +158,7 @@ class CoagCalibrationFragment : Fragment() {
             timeElapsed = 0
 
             //this ensures endVolume is enabled as long as timer has run once
-            if(viewModel.accessAdjustDosage.value==true) {
+            if(viewModel.coagAccessAdjustDosage.value==true) {
                 endVolumeText.setTextColor(Color.BLACK)
                 mlText.setTextColor(Color.BLACK)
                 endVolume.isEnabled = true
@@ -225,14 +225,14 @@ class CoagCalibrationFragment : Fragment() {
                     }
 
                     //check if accessAdjustDosage has changed
-                    viewModel.accessAdjustDosage.value = true
+                    viewModel.coagAccessAdjustDosage.value = true
                     for(i in 1..4) {
                         if (entry[i] < 0.0) {
-                            viewModel.accessAdjustDosage.value = false
+                            viewModel.coagAccessAdjustDosage.value = false
                         }
                     }
                     // if calibration form is filled, calculate and display outputs
-                    if (viewModel.accessAdjustDosage.value == true) {
+                    if (viewModel.coagAccessAdjustDosage.value == true) {
                         entry[6] = (entry[2] - entry[3]) / entry[4]
                         entry[5] = entry[6] * viewModel.chemConcentration.value!!
                         chemDose.text = String.format("%.${6}f", entry[5])

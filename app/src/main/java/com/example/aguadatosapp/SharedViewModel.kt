@@ -7,21 +7,36 @@ class SharedViewModel : ViewModel() {
 
     // this is the data for the calibration coagulant dosing data submission
     private val defaultArray = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
-    val coagData = MutableLiveData(defaultArray)
+    val coagCalibrationData = MutableLiveData(defaultArray)
 
     // this is the data for the change dose coagulant dosing data submission
     private val changeDoseDefaultArray = doubleArrayOf(-1.0, -1.0, -1.0, -1.0, -1.0)
-    val changeDoseData = MutableLiveData(changeDoseDefaultArray)
-    val changeDoseFilled = MutableLiveData<Boolean>().apply { value = false }
+    val coagChangeDoseData = MutableLiveData(changeDoseDefaultArray)
+    val coagChangeDoseFilled = MutableLiveData<Boolean>().apply { value = false }
 
     // this is the data for the coagulant dosing tank volumes
     private val defaultVolumesArray = doubleArrayOf(0.0, 0.0)
-    val tankVolumes = MutableLiveData(defaultVolumesArray)
+    val coagTankVolumes = MutableLiveData(defaultVolumesArray)
 
-    // this variable tracks whether or not the calibration form is filled (and the change dose form is accessible)
-    val accessAdjustDosage = MutableLiveData<Boolean>().apply { value = false }
+    // this variable tracks whether or not the coagulant dosing calibration form is filled (and the change dose form is accessible)
+    val coagAccessAdjustDosage = MutableLiveData<Boolean>().apply { value = false }
     // this variable holds the time in seconds before the coagulant in the active tank runs out
     val coagulantRunOutTime: MutableLiveData<String> = MutableLiveData()
+
+    // this is the data for the calibration chlorine dosing data submission
+    val chlorineCalibrationData = MutableLiveData(defaultArray)
+
+    // this is the data for the change dose chlorine dosing data submission
+    val chlorineChangeDoseData = MutableLiveData(changeDoseDefaultArray)
+    val chlorineChangeDoseFilled = MutableLiveData<Boolean>().apply { value = false }
+
+    // this is the data for the chlorine dosing tank volumes
+    val chlorineTankVolumes = MutableLiveData(defaultVolumesArray)
+
+    // this variable tracks whether or not the chlorine dosing calibration form is filled (and the change dose form is accessible)
+    val chlorineAccessAdjustDosage = MutableLiveData<Boolean>().apply { value = false }
+    // this variable holds the time in seconds before the chlorine in the active tank runs out
+    val chlorineRunOutTime: MutableLiveData<String> = MutableLiveData()
 
     // this is the data for the plant flow data submission
     val plantFlowData: MutableLiveData<Double> = MutableLiveData()

@@ -53,7 +53,7 @@ class CoagChangeDoseConfirmEntryFragment : Fragment() {
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
         // Observe the change dose data from ViewModel
-        viewModel.changeDoseData.observe(viewLifecycleOwner) { entry ->
+        viewModel.coagChangeDoseData.observe(viewLifecycleOwner) { entry ->
             // Update UI based on the received data
             if (entry != null) {
                 //Update all text views to contain the data numbers
@@ -71,7 +71,7 @@ class CoagChangeDoseConfirmEntryFragment : Fragment() {
         }
 
         //observe tank volume data from ViewModel
-        viewModel.tankVolumes.observe(viewLifecycleOwner) { entry ->
+        viewModel.coagTankVolumes.observe(viewLifecycleOwner) { entry ->
             // Update UI based on the received data
             if (entry != null) {
                 var activeTank = 1
