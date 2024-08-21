@@ -40,9 +40,9 @@ class HomeFragment : Fragment() {
         }
 
         // handle logic for "FILTERED WATER TURBIDITY" button
-//        root.findViewById<Button>(R.id.filteredTurbNavButton).setOnClickListener {
-//            findNavController().navigate(R.id.action_home_to_filtered_turbidity_page)
-//        }
+        root.findViewById<Button>(R.id.filteredTurbNavButton).setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_filtered_water_page)
+        }
 
         // handle logic for "CLARIFIED WATER TURBIDITY" button
         root.findViewById<Button>(R.id.clarifiedTurbNavButton).setOnClickListener {
@@ -50,9 +50,9 @@ class HomeFragment : Fragment() {
         }
 
         // handle logic for "CHLORINE DOSAGE" button
-        //root.findViewById<Button>(R.id.chlorineNavButton).setOnClickListener {
-            //findNavController().navigate(R.id.action_home_to_config_page_TEMP)
-        //}
+        root.findViewById<Button>(R.id.chlorineNavButton).setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_chlorine_page)
+        }
 
         return root
     }

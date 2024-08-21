@@ -19,8 +19,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import java.util.Locale
 
-// CoagCalibrationFragment.kt
-class CoagCalibrationFragment : Fragment() {
+// ChlorineCalibrationFragment.kt
+class ChlorineCalibrationFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
     // set variables to access each necessary element
     private var countdownTimer: CountDownTimer? = null
@@ -96,24 +96,24 @@ class CoagCalibrationFragment : Fragment() {
     ): View? {
 
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        viewModel.coagAccessAdjustDosage.value = false
-        viewModel.coagChangeDoseFilled.value = false
+        viewModel.chlorineAccessAdjustDosage.value = false
+        viewModel.chlorineChangeDoseFilled.value = false
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_coag_calibration, container, false)
+        return inflater.inflate(R.layout.fragment_chlorine_calibration, container, false)
 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        val entry = viewModel.coagCalibrationData.value
+        val entry = viewModel.chlorineCalibrationData.value
 
         if(entry != null) {
             //update accessChangeDose
-            viewModel.coagAccessAdjustDosage.value = true
+            viewModel.chlorineAccessAdjustDosage.value = true
             for(i in 1..4) {
                 if (entry[i] < 0.0) {
-                    viewModel.coagAccessAdjustDosage.value = false
+                    viewModel.chlorineAccessAdjustDosage.value = false
                 }
             }
             // set variables to access each necessary element
@@ -138,7 +138,7 @@ class CoagCalibrationFragment : Fragment() {
             secondsView = view.findViewById(R.id.timer_seconds)
 
             //if accessChangeDose is true, display outputs
-            if(viewModel.coagAccessAdjustDosage.value == true) {
+            if(viewModel.chlorineAccessAdjustDosage.value == true) {
                 chemDose.text = String.format("%.${6}f", entry[5])
                 chemFlowRate.text = String.format("%.${6}f", entry[6])
                 timeElapsed = entry[4].toInt()
@@ -157,7 +157,7 @@ class CoagCalibrationFragment : Fragment() {
             timeElapsed = 0
 
             //this ensures endVolume is enabled as long as timer has run once
-            if(viewModel.coagAccessAdjustDosage.value==true) {
+            if(viewModel.chlorineAccessAdjustDosage.value==true) {
                 endVolumeText.setTextColor(Color.BLACK)
                 mlText.setTextColor(Color.BLACK)
                 endVolume.isEnabled = true
@@ -224,14 +224,14 @@ class CoagCalibrationFragment : Fragment() {
                     }
 
                     //check if accessAdjustDosage has changed
-                    viewModel.coagAccessAdjustDosage.value = true
+                    viewModel.chlorineAccessAdjustDosage.value = true
                     for(i in 1..4) {
                         if (entry[i] < 0.0) {
-                            viewModel.coagAccessAdjustDosage.value = false
+                            viewModel.chlorineAccessAdjustDosage.value = false
                         }
                     }
                     // if calibration form is filled, calculate and display outputs
-                    if (viewModel.coagAccessAdjustDosage.value == true) {
+                    if (viewModel.chlorineAccessAdjustDosage.value == true) {
                         entry[6] = (entry[2] - entry[3]) / entry[4]
                         entry[5] = entry[6] * viewModel.chemConcentration.value!!
                         chemDose.text = String.format("%.${6}f", entry[5])

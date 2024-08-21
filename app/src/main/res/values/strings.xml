@@ -164,4 +164,11 @@
     <string name="chlorine_flow_rate_ml_s">Chlorine Flow Rate: ___ mL/s</string>
     <string name="target_chlorine_flow_rate_ml_s">Target Chlorine Flow Rate: ___ mL/s</string>
     <string name="new_chlorine_flow_rate_ml_s">New Chlorine Flow Rate: ___ mL/s</string>
+    <string name="new_chlorine_dosage_mg_l">New Chlorine Dosage: ___ mg/L</string>
+    <string name="chlorine_dosage_submission">CHLORINE DOSAGE SUBMISSION</string>
+    <string name="chlorine_dose_with_input">Chlorine Dosage: %.3f mg/L</string>
+    <string name="chlorine_flow_rate_with_input">Chlorine Flow Rate: %.3f mL/s</string>
+    <string name="chlorine_run_out_message">Chlorine will run out on %1s</string>
+    <string name="target_chlorine_dose_with_input">Target Chlorine Dosage: %.3f mg/L</string>
+    <string name="new_chlorine_flow_rate_with_input">New Chlorine Flow Rate: %.3f mL/s</string>
 </resources>

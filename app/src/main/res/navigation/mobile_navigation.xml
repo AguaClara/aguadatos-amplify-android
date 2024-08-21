@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_home_to_clarified_water_page"
             app:destination="@id/navigation_clarified_water_page" />
+        <action
+            android:id="@+id/action_home_to_chlorine_page"
+            app:destination="@id/navigation_chlorine_page" />
     </fragment>
     <fragment
             android:id="@+id/navigation_configuration"
@@ -47,7 +50,7 @@
             app:destination="@+id/navigation_coag_confirm_entry" />
         <action
             android:id="@+id/action_coag_page_to_change_dose_confirm_entry"
-            app:destination="@id/navigation_change_dose_confirm_entry" />
+            app:destination="@id/navigation_coag_change_dose_confirm_entry" />
     </fragment>
     <fragment
         android:id="@+id/navigation_coag_confirm_entry"
@@ -69,6 +72,86 @@
         <action
             android:id="@+id/action_coag_view_to_home"
             app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_coag_change_dose_confirm_entry"
+            android:name="com.example.aguadatosapp.CoagChangeDoseConfirmEntryFragment"
+            android:label="Change Dose Confirm Submission" >
+        <action
+                android:id="@+id/action_change_dose_confirm_entry_to_coag_page"
+                app:destination="@id/navigation_coag_page" />
+        <action
+                android:id="@+id/action_change_dose_confirm_entry_to_view_entry"
+                app:destination="@id/navigation_coag_change_dose_view_entry" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_coag_change_dose_view_entry"
+            android:name="com.example.aguadatosapp.CoagChangeDoseViewEntryFragment"
+            android:label="Change Dose Confirm Submission" >
+        <action
+                android:id="@+id/action_change_dose_view_entry_to_coag_page"
+                app:destination="@id/navigation_coag_page" />
+        <action
+                android:id="@+id/action_change_dose_view_entry_to_home"
+                app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_chlorine_page"
+            android:name="com.example.aguadatosapp.ChlorineFragment"
+            android:label="Chlorine Dosing"
+            tools:layout="@layout/fragment_chlorine" >
+        <action
+                android:id="@+id/action_chlorine_page_to_home"
+                app:destination="@id/navigation_home"/>
+        <action
+                android:id="@+id/action_chlorine_page_to_chlorine_confirm_entry"
+                app:destination="@+id/navigation_chlorine_confirm_entry" />
+        <action
+                android:id="@+id/action_chlorine_page_to_change_dose_confirm_entry"
+                app:destination="@id/navigation_chlorine_change_dose_confirm_entry" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_chlorine_confirm_entry"
+            android:name="com.example.aguadatosapp.ChlorineCalibrationConfirmEntryFragment"
+            android:label="Chlorine Dosing Confirm Submission"
+            tools:layout="@layout/fragment_chlorine_calibration_confirm_entry" >
+        <action
+                android:id="@+id/action_chlorine_confirm_to_chlorine_page"
+                app:destination="@id/navigation_chlorine_page" />
+        <action
+                android:id="@+id/action_chlorine_confirm_to_chlorine_view_submission"
+                app:destination="@id/navigation_chlorine_view_entry" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_chlorine_view_entry"
+            android:name="com.example.aguadatosapp.ChlorineCalibrationViewEntryFragment"
+            android:label="Chlorine Dosing View Submission"
+            tools:layout="@layout/fragment_chlorine_calibration_view_entry" >
+        <action
+                android:id="@+id/action_chlorine_view_to_home"
+                app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_chlorine_change_dose_confirm_entry"
+            android:name="com.example.aguadatosapp.ChlorineChangeDoseConfirmEntryFragment"
+            android:label="Change Dose Confirm Submission" >
+        <action
+                android:id="@+id/action_change_dose_confirm_entry_to_chlorine_page"
+                app:destination="@id/navigation_chlorine_page" />
+        <action
+                android:id="@+id/action_change_dose_confirm_entry_to_view_entry"
+                app:destination="@id/navigation_chlorine_change_dose_view_entry" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_chlorine_change_dose_view_entry"
+            android:name="com.example.aguadatosapp.ChlorineChangeDoseViewEntryFragment"
+            android:label="Change Dose Confirm Submission" >
+        <action
+                android:id="@+id/action_change_dose_view_entry_to_chlorine_page"
+                app:destination="@id/navigation_chlorine_page" />
+        <action
+                android:id="@+id/action_change_dose_view_entry_to_home"
+                app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/navigation_raw_water_page"
@@ -200,28 +283,6 @@
             tools:layout="@layout/fragment_filtered_water_view_entry" >
         <action
                 android:id="@+id/action_filtered_water_view_to_home"
-                app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_change_dose_confirm_entry"
-        android:name="com.example.aguadatosapp.CoagChangeDoseConfirmEntryFragment"
-        android:label="Change Dose Confirm Submission" >
-        <action
-            android:id="@+id/action_change_dose_confirm_entry_to_coag_page"
-            app:destination="@id/navigation_coag_page" />
-        <action
-            android:id="@+id/action_change_dose_confirm_entry_to_view_entry"
-            app:destination="@id/navigation_change_dose_view_entry" />
-    </fragment>
-    <fragment
-            android:id="@+id/navigation_change_dose_view_entry"
-            android:name="com.example.aguadatosapp.CoagChangeDoseViewEntryFragment"
-            android:label="Change Dose Confirm Submission" >
-        <action
-                android:id="@+id/action_change_dose_view_entry_to_coag_page"
-                app:destination="@id/navigation_coag_page" />
-        <action
-                android:id="@+id/action_change_dose_view_entry_to_home"
                 app:destination="@id/navigation_home" />
     </fragment>
 </navigation>
