@@ -42,7 +42,7 @@ class RawWaterConfirmEntryFragment : Fragment() {
 
         return view
     }
-
+//FIXME: not showing message initially when endVolume is entered after tank volume
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
