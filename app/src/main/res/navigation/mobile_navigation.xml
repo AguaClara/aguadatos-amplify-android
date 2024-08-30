@@ -28,6 +28,7 @@
             android:id="@+id/action_home_to_chlorine_page"
             app:destination="@id/navigation_chlorine_page" />
     </fragment>
+
     <fragment
             android:id="@+id/navigation_configuration"
             android:name="com.example.aguadatosapp.ConfigurationFragment"
@@ -37,6 +38,7 @@
                 android:id="@+id/action_config_page_to_home"
                 app:destination="@id/navigation_home" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_coag_page"
         android:name="com.example.aguadatosapp.CoagFragment"
@@ -95,6 +97,7 @@
                 android:id="@+id/action_change_dose_view_entry_to_home"
                 app:destination="@id/navigation_home" />
     </fragment>
+
     <fragment
             android:id="@+id/navigation_chlorine_page"
             android:name="com.example.aguadatosapp.ChlorineFragment"
@@ -153,6 +156,7 @@
                 android:id="@+id/action_change_dose_view_entry_to_home"
                 app:destination="@id/navigation_home" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_raw_water_page"
         android:name="com.example.aguadatosapp.RawWaterFragment"
@@ -166,17 +170,61 @@
             app:destination="@id/navigation_home" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_plant_flow_page"
-        android:name="com.example.aguadatosapp.PlantFlowFragment"
-        android:label="Plant Flow"
-        tools:layout="@layout/fragment_plant_flow" >
+            android:id="@+id/navigation_raw_water_confirm_entry_page"
+            android:name="com.example.aguadatosapp.RawWaterConfirmEntryFragment"
+            android:label="Raw Water Confirm Entry"
+            tools:layout="@layout/fragment_raw_water_confirm_entry">
         <action
-            android:id="@+id/action_plant_flow_page_to_plant_flow_confirm_entry"
-            app:destination="@id/navigation_plant_flow_confirm_entry_page" />
+                android:id="@+id/action_raw_water_confirm_to_raw_water_page"
+                app:destination="@id/navigation_raw_water_page" />
         <action
-            android:id="@+id/action_plant_flow_to_home"
-            app:destination="@id/navigation_home" />
+                android:id="@+id/action_raw_water_confirm_to_raw_water_view"
+                app:destination="@id/navigation_raw_water_view_submission_page" />
     </fragment>
+    <fragment
+            android:id="@+id/navigation_raw_water_view_submission_page"
+            android:name="com.example.aguadatosapp.RawWaterViewEntryFragment"
+            android:label="Raw Water View Submission"
+            tools:layout="@layout/fragment_raw_water_view_entry" >
+        <action
+                android:id="@+id/action_raw_water_view_to_home"
+                app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/navigation_plant_flow_page"
+            android:name="com.example.aguadatosapp.PlantFlowFragment"
+            android:label="Plant Flow"
+            tools:layout="@layout/fragment_plant_flow" >
+        <action
+                android:id="@+id/action_plant_flow_page_to_plant_flow_confirm_entry"
+                app:destination="@id/navigation_plant_flow_confirm_entry_page" />
+        <action
+                android:id="@+id/action_plant_flow_to_home"
+                app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_plant_flow_confirm_entry_page"
+            android:name="com.example.aguadatosapp.PlantFlowConfirmEntryFragment"
+            android:label="Plant Flow Confirm Entry"
+            tools:layout="@layout/fragment_plant_flow_confirm_entry">
+        <action
+                android:id="@+id/action_plant_flow_confirm_to_plant_flow_page"
+                app:destination="@id/navigation_plant_flow_page" />
+        <action
+                android:id="@+id/action_plant_flow_confirm_to_plant_flow_view"
+                app:destination="@id/navigation_plant_flow_view_submission_page" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_plant_flow_view_submission_page"
+            android:name="com.example.aguadatosapp.PlantFlowViewEntryFragment"
+            android:label="Plant Flow View Submission"
+            tools:layout="@layout/fragment_plant_flow_view_entry" >
+        <action
+                android:id="@+id/action_plant_flow_view_to_home"
+                app:destination="@id/navigation_home" />
+    </fragment>
+
     <fragment
             android:id="@+id/navigation_clarified_water_page"
             android:name="com.example.aguadatosapp.ClarifiedWaterFragment"
@@ -190,6 +238,28 @@
                 app:destination="@id/navigation_home" />
     </fragment>
     <fragment
+            android:id="@+id/navigation_clarified_water_confirm_entry_page"
+            android:name="com.example.aguadatosapp.ClarifiedWaterConfirmEntryFragment"
+            android:label="Clarified Water Confirm Entry"
+            tools:layout="@layout/fragment_clarified_water_confirm_entry">
+        <action
+                android:id="@+id/action_clarified_water_confirm_to_clarified_water_page"
+                app:destination="@id/navigation_clarified_water_page" />
+        <action
+                android:id="@+id/action_clarified_water_confirm_to_clarified_water_view"
+                app:destination="@id/navigation_clarified_water_view_submission_page" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_clarified_water_view_submission_page"
+            android:name="com.example.aguadatosapp.ClarifiedWaterViewEntryFragment"
+            android:label="Clarified Water View Submission"
+            tools:layout="@layout/fragment_clarified_water_view_entry" >
+        <action
+                android:id="@+id/action_clarified_water_view_to_home"
+                app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
             android:id="@+id/navigation_filtered_water_page"
             android:name="com.example.aguadatosapp.FilteredWaterFragment"
             android:label="Filtered Water"
@@ -200,42 +270,6 @@
         <action
                 android:id="@+id/action_filtered_water_to_home"
                 app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_raw_water_confirm_entry_page"
-        android:name="com.example.aguadatosapp.RawWaterConfirmEntryFragment"
-        android:label="Raw Water Confirm Entry"
-        tools:layout="@layout/fragment_raw_water_confirm_entry">
-        <action
-            android:id="@+id/action_raw_water_confirm_to_raw_water_page"
-            app:destination="@id/navigation_raw_water_page" />
-        <action
-            android:id="@+id/action_raw_water_confirm_to_raw_water_view"
-            app:destination="@id/navigation_raw_water_view_submission_page" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_plant_flow_confirm_entry_page"
-        android:name="com.example.aguadatosapp.PlantFlowConfirmEntryFragment"
-        android:label="Plant Flow Confirm Entry"
-        tools:layout="@layout/fragment_plant_flow_confirm_entry">
-        <action
-            android:id="@+id/action_plant_flow_confirm_to_plant_flow_page"
-            app:destination="@id/navigation_plant_flow_page" />
-        <action
-            android:id="@+id/action_plant_flow_confirm_to_plant_flow_view"
-            app:destination="@id/navigation_plant_flow_view_submission_page" />
-    </fragment>
-    <fragment
-         android:id="@+id/navigation_clarified_water_confirm_entry_page"
-         android:name="com.example.aguadatosapp.ClarifiedWaterConfirmEntryFragment"
-         android:label="Clarified Water Confirm Entry"
-         tools:layout="@layout/fragment_clarified_water_confirm_entry">
-        <action
-                android:id="@+id/action_clarified_water_confirm_to_clarified_water_page"
-                app:destination="@id/navigation_clarified_water_page" />
-        <action
-                android:id="@+id/action_clarified_water_confirm_to_clarified_water_view"
-                app:destination="@id/navigation_clarified_water_view_submission_page" />
     </fragment>
     <fragment
             android:id="@+id/navigation_filtered_water_confirm_entry_page"
@@ -250,33 +284,6 @@
                 app:destination="@id/navigation_filtered_water_view_submission_page" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_raw_water_view_submission_page"
-        android:name="com.example.aguadatosapp.RawWaterViewEntryFragment"
-        android:label="Raw Water View Submission"
-        tools:layout="@layout/fragment_raw_water_view_entry" >
-        <action
-            android:id="@+id/action_raw_water_view_to_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_plant_flow_view_submission_page"
-        android:name="com.example.aguadatosapp.PlantFlowViewEntryFragment"
-        android:label="Plant Flow View Submission"
-        tools:layout="@layout/fragment_plant_flow_view_entry" >
-        <action
-            android:id="@+id/action_plant_flow_view_to_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
-            android:id="@+id/navigation_clarified_water_view_submission_page"
-            android:name="com.example.aguadatosapp.ClarifiedWaterViewEntryFragment"
-            android:label="Clarified Water View Submission"
-            tools:layout="@layout/fragment_clarified_water_view_entry" >
-        <action
-                android:id="@+id/action_clarified_water_view_to_home"
-                app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
             android:id="@+id/navigation_filtered_water_view_submission_page"
             android:name="com.example.aguadatosapp.FilteredWaterViewEntryFragment"
             android:label="Filtered Water View Submission"
@@ -285,4 +292,5 @@
                 android:id="@+id/action_filtered_water_view_to_home"
                 app:destination="@id/navigation_home" />
     </fragment>
+
 </navigation>

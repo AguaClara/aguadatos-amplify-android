@@ -25,16 +25,29 @@
     <string name="confirm_password">Confirm Password</string>
 
     <!-- activity_home -->
+    <string name="records">Records</string>
+    <string name="graphs">Graphs</string>
+    <string name="config">Configuration</string>
+    <string name="feedback">Feedback</string>
+
+    <!-- fragment_home -->
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="home_page_msg">Raw Water Turbidity</string>
     <string name="plant_flow">Plant Flow</string>
-    <string name="raw_water">Raw Water</string>
+    <string name="raw_water_turbidity">Raw\n Water Turbidity</string>
     <string name="coagulant_dosage">Coagulant Dosage</string>
     <string name="filtered_water_turbidity">Filtered Water Turbidity</string>
     <string name="clarified_water_turbidity">Clarified Water Turbidity</string>
-    <string name="feedback">Feedback</string>
+    <string name="chlorination">CHLORINATION</string>
+    <string name="home_page_msg">Raw Water Turbidity</string>
+    <string name="graph_placeholder">Graph Placeholder</string>
+    <string name="aguadatos_label">AguaDatos Label</string>
+    <string name="account">Account</string>
+    <string name="clarified_water">CLARIFIED WATER</string>
+    <string name="filtered_water">FILTERED WATER</string>
+
+    <!-- fragment_coag_calibration -->
     <string name="chemical_type_pac">Chemical Type: PACl</string>
     <string name="slider_position">Slider Position:</string>
     <string name="water_inflow_rate">Water Inflow Rate:</string>
@@ -42,56 +55,49 @@
     <string name="end_volume">End Volume:</string>
     <string name="time_elapsed">Time Elapsed:</string>
     <string name="output">Output</string>
-    <string name="chemical_dose">Chemical Dose:</string>
-    <string name="chemical_flow_rate">Chemical Flow Rate:</string>
-    <string name="slider_position_over_dose">Slider Position over Dose:</string>
-    <string name="target_chemical_dose">Target Chemical Dose:</string>
-    <string name="input">Input</string>
-    <string name="output_text_label">Output</string>
-    <string name="new_slider_position">New Slider Position:</string>
-    <string name="calibration">Calibration</string>
-    <string name="change_dose">Change Dose</string>
-    <string name="active_tank">Active Tank</string>
-    <string name="volume_of_tank_2">Volume of Tank 2:</string>
-    <string name="volume_of_tank_1">Volume of Tank 1:</string>
-    <string name="submit">Submit</string>
-    <string name="coagulant_dosage_title">COAGULANT DOSAGE</string>
-    <string name="coagulant_dosage_caps">COAGULANT DOSAGE</string>
-    <string name="please_confirm_your_entry">Please confirm your entry:</string>
-    <string name="coagulant_dosage_submission">COAGULANT DOSAGE SUBMISSION</string>
-    <string name="submitted">Submitted:</string>
-    <string name="confirm_submission">CONFIRM SUBMISSION</string>
-    <string name="return_home">Return Home</string>
-    <string name="raw_water_caps">RAW WATER</string>
-    <string name="turbidity_ntu">Turbidity (NTU):</string>
-    <string name="notes">Notes:</string>
-    <string name="turbidity">Turbidity:</string>
-    <string name="ntu">NTU</string>
-    <string name="plant_flow_caps">PLANT FLOW</string>
-    <string name="inflow_rate">Inflow Rate:</string>
-    <string name="lts_sec">lts/sec</string>
-    <string name="configuration">CONFIGURATION</string>
-    <string name="operator_name">Operator Name:</string>
-    <string name="plant_name">Plant Name:</string>
-    <string name="dosage_presets">Dosage Presets</string>
-    <string name="filter_presets">Filter Presets</string>
     <string name="coagulant_dose">Coagulant Dose:</string>
     <string name="coagulant_flow_rate">Coagulant Flow Rate:</string>
     <string name="_0">0%</string>
     <string name="_100">100%</string>
-    <string name="percent_symbol">%</string>
+    <string name="percent">%</string>
     <string name="coagulant_dosage_colon">Coagulant Dosage:</string>
-    <string name="chlorination">CHLORINATION</string>
-    <string name="records">Records</string>
-    <string name="graphs">Graphs</string>
-    <string name="config">Configuration</string>
-    <string name="type_of_chemical">Type of Chemical:</string>
-    <string name="chemical_concentration">Chemical Concentration:</string>
-    <string name="sync_data">Sync Data</string>
-    <string name="save">SAVE</string>
-    <string name="number_of_filters">Number of Filters:</string>
-    <string name="raw_water_turbidity">Raw\n Water Turbidity</string>
-    <string name="chlorine_dosage">Chlorine Dosage</string>
+    <string name="l_s">L/s</string>
+    <string name="ml">mL</string>
+    <string name="_00">00</string>
+    <string name="colon">:</string>
+    <string name="mg_l">mg/L</string>
+    <string name="ml_s">mL/s</string>
+    <string name="timer_start">Timer Start</string>
+    <string name="reset_timer">Reset Timer</string>
+    <string name="space"></string>
+    <string name="_50">50</string>
+    <string name="enter_start_volume">Enter Start Volume</string>
+    <string name="enter_end_volume">Enter End Volume</string>
+
+    <!-- fragment_coag_change_dose -->
+    <string name="input">Input</string>
+    <string name="output_text_label">Output</string>
+    <string name="new_slider_position">New Slider Position:</string>
+    <string name="new_coagulant_flow_rate">New Coagulant Flow Rate:</string>
+    <string name="target_coagulant_dose">Target Coagulant Dose:</string>
+
+    <!-- fragment_coag -->
+    <string name="volume_of_tank_2">Volume of Tank 2:</string>
+    <string name="volume_of_tank_1">Volume of Tank 1:</string>
+    <string name="submit">Submit</string>
+    <string name="coagulant_dosage_title">COAGULANT DOSAGE</string>
+    <string name="calibration">Calibration</string>
+    <string name="change_dose">Change Dose</string>
+    <string name="active_tank">Active Tank</string>
+    <string name="chem_type">Chemical Type: %1$s</string>
+    <string name="coag_run_out_message">Coagulant will run out on %1s</string>
+    <string name="_2">2</string>
+    <string name="_1">1</string>
+    <string name="l">L</string>
+
+    <!-- fragment_coag_calibration_confirm_entry  and fragment_coag_change_dose_confirm_entry -->
+    <string name="please_confirm_your_entry">Please confirm your entry:</string>
+    <string name="confirm_submission">CONFIRM SUBMISSION</string>
     <string name="coagulant_dosage_mg_l">Coagulant Dosage: ___ mg/L</string>
     <string name="coagulant_flow_rate_ml_s">Coagulant Flow Rate: ___ mL/s</string>
     <string name="target_coagulant_flow_rate_ml_s">Target Coagulant Flow Rate: ___ mL/s</string>
@@ -100,75 +106,85 @@
     <string name="active_tank_volume_l">Active Tank Volume: ___ L</string>
     <string name="new_slider_position_">New Slider Position: ___%</string>
     <string name="new_coagulant_flow_rate_ml_s">New Coagulant Flow Rate: ___ mL/s</string>
-    <string name="new_coagulant_flow_rate">New Coagulant Flow Rate:</string>
-    <string name="target_coagulant_dose">Target Coagulant Dose:</string>
-    <string name="chemical_type_switch">Chemical Type Switch</string>
-    <string name="chemical_type">Chemical Type:</string>
-    <string name="chem_type">Chemical Type: %1$s</string>
-    <string name="inflow_rate_with_input">Inflow Rate: %.3f L/s</string>
-    <string name="date">Date: %1$s</string>
-    <string name="date_and_time">%1$s at %2$s</string>
-    <string name="turbidity_with_input">Turbidity: %.3f NTU</string>
-    <string name="active_tank_with_input">Active Tank: %1d</string>
-    <string name="active_tank_volume">Active Tank Volume: %.3f L</string>
-    <string name="slider_position_with_input">Slider Position: %.1f%%</string>
-    <string name="inflow_rate_with_input2">Inflow Rate: %.3f mL/s</string>
-    <string name="start_volume_with_input">Start Volume: %.3f mL</string>
-    <string name="end_volume_with_input">End Volume: %.3f mL</string>
-    <string name="time_elapsed_with_input">Time Elapsed: %.1f s</string>
-    <string name="chemical_dose_with_input">Coagulant Dosage: %.3f mg/L</string>
-    <string name="chemical_flow_rate_with_input">Coagulant Flow Rate: %.3f mL/s</string>
-    <string name="coag_run_out_message">Coagulant will run out on %1s</string>
-    <string name="target_coag_dose">Target Coagulant Dosage: %.3f mg/L</string>
-    <string name="new_coag_flow_rate">New Coagulant Flow Rate: %.3f mL/s</string>
-    <string name="new_slider_pos"> New Slider Position: %.1f%%</string>
-    <string name="g_l">g/L</string>
-    <string name="x">X</string>
-    <string name="date_default">Date: __/__/__</string>
-    <string name="_50">50</string>
-    <string name="percent">%</string>
-    <string name="l_s">L/s</string>
-    <string name="ml">mL</string>
-    <string name="_00">00</string>
-    <string name="colon">:</string>
-    <string name="mg_l">mg/L</string>
-    <string name="ml_s">mL/s</string>
-    <string name="space" />
-    <string name="timer_start">Timer Start</string>
-    <string name="reset_timer">Reset Timer</string>
-    <string name="enter_end_volume">Enter End Volume</string>
-    <string name="enter_water_inflow_rate">Enter Water Inflow Rate</string>
-    <string name="enter_start_volume">Enter Start Volume</string>
     <string name="time_elapsed_s">Time Elapsed: ___ s</string>
     <string name="end_volume_ml">End Volume: ___ mL</string>
     <string name="start_volume_ml">Start Volume: ___ mL</string>
     <string name="inflow_rate_ml_s">Inflow Rate: ___ mL/s</string>
     <string name="slider_position_percent">Slider Position: ___ %</string>
-    <string name="_2">2</string>
-    <string name="_1">1</string>
-    <string name="l">L</string>
-    <string name="graph_placeholder">Graph Placeholder</string>
-    <string name="aguadatos_label">AguaDatos Label</string>
-    <string name="account">Account</string>
-    <string name="_l_s">__ L/s</string>
+
+    <!-- fragment_coag_calibration_view_entry and fragment_coag_change_dose_view_entry -->
+    <string name="submitted">Submitted:</string>
+    <string name="return_home">Return Home</string>
+    <string name="coagulant_dosage_submission">COAGULANT DOSAGE SUBMISSION</string>
+    <string name="date">Date: %1$s</string>
+    <string name="date_and_time">%1$s at %2$s</string>
+    <string name="x">X</string>
+    <string name="date_default">Date: __/__/__</string>
+    <string name="active_tank_with_input">Active Tank: %1d</string>
+    <string name="active_tank_volume">Active Tank Volume: %.1f L</string>
+    <string name="slider_position_with_input">Slider Position: %.1f%%</string>
+    <string name="inflow_rate_with_input2">Inflow Rate: %.1f mL/s</string>
+    <string name="start_volume_with_input">Start Volume: %.1f mL</string>
+    <string name="end_volume_with_input">End Volume: %.1f mL</string>
+    <string name="time_elapsed_with_input">Time Elapsed: %.1f s</string>
+    <string name="chemical_dose_with_input">Coagulant Dosage: %.1f mg/L</string>
+    <string name="chemical_flow_rate_with_input">Coagulant Flow Rate: %.1f mL/s</string>
+    <string name="target_coag_dose">Target Coagulant Dosage: %.1f mg/L</string>
+    <string name="new_coag_flow_rate">New Coagulant Flow Rate: %.1f mL/s</string>
+    <string name="new_slider_pos"> New Slider Position: %.1f%%</string>
+
+    <!-- fragment_raw_water, fragment_raw_water_confirm_entry, fragment_raw_water_view_entry -->
+    <string name="raw_water_caps">RAW WATER</string>
+    <string name="turbidity_ntu">Turbidity (NTU):</string>
+    <string name="notes">Notes:</string>
+    <string name="turbidity">Turbidity:</string>
+    <string name="ntu">NTU</string>
+    <string name="turbidity_with_input">Turbidity: %.1f NTU</string>
     <string name="__">__</string>
     <string name="_ntu">__ NTU</string>
-    <string name="clarified_water">CLARIFIED WATER</string>
-    <string name="filtered_water">FILTERED WATER</string>
+
+    <!-- fragment_plant_flow, fragment_plant_flow_confirm_entry, fragment_plant_flow_view_entry -->
+    <string name="plant_flow_caps">PLANT FLOW</string>
+    <string name="inflow_rate">Inflow Rate:</string>
+    <string name="lts_sec">lts/sec</string>
+    <string name="inflow_rate_with_input">Inflow Rate: %.1f L/s</string>
+    <string name="_l_s">__ L/s</string>
+
+    <!-- fragment_configuration -->
+    <string name="configuration">CONFIGURATION</string>
+    <string name="operator_name">Operator Name:</string>
+    <string name="plant_name">Plant Name:</string>
+    <string name="dosage_presets">Dosage Presets</string>
+    <string name="filter_presets">Filter Presets</string>
+    <string name="chemical_type">Chemical Type:</string>
+    <string name="chemical_concentration">Chemical Concentration:</string>
+    <string name="sync_data">Sync Data</string>
+    <string name="save">SAVE</string>
+    <string name="number_of_filters">Number of Filters:</string>
+    <string name="chemical_type_switch">Chemical Type Switch</string>
+    <string name="g_l">g/L</string>
+
+    <!-- fragment_chlorine, fragment_chlorine_calibration, fragment_chlorine_change_dose -->
+    <string name="chlorine_dosage">Chlorine Dosage</string>
     <string name="chlorine_dosage_colon">Chlorine Dosage:</string>
     <string name="chlorine_flow_rate">Chlorine Flow Rate:</string>
     <string name="target_chlorine_dose">Target Chlorine Dose:</string>
     <string name="new_chlorine_flow_rate">New Chlorine Flow Rate:</string>
     <string name="chlorine_dosage_title">CHLORINE DOSAGE</string>
+    <string name="chlorine_run_out_message">Chlorine will run out on %1s</string>
+    <string name="submission_error_message">Please ensure all inputs are filled before submitting.</string>
+    <string name="switch_tab_error_message">Please ensure all inputs are filled before adjusting the dosage.</string>
+
+    <!-- fragment_chlorine_calibration_confirm_entry, fragment_chlorine_change_dose_confirm_entry -->
+    <!-- fragment_chlorine_calibration_view_entry, fragment_chlorine_change_dose_view_entry -->
     <string name="chlorine_dosage_mg_l">Chlorine Dosage: ___ mg/L</string>
     <string name="chlorine_flow_rate_ml_s">Chlorine Flow Rate: ___ mL/s</string>
     <string name="target_chlorine_flow_rate_ml_s">Target Chlorine Flow Rate: ___ mL/s</string>
     <string name="new_chlorine_flow_rate_ml_s">New Chlorine Flow Rate: ___ mL/s</string>
     <string name="new_chlorine_dosage_mg_l">New Chlorine Dosage: ___ mg/L</string>
     <string name="chlorine_dosage_submission">CHLORINE DOSAGE SUBMISSION</string>
-    <string name="chlorine_dose_with_input">Chlorine Dosage: %.3f mg/L</string>
-    <string name="chlorine_flow_rate_with_input">Chlorine Flow Rate: %.3f mL/s</string>
-    <string name="chlorine_run_out_message">Chlorine will run out on %1s</string>
-    <string name="target_chlorine_dose_with_input">Target Chlorine Dosage: %.3f mg/L</string>
-    <string name="new_chlorine_flow_rate_with_input">New Chlorine Flow Rate: %.3f mL/s</string>
+    <string name="chlorine_dose_with_input">Chlorine Dosage: %.1f mg/L</string>
+    <string name="chlorine_flow_rate_with_input">Chlorine Flow Rate: %.1f mL/s</string>
+    <string name="target_chlorine_dose_with_input">Target Chlorine Dosage: %.1f mg/L</string>
+    <string name="new_chlorine_flow_rate_with_input">New Chlorine Flow Rate: %.1f mL/s</string>
 </resources>

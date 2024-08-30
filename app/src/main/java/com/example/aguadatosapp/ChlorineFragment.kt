@@ -22,11 +22,8 @@ import java.time.LocalDateTime
 import java.time.Duration
 import java.time.format.DateTimeFormatter
 import java.util.Locale
-//FIXME: why is target coagulant dose updating based on calibration?
-//FIXME: truncate new coagulant flow rate
 //ChlorineFragment.kt
 class ChlorineFragment : Fragment() {
-    //FIXME: run out message only showing if calibration is finished first
     //var to store which embedded fragment is showing
     private var showingCalibrationFragment = true
     // record volume of each tank
@@ -61,12 +58,12 @@ class ChlorineFragment : Fragment() {
                 }
                 else {
                     //pop error message
-                    Toast.makeText(context,"Please ensure all inputs are filled before submitting.",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,getString(R.string.submission_error_message),Toast.LENGTH_SHORT).show()
                 }
             }
             else {
                 //pop error message
-                Toast.makeText(context,"Please ensure all inputs are filled before submitting.",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,getString(R.string.submission_error_message),Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -107,7 +104,7 @@ class ChlorineFragment : Fragment() {
                 showRunOutMessage(formattedDateTime)
             }
         }
-    } //FIXME: organize strings
+    }
 
     //helper function to display run out message
     private fun showRunOutMessage(dateTimeString: String) {
@@ -169,7 +166,7 @@ class ChlorineFragment : Fragment() {
                 //pop error message
                 Toast.makeText(
                     context,
-                    "Please ensure all inputs are filled before changing the dosage.",
+                    getString(R.string.switch_tab_error_message),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -276,9 +273,11 @@ class ChlorineFragment : Fragment() {
         input1.addTextChangedListener(textWatcher)
         input2.addTextChangedListener(textWatcher)
 
-        //if chlorineData (calibration page inputs) are changed, try to calculate run out time
-        viewModel.chlorineCalibrationData.observe(viewLifecycleOwner) {
-            calculateRunOutTime()
+        // if endVolume is updated changed, try to calculate run out time
+        viewModel.triggerChlorineRunOutTimeCalculation.observe(viewLifecycleOwner) {
+            if (it) {
+                calculateRunOutTime()
+            }
         }
     }
 
@@ -286,4 +285,4 @@ class ChlorineFragment : Fragment() {
         super.onResume()
         Log.d("FragmentNavigation", "ChlorineFragment is now visible")
     }
-} //fixme: extract string resources for all Toast messages
+}

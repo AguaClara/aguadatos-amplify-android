@@ -217,6 +217,8 @@ class CoagCalibrationFragment : Fragment() {
                         val endVol = endVolumeText.toDouble()
                         if(endVol < entry[2]) {
                             entry[3] = endVolumeText.toDouble()
+                            // Update coagulant run out time message
+                            viewModel.triggerCoagRunOutTimeCalculation.value = true
                         }
                         else {
                             Toast.makeText(context,"End volume must be less than start volume.",Toast.LENGTH_SHORT).show()

@@ -22,12 +22,8 @@ import java.time.LocalDateTime
 import java.time.Duration
 import java.time.format.DateTimeFormatter
 import java.util.Locale
-//FIXME: why is target coagulant dose updating based on calibration?
-//FIXME: truncate new coagulant flow rate
 //CoagFragment.kt
 class CoagFragment : Fragment() {
-    //FIXME: run out message only showing if calibration is finished first
-    //FIXME: organize and clean mobile_navigation.xml
     //var to store which embedded fragment is showing
     private var showingCalibrationFragment = true
     // record volume of each tank
@@ -62,12 +58,12 @@ class CoagFragment : Fragment() {
                 }
                 else {
                     //pop error message
-                    Toast.makeText(context,"Please ensure all inputs are filled before submitting.",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,getString(R.string.submission_error_message),Toast.LENGTH_SHORT).show()
                 }
             }
             else {
                 //pop error message
-                Toast.makeText(context,"Please ensure all inputs are filled before submitting.",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,getString(R.string.submission_error_message),Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -170,7 +166,7 @@ class CoagFragment : Fragment() {
                 //pop error message
                 Toast.makeText(
                     context,
-                    "Please ensure all inputs are filled before changing the dosage.",
+                    getString(R.string.switch_tab_error_message),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -273,13 +269,15 @@ class CoagFragment : Fragment() {
             }
         }
 
-        //add text changed listeners to each input field
+        // add text changed listeners to each input field
         input1.addTextChangedListener(textWatcher)
         input2.addTextChangedListener(textWatcher)
 
-        //if coagData (calibration page inputs) are changed, try to calculate run out time
-        viewModel.coagCalibrationData.observe(viewLifecycleOwner) {
-            calculateRunOutTime()
+        // if endVolume is updated changed, try to calculate run out time
+        viewModel.triggerCoagRunOutTimeCalculation.observe(viewLifecycleOwner) {
+            if (it) {
+                calculateRunOutTime()
+            }
         }
     }
 

@@ -8,6 +8,8 @@ class SharedViewModel : ViewModel() {
     // this is the data for the calibration coagulant dosing data submission
     private val defaultArray = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
     val coagCalibrationData = MutableLiveData(defaultArray)
+    // track if endVolume has been updated, if so, try to calculate run out time
+    val triggerCoagRunOutTimeCalculation: MutableLiveData<Boolean> = MutableLiveData()
 
     // this is the data for the change dose coagulant dosing data submission
     private val changeDoseDefaultArray = doubleArrayOf(-1.0, -1.0, -1.0, -1.0, -1.0)
@@ -25,6 +27,8 @@ class SharedViewModel : ViewModel() {
 
     // this is the data for the calibration chlorine dosing data submission
     val chlorineCalibrationData = MutableLiveData(defaultArray)
+    // track if endVolume has been updated, if so, try to calculate run out time
+    val triggerChlorineRunOutTimeCalculation: MutableLiveData<Boolean> = MutableLiveData()
 
     // this is the data for the change dose chlorine dosing data submission
     val chlorineChangeDoseData = MutableLiveData(changeDoseDefaultArray)

@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import java.util.Locale
 
 // CoagChangeDoseFragment.kt
 class CoagChangeDoseFragment : Fragment() {
@@ -52,11 +53,12 @@ class CoagChangeDoseFragment : Fragment() {
             changeDoseEntry[0] = calibrationEntry[5]
             changeDoseEntry[1] = calibrationEntry[6]
 
-            // if there is already date, reflect it in the UI
+            // if there is already data, reflect it in the UI
             if(changeDoseEntry[4] >= 0.0 && changeDoseEntry[2] >= 0.0) {
-                newCoagFlowDisplay.text = changeDoseEntry[3].toString()
+                newCoagFlowDisplay.text = String.format(Locale.US,"%.1f", changeDoseEntry[3])
                 outputSlider.progress = changeDoseEntry[4].toInt()
-                targetChemDose.setText(changeDoseEntry[1].toString())
+                slider2Display.text = changeDoseEntry[4].toInt().toString()
+                targetChemDose.setText(changeDoseEntry[2].toString())
                 viewModel.coagChangeDoseFilled.value = true
             }
 
@@ -78,7 +80,7 @@ class CoagChangeDoseFragment : Fragment() {
                         changeDoseEntry[2] = targetDose
                         val newSliderPosition = targetDose * calibrationEntry[0] / calibrationEntry[5]
                         changeDoseEntry[3] = targetDose / (viewModel.chemConcentration.value!!)
-                        newCoagFlowDisplay.text = changeDoseEntry[3].toString()
+                        newCoagFlowDisplay.text = String.format(Locale.US,"%.1f", changeDoseEntry[3])
                         changeDoseEntry[4] = newSliderPosition
                         outputSlider.progress = newSliderPosition.toInt()
                         slider2Display.text = outputSlider.progress.toString()

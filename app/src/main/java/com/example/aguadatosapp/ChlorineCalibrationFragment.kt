@@ -217,6 +217,8 @@ class ChlorineCalibrationFragment : Fragment() {
                         val endVol = endVolumeText.toDouble()
                         if(endVol < entry[2]) {
                             entry[3] = endVolumeText.toDouble()
+                            // Update chlorine run out time message
+                            viewModel.triggerChlorineRunOutTimeCalculation.value = true
                         }
                         else {
                             Toast.makeText(context,"End volume must be less than start volume.",Toast.LENGTH_SHORT).show()

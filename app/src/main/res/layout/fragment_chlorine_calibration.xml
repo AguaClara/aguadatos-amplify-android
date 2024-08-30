@@ -176,6 +176,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autofillHints=""
+            android:enabled="false"
             android:contentDescription="@string/enter_end_volume"
             android:inputType="numberDecimal"
             android:background="@drawable/rounded_white2"
