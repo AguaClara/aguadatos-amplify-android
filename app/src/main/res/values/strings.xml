@@ -150,6 +150,10 @@
     <string name="inflow_rate_with_input">Inflow Rate: %.1f L/s</string>
     <string name="_l_s">__ L/s</string>
 
+    <!-- fragment_filtered_water -->
+    <string name="filter1_turbidity">Filter 1 Turbidity:</string>
+    <string name="filter_number_turbidity_text">Filter %d Turbidity:</string>
+
     <!-- fragment_configuration -->
     <string name="configuration">CONFIGURATION</string>
     <string name="operator_name">Operator Name:</string>

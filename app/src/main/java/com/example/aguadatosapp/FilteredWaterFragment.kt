@@ -3,12 +3,14 @@ package com.example.aguadatosapp
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -33,6 +35,18 @@ class FilteredWaterFragment : Fragment() {
 
         return view
     }
+    private fun addInputLayout(container: LinearLayout, filterNumber: Int) {
+        // Inflate the input layout
+        val inflater = LayoutInflater.from(context)
+        val inputLayout = inflater.inflate(R.layout.layout_filtered_turbidity_input_field, container, false)
+
+        // Optionally, you can manipulate or access views here if needed
+        val turbidityText = inputLayout.findViewById<TextView>(R.id.turbidity_text)
+        turbidityText.text = getString(R.string.filter_number_turbidity_text,filterNumber)
+
+        // Add the inflated layout to the container
+        container.addView(inputLayout)
+    } //TODO: implement logic of data collection from extra turbidity input fields
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
@@ -41,6 +55,15 @@ class FilteredWaterFragment : Fragment() {
         val turbidity: EditText = view.findViewById(R.id.turbidity_input)
         val notesInput: EditText = view.findViewById(R.id.filtered_water_notes_input)
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
+
+        //if number of filters is greater than zero, add extra inputs
+        val numFilters = viewModel.numFilters.value
+        val container = view.findViewById<LinearLayout>(R.id.filtered_input_container)
+        if (numFilters != null) {
+            for(i in 2..numFilters) {
+                addInputLayout(container, i)
+            }
+        }
 
         //set starting value if data has already been entered
         if(viewModel.filteredWaterData.value != null) {

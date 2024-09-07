@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //set up bottom nav bar
+        //FIXME: if the user is on a different fragment than home, then switches to configuration
+        // and back to home, the nav bar won't update visually
         val navView: BottomNavigationView = binding.navView
 
         //set up nav controller
