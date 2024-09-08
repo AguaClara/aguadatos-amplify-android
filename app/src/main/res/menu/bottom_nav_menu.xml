@@ -16,6 +16,7 @@
             android:icon="@drawable/graph_icon"
             android:title="@string/graphs" />
 
+
     <item
         android:id="@+id/navigation_configuration"
         android:icon="@drawable/config_icon"
