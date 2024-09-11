@@ -1,59 +1,73 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="16dp" />
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="horizontal">
 
-        <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/graph1"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="16dp" />
+        <Button
+                android:id="@+id/btnPF"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Plant Flow"
+                android:textColor="@android:color/black" />
 
-        <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/graph2"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="16dp" />
+        <Button
+                android:id="@+id/btnRWT"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Raw Water Turbidity"
+                android:textColor="@android:color/black" />
 
-        <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/graph3"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="16dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/graph4"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="16dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/graph5"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="16dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/graph6"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="16dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/graph7"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="16dp" />
-
-        <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/graph8"
-                android:layout_width="match_parent"
-                android:layout_height="200dp" />
-
+        <Button
+                android:id="@+id/btnCoD"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Coagulant Dosage"
+                android:textColor="@android:color/black" />
     </LinearLayout>
-</ScrollView>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+        <Button
+                android:id="@+id/btnFWT"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Filtered Water Turbidity"
+                android:textColor="@android:color/black" />
+
+        <Button
+                android:id="@+id/btnCWT"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Clarified Water Turbidity"
+                android:textColor="@android:color/black" />
+
+        <Button
+                android:id="@+id/btnChD"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Chlorine Dosage"
+                android:textColor="@android:color/black" />
+    </LinearLayout>
+</LinearLayout>
