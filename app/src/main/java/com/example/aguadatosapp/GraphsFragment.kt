@@ -1,72 +1,53 @@
 package com.example.aguadatosapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.example.aguadatosapp.R
 
 class GraphsFragment : Fragment() {
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-
-
-        Log.d("FragmentGraphs", "GraphsFragment is created")
-
-        // Inflate the layout for this fragment
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_graphs, container, false)
+        val graph1: LineChart = view.findViewById(R.id.graph1)
+        val graph2: LineChart = view.findViewById(R.id.graph2)
+        val graph3: LineChart = view.findViewById(R.id.graph3)
+        val graph4: LineChart = view.findViewById(R.id.graph4)
+        val graph5: LineChart = view.findViewById(R.id.graph5)
+        val graph6: LineChart = view.findViewById(R.id.graph6)
+        val graph7: LineChart = view.findViewById(R.id.graph7)
+        val graph8: LineChart = view.findViewById(R.id.graph8)
+
+        //set up graphs
+        setUpGraph(graph1)
+        setUpGraph(graph2)
+        setUpGraph(graph3)
+        setUpGraph(graph4)
+        setUpGraph(graph5)
+        setUpGraph(graph6)
+        setUpGraph(graph7)
+        setUpGraph(graph8)
 
         return view
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val lineChart: LineChart = view.findViewById(R.id.lineChart)
-
+    private fun setUpGraph(graph: LineChart) {
         val entries = ArrayList<Entry>()
-        entries.add(Entry(0f, 1f))  // Point (0,1)
-        entries.add(Entry(1f, 2f))  // Point (1,2)
-
-        // dataset
-        val dataSet = LineDataSet(entries, "Data Set Label")
-
-        // Set X-axis labels
-        lineChart.xAxis.valueFormatter = object : com.github.mikephil.charting.formatter.ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return "cats"
-            }
+        //random data points
+        for (i in 0..10) {
+            entries.add(Entry(i.toFloat(), (Math.random() * 100).toFloat()))
         }
-
-        // Set Y-axis labels
-        lineChart.axisLeft.valueFormatter = object : com.github.mikephil.charting.formatter.ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return "dogs"
-            }
-        }
-
-        // Set data
+        val dataSet = LineDataSet(entries, "Graph Data")
         val lineData = LineData(dataSet)
-        lineChart.data = lineData
-
-        // Set chart title
-        lineChart.description.text = "meow meow meow"
-
-        // Refresh chart
-        lineChart.invalidate()  // Refresh chart with new data
-
-    }
-    override fun onResume() {
-        super.onResume()
-        Log.d("FragmentGraphs", "GraphsFragment is now visible")
+        graph.data = lineData
+        graph.invalidate()
     }
 }
