@@ -49,7 +49,7 @@ class FilteredWaterViewEntryFragment : Fragment() {
             if (turbidity != null) {
                 //Update all text views to contain the data numbers
                 val turbidityView: TextView = view.findViewById(R.id.turbidity_text)
-                turbidityView.text = getString(R.string.turbidity_with_input,turbidity)
+                turbidityView.text = getString(R.string.turbidity_with_input,turbidity[0])
             }
         }
         viewModel.filteredWaterNotes.observe(viewLifecycleOwner) { notes ->
