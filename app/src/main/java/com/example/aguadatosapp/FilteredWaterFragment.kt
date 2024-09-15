@@ -41,21 +41,20 @@ class FilteredWaterFragment : Fragment() {
         val inflater = LayoutInflater.from(context)
         val inputLayout = inflater.inflate(R.layout.layout_filtered_turbidity_input_field, container, false)
 
-        // Optionally, you can manipulate or access views here if needed
+        // Set variables to access necessary UI elements
         val turbidityTextTemp = inputLayout.findViewById<TextView>(R.id.turbidity_text)
         val turbidityInput = inputLayout.findViewById<EditText>(R.id.turbidity_input)
         turbidityTextTemp.text = getString(R.string.filter_number_turbidity_text,filterNumber)
 
         //set starting value if data has already been entered
-        val filterTurbidityData: DoubleArray? = viewModel.filteredWaterData.value
         if(viewModel.filteredWaterData.value!![filterNumber-1] > -1.0) {
             turbidityInput.setText(viewModel.filteredWaterData.value!![filterNumber-1].toString())
-        } //TODO: update confirm and view entry pages to display dynamic fields
+        }
 
         // Add the inflated layout to the container
         container.addView(inputLayout)
 
-        // Set a TextWatcher to observe changes in the EditText
+        // Set a TextWatcher to observe changes in the turbidity input field
         turbidityInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 

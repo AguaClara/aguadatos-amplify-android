@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -29,6 +30,27 @@ class FilteredWaterViewEntryFragment : Fragment() {
 
         return view
     }
+    private fun addInputLayout(view: View, container: LinearLayout, filterNumber: Int) {
+        // Inflate the input layout
+        val inflater = LayoutInflater.from(context)
+        val inputLayout = inflater.inflate(R.layout.layout_filtered_turbidity_view_field, container, false)
+
+        // Set variables to access necessary UI elements
+        val turbidityView = inputLayout.findViewById<TextView>(R.id.turbidity_text)
+        turbidityView.text = getString(R.string.filter_number_turbidity_text,filterNumber)
+
+        // Add the inflated layout to the container
+        container.addView(inputLayout)
+
+        // Observe the data from ViewModel to display on this page
+        viewModel.filteredWaterData.observe(viewLifecycleOwner) { turbidity ->
+            // Update UI based on the received data
+            if (turbidity != null) {
+                //Update all text views to contain the data numbers
+                turbidityView.text = getString(R.string.turbidity_with_input,turbidity[filterNumber-1])
+            }
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,15 +65,17 @@ class FilteredWaterViewEntryFragment : Fragment() {
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
-        // Observe the data from ViewModel
-        viewModel.filteredWaterData.observe(viewLifecycleOwner) { turbidity ->
-            // Update UI based on the received data
-            if (turbidity != null) {
-                //Update all text views to contain the data numbers
-                val turbidityView: TextView = view.findViewById(R.id.turbidity_text)
-                turbidityView.text = getString(R.string.turbidity_with_input,turbidity[0])
+        //add a display for the turbidity of each filter in use
+        val numFilters = viewModel.numFilters.value
+        val container = view.findViewById<LinearLayout>(R.id.filtered_view_container)
+        if (numFilters != null) {
+            for(i in 1..numFilters) {
+                if(viewModel.filteredWaterData.value?.get(i-1)!! > -1) {
+                    addInputLayout(view, container, i)
+                }
             }
         }
+
         viewModel.filteredWaterNotes.observe(viewLifecycleOwner) { notes ->
             // Update UI based on the received data
             if (notes != null) {

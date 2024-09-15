@@ -51,14 +51,14 @@ class FilteredWaterConfirmEntryFragment : Fragment() {
         val inflater = LayoutInflater.from(context)
         val inputLayout = inflater.inflate(R.layout.layout_filtered_turbidity_view_field, container, false)
 
-        // Optionally, you can manipulate or access views here if needed
+        // Set variables to access necessary UI elements
         val turbidityView = inputLayout.findViewById<TextView>(R.id.turbidity_text)
         turbidityView.text = getString(R.string.filter_number_turbidity_text,filterNumber)
 
         // Add the inflated layout to the container
         container.addView(inputLayout)
 
-        // Observe the data from ViewModel
+        // Observe the data from ViewModel to display on this page
         viewModel.filteredWaterData.observe(viewLifecycleOwner) { turbidity ->
             // Update UI based on the received data
             if (turbidity != null) {
@@ -79,6 +79,7 @@ class FilteredWaterConfirmEntryFragment : Fragment() {
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
 
+        //add a display for the turbidity of each filter in use
         val numFilters = viewModel.numFilters.value
         val container = view.findViewById<LinearLayout>(R.id.filtered_view_container)
         if (numFilters != null) {
