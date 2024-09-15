@@ -70,4 +70,6 @@ class SharedViewModel : ViewModel() {
     val chemConcentration: MutableLiveData<Double> = MutableLiveData(1.6)
     val numFilters: MutableLiveData<Int> = MutableLiveData(1)
 
+    // this stores plant operator feedback submissions
+    val feedback: MutableLiveData<String> = MutableLiveData("")
 }

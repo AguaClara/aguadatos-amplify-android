@@ -54,7 +54,7 @@ class PlantFlowFragment : Fragment() {
         //display chemical type set in configuration
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
-
+        //TODO: reformat notes boxes
 
         //watch input elements to update entry data whenever an input is added
         val textWatcher = object : TextWatcher {
