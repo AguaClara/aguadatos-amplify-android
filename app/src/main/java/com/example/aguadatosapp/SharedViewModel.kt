@@ -51,7 +51,8 @@ class SharedViewModel : ViewModel() {
     val rawWaterNotes: MutableLiveData<String> = MutableLiveData()
 
     // this is the data for the filtered water data submission
-    val filteredWaterData: MutableLiveData<DoubleArray> = MutableLiveData()
+    private val filteredWaterDefaultArray = doubleArrayOf(-1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
+    val filteredWaterData: MutableLiveData<DoubleArray> = MutableLiveData(filteredWaterDefaultArray)
     val filteredWaterNotes: MutableLiveData<String> = MutableLiveData()
 
     // this is the data for the clarified water turbidity
