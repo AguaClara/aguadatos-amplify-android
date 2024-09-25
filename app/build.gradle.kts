@@ -67,4 +67,6 @@ dependencies {
 
     // Support for Java 8 features
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+    //read data from csv files
+    implementation("com.opencsv:opencsv:5.5.2")
 }
