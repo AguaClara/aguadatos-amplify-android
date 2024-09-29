@@ -7,6 +7,7 @@ class SharedViewModel : ViewModel() {
 
     // this is the data for the calibration coagulant dosing data submission
     // array includes: slider position, inflow rate, start volume, end volume, time elapsed, chem dose, chem flow rate
+  
     private val defaultArray1 = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
     val coagCalibrationData = MutableLiveData(defaultArray1)
     // track if endVolume has been updated, if so, try to calculate run out time

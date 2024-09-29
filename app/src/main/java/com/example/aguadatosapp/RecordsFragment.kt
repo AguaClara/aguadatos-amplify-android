@@ -84,6 +84,11 @@ class RecordsFragment : Fragment() {
         val expandableText = entryLayout.findViewById<TextView>(R.id.expandableText)
         val timeStamp = entryLayout.findViewById<TextView>(R.id.timestamp)
 
+        val editButton = entryLayout.findViewById<TextView>(R.id.edit_button)
+        editButton.setOnClickListener {
+            showEditEntryDialog(entry)
+        }
+
         // Read data into front end display
         when (entry) {
             is PlantFlowEntry -> {
@@ -137,5 +142,38 @@ class RecordsFragment : Fragment() {
 
         // Add the inflated layout to the container
         container.addView(entryLayout)
+    }
+
+    private fun showEditEntryDialog(entry: Entry) {
+        // Inflate the custom layout for the dialog
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.record_edit_entry, null)
+
+        // Initialize views inside the dialog
+//        val entryNameTextView = dialogView.findViewById<TextView>(R.id.entry_name_text)
+//        val entryTimeTextView = dialogView.findViewById<TextView>(R.id.entry_timestamp)
+        val closeButton = dialogView.findViewById<Button>(R.id.delete_button)
+        val saveButton = dialogView.findViewById<Button>(R.id.save_button)
+
+        // Set the entry details in the dialog
+//        entryNameTextView.text = "NAME"
+//        entryTimeTextView.text = "TIMESTAMP"
+
+        // Create and show the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        // FIXME
+        closeButton.setOnClickListener {
+            dialog.dismiss()  // Close the dialog
+        }
+
+        // FIXME
+        saveButton.setOnClickListener {
+            dialog.dismiss()  // Close the dialog after saving
+        }
+
+        // Show the dialog
+        dialog.show()
     }
 }
