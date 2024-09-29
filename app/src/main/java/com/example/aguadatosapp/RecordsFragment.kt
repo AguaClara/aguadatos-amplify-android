@@ -84,8 +84,8 @@ class RecordsFragment : Fragment() {
         val entryName = entryLayout.findViewById<TextView>(R.id.entry_title)
         val expandableText = entryLayout.findViewById<TextView>(R.id.expandableText)
         val timeStamp = entryLayout.findViewById<TextView>(R.id.timestamp)
-        val edit_button = entryLayout.findViewById<TextView>(R.id.edit_button)
-        edit_button.setOnClickListener {
+        val editButton = entryLayout.findViewById<TextView>(R.id.edit_button)
+        editButton.setOnClickListener {
             showEditEntryDialog(entry)
         }
 
@@ -146,16 +146,13 @@ class RecordsFragment : Fragment() {
             .setView(dialogView)
             .create()
 
-        // Handle the Close button click
+        // FIXME
         closeButton.setOnClickListener {
             dialog.dismiss()  // Close the dialog
         }
 
-        // Handle the Save button click (implement save functionality if needed)
+        // FIXME
         saveButton.setOnClickListener {
-            // Perform the save operation
-            // For example, save the updated entry data
-
             dialog.dismiss()  // Close the dialog after saving
         }
 
