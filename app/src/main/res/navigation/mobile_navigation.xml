@@ -28,7 +28,15 @@
             android:id="@+id/action_home_to_chlorine_page"
             app:destination="@id/navigation_chlorine_page" />
     </fragment>
-
+    <fragment
+            android:id="@+id/navigation_graphs"
+            android:name="com.example.aguadatosapp.GraphsFragment"
+            android:label="Graphs"
+            tools:layout="@layout/fragment_graphs" >
+        <action
+                android:id="@+id/action_config_page_to_home"
+                app:destination="@id/navigation_home" />
+    </fragment>
     <fragment
             android:id="@+id/navigation_configuration"
             android:name="com.example.aguadatosapp.ConfigurationFragment"
