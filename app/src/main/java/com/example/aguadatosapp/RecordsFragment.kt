@@ -31,8 +31,14 @@ class RecordsFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_records, container, false)
 
-        //initialize view model and feedback input element
+        //initialize view model and entry container
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+        val container = view.findViewById<LinearLayout>(R.id.entriesContainer)
+
+        createDummyData()
+        addEntry(container,dummyRawWaterEntry)
+        addEntry(container,dummyCoagulantCalibrationEntry)
+        addEntry(container,dummyFeedbackEntry)
 
         return view
     }
@@ -62,40 +68,56 @@ class RecordsFragment : Fragment() {
         dummyFeedbackEntry = FeedbackEntry(
             id = "3",
             name = "Entry: Feedback",
-            feedback = "Improve the app please"
+            feedback = "Improve the app please",
+            time = "05:31:27",
+            date = "09-27-24"
         )
     }
-    private fun addEntry(container: LinearLayout) {
+    private fun addEntry(container: LinearLayout, entry: Entry) {
         // Inflate the input layout
         val inflater = LayoutInflater.from(context)
         val entryLayout = inflater.inflate(R.layout.layout_entry, container, false)
 
         // Set variables to access necessary UI elements
         val entryName = entryLayout.findViewById<TextView>(R.id.entry_title)
-        val expandableContent = entryLayout.findViewById<TextView>(R.id.expandableContent)
+        val expandableText = entryLayout.findViewById<TextView>(R.id.expandableText)
         val timeStamp = entryLayout.findViewById<TextView>(R.id.timestamp)
 
-        //set starting value if data has already been entered
-        if(viewModel.filteredWaterData.value!![filterNumber-1] > -1.0) {
-            turbidityInput.setText(viewModel.filteredWaterData.value!![filterNumber-1].toString())
+        // Read data into front end display
+        when (entry) {
+            is PlantFlowEntry -> {
+                entryName.text = entry.name
+                expandableText.text = getString(R.string.inflow_rate_with_input,entry.inflowRate)
+                timeStamp.text = entry.time
+            }
+            is TurbidityEntry -> {
+                entryName.text = entry.name
+                expandableText.text = getString(R.string.turbidity_with_input,entry.turbidity)
+                timeStamp.text = entry.time
+            }
+            is FilteredWaterEntry -> {
+                entryName.text = entry.name
+                expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityValues[0])
+                timeStamp.text = entry.time
+            }
+            is CalibrationEntry -> {
+                entryName.text = entry.name
+                expandableText.text = getString(R.string.chemical_dose_with_input,entry.chemDose)
+                timeStamp.text = entry.time
+            }
+            is ChangeDoseEntry -> {
+                entryName.text = entry.name
+                expandableText.text = getString(R.string.new_slider_pos,entry.newSliderPosition)
+                timeStamp.text = entry.time
+            }
+            is FeedbackEntry -> { //FIXME: update feedback data submission to include time and date
+                entryName.text = entry.name
+                expandableText.text = getString(R.string.feedback_with_input,entry.feedback)
+                timeStamp.text = entry.time
+            }
         }
 
         // Add the inflated layout to the container
-        container.addView(inputLayout)
-
-        // Set a TextWatcher to observe changes in the turbidity input field
-        turbidityInput.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable?) {
-                //get user input, convert to double, and add to entry (for each input)
-                val turbidityValue = turbidityInput.text.toString()
-                if (turbidityValue.isNotEmpty()) {
-                    viewModel.filteredWaterData.value?.set(filterNumber-1, turbidityValue.toDouble())
-                }
-            }
-        })
+        container.addView(entryLayout)
     }
 }

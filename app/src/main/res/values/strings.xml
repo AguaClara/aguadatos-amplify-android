@@ -201,4 +201,5 @@
     <string name="entry_name">Entry: %s</string>
     <string name="entry_chem_dose">Chemical Dose: %s mg/L</string>
     <string name="entry_timestamp">Timestamp: %s</string>
+    <string name="feedback_with_input">Feedback: %s</string>
 </resources>

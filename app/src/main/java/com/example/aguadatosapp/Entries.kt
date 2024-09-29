@@ -57,5 +57,7 @@ data class ChangeDoseEntry(
 data class FeedbackEntry(
     val id: String,
     val name: String,
-    val feedback: String
+    val feedback: String,
+    val time: String,
+    val date: String
 ) : Entry(entryType = "6")
