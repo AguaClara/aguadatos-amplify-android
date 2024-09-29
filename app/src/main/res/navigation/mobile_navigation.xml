@@ -48,6 +48,12 @@
     </fragment>
 
     <fragment
+        android:id="@+id/navigation_feedback"
+        android:name="com.example.aguadatosapp.FeedbackFragment"
+        android:label="Feedback"
+        tools:layout="@layout/fragment_feedback" />
+
+    <fragment
         android:id="@+id/navigation_coag_page"
         android:name="com.example.aguadatosapp.CoagFragment"
         android:label="Coagulant Dosing"
@@ -300,5 +306,8 @@
                 android:id="@+id/action_filtered_water_view_to_home"
                 app:destination="@id/navigation_home" />
     </fragment>
-
+    <fragment
+        android:id="@+id/navigation_records"
+        android:name="com.example.aguadatosapp.RecordsFragment"
+        tools:layout="@layout/fragment_records" />
 </navigation>

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 class SharedViewModel : ViewModel() {
 
     // this is the data for the calibration coagulant dosing data submission
+    // array includes: slider position, inflow rate, start volume, end volume, time elapsed, chem dose, chem flow rate
     private val defaultArray = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
     val coagCalibrationData = MutableLiveData(defaultArray)
     // track if endVolume has been updated, if so, try to calculate run out time
@@ -51,7 +52,8 @@ class SharedViewModel : ViewModel() {
     val rawWaterNotes: MutableLiveData<String> = MutableLiveData()
 
     // this is the data for the filtered water data submission
-    val filteredWaterData: MutableLiveData<DoubleArray> = MutableLiveData()
+    private val filteredWaterDefaultArray = doubleArrayOf(-1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
+    val filteredWaterData: MutableLiveData<DoubleArray> = MutableLiveData(filteredWaterDefaultArray)
     val filteredWaterNotes: MutableLiveData<String> = MutableLiveData()
 
     // this is the data for the clarified water turbidity
@@ -69,4 +71,6 @@ class SharedViewModel : ViewModel() {
     val chemConcentration: MutableLiveData<Double> = MutableLiveData(1.6)
     val numFilters: MutableLiveData<Int> = MutableLiveData(1)
 
+    // this stores plant operator feedback submissions
+    val feedback: MutableLiveData<String> = MutableLiveData("")
 }

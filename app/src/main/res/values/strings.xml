@@ -191,6 +191,18 @@
     <string name="chlorine_flow_rate_with_input">Chlorine Flow Rate: %.1f mL/s</string>
     <string name="target_chlorine_dose_with_input">Target Chlorine Dosage: %.1f mg/L</string>
     <string name="new_chlorine_flow_rate_with_input">New Chlorine Flow Rate: %.1f mL/s</string>
+  
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- fragment_feedback -->
+    <string name="feedback_caps">FEEDBACK</string>
+    <string name="improvement_message">Please let us know how we can improve AguaDatos!</string>
+    <string name="records_caps">RECORDS</string>
+
+    <!-- fragment_records -->
+    <string name="entry_name">Entry: %s</string>
+    <string name="entry_chem_dose">Chemical Dose: %s mg/L</string>
+    <string name="entry_timestamp">Timestamp: %s</string>
+    <string name="feedback_with_input">Feedback: %s</string>
 </resources>
