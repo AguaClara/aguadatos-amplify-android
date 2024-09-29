@@ -14,8 +14,8 @@
 
     <!-- SVG Icon (Vector Drawable) -->
     <item
-        android:width="20dp"
-        android:height="20dp"
+        android:width="15dp"
+        android:height="15dp"
         android:gravity="center" >
         <vector xmlns:android="http://schemas.android.com/apk/res/android"
                 android:width="20dp"

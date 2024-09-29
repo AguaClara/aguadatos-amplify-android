@@ -41,6 +41,9 @@ class RecordsFragment : Fragment() {
         addEntry(container,dummyRawWaterEntry)
         addEntry(container,dummyCoagulantCalibrationEntry)
         addEntry(container,dummyFeedbackEntry)
+        addEntry(container,dummyRawWaterEntry)
+        addEntry(container,dummyCoagulantCalibrationEntry)
+        addEntry(container,dummyFeedbackEntry)
 
         return view
     }
@@ -117,7 +120,7 @@ class RecordsFragment : Fragment() {
                 expandableText.text = getString(R.string.new_slider_pos,entry.newSliderPosition)
                 timeStamp.text = entry.time
             }
-            is FeedbackEntry -> { //FIXME: update feedback data submission to include time and date
+            is FeedbackEntry -> {
                 entryName.text = entry.name
                 expandableText.text = getString(R.string.feedback_with_input,entry.feedback)
                 timeStamp.text = entry.time
