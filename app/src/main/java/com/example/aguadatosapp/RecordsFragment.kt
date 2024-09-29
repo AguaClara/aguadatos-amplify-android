@@ -1,6 +1,5 @@
 package com.example.aguadatosapp
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,6 +12,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
@@ -79,11 +79,11 @@ class RecordsFragment : Fragment() {
         val inflater = LayoutInflater.from(context)
         val entryLayout = inflater.inflate(R.layout.layout_entry, container, false)
 
-
         // Set variables to access necessary UI elements
         val entryName = entryLayout.findViewById<TextView>(R.id.entry_title)
         val expandableText = entryLayout.findViewById<TextView>(R.id.expandableText)
         val timeStamp = entryLayout.findViewById<TextView>(R.id.timestamp)
+
         val editButton = entryLayout.findViewById<TextView>(R.id.edit_button)
         editButton.setOnClickListener {
             showEditEntryDialog(entry)
@@ -120,6 +120,23 @@ class RecordsFragment : Fragment() {
                 entryName.text = entry.name
                 expandableText.text = getString(R.string.feedback_with_input,entry.feedback)
                 timeStamp.text = entry.time
+            }
+        }
+
+        // handle expand/contract button logic
+        var expanded = false
+        expandableText.visibility = View.GONE
+        val expandButton = entryLayout.findViewById<Button>(R.id.btnToggle)
+        expandButton.setOnClickListener {
+            if(expanded) {
+                expanded = false
+                expandableText.visibility = View.GONE
+                expandButton.background = context?.let { it1 -> ContextCompat.getDrawable(it1,R.drawable.dropdown_toggle) }
+            }
+            else {
+                expanded = true
+                expandableText.visibility = View.VISIBLE
+                expandButton.background = context?.let { it1 -> ContextCompat.getDrawable(it1,R.drawable.dropup_toggle) }
             }
         }
 
