@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
@@ -114,6 +115,23 @@ class RecordsFragment : Fragment() {
                 entryName.text = entry.name
                 expandableText.text = getString(R.string.feedback_with_input,entry.feedback)
                 timeStamp.text = entry.time
+            }
+        }
+
+        // handle expand/contract button logic
+        var expanded = false
+        expandableText.visibility = View.GONE
+        val expandButton = entryLayout.findViewById<Button>(R.id.btnToggle)
+        expandButton.setOnClickListener {
+            if(expanded) {
+                expanded = false
+                expandableText.visibility = View.GONE
+                expandButton.background = context?.let { it1 -> ContextCompat.getDrawable(it1,R.drawable.dropdown_toggle) }
+            }
+            else {
+                expanded = true
+                expandableText.visibility = View.VISIBLE
+                expandButton.background = context?.let { it1 -> ContextCompat.getDrawable(it1,R.drawable.dropup_toggle) }
             }
         }
 
