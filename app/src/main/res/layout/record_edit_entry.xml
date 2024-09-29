@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+    android:background="@color/background_blue"
+    android:layout_marginBottom="55dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/rounded_white2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <!-- Entry Title -->
+        <TextView
+            android:id="@+id/entry_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entry: Dosage"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/black" />
+
+        <!-- Timestamp -->
+        <TextView
+            android:id="@+id/entry_timestamp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10/20/23 9:25:43"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Chemical Type -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chemical Type: PAC"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="8dp" />
+
+        <!-- Calibration Section Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calibration"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"
+            android:textColor="@android:color/black" />
+
+        <!-- Calibration Data -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <!-- Slider Position -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Slider Position: ___ %"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+
+            <!-- Inflow Rate -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Inflow Rate: ___ mL/s"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+
+            <!-- Start Height -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Start Height: ___ mL"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+
+            <!-- End Height -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• End Height: ___ mL"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+
+            <!-- Time Elapsed -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Time Elapsed: ___ s"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+
+            <!-- Chemical Dose -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Chemical Dose: ___ mg/L"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+
+            <!-- Chemical Flow Rate -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Chemical Flow Rate: ___ mL/s"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Buttons (Delete and Save) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <!-- Delete Button -->
+            <Button
+                android:id="@+id/delete_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DELETE"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/dark_gray" />
+
+            <!-- Save Button -->
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SAVE"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/button_green"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
