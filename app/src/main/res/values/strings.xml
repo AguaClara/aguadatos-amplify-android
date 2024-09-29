@@ -195,4 +195,11 @@
     <!-- fragment_feedback -->
     <string name="feedback_caps">FEEDBACK</string>
     <string name="improvement_message">Please let us know how we can improve AguaDatos!</string>
+    <string name="records_caps">RECORDS</string>
+
+    <!-- fragment_records -->
+    <string name="entry_name">Entry: %s</string>
+    <string name="entry_chem_dose">Chemical Dose: %s mg/L</string>
+    <string name="entry_timestamp">Timestamp: %s</string>
+    <string name="feedback_with_input">Feedback: %s</string>
 </resources>

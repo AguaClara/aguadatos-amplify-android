@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background Shape -->
+    <item
+        android:width="40dp"
+        android:height="40dp"
+        android:gravity="center" >
+        <shape android:width="20dp" android:height="20dp" xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/button_green" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+    <!-- SVG Icon (Vector Drawable) -->
+    <item
+        android:width="20dp"
+        android:height="20dp"
+        android:gravity="center" >
+        <vector xmlns:android="http://schemas.android.com/apk/res/android"
+                android:width="20dp"
+                android:height="20dp"
+                android:viewportWidth="306.64"
+                android:viewportHeight="306.64">
+            <path
+                    android:pathData="M12.81,238.52L0,306.64l68.12,-12.81l184.28,-184.28l-55.31,-55.31L12.81,238.52zM60.79,279.94l-41.99,7.9l7.9,-41.99L197.09,75.46l34.1,34.1L60.79,279.94z"
+                    android:fillColor="#000000"/>
+            <path
+                    android:pathData="M251.33,0l-41.51,41.51l55.31,55.31l41.51,-41.51L251.33,0zM231.04,41.51l20.29,-20.29l34.1,34.1L265.13,75.6L231.04,41.51z"
+                    android:fillColor="#000000"/>
+        </vector>
+    </item>
+
+</layer-list>

@@ -298,5 +298,8 @@
                 android:id="@+id/action_filtered_water_view_to_home"
                 app:destination="@id/navigation_home" />
     </fragment>
-
+    <fragment
+        android:id="@+id/navigation_records"
+        android:name="com.example.aguadatosapp.RecordsFragment"
+        tools:layout="@layout/fragment_records" />
 </navigation>
