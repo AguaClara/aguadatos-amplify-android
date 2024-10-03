@@ -10,6 +10,11 @@
       "StackName": "amplify-aguadatosamplifyapp-dev-9215f",
       "StackId": "arn:aws:cloudformation:us-east-2:767397891564:stack/amplify-aguadatosamplifyapp-dev-9215f/f68437a0-7ee7-11ef-bf7c-06a86c0f3941",
       "AmplifyAppId": "d2dxbmm9b83rnv"
+    },
+    "categories": {
+      "api": {
+        "aguadatosamplifyapp": {}
+      }
     }
   }
 }
