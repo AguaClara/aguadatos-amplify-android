@@ -78,3 +78,6 @@ class SharedViewModel : ViewModel() {
     // this stores plant operator feedback submissions
     val feedback: MutableLiveData<String> = MutableLiveData("")
 }
+
+//TODO: figure out why notes input is all on one line- make this vertically scrollable too?
+// Why is filtered confirm entry view getting all messed up?
