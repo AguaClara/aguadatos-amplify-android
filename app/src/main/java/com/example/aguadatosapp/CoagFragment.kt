@@ -25,6 +25,7 @@ import java.util.Locale
 //CoagFragment.kt
 class CoagFragment : Fragment() {
     //var to store which embedded fragment is showing
+    // FIXME: Why is calibration form not outlined?
     private var showingCalibrationFragment = true
     // record volume of each tank
     private var tank1vol = 0.0
