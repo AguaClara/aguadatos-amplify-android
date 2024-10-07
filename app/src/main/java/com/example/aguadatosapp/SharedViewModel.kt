@@ -28,7 +28,7 @@ class SharedViewModel : ViewModel() {
     val coagulantRunOutTime: MutableLiveData<String> = MutableLiveData()
 
     // this is the data for the calibration chlorine dosing data submission
-    val defaultArray2 = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
+    private val defaultArray2 = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
     val chlorineCalibrationData = MutableLiveData(defaultArray2)
     // track if endVolume has been updated, if so, try to calculate run out time
     val triggerChlorineRunOutTimeCalculation: MutableLiveData<Boolean> = MutableLiveData()
@@ -74,7 +74,6 @@ class SharedViewModel : ViewModel() {
     val chemType: MutableLiveData<String> = MutableLiveData("PACl")
     val chemConcentration: MutableLiveData<Double> = MutableLiveData(1.6)
     val numFilters: MutableLiveData<Int> = MutableLiveData(1)
-
     // this stores plant operator feedback submissions
     val feedback: MutableLiveData<String> = MutableLiveData("")
 }
