@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
-
 android {
     namespace = "com.example.aguadatosapp"
     compileSdk = 34
@@ -59,6 +58,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
 
 
+    //graphs
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     // Amplify API and Datastore dependencies
     implementation("com.amplifyframework:aws-api:2.14.11")
@@ -66,4 +67,6 @@ dependencies {
 
     // Support for Java 8 features
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+    //read data from csv files
+    implementation("com.opencsv:opencsv:5.5.2")
 }

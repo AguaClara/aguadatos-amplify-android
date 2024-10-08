@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
@@ -37,6 +38,9 @@ class RecordsFragment : Fragment() {
         val container = view.findViewById<LinearLayout>(R.id.entriesContainer)
 
         createDummyData()
+        addEntry(container,dummyRawWaterEntry)
+        addEntry(container,dummyCoagulantCalibrationEntry)
+        addEntry(container,dummyFeedbackEntry)
         addEntry(container,dummyRawWaterEntry)
         addEntry(container,dummyCoagulantCalibrationEntry)
         addEntry(container,dummyFeedbackEntry)
@@ -89,6 +93,11 @@ class RecordsFragment : Fragment() {
             showEditEntryDialog(entry)
         }
 
+        val editButton = entryLayout.findViewById<TextView>(R.id.edit_button)
+        editButton.setOnClickListener {
+            showEditEntryDialog(entry)
+        }
+
         // Read data into front end display
         when (entry) {
             is PlantFlowEntry -> {
@@ -116,10 +125,27 @@ class RecordsFragment : Fragment() {
                 expandableText.text = getString(R.string.new_slider_pos,entry.newSliderPosition)
                 timeStamp.text = entry.time
             }
-            is FeedbackEntry -> { //FIXME: update feedback data submission to include time and date
+            is FeedbackEntry -> {
                 entryName.text = entry.name
                 expandableText.text = getString(R.string.feedback_with_input,entry.feedback)
                 timeStamp.text = entry.time
+            }
+        }
+
+        // handle expand/contract button logic
+        var expanded = false
+        expandableText.visibility = View.GONE
+        val expandButton = entryLayout.findViewById<Button>(R.id.btnToggle)
+        expandButton.setOnClickListener {
+            if(expanded) {
+                expanded = false
+                expandableText.visibility = View.GONE
+                expandButton.background = context?.let { it1 -> ContextCompat.getDrawable(it1,R.drawable.dropdown_toggle) }
+            }
+            else {
+                expanded = true
+                expandableText.visibility = View.VISIBLE
+                expandButton.background = context?.let { it1 -> ContextCompat.getDrawable(it1,R.drawable.dropup_toggle) }
             }
         }
 

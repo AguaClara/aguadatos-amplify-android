@@ -7,7 +7,8 @@ import com.amplifyframework.core.Amplify
 //import com.amplifyframework.datastore.AWSDataStorePlugin
 
 
-class AguaDatosAmplifyApp : Application(){
+class
+AguaDatosAmplifyApp : Application(){
     override fun onCreate() {
         super.onCreate()
 

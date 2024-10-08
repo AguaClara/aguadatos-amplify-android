@@ -13,6 +13,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 // FeedbackFragment.kt
 class FeedbackFragment : Fragment() {
@@ -36,6 +39,13 @@ class FeedbackFragment : Fragment() {
                 feedbackInput.text.clear()
                 Toast.makeText(context,"Thank you for your input!",Toast.LENGTH_SHORT).show()
             }
+            // add time and date to submission
+            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+            val timeText = LocalTime.now().format(timeFormatter)
+            viewModel.time.value = timeText
+            val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val dateText = LocalDate.now().format(dateFormatter)
+            viewModel.date.value = dateText
         }
         return view
     }
