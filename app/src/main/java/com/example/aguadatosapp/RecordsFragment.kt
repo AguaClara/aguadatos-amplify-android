@@ -93,11 +93,6 @@ class RecordsFragment : Fragment() {
             showEditEntryDialog(entry)
         }
 
-        val editButton = entryLayout.findViewById<TextView>(R.id.edit_button)
-        editButton.setOnClickListener {
-            showEditEntryDialog(entry)
-        }
-
         // Read data into front end display
         when (entry) {
             is PlantFlowEntry -> {
