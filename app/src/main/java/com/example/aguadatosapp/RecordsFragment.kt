@@ -83,10 +83,15 @@ class RecordsFragment : Fragment() {
         val inflater = LayoutInflater.from(context)
         val entryLayout = inflater.inflate(R.layout.layout_entry, container, false)
 
+
         // Set variables to access necessary UI elements
         val entryName = entryLayout.findViewById<TextView>(R.id.entry_title)
         val expandableText = entryLayout.findViewById<TextView>(R.id.expandableText)
         val timeStamp = entryLayout.findViewById<TextView>(R.id.timestamp)
+        val editButton = entryLayout.findViewById<TextView>(R.id.edit_button)
+        editButton.setOnClickListener {
+            showEditEntryDialog(entry)
+        }
 
         val editButton = entryLayout.findViewById<TextView>(R.id.edit_button)
         editButton.setOnClickListener {

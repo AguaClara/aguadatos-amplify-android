@@ -1,156 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="20dp"
-    android:background="@color/background_blue"
+    android:padding="16dp"
+    android:background="@drawable/rounded_white2"
     android:layout_marginBottom="55dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:text="Entry: Dosage"
+        android:textSize="22sp"
+        android:layout_marginHorizontal="25dp"
+        android:paddingVertical="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:text="@string/x"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:id="@+id/plant_flow_x_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/time_text"
+        android:paddingVertical="5dp"
+        android:text="@string/date_default"
+        android:textSize="15sp"
+        android:layout_marginHorizontal="25dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+    <TextView
+        android:id="@+id/chemical_type_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:paddingVertical="10dp"
+        android:text="Entry: Dosage"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_text" />
+    <TextView
+        android:id="@+id/calibration_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="4dp"
+        android:paddingVertical="10dp"
+        android:text="Calibration"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chemical_type_text"/>
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/rounded_white2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-        <!-- Entry Title -->
+        android:layout_marginHorizontal="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/calibration_text"
+        tools:layout_editor_absoluteX="7dp">
         <TextView
-            android:id="@+id/entry_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Entry: Dosage"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@android:color/black" />
-
-        <!-- Timestamp -->
-        <TextView
-            android:id="@+id/entry_timestamp_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10/20/23 9:25:43"
+            android:text="• Slider Position: ___ %"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp" />
-
-        <!-- Chemical Type -->
+            android:textSize="16sp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chemical Type: PAC"
-            android:textSize="16sp"
+            android:text="• Inflow Rate: ___ mL/s"
             android:textColor="@android:color/black"
-            android:layout_marginTop="8dp" />
-
-        <!-- Calibration Section Title -->
+            android:textSize="16sp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calibration"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginTop="12dp"
-            android:textColor="@android:color/black" />
-
-        <!-- Calibration Data -->
-        <LinearLayout
-            android:layout_width="match_parent"
+            android:text="• Start Height: ___ mL"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp">
-
-            <!-- Slider Position -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="• Slider Position: ___ %"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
-
-            <!-- Inflow Rate -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="• Inflow Rate: ___ mL/s"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
-
-            <!-- Start Height -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="• Start Height: ___ mL"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
-
-            <!-- End Height -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="• End Height: ___ mL"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
-
-            <!-- Time Elapsed -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="• Time Elapsed: ___ s"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
-
-            <!-- Chemical Dose -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="• Chemical Dose: ___ mg/L"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
-
-            <!-- Chemical Flow Rate -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="• Chemical Flow Rate: ___ mL/s"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
-
-        <!-- Buttons (Delete and Save) -->
-        <LinearLayout
-            android:layout_width="match_parent"
+            android:text="• End Height: ___ mL"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="16dp">
+            android:text="• Time Elapsed: ___ s"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Chemical Dose: ___ mg/L"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Chemical Flow Rate: ___ mL/s"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_margin="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="-9dp">
 
-            <!-- Delete Button -->
-            <Button
-                android:id="@+id/delete_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="DELETE"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@color/dark_gray" />
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/dark_gray"
+            android:text="DELETE"
+            android:textColor="@android:color/white" />
 
-            <!-- Save Button -->
-            <Button
-                android:id="@+id/save_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="SAVE"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@color/button_green"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_green"
+            android:text="SAVE"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
