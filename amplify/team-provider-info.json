@@ -12,6 +12,9 @@
       "AmplifyAppId": "d2dxbmm9b83rnv"
     },
     "categories": {
+      "auth": {
+        "aguadatosamplifyapp05edfa89": {}
+      },
       "api": {
         "aguadatosamplifyapp": {}
       }

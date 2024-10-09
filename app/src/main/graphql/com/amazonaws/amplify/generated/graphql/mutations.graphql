@@ -1,52 +1,127 @@
 # this is an auto generated file. This will be overwritten
 
-mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation CreatePlantFlowEntry(
+  $id: ID!
+  $name: String!
+  $inflowRate: Float!
+  $notes: String
+  $createTime: String!
+  $createDate: String!
 ) {
-  createTodo(input: $input, condition: $condition) {
+  createPlantFlowEntry(
+    id: $id
+    name: $name
+    inflowRate: $inflowRate
+    notes: $notes
+    createTime: $createTime
+    createDate: $createDate
+  ) {
     id
     name
-    description
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
+    entryType
+    inflowRate
+    notes
+    createTime
+    createDate
     __typename
   }
 }
 
-mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation UpdatePlantFlowEntry(
+  $id: ID!
+  $name: String
+  $inflowRate: Float
+  $notes: String
 ) {
-  updateTodo(input: $input, condition: $condition) {
+  updatePlantFlowEntry(
+    id: $id
+    name: $name
+    inflowRate: $inflowRate
+    notes: $notes
+  ) {
     id
     name
-    description
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
+    entryType
+    inflowRate
+    notes
+    createTime
+    createDate
     __typename
   }
 }
 
-mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
-) {
-  deleteTodo(input: $input, condition: $condition) {
+mutation DeletePlantFlowEntry($id: ID!) {
+  deletePlantFlowEntry(id: $id) {
     id
     name
-    description
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
+    entryType
+    inflowRate
+    notes
+    createTime
+    createDate
+    __typename
+  }
+}
+
+mutation CreateTurbidityEntry(
+  $id: ID!
+  $name: String!
+  $turbidity: Float!
+  $notes: String
+  $createTime: String!
+  $createDate: String!
+) {
+  createTurbidityEntry(
+    id: $id
+    name: $name
+    turbidity: $turbidity
+    notes: $notes
+    createTime: $createTime
+    createDate: $createDate
+  ) {
+    id
+    name
+    entryType
+    turbidity
+    notes
+    createTime
+    createDate
+    __typename
+  }
+}
+
+mutation UpdateTurbidityEntry(
+  $id: ID!
+  $name: String
+  $turbidity: Float
+  $notes: String
+) {
+  updateTurbidityEntry(
+    id: $id
+    name: $name
+    turbidity: $turbidity
+    notes: $notes
+  ) {
+    id
+    name
+    entryType
+    turbidity
+    notes
+    createTime
+    createDate
+    __typename
+  }
+}
+
+mutation DeleteTurbidityEntry($id: ID!) {
+  deleteTurbidityEntry(id: $id) {
+    id
+    name
+    entryType
+    turbidity
+    notes
+    createTime
+    createDate
     __typename
   }
 }

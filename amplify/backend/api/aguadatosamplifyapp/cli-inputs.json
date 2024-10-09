@@ -4,13 +4,21 @@
     "apiName": "aguadatosamplifyapp",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "expirationTime": 7
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authaguadatosamplifyapp05edfa89"
     },
     "conflictResolution": {
       "defaultResolutionStrategy": {
         "type": "AUTOMERGE"
       }
-    }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2025-10-09T11:55:41.159Z",
+        "keyDescription": "globalSandboxMode_APIKey"
+      }
+    ]
   }
 }
