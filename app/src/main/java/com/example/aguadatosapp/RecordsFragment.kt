@@ -134,7 +134,12 @@ class RecordsFragment : Fragment() {
         // Initialize views inside the dialog
 //        val entryNameTextView = dialogView.findViewById<TextView>(R.id.entry_name_text)
 //        val entryTimeTextView = dialogView.findViewById<TextView>(R.id.entry_timestamp)
-        val closeButton = dialogView.findViewById<Button>(R.id.delete_button)
+
+
+//        val title = dialogView.findViewById<Button>(R.id.title)
+//        title.setText("test")
+        val closeButton = dialogView.findViewById<Button>(R.id.close_button)
+        val deletedButton = dialogView.findViewById<Button>(R.id.delete_button)
         val saveButton = dialogView.findViewById<Button>(R.id.save_button)
 
         // Set the entry details in the dialog
@@ -146,9 +151,13 @@ class RecordsFragment : Fragment() {
             .setView(dialogView)
             .create()
 
-        // FIXME
         closeButton.setOnClickListener {
             dialog.dismiss()  // Close the dialog
+        }
+
+        // FIXME
+        deletedButton.setOnClickListener {
+            dialog.dismiss()  // Close the dialog after saving
         }
 
         // FIXME
