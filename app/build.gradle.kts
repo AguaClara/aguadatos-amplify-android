@@ -64,6 +64,9 @@ dependencies {
     // Amplify API and Datastore dependencies
     implementation("com.amplifyframework:aws-api:2.14.11")
     implementation("com.amplifyframework:aws-datastore:2.14.11")
+    implementation("com.amplifyframework:aws-auth-cognito:1.28.2") // For authentication, if required
+    implementation("com.amplifyframework:core:1.28.2") // Core Amplify
+
 
     // Support for Java 8 features
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")

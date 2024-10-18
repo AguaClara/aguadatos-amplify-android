@@ -82,14 +82,22 @@ class ConfigurationFragment : Fragment() {
                 viewModel.chemType.value = "PACl"
             }
             viewModel.chemConcentration.value = chemConcInput.text.toString().toDouble()
-            viewModel.numFilters.value = numFiltersInput.text.toString().toInt()
+            //only accept filter input if it is valid (0<n<=6)
+            val numFiltersValue = numFiltersInput.text.toString().toInt()
+            if(numFiltersValue in 1..6) {
+                viewModel.numFilters.value = numFiltersInput.text.toString().toInt()
+            }
+            else {
+                //otherwise give error message explaining what's wrong
+                Toast.makeText(context,"Please enter a valid number of filters (between 1 and 6).",Toast.LENGTH_SHORT).show()
+            }
             // pop a toast to let user know changes are saved
             Toast.makeText(context,"Your changes have been saved.",Toast.LENGTH_SHORT).show()
         }
 
         // handle logic for sync button
         syncButton.setOnClickListener {
-            //TODO: @POST TEAM FA'24, this is where data will be sent from local backend to AWS
+            //TODO: @POST TEAM FA'24, this is where data will be sent from local backend to AWS (?)
         }
     }
 

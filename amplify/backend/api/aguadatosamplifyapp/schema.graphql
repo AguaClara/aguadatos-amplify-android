@@ -1,9 +1,84 @@
 # This "input" configures a global authorization rule to enable public access to
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+# Enable public access with API Key for testing purposes
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } }
 
-type Todo @model {
-  id: ID!
-  name: String!
-  description: String
+# Interface for common fields
+interface Entry {
+    id: ID!
+    name: String!
+    entryType: String!
+    notes: String
+    createTime: String!
+    createDate: String!
+}
+
+# Type for PlantFlowEntry, implementing the Entry interface
+type PlantFlowEntry implements Entry {
+    id: ID!
+    name: String!
+    entryType: String!
+    inflowRate: Float!
+    notes: String
+    createTime: String!
+    createDate: String!
+}
+
+# Type for TurbidityEntry, implementing the Entry interface
+type TurbidityEntry implements Entry {
+    id: ID!
+    name: String!
+    entryType: String!
+    turbidity: Float!
+    notes: String
+    createTime: String!
+    createDate: String!
+}
+
+# Queries to get specific or list of entries
+type Query {
+    getPlantFlowEntry(id: ID!): PlantFlowEntry
+    listPlantFlowEntries: [PlantFlowEntry]
+
+    getTurbidityEntry(id: ID!): TurbidityEntry
+    listTurbidityEntries: [TurbidityEntry]
+}
+
+# Mutations to create, update, and delete entries
+type Mutation {
+    createPlantFlowEntry(
+        id: ID!
+        name: String!
+        inflowRate: Float!
+        notes: String
+        createTime: String!
+        createDate: String!
+    ): PlantFlowEntry
+
+    updatePlantFlowEntry(
+        id: ID!
+        name: String
+        inflowRate: Float
+        notes: String
+    ): PlantFlowEntry
+
+    deletePlantFlowEntry(id: ID!): PlantFlowEntry
+
+    createTurbidityEntry(
+        id: ID!
+        name: String!
+        turbidity: Float!
+        notes: String
+        createTime: String!
+        createDate: String!
+    ): TurbidityEntry
+
+    updateTurbidityEntry(
+        id: ID!
+        name: String
+        turbidity: Float
+        notes: String
+    ): TurbidityEntry
+
+    deleteTurbidityEntry(id: ID!): TurbidityEntry
 }

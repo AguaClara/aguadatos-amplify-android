@@ -78,8 +78,7 @@ class FilteredWaterFragment : Fragment() {
         val notesInput: EditText = view.findViewById(R.id.filtered_water_notes_input)
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
 
-        //if number of filters is greater than zero, add extra inputs
-        //TODO: update above comment
+        //add each filter input separately
         val numFilters = viewModel.numFilters.value
         val container = view.findViewById<LinearLayout>(R.id.filtered_input_container)
         if (numFilters != null) {
@@ -88,15 +87,9 @@ class FilteredWaterFragment : Fragment() {
             }
         }
 
-        //set starting value if data has already been entered
-        //if(viewModel.filteredWaterData.value!![0] > -1.0) {
-        //    turbidity.setText(viewModel.filteredWaterData.value!![0].toString())
-        //}
-
         //display chemical type set in configuration
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
-        //TODO: make max numFilters 6 in configuration
         //watch input elements to update entry data whenever an input is added
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
