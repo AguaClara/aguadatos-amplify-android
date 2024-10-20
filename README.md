@@ -4,14 +4,13 @@ POST stands for Plant Operations Smartphone Tracker. We are dedicated to designi
 
 ### Team Members:
 
-Becca Jeffries (lead)
-\newline
-George Dong
-Kelly Tran
-Dora Weng
-Tim Holt
-Patrick Egan
-Jason Fu
+-Becca Jeffries (lead)
+-George Dong
+-Kelly Tran
+-Jason Fu
+-Patrick Egan
+-Dora Weng
+-Tim Holt
 
 ### Goals for Fall 2024:
 
