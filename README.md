@@ -5,6 +5,7 @@ POST stands for Plant Operations Smartphone Tracker. We are dedicated to designi
 ### Team Members:
 
 Becca Jeffries (lead)
+\newline
 George Dong
 Kelly Tran
 Dora Weng
