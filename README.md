@@ -10,6 +10,7 @@ Kelly Tran
 Dora Weng
 Tim Holt
 Patrick Egan
+Jason Fu
 
 ### Goals for Fall 2024:
 
