@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
         android:paddingVertical="10dp"
-        android:text="Entry: Dosage"
+        android:text="Chemical Type: __"
         android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,45 +79,59 @@
         app:layout_constraintTop_toBottomOf="@+id/calibration_text"
         tools:layout_editor_absoluteX="7dp">
         <TextView
+            android:id="@+id/slider_position_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• Slider Position: ___ %"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
         <TextView
+            android:id="@+id/inflow_rate_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• Inflow Rate: ___ mL/s"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
         <TextView
+            android:id="@+id/start_height_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• Start Height: ___ mL"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
         <TextView
+            android:id="@+id/end_height_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• End Height: ___ mL"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
         <TextView
+            android:id="@+id/time_elapsed_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• Time Elapsed: ___ s"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
         <TextView
+            android:id="@+id/chemical_dose_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• Chemical Dose: ___ mg/L"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
         <TextView
+            android:id="@+id/chemical_flow_rate_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• Chemical Flow Rate: ___ mL/s"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/feedback_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feedback: "
             android:textColor="@android:color/black"
             android:textSize="16sp" />
     </LinearLayout>
