@@ -21,4 +21,4 @@ POST stands for Plant Operations Smartphone Tracker. We are dedicated to designi
 ### Meeting Times/Places:
 
 Wednesday 4:30-5:30 in Goldwin-Smith Hall 162
-Sunday 4:30-6:30 in Hollister B55
+Sunday 1:30-3:30 in Hollister B55
