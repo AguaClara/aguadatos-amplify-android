@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:drawable="@color/blue" />
-    <item android:state_pressed="true" android:drawable="@color/blue" />
-    <item android:drawable="@color/white" />
+    <!-- Selected: Blue -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#0000FF"/>
+        </shape>
+    </item>
+
+    <!-- Default: White -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF"/>
+        </shape>
+    </item>
 </selector>

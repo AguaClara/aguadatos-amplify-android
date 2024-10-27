@@ -29,7 +29,6 @@
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:text="PLANT FLOW"
-                    android:background="@drawable/button_white_to_blue"
                     android:textColor="#000000"
                     android:padding="8dp"
                     android:layout_margin="4dp" />
@@ -40,7 +39,6 @@
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:text="RAW WATER"
-                    android:background="@drawable/button_white_to_blue"
                     android:textColor="#000000"
                     android:padding="8dp"
                     android:layout_margin="4dp" />
@@ -51,7 +49,6 @@
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:text="COAG. DOSE"
-                    android:background="@drawable/button_white_to_blue"
                     android:textColor="#000000"
                     android:padding="8dp"
                     android:layout_margin="4dp" />
@@ -63,7 +60,6 @@
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:text="CHLORINE DOSE"
-                    android:background="@drawable/button_white_to_blue"
                     android:textColor="#000000"
                     android:padding="8dp"
                     android:layout_margin="4dp" />
@@ -74,7 +70,6 @@
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:text="FILTER TURBID."
-                    android:background="@drawable/button_white_to_blue"
                     android:textColor="#000000"
                     android:padding="8dp"
                     android:layout_margin="4dp" />
@@ -85,7 +80,6 @@
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:text="CLARIFIED TURBID."
-                    android:background="@drawable/button_white_to_blue"
                     android:textColor="#000000"
                     android:padding="8dp"
                     android:layout_margin="4dp" />
