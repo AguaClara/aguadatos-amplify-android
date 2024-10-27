@@ -1,0 +1,57 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+
+# `EntryType` defines the entry variants. If a new entry is introduced, please update the schema.
+enum EntryType {
+    PLANT_FLOW      # Records plant inflow rate
+    RAW_TURBIDITY   # Records filtered water readings
+    CLARIFIED_TURBIDITY
+    FILTERED_TURBIDITY
+    COAGULANT_CALIBRATE       # Records chemical calibration data
+    COAGULANT_CHANGE_DOSE     # Records changes in chemical dosage
+    CHLORINE_CALIBRATE
+    CHLORINE_CHANGE_DOSE
+    FEEDBACK        # Records operator feedback
+}
+
+# 'ChemType' defines the chemical used in Calibration and Dosage entry.
+enum ChemType {
+    POLY_ALUMINIUM_CHLORIDE  # PAC: Poly Aluminium Chloride
+    ALUMINUM_SULFATE         # Al2(SO4)3: Aluminum Sulfate
+}
+
+type Entry @model(subscriptions: null){
+    # General Fields for All Entry Types
+
+    # Primary Key (Partition by `plantName#entryType` and Sort by `creationDate`
+    plantName: String! @primaryKey(sortKeyFields: ["entryType", "creationDate"])
+    entryType: EntryType!                   # Type of entry (defined by EntryType enum)
+    creationDate: AWSDateTime!              # Timestamp of when the entry was created
+
+    # Global Secondary Key
+    operatorName: String! @index(name: "byOperator", queryField: "entriesByOperator", sortKeyFields: ["creationDate"])
+    additionalNotes: String                 # Optional field for additional notes or comments
+
+    # Contingent Fields
+    inflowRate: Float                       # Plant inflow rate (PLANT_FLOW & CALIBRATE)
+    turbidityReadings: [Float]              # Turbidity levels for water
+    chemicalType: ChemType                  # Type of chemical used
+
+    # Calibrate-Specific Fields
+    sliderPosition: Float                   # Slider position input for calibration
+    startVolume: Float                      # Starting volume for calibration
+    endVolume: Float                        # Output volume after calibration
+    timeElapsed: Int                        # Duration of calibration process (in seconds)
+    chemicalDose: Float                     # Calculated chemical dose during calibration
+    chemicalFlowRate: Float                 # Flow rate of the chemical during calibration
+    activeTankVolume: Float                 # Volume of the active tank
+
+    # Change Dose Entry Fields
+    # CHANGE_DOSE is contingent on CALIBRATE, since change dose can only occur post-calibration.
+    targetChemicalDose: Float               # Target dose input for chemical dosage change
+    updatedSliderPosition: Float            # Slider position after changing dose
+    updatedChemicalFlowRate: Float          # Updated flow rate for the chemical after dosage change
+
+    # Feedback Entry Fields
+    operatorFeedback: String                # Text feedback from the operator (FEEDBACK_ENTRY only)
+}
