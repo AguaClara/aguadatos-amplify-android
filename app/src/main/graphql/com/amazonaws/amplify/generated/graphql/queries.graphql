@@ -1,10 +1,34 @@
 # this is an auto generated file. This will be overwritten
 
-query GetTodo($id: ID!) {
-  getTodo(id: $id) {
-    id
-    name
-    description
+query GetEntry(
+  $plantName: String!
+  $entryType: EntryType!
+  $creationDate: AWSDateTime!
+) {
+  getEntry(
+    plantName: $plantName
+    entryType: $entryType
+    creationDate: $creationDate
+  ) {
+    plantName
+    entryType
+    creationDate
+    operatorName
+    additionalNotes
+    inflowRate
+    turbidityReadings
+    chemicalType
+    sliderPosition
+    startVolume
+    endVolume
+    timeElapsed
+    chemicalDose
+    chemicalFlowRate
+    activeTankVolume
+    targetChemicalDose
+    updatedSliderPosition
+    updatedChemicalFlowRate
+    operatorFeedback
     createdAt
     updatedAt
     _version
@@ -14,16 +38,42 @@ query GetTodo($id: ID!) {
   }
 }
 
-query ListTodos(
-  $filter: ModelTodoFilterInput
+query ListEntries(
+  $plantName: String
+  $entryTypeCreationDate: ModelEntryPrimaryCompositeKeyConditionInput
+  $filter: ModelEntryFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listEntries(
+    plantName: $plantName
+    entryTypeCreationDate: $entryTypeCreationDate
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
-      id
-      name
-      description
+      plantName
+      entryType
+      creationDate
+      operatorName
+      additionalNotes
+      inflowRate
+      turbidityReadings
+      chemicalType
+      sliderPosition
+      startVolume
+      endVolume
+      timeElapsed
+      chemicalDose
+      chemicalFlowRate
+      activeTankVolume
+      targetChemicalDose
+      updatedSliderPosition
+      updatedChemicalFlowRate
+      operatorFeedback
       createdAt
       updatedAt
       _version
@@ -37,22 +87,87 @@ query ListTodos(
   }
 }
 
-query SyncTodos(
-  $filter: ModelTodoFilterInput
+query SyncEntries(
+  $filter: ModelEntryFilterInput
   $limit: Int
   $nextToken: String
   $lastSync: AWSTimestamp
 ) {
-  syncTodos(
+  syncEntries(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
     lastSync: $lastSync
   ) {
     items {
-      id
-      name
-      description
+      plantName
+      entryType
+      creationDate
+      operatorName
+      additionalNotes
+      inflowRate
+      turbidityReadings
+      chemicalType
+      sliderPosition
+      startVolume
+      endVolume
+      timeElapsed
+      chemicalDose
+      chemicalFlowRate
+      activeTankVolume
+      targetChemicalDose
+      updatedSliderPosition
+      updatedChemicalFlowRate
+      operatorFeedback
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query EntriesByOperator(
+  $operatorName: String!
+  $creationDate: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  entriesByOperator(
+    operatorName: $operatorName
+    creationDate: $creationDate
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      plantName
+      entryType
+      creationDate
+      operatorName
+      additionalNotes
+      inflowRate
+      turbidityReadings
+      chemicalType
+      sliderPosition
+      startVolume
+      endVolume
+      timeElapsed
+      chemicalDose
+      chemicalFlowRate
+      activeTankVolume
+      targetChemicalDose
+      updatedSliderPosition
+      updatedChemicalFlowRate
+      operatorFeedback
       createdAt
       updatedAt
       _version
