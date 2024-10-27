@@ -1,13 +1,29 @@
 # this is an auto generated file. This will be overwritten
 
-mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation CreateEntry(
+  $input: CreateEntryInput!
+  $condition: ModelEntryConditionInput
 ) {
-  createTodo(input: $input, condition: $condition) {
-    id
-    name
-    description
+  createEntry(input: $input, condition: $condition) {
+    plantName
+    entryType
+    creationDate
+    operatorName
+    additionalNotes
+    inflowRate
+    turbidityReadings
+    chemicalType
+    sliderPosition
+    startVolume
+    endVolume
+    timeElapsed
+    chemicalDose
+    chemicalFlowRate
+    activeTankVolume
+    targetChemicalDose
+    updatedSliderPosition
+    updatedChemicalFlowRate
+    operatorFeedback
     createdAt
     updatedAt
     _version
@@ -17,14 +33,30 @@ mutation CreateTodo(
   }
 }
 
-mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation UpdateEntry(
+  $input: UpdateEntryInput!
+  $condition: ModelEntryConditionInput
 ) {
-  updateTodo(input: $input, condition: $condition) {
-    id
-    name
-    description
+  updateEntry(input: $input, condition: $condition) {
+    plantName
+    entryType
+    creationDate
+    operatorName
+    additionalNotes
+    inflowRate
+    turbidityReadings
+    chemicalType
+    sliderPosition
+    startVolume
+    endVolume
+    timeElapsed
+    chemicalDose
+    chemicalFlowRate
+    activeTankVolume
+    targetChemicalDose
+    updatedSliderPosition
+    updatedChemicalFlowRate
+    operatorFeedback
     createdAt
     updatedAt
     _version
@@ -34,14 +66,30 @@ mutation UpdateTodo(
   }
 }
 
-mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
+mutation DeleteEntry(
+  $input: DeleteEntryInput!
+  $condition: ModelEntryConditionInput
 ) {
-  deleteTodo(input: $input, condition: $condition) {
-    id
-    name
-    description
+  deleteEntry(input: $input, condition: $condition) {
+    plantName
+    entryType
+    creationDate
+    operatorName
+    additionalNotes
+    inflowRate
+    turbidityReadings
+    chemicalType
+    sliderPosition
+    startVolume
+    endVolume
+    timeElapsed
+    chemicalDose
+    chemicalFlowRate
+    activeTankVolume
+    targetChemicalDose
+    updatedSliderPosition
+    updatedChemicalFlowRate
+    operatorFeedback
     createdAt
     updatedAt
     _version
