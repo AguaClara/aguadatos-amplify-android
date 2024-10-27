@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.core.Amplify
-//import com.amplifyframework.datastore.AWSDataStorePlugin
+import com.amplifyframework.datastore.AWSDataStorePlugin
 
 
 class

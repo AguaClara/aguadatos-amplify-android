@@ -1,97 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#E6F0FF"
         android:padding="16dp">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <!-- Graph Selection Buttons -->
-        <GridLayout
-                android:layout_width="match_parent"
+        <Button
+                android:id="@+id/btnPF"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:alignmentMode="alignMargins"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:text="Plant Flow"
+                android:textColor= "#000000"/>
 
-            <!-- First Row -->
-            <Button
-                    android:id="@+id/btnPF"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="PLANT FLOW"
-                    android:textColor="#000000"
-                    android:padding="8dp"
-                    android:layout_margin="4dp" />
-
-            <Button
-                    android:id="@+id/btnRWT"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="RAW WATER"
-                    android:textColor="#000000"
-                    android:padding="8dp"
-                    android:layout_margin="4dp" />
-
-            <Button
-                    android:id="@+id/btnCoD"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="COAG. DOSE"
-                    android:textColor="#000000"
-                    android:padding="8dp"
-                    android:layout_margin="4dp" />
-
-            <!-- Second Row -->
-            <Button
-                    android:id="@+id/btnChD"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="CHLORINE DOSE"
-                    android:textColor="#000000"
-                    android:padding="8dp"
-                    android:layout_margin="4dp" />
-
-            <Button
-                    android:id="@+id/btnFWT"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="FILTER TURBID."
-                    android:textColor="#000000"
-                    android:padding="8dp"
-                    android:layout_margin="4dp" />
-
-            <Button
-                    android:id="@+id/btnCWT"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="CLARIFIED TURBID."
-                    android:textColor="#000000"
-                    android:padding="8dp"
-                    android:layout_margin="4dp" />
-        </GridLayout>
-
-        <!-- Placeholder for Multiple Graphs Display -->
-        <LinearLayout
-                android:id="@+id/graphContainer"
-                android:layout_width="match_parent"
+        <Button
+                android:id="@+id/btnRWT"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            <!-- Dynamically added graphs will be placed here -->
-        </LinearLayout>
+                android:text="Raw Water Turbidity"
+                android:textColor= "#000000"/>
+
+        <Button
+                android:id="@+id/btnCoD"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Coagulant Dosage"
+                android:textColor= "#000000"/>
     </LinearLayout>
-</ScrollView>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+        <Button
+                android:id="@+id/btnFWT"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Filtered Water Turbidity"
+                android:textColor= "#000000"/>
+
+        <Button
+                android:id="@+id/btnCWT"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Clarified Water Turbidity"
+                android:textColor= "#000000"/>
+
+        <Button
+                android:id="@+id/btnChD"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Chlorine Dosage"
+                android:textColor= "#000000"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+        <Button
+                android:id="@+id/btn24H"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="24H"
+                android:textColor= "#000000"/>
+
+        <Button
+                android:id="@+id/btn7D"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="7D"
+                android:textColor= "#000000"/>
+
+        <Button
+                android:id="@+id/btn14D"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="14D"
+                android:textColor= "#000000"/>
+
+        <Button
+                android:id="@+id/btn1M"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="1M"
+                android:textColor= "#000000"/>
+
+        <Button
+                android:id="@+id/btn1Y"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="1Y"
+                android:textColor= "#000000"/>
+    </LinearLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp" />
+
+</LinearLayout>

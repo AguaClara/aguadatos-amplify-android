@@ -40,8 +40,9 @@ class PlantFlowFragment : Fragment() {
 
         //initialize view model
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-
-        // set variables to access each necessary UI elements
+        //TODO: thresholds for clarified and effluent targets, hydraulic residence time (3 of interest: total, flocculator, clarifier)
+        // pacl units g/L as Al? Ask Monroe (esp about Al sulfate)
+        //set variables to access each necessary UI elements
         val waterInflowRate: EditText = view.findViewById(R.id.plant_inflow_rate_input)
         val notesInput: EditText = view.findViewById(R.id.plant_inflow_notes_input)
         val chemTypeView: TextView = view.findViewById(R.id.chem_type_text)
@@ -54,7 +55,6 @@ class PlantFlowFragment : Fragment() {
         //display chemical type set in configuration
         val chemTypeText = viewModel.chemType.value
         chemTypeView.text = getString(R.string.chem_type, chemTypeText)
-
 
         //watch input elements to update entry data whenever an input is added
         val textWatcher = object : TextWatcher {
