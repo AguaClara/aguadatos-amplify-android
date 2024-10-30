@@ -44,36 +44,19 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/chemicalTypeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
-        android:paddingVertical="10dp"
-        android:text="Chemical Type: __"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_text" />
-
-    <TextView
         android:id="@+id/calibrationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="4dp"
         android:paddingVertical="10dp"
-        android:text="Calibration"
-        android:textStyle="bold"
+        android:text="Filtered Water"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chemicalTypeText" />
+        app:layout_constraintTop_toBottomOf="@+id/time_text" />
 
     <LinearLayout
         android:id="@+id/calibrationEntryLayout"
@@ -118,7 +101,7 @@
         android:layout_margin="25dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calibrationEntryLayout"
         tools:layout_editor_absoluteX="-9dp">
 
         <Button

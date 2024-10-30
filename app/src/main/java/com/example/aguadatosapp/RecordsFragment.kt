@@ -129,22 +129,21 @@ class RecordsFragment : Fragment() {
     }
 
     private fun showEditEntryDialog(entry: Entry) {
-        // Inflate the custom layout for the dialog
         val dialogView : View = when (entry) {
             is PlantFlowEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_plant_flow_entry, null)
             }
             is TurbidityEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_turbidity_entry, null)
             }
             is FilteredWaterEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_filtered_water_entry, null)
             }
             is CalibrationEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
             }
             is ChangeDoseEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_change_dosage_entry, null)
             }
             is FeedbackEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_feedback_entry, null)
