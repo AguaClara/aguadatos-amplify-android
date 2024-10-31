@@ -1,15 +1,4 @@
 projects:
-  aguadatosamplifyapp:
-    schemaPath: app/src/main/graphql/schema.json
-    includes:
-      - app/src/main/graphql/**/*.graphql
-    excludes:
-      - ./amplify/**
-    extensions:
-      amplify:
-        codeGenTarget: ''
-        generatedFileName: ''
-        docsFilePath: app/src/main/graphql/com/amazonaws/amplify/generated/graphql
   aguadatosamplify:
     schemaPath: app/src/main/graphql/schema.json
     includes:
@@ -18,7 +7,7 @@ projects:
       - ./amplify/**
     extensions:
       amplify:
-        codeGenTarget: ''
+        codeGenTarget: 'android'
         generatedFileName: ''
         docsFilePath: app/src/main/graphql/com/amazonaws/amplify/generated/graphql
 extensions:
