@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.api.aws.AWSApiPlugin
-import com.amplifyframework.core.Amplify
+import com.amplifyframework.kotlin.core.Amplify
 import com.amplifyframework.datastore.AWSDataStorePlugin
 
 /**
@@ -23,9 +23,9 @@ class AguadatosAmplify : Application(){
             // Configures Amplify with the current application context.
             Amplify.configure(applicationContext)
 
-            Log.i("AguaDatosAmplify", "Initialized Amplify")
+            Log.i("AguadatosAmplify", "Initialized Amplify successfully")
         } catch (error: AmplifyException) {
-            Log.e("AguaDatosAmplify", "Could not initialize Amplify", error)
+            Log.e("AguadatosAmplify", "Could not initialize Amplify", error)
         }
     }
 }
