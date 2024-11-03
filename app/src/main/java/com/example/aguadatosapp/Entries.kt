@@ -16,7 +16,7 @@ data class PlantFlowEntry(
 data class RawWaterTurbidityEntry(
     val plantName: String,
     val operatorName: String,
-    val creationDate: String,
+    val creationDateTime: String,
     val additionalNotes: String,
     val turbidityReadings: Double,
     val chemicalType: String
@@ -25,7 +25,7 @@ data class RawWaterTurbidityEntry(
 data class clarifiedWaterTurbidityEntry(
     val plantName: String,
     val operatorName: String,
-    val creationDate: String,
+    val creationDateTime: String,
     val additionalNotes: String,
     val turbidityReadings: Double,
     val chemicalType: String
@@ -34,7 +34,7 @@ data class clarifiedWaterTurbidityEntry(
 data class filteredWaterTurbidityEntry(
     val plantName: String,
     val operatorName: String,
-    val creationDate: String,
+    val creationDateTime: String,
     val additionalNotes: String,
     val turbidityReadings: DoubleArray,
     val chemicalType: String
@@ -47,7 +47,7 @@ data class filteredWaterTurbidityEntry(
 
         if (plantName != other.plantName) return false
         if (operatorName != other.operatorName) return false
-        if (creationDate != other.creationDate) return false
+        if (creationDateTime != other.creationDateTime) return false
         if (additionalNotes != other.additionalNotes) return false
         if (!turbidityReadings.contentEquals(other.turbidityReadings)) return false
 
@@ -57,7 +57,7 @@ data class filteredWaterTurbidityEntry(
     override fun hashCode(): Int {
         var result = plantName.hashCode()
         result = 31 * result + operatorName.hashCode()
-        result = 31 * result + creationDate.hashCode()
+        result = 31 * result + creationDateTime.hashCode()
         result = 31 * result + additionalNotes.hashCode()
         result = 31 * result + turbidityReadings.contentHashCode()
         return result
@@ -67,7 +67,7 @@ data class filteredWaterTurbidityEntry(
 data class CoagulantCalibrationEntry(
     val plantName: String,
     val operatorName: String,
-    val creationDate: String,
+    val creationDateTime: String,
     val additionalNotes: String,
     val sliderPosition: Double,
     val inflowRate: Double,
@@ -83,7 +83,7 @@ data class CoagulantCalibrationEntry(
 data class CoagulantChangeDoseEntry(
     val plantName: String,
     val operatorName: String,
-    val creationDate: String,
+    val creationDateTime: String,
     val additionalNotes: String,
     val chemicalFlowRate: Double,
     val chemicalDose: Double,
@@ -97,7 +97,7 @@ data class CoagulantChangeDoseEntry(
 data class ChlorineCalibrationEntry(
     val plantName: String,
     val operatorName: String,
-    val creationDate: String,
+    val creationDateTime: String,
     val additionalNotes: String,
     val sliderPosition: Double,
     val inflowRate: Double,
@@ -113,7 +113,7 @@ data class ChlorineCalibrationEntry(
 data class ChlorineChangeDoseEntry(
     val plantName: String,
     val operatorName: String,
-    val creationDate: String,
+    val creationDateTime: String,
     val additionalNotes: String,
     val chemicalFlowRate: Double,
     val chemicalDose: Double,
@@ -126,7 +126,7 @@ data class ChlorineChangeDoseEntry(
 data class FeedbackEntry(
     val plantName: String,
     val operatorName: String,
-    val creationDate: String,
+    val creationDateTime: String,
     val additionalNotes: String,
     val operatorFeedback: String
 ) : Entry(entryType = "9")
