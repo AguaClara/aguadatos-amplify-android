@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
-
 android {
     namespace = "com.example.aguadatosapp"
     compileSdk = 34
@@ -55,15 +54,21 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
 
 
+    //graphs
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     // Amplify API and Datastore dependencies
+    implementation("com.amplifyframework:core:2.19.1") // Core Amplify
     implementation("com.amplifyframework:aws-api:2.14.11")
     implementation("com.amplifyframework:aws-datastore:2.14.11")
+    implementation("com.amplifyframework:aws-auth-cognito:1.28.2") // For authentication, if required
+    implementation("com.amplifyframework:core-kotlin:2.19.1") // Core Amplify for Coroutines Support
+
 
     // Support for Java 8 features
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.2")
+    //read data from csv files
+    implementation("com.opencsv:opencsv:5.5.2")
 }

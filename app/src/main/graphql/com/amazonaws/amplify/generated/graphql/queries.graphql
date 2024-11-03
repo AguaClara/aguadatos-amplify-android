@@ -1,0 +1,182 @@
+# this is an auto generated file. This will be overwritten
+
+query GetEntry(
+  $plantName: String!
+  $entryType: EntryType!
+  $creationDate: AWSDateTime!
+) {
+  getEntry(
+    plantName: $plantName
+    entryType: $entryType
+    creationDate: $creationDate
+  ) {
+    plantName
+    entryType
+    creationDate
+    operatorName
+    additionalNotes
+    inflowRate
+    turbidityReadings
+    chemicalType
+    sliderPosition
+    startVolume
+    endVolume
+    timeElapsed
+    chemicalDose
+    chemicalFlowRate
+    activeTankVolume
+    targetChemicalDose
+    updatedSliderPosition
+    updatedChemicalFlowRate
+    operatorFeedback
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+query ListEntries(
+  $plantName: String
+  $entryTypeCreationDate: ModelEntryPrimaryCompositeKeyConditionInput
+  $filter: ModelEntryFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listEntries(
+    plantName: $plantName
+    entryTypeCreationDate: $entryTypeCreationDate
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      plantName
+      entryType
+      creationDate
+      operatorName
+      additionalNotes
+      inflowRate
+      turbidityReadings
+      chemicalType
+      sliderPosition
+      startVolume
+      endVolume
+      timeElapsed
+      chemicalDose
+      chemicalFlowRate
+      activeTankVolume
+      targetChemicalDose
+      updatedSliderPosition
+      updatedChemicalFlowRate
+      operatorFeedback
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncEntries(
+  $filter: ModelEntryFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncEntries(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      plantName
+      entryType
+      creationDate
+      operatorName
+      additionalNotes
+      inflowRate
+      turbidityReadings
+      chemicalType
+      sliderPosition
+      startVolume
+      endVolume
+      timeElapsed
+      chemicalDose
+      chemicalFlowRate
+      activeTankVolume
+      targetChemicalDose
+      updatedSliderPosition
+      updatedChemicalFlowRate
+      operatorFeedback
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query EntriesByOperator(
+  $operatorName: String!
+  $creationDate: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  entriesByOperator(
+    operatorName: $operatorName
+    creationDate: $creationDate
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      plantName
+      entryType
+      creationDate
+      operatorName
+      additionalNotes
+      inflowRate
+      turbidityReadings
+      chemicalType
+      sliderPosition
+      startVolume
+      endVolume
+      timeElapsed
+      chemicalDose
+      chemicalFlowRate
+      activeTankVolume
+      targetChemicalDose
+      updatedSliderPosition
+      updatedChemicalFlowRate
+      operatorFeedback
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}

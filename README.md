@@ -2,14 +2,14 @@
 
 POST stands for Plant Operations Smartphone Tracker. We are dedicated to designing and creating a functional application that allows AguaClara Plant Operators to effectively record data and analye trends and patterns within their plant.
 
-### Team Members:
-
-Becca Jeffries (lead)
-George Dong
-Kelly Tran
-Dora Weng
-Tim Holt
-Patrick Egan
+## Team Members:
+- Becca Jeffries (lead)
+- George Dong
+- Kelly Tran
+- Patrick Egan
+- Jason Fu
+- Dora Weng
+- Tim Holt
 
 ### Goals for Fall 2024:
 
@@ -21,4 +21,4 @@ Patrick Egan
 ### Meeting Times/Places:
 
 Wednesday 4:30-5:30 in Goldwin-Smith Hall 162
-Sunday 4:30-6:30 in Hollister B55
+Sunday 1:30-3:30 in Hollister B55

@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import aws.smithy.kotlin.runtime.util.type
@@ -38,6 +39,9 @@ class RecordsFragment : Fragment() {
         val container = view.findViewById<LinearLayout>(R.id.entriesContainer)
 
         createDummyData()
+        addEntry(container,dummyRawWaterEntry)
+        addEntry(container,dummyCoagulantCalibrationEntry)
+        addEntry(container,dummyFeedbackEntry)
         addEntry(container,dummyRawWaterEntry)
         addEntry(container,dummyCoagulantCalibrationEntry)
         addEntry(container,dummyFeedbackEntry)
@@ -118,10 +122,27 @@ class RecordsFragment : Fragment() {
                 expandableText.text = getString(R.string.new_slider_pos,entry.sliderPosition)
                 timeStamp.text = entry.creationDateTime
             }
-            is FeedbackEntry -> { //FIXME: update feedback data submission to include time and date
+            is FeedbackEntry -> {
                 entryName.text = entry.plantName
                 expandableText.text = getString(R.string.feedback_with_input,entry.operatorFeedback)
                 timeStamp.text = entry.creationDateTime
+            }
+        }
+
+        // handle expand/contract button logic
+        var expanded = false
+        expandableText.visibility = View.GONE
+        val expandButton = entryLayout.findViewById<Button>(R.id.btnToggle)
+        expandButton.setOnClickListener {
+            if(expanded) {
+                expanded = false
+                expandableText.visibility = View.GONE
+                expandButton.background = context?.let { it1 -> ContextCompat.getDrawable(it1,R.drawable.dropdown_toggle) }
+            }
+            else {
+                expanded = true
+                expandableText.visibility = View.VISIBLE
+                expandButton.background = context?.let { it1 -> ContextCompat.getDrawable(it1,R.drawable.dropup_toggle) }
             }
         }
 

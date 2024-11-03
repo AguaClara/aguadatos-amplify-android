@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import java.time.LocalDate
@@ -87,6 +88,16 @@ class FilteredWaterConfirmEntryFragment : Fragment() {
                 if(viewModel.filteredWaterData.value?.get(i-1)!! > -1) {
                     addInputLayout(view, container, i)
                 }
+            }
+        }
+
+        viewModel.filteredWaterNotes.observe(viewLifecycleOwner) { notes ->
+            // Update UI based on the received data
+            if (notes != null) {
+                //Update all text views to contain the data numbers
+                val notesView: TextView = view.findViewById(R.id.filtered_water_notes_text)
+                notesView.text = notes
+
             }
         }
 

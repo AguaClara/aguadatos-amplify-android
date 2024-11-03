@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //set up bottom nav bar
-        //FIXME: if the user is on a different fragment than home, then switches to configuration
-        // and back to home, the nav bar won't update visually
         val navView: BottomNavigationView = binding.navView
 
         //set up nav controller
@@ -32,3 +30,6 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 }
+
+//TODO: is there a way to make pages that are scrollable have a minimum height of the parent's height?
+// So if you don't need to scroll, it will expand to fill the page...

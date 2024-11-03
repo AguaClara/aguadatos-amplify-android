@@ -7,19 +7,20 @@ class SharedViewModel : ViewModel() {
 
     // this is the data for the calibration coagulant dosing data submission
     // array includes: slider position, inflow rate, start volume, end volume, time elapsed, chem dose, chem flow rate
-    private val defaultArray = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
-    val coagCalibrationData = MutableLiveData(defaultArray)
+  
+    private val defaultArray1 = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
+    val coagCalibrationData = MutableLiveData(defaultArray1)
     // track if endVolume has been updated, if so, try to calculate run out time
     val triggerCoagRunOutTimeCalculation: MutableLiveData<Boolean> = MutableLiveData()
 
     // this is the data for the change dose coagulant dosing data submission
-    private val changeDoseDefaultArray = doubleArrayOf(-1.0, -1.0, -1.0, -1.0, -1.0)
-    val coagChangeDoseData = MutableLiveData(changeDoseDefaultArray)
+    private val changeDoseDefaultArray1 = doubleArrayOf(-1.0, -1.0, -1.0, -1.0, -1.0)
+    val coagChangeDoseData = MutableLiveData(changeDoseDefaultArray1)
     val coagChangeDoseFilled = MutableLiveData<Boolean>().apply { value = false }
 
     // this is the data for the coagulant dosing tank volumes
-    private val defaultVolumesArray = doubleArrayOf(0.0, 0.0)
-    val coagTankVolumes = MutableLiveData(defaultVolumesArray)
+    private val defaultVolumesArray1 = doubleArrayOf(0.0, 0.0)
+    val coagTankVolumes = MutableLiveData(defaultVolumesArray1)
 
     // this variable tracks whether or not the coagulant dosing calibration form is filled (and the change dose form is accessible)
     val coagAccessAdjustDosage = MutableLiveData<Boolean>().apply { value = false }
@@ -27,16 +28,19 @@ class SharedViewModel : ViewModel() {
     val coagulantRunOutTime: MutableLiveData<String> = MutableLiveData()
 
     // this is the data for the calibration chlorine dosing data submission
-    val chlorineCalibrationData = MutableLiveData(defaultArray)
+    private val defaultArray2 = doubleArrayOf(50.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0)
+    val chlorineCalibrationData = MutableLiveData(defaultArray2)
     // track if endVolume has been updated, if so, try to calculate run out time
     val triggerChlorineRunOutTimeCalculation: MutableLiveData<Boolean> = MutableLiveData()
 
     // this is the data for the change dose chlorine dosing data submission
-    val chlorineChangeDoseData = MutableLiveData(changeDoseDefaultArray)
+    private val changeDoseDefaultArray2 = doubleArrayOf(-1.0, -1.0, -1.0, -1.0, -1.0)
+    val chlorineChangeDoseData = MutableLiveData(changeDoseDefaultArray2)
     val chlorineChangeDoseFilled = MutableLiveData<Boolean>().apply { value = false }
 
     // this is the data for the chlorine dosing tank volumes
-    val chlorineTankVolumes = MutableLiveData(defaultVolumesArray)
+    private val defaultVolumesArray2 = doubleArrayOf(0.0, 0.0)
+    val chlorineTankVolumes = MutableLiveData(defaultVolumesArray2)
 
     // this variable tracks whether or not the chlorine dosing calibration form is filled (and the change dose form is accessible)
     val chlorineAccessAdjustDosage = MutableLiveData<Boolean>().apply { value = false }
@@ -70,7 +74,6 @@ class SharedViewModel : ViewModel() {
     val chemType: MutableLiveData<String> = MutableLiveData("PACl")
     val chemConcentration: MutableLiveData<Double> = MutableLiveData(1.6)
     val numFilters: MutableLiveData<Int> = MutableLiveData(1)
-
     // this stores plant operator feedback submissions
     val feedback: MutableLiveData<String> = MutableLiveData("")
 }

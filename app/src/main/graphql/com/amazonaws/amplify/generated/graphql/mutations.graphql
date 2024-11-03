@@ -1,0 +1,100 @@
+# this is an auto generated file. This will be overwritten
+
+mutation CreateEntry(
+  $input: CreateEntryInput!
+  $condition: ModelEntryConditionInput
+) {
+  createEntry(input: $input, condition: $condition) {
+    plantName
+    entryType
+    creationDate
+    operatorName
+    additionalNotes
+    inflowRate
+    turbidityReadings
+    chemicalType
+    sliderPosition
+    startVolume
+    endVolume
+    timeElapsed
+    chemicalDose
+    chemicalFlowRate
+    activeTankVolume
+    targetChemicalDose
+    updatedSliderPosition
+    updatedChemicalFlowRate
+    operatorFeedback
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation UpdateEntry(
+  $input: UpdateEntryInput!
+  $condition: ModelEntryConditionInput
+) {
+  updateEntry(input: $input, condition: $condition) {
+    plantName
+    entryType
+    creationDate
+    operatorName
+    additionalNotes
+    inflowRate
+    turbidityReadings
+    chemicalType
+    sliderPosition
+    startVolume
+    endVolume
+    timeElapsed
+    chemicalDose
+    chemicalFlowRate
+    activeTankVolume
+    targetChemicalDose
+    updatedSliderPosition
+    updatedChemicalFlowRate
+    operatorFeedback
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation DeleteEntry(
+  $input: DeleteEntryInput!
+  $condition: ModelEntryConditionInput
+) {
+  deleteEntry(input: $input, condition: $condition) {
+    plantName
+    entryType
+    creationDate
+    operatorName
+    additionalNotes
+    inflowRate
+    turbidityReadings
+    chemicalType
+    sliderPosition
+    startVolume
+    endVolume
+    timeElapsed
+    chemicalDose
+    chemicalFlowRate
+    activeTankVolume
+    targetChemicalDose
+    updatedSliderPosition
+    updatedChemicalFlowRate
+    operatorFeedback
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
