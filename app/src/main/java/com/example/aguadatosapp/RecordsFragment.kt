@@ -168,6 +168,10 @@ class RecordsFragment : Fragment() {
                 titleText.text = entry.plantName
                 timeText.text = entry.creationDateTime
             }
+            is clarifiedWaterTurbidityEntry -> {
+                titleText.text = entry.plantName
+                timeText.text = entry.creationDateTime
+            }
             is filteredWaterTurbidityEntry -> {
                 titleText.text = entry.plantName
                 timeText.text = entry.creationDateTime
@@ -175,32 +179,33 @@ class RecordsFragment : Fragment() {
             is CoagulantCalibrationEntry -> {
                 titleText.text = entry.plantName
                 timeText.text = entry.creationDateTime
-                val sliderPos = dialogView.findViewById<EditText>(R.id.edit_slider_position)
-                val inflowRate = dialogView.findViewById<EditText>(R.id.edit_inflow_rate)
-                val startHeight = dialogView.findViewById<EditText>(R.id.edit_start_height)
-                val endHeight = dialogView.findViewById<EditText>(R.id.edit_end_height)
-                val timeElapsed = dialogView.findViewById<EditText>(R.id.edit_time_elapsed)
-                val chemicalDose = dialogView.findViewById<EditText>(R.id.edit_chemical_dose)
-                val chemicalFlowRate = dialogView.findViewById<EditText>(R.id.edit_chemical_flow_rate)
-                val chemicalTypeText = dialogView.findViewById<TextView>(R.id.chemical_type_text)
-                chemicalTypeText.setText("Chemical Type: PAC ")
-                sliderPos.setText("${entry.sliderPosition}")
-                inflowRate.setText("${entry.inflowRate}")
-                startHeight.setText("${entry.startVolume}")
-                endHeight.setText("${entry.endVolume}")
-                timeElapsed.setText("${entry.timeElapsed}")
-                chemicalDose.setText("${entry.chemicalDose}")
-                chemicalFlowRate.setText("${entry.chemicalFlowRate}")
+                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
+                dialogView.findViewById<EditText>(R.id.inflow_rate).setText("${entry.inflowRate}")
+                dialogView.findViewById<EditText>(R.id.start_height).setText("${entry.startVolume}")
+                dialogView.findViewById<EditText>(R.id.end_height).setText("${entry.endVolume}")
+                dialogView.findViewById<EditText>(R.id.time_elapsed).setText("${entry.timeElapsed}")
+                dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
+                dialogView.findViewById<EditText>(R.id.chemical_flow_rate).setText("${entry.chemicalFlowRate}")
+                dialogView.findViewById<EditText>(R.id.active_tank_volume).setText("${entry.activeTankVolume}")
+                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
             }
             is CoagulantChangeDoseEntry -> {
+                titleText.text = entry.plantName
+                timeText.text = entry.creationDateTime
+            }
+            is ChlorineCalibrationEntry -> {
+                titleText.text = entry.plantName
+                timeText.text = entry.creationDateTime
+            }
+            is ChlorineChangeDoseEntry -> {
                 titleText.text = entry.plantName
                 timeText.text = entry.creationDateTime
             }
             is FeedbackEntry -> {
                 titleText.text = entry.plantName
                 timeText.text = entry.creationDateTime
-                val feedbackText = dialogView.findViewById<EditText>(R.id.edit_feedback)
-
+                dialogView.findViewById<EditText>(R.id.edit_feedback).setText(entry.operatorFeedback)
             }
         }
 
