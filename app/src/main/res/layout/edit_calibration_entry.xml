@@ -40,23 +40,48 @@
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-    <TextView
-        android:id="@+id/chemicalTypeText"
+
+    <LinearLayout
+        android:id="@+id/chemical_type_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
-        android:paddingVertical="10dp"
-        android:text="Chemical Type: __"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_text" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/time_text"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chemical Type: "
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/chemical_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+<!--    <TextView-->
+<!--        android:id="@+id/chemical_type_text"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="25dp"-->
+<!--        android:paddingVertical="10dp"-->
+<!--        android:text="Chemical Type: __"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="18sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/time_text" />-->
     <TextView
-        android:id="@+id/calibrationText"
+        android:id="@+id/calibration_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
@@ -69,7 +94,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chemicalTypeText"/>
+        app:layout_constraintTop_toBottomOf="@+id/chemical_type_text"/>
 
     <LinearLayout
         android:id="@+id/fieldsLayout"
@@ -77,7 +102,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginHorizontal="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/calibrationText"
+        app:layout_constraintTop_toBottomOf="@+id/calibration_text"
         tools:layout_editor_absoluteX="7dp">
 
         <LinearLayout
@@ -93,7 +118,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edit_slider_position"
+                android:id="@+id/slider_position"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -104,7 +129,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" %"
+                android:text="%"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -122,7 +147,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edit_inflow_rate"
+                android:id="@+id/inflow_rate"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
@@ -131,7 +156,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" mL/s"
+                android:text="mL/s"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -143,15 +168,14 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/start_height_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• Start Height: "
+                android:text="• Start Volume: "
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edit_start_height"
+                android:id="@+id/start_height"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -162,7 +186,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" mL"
+                android:text="mL"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -174,15 +198,14 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/end_height_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• End Height: "
+                android:text="• End Volume: "
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editEndHeight"
+                android:id="@+id/end_height"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -193,7 +216,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" mL"
+                android:text="mL"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -205,7 +228,6 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/time_elapsed_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="• Time Elapsed: "
@@ -213,7 +235,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edit_time_elapsed"
+                android:id="@+id/time_elapsed"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -224,7 +246,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" s"
+                android:text="s"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -235,14 +257,13 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
             <TextView
-                android:id="@+id/chemical_dose_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="• Chemical Dose: "
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
             <EditText
-                android:id="@+id/edit_chemical_dose"
+                android:id="@+id/chemical_dose"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -252,7 +273,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" mg/L"
+                android:text="mg/L"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -263,14 +284,13 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
             <TextView
-                android:id="@+id/chemicalFlowRateLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="• Chemical Flow Rate: "
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
             <EditText
-                android:id="@+id/edit_chemical_flow_rate"
+                android:id="@+id/chemical_flow_rate"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -280,10 +300,55 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" mL/s"
+                android:text="mL/s"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Active Tank Volume: "
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+            <EditText
+                android:id="@+id/active_tank_volume"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="0"
+                android:maxLength="5"
+                android:digits="0123456789."/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mL"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• Additional Notes: "
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/edit_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"/>
     </LinearLayout>
 
     <LinearLayout
@@ -314,4 +379,5 @@
             android:text="SAVE"
             android:textColor="@android:color/white" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

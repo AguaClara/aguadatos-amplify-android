@@ -154,13 +154,13 @@
                         android:contentDescription="@string/lock" />
 
                 <EditText
-                        android:id="@+id/passwordField"
-                        android:layout_width="350dp"
-                        android:layout_height="50dp"
-                        android:background="@null"
-                        android:ems="10"
-                        android:inputType="textPassword"
-                        android:autofillHints=""/>
+                    android:id="@+id/passwordField"
+                    android:layout_width="301dp"
+                    android:layout_height="50dp"
+                    android:autofillHints=""
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="textPassword" />
             </LinearLayout>
 
 
@@ -192,13 +192,13 @@
                         android:contentDescription="@string/lock" />
 
                 <EditText
-                        android:id="@+id/confirmField"
-                        android:layout_width="350dp"
-                        android:layout_height="50dp"
-                        android:background="@null"
-                        android:ems="10"
-                        android:inputType="textPassword"
-                        android:autofillHints="no"/>
+                    android:id="@+id/confirmField"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:autofillHints="no"
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="textPassword" />
             </LinearLayout>
 
         </LinearLayout>
