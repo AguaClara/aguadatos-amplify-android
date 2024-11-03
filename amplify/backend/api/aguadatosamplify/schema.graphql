@@ -20,7 +20,9 @@ enum ChemType {
     ALUMINUM_SULFATE         # Al2(SO4)3: Aluminum Sulfate
 }
 
-type Entry @model(subscriptions: null){
+type Entry
+@model(subscriptions: null)
+@auth(rules: [{ allow: public }]) {
     # General Fields for All Entry Types
 
     # Primary Key (Partition by `plantName#entryType` and Sort by `creationDate`
