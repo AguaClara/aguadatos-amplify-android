@@ -16,6 +16,7 @@ data class PlantFlowEntry(
 data class RawWaterTurbidityEntry(
     val plantName: String,
     val operatorName: String,
+    val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val turbidityReadings: Double,
@@ -25,6 +26,7 @@ data class RawWaterTurbidityEntry(
 data class clarifiedWaterTurbidityEntry(
     val plantName: String,
     val operatorName: String,
+    val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val turbidityReadings: Double,
@@ -34,6 +36,7 @@ data class clarifiedWaterTurbidityEntry(
 data class filteredWaterTurbidityEntry(
     val plantName: String,
     val operatorName: String,
+    val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val turbidityReadings: DoubleArray,
@@ -67,6 +70,7 @@ data class filteredWaterTurbidityEntry(
 data class CoagulantCalibrationEntry(
     val plantName: String,
     val operatorName: String,
+    val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val sliderPosition: Double,
@@ -83,6 +87,7 @@ data class CoagulantCalibrationEntry(
 data class CoagulantChangeDoseEntry(
     val plantName: String,
     val operatorName: String,
+    val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val chemicalFlowRate: Double,
@@ -97,6 +102,7 @@ data class CoagulantChangeDoseEntry(
 data class ChlorineCalibrationEntry(
     val plantName: String,
     val operatorName: String,
+    val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val sliderPosition: Double,
@@ -113,6 +119,7 @@ data class ChlorineCalibrationEntry(
 data class ChlorineChangeDoseEntry(
     val plantName: String,
     val operatorName: String,
+    val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val chemicalFlowRate: Double,
@@ -126,6 +133,7 @@ data class ChlorineChangeDoseEntry(
 data class FeedbackEntry(
     val plantName: String,
     val operatorName: String,
+    val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val operatorFeedback: String

@@ -26,6 +26,7 @@ class RecordsFragment : Fragment() {
     private lateinit var dummyRawWaterEntry: RawWaterTurbidityEntry
     private lateinit var dummyCoagulantCalibrationEntry: CoagulantCalibrationEntry
     private lateinit var dummyFeedbackEntry: FeedbackEntry
+    private lateinit var dummyPlantFlowEntry: PlantFlowEntry
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +43,7 @@ class RecordsFragment : Fragment() {
         addEntry(container,dummyRawWaterEntry)
         addEntry(container,dummyCoagulantCalibrationEntry)
         addEntry(container,dummyFeedbackEntry)
-        addEntry(container,dummyRawWaterEntry)
+        addEntry(container,dummyPlantFlowEntry)
         addEntry(container,dummyCoagulantCalibrationEntry)
         addEntry(container,dummyFeedbackEntry)
 
@@ -50,7 +51,8 @@ class RecordsFragment : Fragment() {
     }
     private fun createDummyData() {
         dummyRawWaterEntry = RawWaterTurbidityEntry(
-            plantName = "Entry: Raw Water",
+            entryName = "Raw Water Turbidity",
+            plantName = "Plant",
             operatorName = "Operator",
             turbidityReadings = 2.0,
             additionalNotes = "Hello, I am a Note",
@@ -58,7 +60,8 @@ class RecordsFragment : Fragment() {
             chemicalType = "PAC"
         )
         dummyCoagulantCalibrationEntry = CoagulantCalibrationEntry(
-            plantName = "Entry: Coagulant Dosage Calibration",
+            entryName = "Coagulant Dosage Calibration",
+            plantName = "Plant",
             operatorName = "Operator",
             additionalNotes = "Hello, I am a Note",
             sliderPosition = 50.0,
@@ -73,11 +76,21 @@ class RecordsFragment : Fragment() {
             chemicalType = "PAC"
         )
         dummyFeedbackEntry = FeedbackEntry(
-            plantName = "Entry: Feedback",
+            entryName = "Feedback",
+            plantName = "Plant",
             operatorName = "Operator",
             additionalNotes = "Hello, I am a Note",
             operatorFeedback = "Improve the app please",
             creationDateTime = "09-27-24 05:31:27"
+        )
+        dummyPlantFlowEntry = PlantFlowEntry(
+            entryName = "Plant Flow",
+            plantName = "Plant",
+            operatorName = "Operator",
+            creationDateTime = "09-27-24 05:31:27",
+            additionalNotes = "Hello, I am a Note",
+            inflowRate = 1.0f,
+            chemicalType = "PAC"
         )
     }
     private fun addEntry(container: LinearLayout, entry: Entry) {
@@ -98,32 +111,32 @@ class RecordsFragment : Fragment() {
         // Read data into front end display
         when (entry) {
             is PlantFlowEntry -> {
-                entryName.text = entry.plantName
+                entryName.text = entry.entryName
                 expandableText.text = getString(R.string.inflow_rate_with_input,entry.inflowRate)
                 timeStamp.text = entry.creationDateTime
             }
             is RawWaterTurbidityEntry -> {
-                entryName.text = entry.plantName
+                entryName.text = entry.entryName
                 expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityReadings)
                 timeStamp.text = entry.creationDateTime
             }
             is filteredWaterTurbidityEntry -> {
-                entryName.text = entry.plantName
+                entryName.text = entry.entryName
                 expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityReadings[0])
                 timeStamp.text = entry.creationDateTime
             }
             is CoagulantCalibrationEntry -> {
-                entryName.text = entry.plantName
+                entryName.text = entry.entryName
                 expandableText.text = getString(R.string.chemical_dose_with_input,entry.chemicalDose)
                 timeStamp.text = entry.creationDateTime
             }
             is CoagulantChangeDoseEntry -> {
-                entryName.text = entry.plantName
+                entryName.text = entry.entryName
                 expandableText.text = getString(R.string.new_slider_pos,entry.sliderPosition)
                 timeStamp.text = entry.creationDateTime
             }
             is FeedbackEntry -> {
-                entryName.text = entry.plantName
+                entryName.text = entry.entryName
                 expandableText.text = getString(R.string.feedback_with_input,entry.operatorFeedback)
                 timeStamp.text = entry.creationDateTime
             }
@@ -156,10 +169,10 @@ class RecordsFragment : Fragment() {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_plant_flow_entry, null)
             }
             is RawWaterTurbidityEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_turbidity_entry, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_raw_water_turbidity_entry, null)
             }
             is filteredWaterTurbidityEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_filtered_water_entry, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_raw_water_turbidity_entry,null)
             }
             is CoagulantCalibrationEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
@@ -182,25 +195,34 @@ class RecordsFragment : Fragment() {
 
         when (entry) {
             is PlantFlowEntry -> {
-                titleText.text = entry.plantName
+                titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
+                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
+                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.edit_inflow_rate).setText("${entry.inflowRate}")
             }
             is RawWaterTurbidityEntry -> {
-                titleText.text = entry.plantName
+                titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
+                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
+                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.edit_turbidity).setText("${entry.turbidityReadings}")
             }
             is clarifiedWaterTurbidityEntry -> {
-                titleText.text = entry.plantName
+                titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
+                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
             }
             is filteredWaterTurbidityEntry -> {
-                titleText.text = entry.plantName
+                titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
+                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
             }
             is CoagulantCalibrationEntry -> {
-                titleText.text = entry.plantName
+                titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
                 dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
                 dialogView.findViewById<EditText>(R.id.inflow_rate).setText("${entry.inflowRate}")
                 dialogView.findViewById<EditText>(R.id.start_height).setText("${entry.startVolume}")
@@ -209,22 +231,21 @@ class RecordsFragment : Fragment() {
                 dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
                 dialogView.findViewById<EditText>(R.id.chemical_flow_rate).setText("${entry.chemicalFlowRate}")
                 dialogView.findViewById<EditText>(R.id.active_tank_volume).setText("${entry.activeTankVolume}")
-                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
             }
             is CoagulantChangeDoseEntry -> {
-                titleText.text = entry.plantName
+                titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
             }
             is ChlorineCalibrationEntry -> {
-                titleText.text = entry.plantName
+                titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
             }
             is ChlorineChangeDoseEntry -> {
-                titleText.text = entry.plantName
+                titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
             }
             is FeedbackEntry -> {
-                titleText.text = entry.plantName
+                titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<EditText>(R.id.edit_feedback).setText(entry.operatorFeedback)
             }

@@ -44,7 +44,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/calibrationText"
+        android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginHorizontal="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/calibrationText"
+        app:layout_constraintTop_toBottomOf="@+id/heading"
         tools:layout_editor_absoluteX="7dp">
 
         <LinearLayout
