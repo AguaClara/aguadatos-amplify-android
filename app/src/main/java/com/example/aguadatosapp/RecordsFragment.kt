@@ -23,10 +23,12 @@ class RecordsFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
     // TODO: n right now is number of entries, needs to update dynamically based on input from backend
     private val n = 9
-    private lateinit var dummyRawWaterEntry: RawWaterTurbidityEntry
     private lateinit var dummyCoagulantCalibrationEntry: CoagulantCalibrationEntry
     private lateinit var dummyFeedbackEntry: FeedbackEntry
     private lateinit var dummyPlantFlowEntry: PlantFlowEntry
+    private lateinit var dummyRawWaterEntry: RawWaterTurbidityEntry
+    private lateinit var dummyclarifiedWaterTurbidityEntry: clarifiedWaterTurbidityEntry
+    private lateinit var dummyfilteredWaterTurbidityEntry: filteredWaterTurbidityEntry
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +43,7 @@ class RecordsFragment : Fragment() {
 
         createDummyData()
         addEntry(container,dummyRawWaterEntry)
+        addEntry(container,dummyfilteredWaterTurbidityEntry)
         addEntry(container,dummyCoagulantCalibrationEntry)
         addEntry(container,dummyFeedbackEntry)
         addEntry(container,dummyPlantFlowEntry)
@@ -55,6 +58,24 @@ class RecordsFragment : Fragment() {
             plantName = "Plant",
             operatorName = "Operator",
             turbidityReadings = 2.0,
+            additionalNotes = "Hello, I am a Note",
+            creationDateTime = "09-27-24 05:31:27",
+            chemicalType = "PAC"
+        )
+        dummyclarifiedWaterTurbidityEntry = clarifiedWaterTurbidityEntry(
+            entryName = "Clarified Water Turbidity",
+            plantName = "Plant",
+            operatorName = "Operator",
+            turbidityReadings = 2.0,
+            additionalNotes = "Hello, I am a Note",
+            creationDateTime = "09-27-24 05:31:27",
+            chemicalType = "PAC"
+        )
+        dummyfilteredWaterTurbidityEntry = filteredWaterTurbidityEntry(
+            entryName = "Filtered Water Turbidity",
+            plantName = "Plant",
+            operatorName = "Operator",
+            turbidityReadings = doubleArrayOf(2.0),
             additionalNotes = "Hello, I am a Note",
             creationDateTime = "09-27-24 05:31:27",
             chemicalType = "PAC"
@@ -120,6 +141,11 @@ class RecordsFragment : Fragment() {
                 expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityReadings)
                 timeStamp.text = entry.creationDateTime
             }
+            is clarifiedWaterTurbidityEntry -> {
+                entryName.text = entry.entryName
+                expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityReadings)
+                timeStamp.text = entry.creationDateTime
+            }
             is filteredWaterTurbidityEntry -> {
                 entryName.text = entry.entryName
                 expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityReadings[0])
@@ -171,6 +197,9 @@ class RecordsFragment : Fragment() {
             is RawWaterTurbidityEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_raw_water_turbidity_entry, null)
             }
+            is clarifiedWaterTurbidityEntry -> {
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_clarified_water_turbidity_entry,null)
+            }
             is filteredWaterTurbidityEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_raw_water_turbidity_entry,null)
             }
@@ -212,11 +241,15 @@ class RecordsFragment : Fragment() {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
+                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.edit_turbidity).setText("${entry.turbidityReadings}")
             }
             is filteredWaterTurbidityEntry -> {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
+                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.edit_turbidity).setText("${entry.turbidityReadings[0]}")
             }
             is CoagulantCalibrationEntry -> {
                 titleText.text = entry.entryName
