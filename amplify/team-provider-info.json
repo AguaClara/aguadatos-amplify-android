@@ -14,6 +14,9 @@
     "categories": {
       "api": {
         "aguadatosamplify": {}
+      },
+      "auth": {
+        "aguadatosAmplify": {}
       }
     }
   }

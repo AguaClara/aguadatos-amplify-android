@@ -6,6 +6,7 @@ import com.amplifyframework.AmplifyException
 import com.amplifyframework.api.aws.AWSApiPlugin
 import com.amplifyframework.kotlin.core.Amplify
 import com.amplifyframework.datastore.AWSDataStorePlugin
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 
 /**
  * `AguadatosAmplify` is the main application class responsible for initializing and configuring
@@ -20,6 +21,8 @@ class AguadatosAmplify : Application(){
             Amplify.addPlugin(AWSDataStorePlugin())
             // Adds AWSApiPlugin for API interactions with AWS services.
             Amplify.addPlugin(AWSApiPlugin())
+            // Adds AWSCognitoAuthPlugin for user authentication.
+            Amplify.addPlugin(AWSCognitoAuthPlugin())
             // Configures Amplify with the current application context.
             Amplify.configure(applicationContext)
 

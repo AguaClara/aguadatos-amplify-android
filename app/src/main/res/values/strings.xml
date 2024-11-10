@@ -191,7 +191,7 @@
     <string name="chlorine_flow_rate_with_input">Chlorine Flow Rate: %.1f mL/s</string>
     <string name="target_chlorine_dose_with_input">Target Chlorine Dosage: %.1f mg/L</string>
     <string name="new_chlorine_flow_rate_with_input">New Chlorine Flow Rate: %.1f mL/s</string>
-  
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
