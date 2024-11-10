@@ -1,10 +1,7 @@
 # this is an auto generated file. This will be overwritten
 
-mutation CreatePlant(
-  $input: CreatePlantInput!
-  $condition: ModelPlantConditionInput
-) {
-  createPlant(input: $input, condition: $condition) {
+subscription OnCreatePlant($filter: ModelSubscriptionPlantFilterInput) {
+  onCreatePlant(filter: $filter) {
     id
     operators {
       nextToken
@@ -20,11 +17,8 @@ mutation CreatePlant(
   }
 }
 
-mutation UpdatePlant(
-  $input: UpdatePlantInput!
-  $condition: ModelPlantConditionInput
-) {
-  updatePlant(input: $input, condition: $condition) {
+subscription OnUpdatePlant($filter: ModelSubscriptionPlantFilterInput) {
+  onUpdatePlant(filter: $filter) {
     id
     operators {
       nextToken
@@ -40,11 +34,8 @@ mutation UpdatePlant(
   }
 }
 
-mutation DeletePlant(
-  $input: DeletePlantInput!
-  $condition: ModelPlantConditionInput
-) {
-  deletePlant(input: $input, condition: $condition) {
+subscription OnDeletePlant($filter: ModelSubscriptionPlantFilterInput) {
+  onDeletePlant(filter: $filter) {
     id
     operators {
       nextToken
@@ -60,11 +51,8 @@ mutation DeletePlant(
   }
 }
 
-mutation CreateOperator(
-  $input: CreateOperatorInput!
-  $condition: ModelOperatorConditionInput
-) {
-  createOperator(input: $input, condition: $condition) {
+subscription OnCreateOperator($filter: ModelSubscriptionOperatorFilterInput) {
+  onCreateOperator(filter: $filter) {
     id
     name
     plantID
@@ -122,11 +110,8 @@ mutation CreateOperator(
   }
 }
 
-mutation UpdateOperator(
-  $input: UpdateOperatorInput!
-  $condition: ModelOperatorConditionInput
-) {
-  updateOperator(input: $input, condition: $condition) {
+subscription OnUpdateOperator($filter: ModelSubscriptionOperatorFilterInput) {
+  onUpdateOperator(filter: $filter) {
     id
     name
     plantID
@@ -184,11 +169,8 @@ mutation UpdateOperator(
   }
 }
 
-mutation DeleteOperator(
-  $input: DeleteOperatorInput!
-  $condition: ModelOperatorConditionInput
-) {
-  deleteOperator(input: $input, condition: $condition) {
+subscription OnDeleteOperator($filter: ModelSubscriptionOperatorFilterInput) {
+  onDeleteOperator(filter: $filter) {
     id
     name
     plantID
@@ -246,11 +228,10 @@ mutation DeleteOperator(
   }
 }
 
-mutation CreatePlantFlowEntry(
-  $input: CreatePlantFlowEntryInput!
-  $condition: ModelPlantFlowEntryConditionInput
+subscription OnCreatePlantFlowEntry(
+  $filter: ModelSubscriptionPlantFlowEntryFilterInput
 ) {
-  createPlantFlowEntry(input: $input, condition: $condition) {
+  onCreatePlantFlowEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -266,11 +247,10 @@ mutation CreatePlantFlowEntry(
   }
 }
 
-mutation UpdatePlantFlowEntry(
-  $input: UpdatePlantFlowEntryInput!
-  $condition: ModelPlantFlowEntryConditionInput
+subscription OnUpdatePlantFlowEntry(
+  $filter: ModelSubscriptionPlantFlowEntryFilterInput
 ) {
-  updatePlantFlowEntry(input: $input, condition: $condition) {
+  onUpdatePlantFlowEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -286,11 +266,10 @@ mutation UpdatePlantFlowEntry(
   }
 }
 
-mutation DeletePlantFlowEntry(
-  $input: DeletePlantFlowEntryInput!
-  $condition: ModelPlantFlowEntryConditionInput
+subscription OnDeletePlantFlowEntry(
+  $filter: ModelSubscriptionPlantFlowEntryFilterInput
 ) {
-  deletePlantFlowEntry(input: $input, condition: $condition) {
+  onDeletePlantFlowEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -306,11 +285,10 @@ mutation DeletePlantFlowEntry(
   }
 }
 
-mutation CreateRawWaterEntry(
-  $input: CreateRawWaterEntryInput!
-  $condition: ModelRawWaterEntryConditionInput
+subscription OnCreateRawWaterEntry(
+  $filter: ModelSubscriptionRawWaterEntryFilterInput
 ) {
-  createRawWaterEntry(input: $input, condition: $condition) {
+  onCreateRawWaterEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -326,11 +304,10 @@ mutation CreateRawWaterEntry(
   }
 }
 
-mutation UpdateRawWaterEntry(
-  $input: UpdateRawWaterEntryInput!
-  $condition: ModelRawWaterEntryConditionInput
+subscription OnUpdateRawWaterEntry(
+  $filter: ModelSubscriptionRawWaterEntryFilterInput
 ) {
-  updateRawWaterEntry(input: $input, condition: $condition) {
+  onUpdateRawWaterEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -346,11 +323,10 @@ mutation UpdateRawWaterEntry(
   }
 }
 
-mutation DeleteRawWaterEntry(
-  $input: DeleteRawWaterEntryInput!
-  $condition: ModelRawWaterEntryConditionInput
+subscription OnDeleteRawWaterEntry(
+  $filter: ModelSubscriptionRawWaterEntryFilterInput
 ) {
-  deleteRawWaterEntry(input: $input, condition: $condition) {
+  onDeleteRawWaterEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -366,11 +342,10 @@ mutation DeleteRawWaterEntry(
   }
 }
 
-mutation CreateClarifiedWaterEntry(
-  $input: CreateClarifiedWaterEntryInput!
-  $condition: ModelClarifiedWaterEntryConditionInput
+subscription OnCreateClarifiedWaterEntry(
+  $filter: ModelSubscriptionClarifiedWaterEntryFilterInput
 ) {
-  createClarifiedWaterEntry(input: $input, condition: $condition) {
+  onCreateClarifiedWaterEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -386,11 +361,10 @@ mutation CreateClarifiedWaterEntry(
   }
 }
 
-mutation UpdateClarifiedWaterEntry(
-  $input: UpdateClarifiedWaterEntryInput!
-  $condition: ModelClarifiedWaterEntryConditionInput
+subscription OnUpdateClarifiedWaterEntry(
+  $filter: ModelSubscriptionClarifiedWaterEntryFilterInput
 ) {
-  updateClarifiedWaterEntry(input: $input, condition: $condition) {
+  onUpdateClarifiedWaterEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -406,11 +380,10 @@ mutation UpdateClarifiedWaterEntry(
   }
 }
 
-mutation DeleteClarifiedWaterEntry(
-  $input: DeleteClarifiedWaterEntryInput!
-  $condition: ModelClarifiedWaterEntryConditionInput
+subscription OnDeleteClarifiedWaterEntry(
+  $filter: ModelSubscriptionClarifiedWaterEntryFilterInput
 ) {
-  deleteClarifiedWaterEntry(input: $input, condition: $condition) {
+  onDeleteClarifiedWaterEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -426,11 +399,10 @@ mutation DeleteClarifiedWaterEntry(
   }
 }
 
-mutation CreateFilteredWaterEntry(
-  $input: CreateFilteredWaterEntryInput!
-  $condition: ModelFilteredWaterEntryConditionInput
+subscription OnCreateFilteredWaterEntry(
+  $filter: ModelSubscriptionFilteredWaterEntryFilterInput
 ) {
-  createFilteredWaterEntry(input: $input, condition: $condition) {
+  onCreateFilteredWaterEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -446,11 +418,10 @@ mutation CreateFilteredWaterEntry(
   }
 }
 
-mutation UpdateFilteredWaterEntry(
-  $input: UpdateFilteredWaterEntryInput!
-  $condition: ModelFilteredWaterEntryConditionInput
+subscription OnUpdateFilteredWaterEntry(
+  $filter: ModelSubscriptionFilteredWaterEntryFilterInput
 ) {
-  updateFilteredWaterEntry(input: $input, condition: $condition) {
+  onUpdateFilteredWaterEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -466,11 +437,10 @@ mutation UpdateFilteredWaterEntry(
   }
 }
 
-mutation DeleteFilteredWaterEntry(
-  $input: DeleteFilteredWaterEntryInput!
-  $condition: ModelFilteredWaterEntryConditionInput
+subscription OnDeleteFilteredWaterEntry(
+  $filter: ModelSubscriptionFilteredWaterEntryFilterInput
 ) {
-  deleteFilteredWaterEntry(input: $input, condition: $condition) {
+  onDeleteFilteredWaterEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -486,11 +456,10 @@ mutation DeleteFilteredWaterEntry(
   }
 }
 
-mutation CreateCoagulantCalibrationEntry(
-  $input: CreateCoagulantCalibrationEntryInput!
-  $condition: ModelCoagulantCalibrationEntryConditionInput
+subscription OnCreateCoagulantCalibrationEntry(
+  $filter: ModelSubscriptionCoagulantCalibrationEntryFilterInput
 ) {
-  createCoagulantCalibrationEntry(input: $input, condition: $condition) {
+  onCreateCoagulantCalibrationEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -513,11 +482,10 @@ mutation CreateCoagulantCalibrationEntry(
   }
 }
 
-mutation UpdateCoagulantCalibrationEntry(
-  $input: UpdateCoagulantCalibrationEntryInput!
-  $condition: ModelCoagulantCalibrationEntryConditionInput
+subscription OnUpdateCoagulantCalibrationEntry(
+  $filter: ModelSubscriptionCoagulantCalibrationEntryFilterInput
 ) {
-  updateCoagulantCalibrationEntry(input: $input, condition: $condition) {
+  onUpdateCoagulantCalibrationEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -540,11 +508,10 @@ mutation UpdateCoagulantCalibrationEntry(
   }
 }
 
-mutation DeleteCoagulantCalibrationEntry(
-  $input: DeleteCoagulantCalibrationEntryInput!
-  $condition: ModelCoagulantCalibrationEntryConditionInput
+subscription OnDeleteCoagulantCalibrationEntry(
+  $filter: ModelSubscriptionCoagulantCalibrationEntryFilterInput
 ) {
-  deleteCoagulantCalibrationEntry(input: $input, condition: $condition) {
+  onDeleteCoagulantCalibrationEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -567,11 +534,10 @@ mutation DeleteCoagulantCalibrationEntry(
   }
 }
 
-mutation CreateCoagulantChangeDoseEntry(
-  $input: CreateCoagulantChangeDoseEntryInput!
-  $condition: ModelCoagulantChangeDoseEntryConditionInput
+subscription OnCreateCoagulantChangeDoseEntry(
+  $filter: ModelSubscriptionCoagulantChangeDoseEntryFilterInput
 ) {
-  createCoagulantChangeDoseEntry(input: $input, condition: $condition) {
+  onCreateCoagulantChangeDoseEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -592,11 +558,10 @@ mutation CreateCoagulantChangeDoseEntry(
   }
 }
 
-mutation UpdateCoagulantChangeDoseEntry(
-  $input: UpdateCoagulantChangeDoseEntryInput!
-  $condition: ModelCoagulantChangeDoseEntryConditionInput
+subscription OnUpdateCoagulantChangeDoseEntry(
+  $filter: ModelSubscriptionCoagulantChangeDoseEntryFilterInput
 ) {
-  updateCoagulantChangeDoseEntry(input: $input, condition: $condition) {
+  onUpdateCoagulantChangeDoseEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -617,11 +582,10 @@ mutation UpdateCoagulantChangeDoseEntry(
   }
 }
 
-mutation DeleteCoagulantChangeDoseEntry(
-  $input: DeleteCoagulantChangeDoseEntryInput!
-  $condition: ModelCoagulantChangeDoseEntryConditionInput
+subscription OnDeleteCoagulantChangeDoseEntry(
+  $filter: ModelSubscriptionCoagulantChangeDoseEntryFilterInput
 ) {
-  deleteCoagulantChangeDoseEntry(input: $input, condition: $condition) {
+  onDeleteCoagulantChangeDoseEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -642,11 +606,10 @@ mutation DeleteCoagulantChangeDoseEntry(
   }
 }
 
-mutation CreateChlorineCalibrationEntry(
-  $input: CreateChlorineCalibrationEntryInput!
-  $condition: ModelChlorineCalibrationEntryConditionInput
+subscription OnCreateChlorineCalibrationEntry(
+  $filter: ModelSubscriptionChlorineCalibrationEntryFilterInput
 ) {
-  createChlorineCalibrationEntry(input: $input, condition: $condition) {
+  onCreateChlorineCalibrationEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -669,11 +632,10 @@ mutation CreateChlorineCalibrationEntry(
   }
 }
 
-mutation UpdateChlorineCalibrationEntry(
-  $input: UpdateChlorineCalibrationEntryInput!
-  $condition: ModelChlorineCalibrationEntryConditionInput
+subscription OnUpdateChlorineCalibrationEntry(
+  $filter: ModelSubscriptionChlorineCalibrationEntryFilterInput
 ) {
-  updateChlorineCalibrationEntry(input: $input, condition: $condition) {
+  onUpdateChlorineCalibrationEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -696,11 +658,10 @@ mutation UpdateChlorineCalibrationEntry(
   }
 }
 
-mutation DeleteChlorineCalibrationEntry(
-  $input: DeleteChlorineCalibrationEntryInput!
-  $condition: ModelChlorineCalibrationEntryConditionInput
+subscription OnDeleteChlorineCalibrationEntry(
+  $filter: ModelSubscriptionChlorineCalibrationEntryFilterInput
 ) {
-  deleteChlorineCalibrationEntry(input: $input, condition: $condition) {
+  onDeleteChlorineCalibrationEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -723,11 +684,10 @@ mutation DeleteChlorineCalibrationEntry(
   }
 }
 
-mutation CreateChlorineChangeDoseEntry(
-  $input: CreateChlorineChangeDoseEntryInput!
-  $condition: ModelChlorineChangeDoseEntryConditionInput
+subscription OnCreateChlorineChangeDoseEntry(
+  $filter: ModelSubscriptionChlorineChangeDoseEntryFilterInput
 ) {
-  createChlorineChangeDoseEntry(input: $input, condition: $condition) {
+  onCreateChlorineChangeDoseEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -748,11 +708,10 @@ mutation CreateChlorineChangeDoseEntry(
   }
 }
 
-mutation UpdateChlorineChangeDoseEntry(
-  $input: UpdateChlorineChangeDoseEntryInput!
-  $condition: ModelChlorineChangeDoseEntryConditionInput
+subscription OnUpdateChlorineChangeDoseEntry(
+  $filter: ModelSubscriptionChlorineChangeDoseEntryFilterInput
 ) {
-  updateChlorineChangeDoseEntry(input: $input, condition: $condition) {
+  onUpdateChlorineChangeDoseEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -773,11 +732,10 @@ mutation UpdateChlorineChangeDoseEntry(
   }
 }
 
-mutation DeleteChlorineChangeDoseEntry(
-  $input: DeleteChlorineChangeDoseEntryInput!
-  $condition: ModelChlorineChangeDoseEntryConditionInput
+subscription OnDeleteChlorineChangeDoseEntry(
+  $filter: ModelSubscriptionChlorineChangeDoseEntryFilterInput
 ) {
-  deleteChlorineChangeDoseEntry(input: $input, condition: $condition) {
+  onDeleteChlorineChangeDoseEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -798,11 +756,10 @@ mutation DeleteChlorineChangeDoseEntry(
   }
 }
 
-mutation CreateFeedbackEntry(
-  $input: CreateFeedbackEntryInput!
-  $condition: ModelFeedbackEntryConditionInput
+subscription OnCreateFeedbackEntry(
+  $filter: ModelSubscriptionFeedbackEntryFilterInput
 ) {
-  createFeedbackEntry(input: $input, condition: $condition) {
+  onCreateFeedbackEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -817,11 +774,10 @@ mutation CreateFeedbackEntry(
   }
 }
 
-mutation UpdateFeedbackEntry(
-  $input: UpdateFeedbackEntryInput!
-  $condition: ModelFeedbackEntryConditionInput
+subscription OnUpdateFeedbackEntry(
+  $filter: ModelSubscriptionFeedbackEntryFilterInput
 ) {
-  updateFeedbackEntry(input: $input, condition: $condition) {
+  onUpdateFeedbackEntry(filter: $filter) {
     id
     plantID
     operatorID
@@ -836,11 +792,10 @@ mutation UpdateFeedbackEntry(
   }
 }
 
-mutation DeleteFeedbackEntry(
-  $input: DeleteFeedbackEntryInput!
-  $condition: ModelFeedbackEntryConditionInput
+subscription OnDeleteFeedbackEntry(
+  $filter: ModelSubscriptionFeedbackEntryFilterInput
 ) {
-  deleteFeedbackEntry(input: $input, condition: $condition) {
+  onDeleteFeedbackEntry(filter: $filter) {
     id
     plantID
     operatorID
