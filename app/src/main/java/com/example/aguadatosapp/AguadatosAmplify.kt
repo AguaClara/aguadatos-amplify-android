@@ -12,11 +12,13 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
  * `AguadatosAmplify` is the main application class responsible for initializing and configuring
  * Amplify framework with DataStore and API plugins on app startup.
  */
-class AguadatosAmplify : Application(){
+class AguadatosAmplify : Application() {
     override fun onCreate() {
         super.onCreate()
 
         try {
+            // Adds AWSAuthPlugin for authorization with AWS services.
+            Amplify.addPlugin(AWSCognitoAuthPlugin())
             // Adds AWSDataStorePlugin for local and cloud data storage.
             Amplify.addPlugin(AWSDataStorePlugin())
             // Adds AWSApiPlugin for API interactions with AWS services.

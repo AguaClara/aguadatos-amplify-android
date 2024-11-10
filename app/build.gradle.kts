@@ -51,21 +51,20 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation("androidx.compose.ui:ui-text-android:1.6.8")
     implementation("androidx.media3:media3-common:1.4.0")
+    implementation("androidx.gridlayout:gridlayout:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-
-    //graphs
+    //Graphs
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     // Amplify API and Datastore dependencies
     implementation("com.amplifyframework:core:2.19.1") // Core Amplify
-    implementation("com.amplifyframework:aws-api:2.14.11")
-    implementation("com.amplifyframework:aws-datastore:2.14.11")
-    implementation("com.amplifyframework:aws-auth-cognito:1.28.2") // For authentication, if required
+    implementation("com.amplifyframework:aws-api:2.19.1")
+    implementation("com.amplifyframework:aws-datastore:2.19.1")
+    implementation("com.amplifyframework:aws-auth-cognito:2.19.1") // For authentication, if required
     implementation("com.amplifyframework:core-kotlin:2.19.1") // Core Amplify for Coroutines Support
-
 
     // Support for Java 8 features
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.2")
