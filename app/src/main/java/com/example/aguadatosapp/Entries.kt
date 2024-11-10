@@ -7,7 +7,6 @@ abstract class Entry(
 data class PlantFlowEntry(
     val plantName: String,
     val operatorName: String,
-    val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val inflowRate: Float,
