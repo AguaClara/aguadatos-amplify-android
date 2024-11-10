@@ -2,8 +2,6 @@ package com.example.aguadatosapp
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import aws.smithy.kotlin.runtime.util.type
 
 // RecordsFragment.kt
 class RecordsFragment : Fragment() {
@@ -24,6 +19,9 @@ class RecordsFragment : Fragment() {
     // TODO: n right now is number of entries, needs to update dynamically based on input from backend
     private val n = 9
     private lateinit var dummyCoagulantCalibrationEntry: CoagulantCalibrationEntry
+    private lateinit var dummyCoagulantChangeDoseEntry: CoagulantChangeDoseEntry
+    private lateinit var dummyChlorineCalibrationEntry: ChlorineCalibrationEntry
+    private lateinit var dummyChlorineChangeDoseEntry: ChlorineChangeDoseEntry
     private lateinit var dummyFeedbackEntry: FeedbackEntry
     private lateinit var dummyPlantFlowEntry: PlantFlowEntry
     private lateinit var dummyRawWaterEntry: RawWaterTurbidityEntry
@@ -42,17 +40,79 @@ class RecordsFragment : Fragment() {
         val container = view.findViewById<LinearLayout>(R.id.entriesContainer)
 
         createDummyData()
+        addEntry(container,dummyCoagulantCalibrationEntry)
+        addEntry(container,dummyCoagulantChangeDoseEntry)
+        addEntry(container,dummyChlorineCalibrationEntry)
+        addEntry(container,dummyChlorineChangeDoseEntry)
+        addEntry(container,dummyclarifiedWaterTurbidityEntry)
         addEntry(container,dummyRawWaterEntry)
         addEntry(container,dummyfilteredWaterTurbidityEntry)
-        addEntry(container,dummyCoagulantCalibrationEntry)
-        addEntry(container,dummyFeedbackEntry)
         addEntry(container,dummyPlantFlowEntry)
-        addEntry(container,dummyCoagulantCalibrationEntry)
         addEntry(container,dummyFeedbackEntry)
 
         return view
     }
     private fun createDummyData() {
+        dummyCoagulantCalibrationEntry = CoagulantCalibrationEntry(
+            entryName = "Coagulant Dosage Calibration",
+            plantName = "Plant",
+            operatorName = "Operator",
+            additionalNotes = "Hello, I am a Note",
+            sliderPosition = 50.0,
+            inflowRate = 5.0,
+            startVolume = 3.5,
+            endVolume = 2.5,
+            timeElapsed = 37,
+            chemicalDose = 2.0,
+            chemicalFlowRate = 0.5,
+            activeTankVolume = 20.0,
+            creationDateTime = "09-27-24 05:31:27",
+            chemicalType = "PAC"
+        )
+        dummyCoagulantChangeDoseEntry = CoagulantChangeDoseEntry(
+            entryName = "Coagulant Change Dosage",
+            plantName = "Plant",
+            operatorName = "Operator",
+            additionalNotes = "Hello, I am a Note",
+            sliderPosition = 50.0,
+            updatedSliderPosition = 37.0,
+            chemicalDose = 3.5,
+            targetChemicalDose = 2.5,
+            chemicalFlowRate = 3.5,
+            updatedChemicalFlowRate = 3.0,
+            creationDateTime = "09-27-24 05:31:27",
+            chemicalType = "PAC"
+        )
+        dummyChlorineCalibrationEntry = ChlorineCalibrationEntry(
+            entryName = "Chlorine Dosage Calibration",
+            plantName = "Plant",
+            operatorName = "Operator",
+            additionalNotes = "Hello, I am a Note",
+            sliderPosition = 50.0,
+            inflowRate = 5.0,
+            startVolume = 3.5,
+            endVolume = 2.5,
+            timeElapsed = 37,
+            chemicalDose = 2.0,
+            chemicalFlowRate = 0.5,
+            activeTankVolume = 20.0,
+            creationDateTime = "09-27-24 05:31:27",
+            chemicalType = "PAC"
+        )
+        dummyChlorineChangeDoseEntry = ChlorineChangeDoseEntry(
+            entryName = "Chlorine Change Dosage",
+            plantName = "Plant",
+            operatorName = "Operator",
+            additionalNotes = "Hello, I am a Note",
+            sliderPosition = 50.0,
+            updatedSliderPosition = 37.0,
+            chemicalDose = 3.5,
+            targetChemicalDose = 2.5,
+            chemicalFlowRate = 3.5,
+            updatedChemicalFlowRate = 3.0,
+            creationDateTime = "09-27-24 05:31:27",
+            chemicalType = "PAC"
+        )
         dummyRawWaterEntry = RawWaterTurbidityEntry(
             entryName = "Raw Water Turbidity",
             plantName = "Plant",
@@ -77,22 +137,6 @@ class RecordsFragment : Fragment() {
             operatorName = "Operator",
             turbidityReadings = doubleArrayOf(2.0),
             additionalNotes = "Hello, I am a Note",
-            creationDateTime = "09-27-24 05:31:27",
-            chemicalType = "PAC"
-        )
-        dummyCoagulantCalibrationEntry = CoagulantCalibrationEntry(
-            entryName = "Coagulant Dosage Calibration",
-            plantName = "Plant",
-            operatorName = "Operator",
-            additionalNotes = "Hello, I am a Note",
-            sliderPosition = 50.0,
-            inflowRate = 5.0,
-            startVolume = 3.5,
-            endVolume = 2.5,
-            timeElapsed = 37,
-            chemicalDose = 2.0,
-            chemicalFlowRate = 0.5,
-            activeTankVolume = 20.0,
             creationDateTime = "09-27-24 05:31:27",
             chemicalType = "PAC"
         )
@@ -161,6 +205,17 @@ class RecordsFragment : Fragment() {
                 expandableText.text = getString(R.string.new_slider_pos,entry.sliderPosition)
                 timeStamp.text = entry.creationDateTime
             }
+
+            is ChlorineCalibrationEntry -> {
+                entryName.text = entry.entryName
+                expandableText.text = getString(R.string.chemical_dose_with_input,entry.chemicalDose)
+                timeStamp.text = entry.creationDateTime
+            }
+            is ChlorineChangeDoseEntry -> {
+                entryName.text = entry.entryName
+                expandableText.text = getString(R.string.new_slider_pos,entry.sliderPosition)
+                timeStamp.text = entry.creationDateTime
+            }
             is FeedbackEntry -> {
                 entryName.text = entry.entryName
                 expandableText.text = getString(R.string.feedback_with_input,entry.operatorFeedback)
@@ -204,16 +259,22 @@ class RecordsFragment : Fragment() {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_raw_water_turbidity_entry,null)
             }
             is CoagulantCalibrationEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_coagulant_calibration_entry, null)
             }
             is CoagulantChangeDoseEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_change_dosage_entry, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_coagulant_change_dosage_entry, null)
+            }
+            is ChlorineCalibrationEntry -> {
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_chlorine_calibration_entry, null)
+            }
+            is ChlorineChangeDoseEntry -> {
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_chlorine_change_dosage_entry, null)
             }
             is FeedbackEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_feedback_entry, null)
             }
             else -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_coagulant_calibration_entry, null)
             }
         }
         val closeButton = dialogView.findViewById<Button>(R.id.close_button)
@@ -268,14 +329,40 @@ class RecordsFragment : Fragment() {
             is CoagulantChangeDoseEntry -> {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
+                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
+                dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
+                dialogView.findViewById<EditText>(R.id.updated_slider_position).setText("${entry.updatedSliderPosition}")
+                dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
+                dialogView.findViewById<EditText>(R.id.target_chemical_dose).setText("${entry.targetChemicalDose}")
+                dialogView.findViewById<EditText>(R.id.chemical_flow_rate).setText("${entry.chemicalFlowRate}")
+                dialogView.findViewById<EditText>(R.id.updated_chemical_flow_rate).setText("${entry.updatedChemicalFlowRate}")
             }
             is ChlorineCalibrationEntry -> {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
+                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
+                dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
+                dialogView.findViewById<EditText>(R.id.inflow_rate).setText("${entry.inflowRate}")
+                dialogView.findViewById<EditText>(R.id.start_height).setText("${entry.startVolume}")
+                dialogView.findViewById<EditText>(R.id.end_height).setText("${entry.endVolume}")
+                dialogView.findViewById<EditText>(R.id.time_elapsed).setText("${entry.timeElapsed}")
+                dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
+                dialogView.findViewById<EditText>(R.id.chemical_flow_rate).setText("${entry.chemicalFlowRate}")
+                dialogView.findViewById<EditText>(R.id.active_tank_volume).setText("${entry.activeTankVolume}")
             }
             is ChlorineChangeDoseEntry -> {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
+                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
+                dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
+                dialogView.findViewById<EditText>(R.id.updated_slider_position).setText("${entry.updatedSliderPosition}")
+                dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
+                dialogView.findViewById<EditText>(R.id.target_chemical_dose).setText("${entry.targetChemicalDose}")
+                dialogView.findViewById<EditText>(R.id.chemical_flow_rate).setText("${entry.chemicalFlowRate}")
+                dialogView.findViewById<EditText>(R.id.updated_chemical_flow_rate).setText("${entry.updatedChemicalFlowRate}")
             }
             is FeedbackEntry -> {
                 titleText.text = entry.entryName
