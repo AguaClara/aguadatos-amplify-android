@@ -1,5 +1,10 @@
 package com.example.aguadatosapp
 
+import android.app.AlertDialog
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.EditText
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -21,8 +26,32 @@ class SignupActivity : ComponentActivity() {
         }
 
         signUpButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            val code = "1234"
+            makeVerificationPopup (code)
         }
+    }
+
+    private fun makeVerificationPopup (code : String) {
+        val dialogView: View = LayoutInflater.from(this).inflate(R.layout.verification_code_popup, null)
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        val codeInput = dialogView.findViewById<EditText>(R.id.verification_code_input)
+        dialogView.findViewById<Button>(R.id.close_button).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogView.findViewById<Button>(R.id.submit_button).setOnClickListener {
+            if (codeInput.text.toString() == code) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                dialog.dismiss()
+            }
+            else {
+                // TODO: Handle incorrect verification code
+                dialog.dismiss()
+            }
+        }
+        dialog.show()
     }
 }
