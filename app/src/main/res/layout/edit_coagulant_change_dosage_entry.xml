@@ -259,24 +259,6 @@
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="• Additional Notes: "
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
-        <EditText
-            android:id="@+id/edit_notes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"/>
     </LinearLayout>
 
     <LinearLayout

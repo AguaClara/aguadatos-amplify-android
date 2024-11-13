@@ -57,7 +57,6 @@ class RecordsFragment : Fragment() {
             entryName = "Coagulant Dosage Calibration",
             plantName = "Plant",
             operatorName = "Operator",
-            additionalNotes = "Hello, I am a Note",
             sliderPosition = 50.0,
             inflowRate = 5.0,
             startVolume = 3.5,
@@ -73,7 +72,6 @@ class RecordsFragment : Fragment() {
             entryName = "Coagulant Change Dosage",
             plantName = "Plant",
             operatorName = "Operator",
-            additionalNotes = "Hello, I am a Note",
             sliderPosition = 50.0,
             updatedSliderPosition = 37.0,
             chemicalDose = 3.5,
@@ -87,7 +85,6 @@ class RecordsFragment : Fragment() {
             entryName = "Chlorine Dosage Calibration",
             plantName = "Plant",
             operatorName = "Operator",
-            additionalNotes = "Hello, I am a Note",
             sliderPosition = 50.0,
             inflowRate = 5.0,
             startVolume = 3.5,
@@ -103,7 +100,6 @@ class RecordsFragment : Fragment() {
             entryName = "Chlorine Change Dosage",
             plantName = "Plant",
             operatorName = "Operator",
-            additionalNotes = "Hello, I am a Note",
             sliderPosition = 50.0,
             updatedSliderPosition = 37.0,
             chemicalDose = 3.5,
@@ -316,7 +312,6 @@ class RecordsFragment : Fragment() {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
-                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
                 dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
                 dialogView.findViewById<EditText>(R.id.inflow_rate).setText("${entry.inflowRate}")
                 dialogView.findViewById<EditText>(R.id.start_height).setText("${entry.startVolume}")
@@ -330,7 +325,6 @@ class RecordsFragment : Fragment() {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
-                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
                 dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
                 dialogView.findViewById<EditText>(R.id.updated_slider_position).setText("${entry.updatedSliderPosition}")
                 dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
@@ -342,7 +336,6 @@ class RecordsFragment : Fragment() {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
-                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
                 dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
                 dialogView.findViewById<EditText>(R.id.inflow_rate).setText("${entry.inflowRate}")
                 dialogView.findViewById<EditText>(R.id.start_height).setText("${entry.startVolume}")
@@ -356,7 +349,6 @@ class RecordsFragment : Fragment() {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
-                dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
                 dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
                 dialogView.findViewById<EditText>(R.id.updated_slider_position).setText("${entry.updatedSliderPosition}")
                 dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
