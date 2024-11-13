@@ -19,7 +19,7 @@ data class RawWaterTurbidityEntry(
     val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
-    val turbidityReadings: Double,
+    val turbidityReading: Double,
     val chemicalType: String
 ) : Entry(entryType = "2")
 
@@ -29,7 +29,7 @@ data class clarifiedWaterTurbidityEntry(
     val entryName: String,
     val creationDateTime: String,
     val additionalNotes: String,
-    val turbidityReadings: Double,
+    val turbidityReading: Double,
     val chemicalType: String
 ) : Entry(entryType = "3")
 

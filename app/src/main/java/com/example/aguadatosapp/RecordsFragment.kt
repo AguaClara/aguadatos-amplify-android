@@ -113,7 +113,7 @@ class RecordsFragment : Fragment() {
             entryName = "Raw Water Turbidity",
             plantName = "Plant",
             operatorName = "Operator",
-            turbidityReadings = 2.0,
+            turbidityReading = 2.0,
             additionalNotes = "Hello, I am a Note",
             creationDateTime = "09-27-24 05:31:27",
             chemicalType = "PAC"
@@ -122,7 +122,7 @@ class RecordsFragment : Fragment() {
             entryName = "Clarified Water Turbidity",
             plantName = "Plant",
             operatorName = "Operator",
-            turbidityReadings = 2.0,
+            turbidityReading = 2.0,
             additionalNotes = "Hello, I am a Note",
             creationDateTime = "09-27-24 05:31:27",
             chemicalType = "PAC"
@@ -178,12 +178,12 @@ class RecordsFragment : Fragment() {
             }
             is RawWaterTurbidityEntry -> {
                 entryName.text = entry.entryName
-                expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityReadings)
+                expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityReading)
                 timeStamp.text = entry.creationDateTime
             }
             is clarifiedWaterTurbidityEntry -> {
                 entryName.text = entry.entryName
-                expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityReadings)
+                expandableText.text = getString(R.string.turbidity_with_input,entry.turbidityReading)
                 timeStamp.text = entry.creationDateTime
             }
             is filteredWaterTurbidityEntry -> {
@@ -292,14 +292,14 @@ class RecordsFragment : Fragment() {
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
                 dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
-                dialogView.findViewById<EditText>(R.id.edit_turbidity).setText("${entry.turbidityReadings}")
+                dialogView.findViewById<EditText>(R.id.edit_turbidity).setText("${entry.turbidityReading}")
             }
             is clarifiedWaterTurbidityEntry -> {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
                 dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
-                dialogView.findViewById<EditText>(R.id.edit_turbidity).setText("${entry.turbidityReadings}")
+                dialogView.findViewById<EditText>(R.id.edit_turbidity).setText("${entry.turbidityReading}")
             }
             is filteredWaterTurbidityEntry -> {
                 titleText.text = entry.entryName
