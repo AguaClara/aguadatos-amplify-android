@@ -1,18 +1,15 @@
 package com.example.aguadatosapp
 
-import android.app.AlertDialog
-import android.view.LayoutInflater
-import android.view.View
 import android.widget.EditText
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.amplifyframework.auth.AuthUserAttribute
 import com.amplifyframework.auth.AuthUserAttributeKey
+import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.kotlin.core.Amplify
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -51,11 +48,17 @@ class SignupActivity : ComponentActivity() {
 
     private fun signUpUser(name: String, password: String, email: String) {
         // Set up user attributes with email
-        val attributes = listOf(AuthUserAttribute(AuthUserAttributeKey.email(), email))
+        val attributes = listOf(
+            AuthUserAttribute(AuthUserAttributeKey.email(), email),
+            AuthUserAttribute(AuthUserAttributeKey.name(), name)
+        )
+        val options = AuthSignUpOptions.builder()
+            .userAttributes(attributes)
+            .build()
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val result = Amplify.Auth.signUp(name, password, attributes)
+                val result = Amplify.Auth.signUp(email, password, options)
                 withContext(Dispatchers.Main) {
                     if (result.isSignUpComplete) {
                         Log.i("SignupActivity", "Sign-up succeeded")
@@ -63,7 +66,7 @@ class SignupActivity : ComponentActivity() {
 
                         // Navigate to confirmation activity if necessary
                         val intent = Intent(this@SignupActivity, ConfirmSignUpActivity::class.java)
-                        intent.putExtra("name", name)
+                        intent.putExtra("email", email)
                         startActivity(intent)
                     } else {
                         Log.i("SignupActivity", "Sign-up requires confirmation")
@@ -76,6 +79,5 @@ class SignupActivity : ComponentActivity() {
                 }
             }
         }
-        dialog.show()
     }
 }
