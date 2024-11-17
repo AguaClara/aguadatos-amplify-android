@@ -7,7 +7,7 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 
 # FUTURE IMPROVEMENT: A strategy to bypasses the lack of support would be to create an intermediary
 # model called Entry to store metadata like author, createdAt, Entry type discriminator. Each
-# entry's actual store are stored in their respective Entry models. However, this approach would
+# entry's actual data are stored in their respective Entry models. However, this approach would
 # require GraphQL resolvers, which are beyond our current scope and beta testing deadline.
 
 enum ChemicalType {
@@ -29,8 +29,8 @@ enum CoagType {
   ALUM_SULFATE: Aluminium Sulfate.
   POLY_ALUM_CHLOR: Poly Aluminium Chloride.
   """
-  ALUM_SULFATE # Aluminium Sulfate
-  POLY_ALUM_CHLOR # Poly Aluminium Chloride
+  ALUM_SULFATE
+  POLY_ALUM_CHLOR
 }
 
 enum ActiveTank {
