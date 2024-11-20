@@ -102,19 +102,55 @@
                 android:text="• Turbidity Readings: "
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <EditText
-                android:id="@+id/edit_turbidity"
+                android:id="@+id/edit_reading0"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="5"
                 android:digits="0123456789."/>
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/edit_reading1"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="NTU"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:inputType="number"
+                android:maxLength="5"
+                android:digits="0123456789."/>
+            <EditText
+                android:id="@+id/edit_reading2"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="5"
+                android:digits="0123456789."/>
+            <EditText
+                android:id="@+id/edit_reading3"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="5"
+                android:digits="0123456789."/>
+            <EditText
+                android:id="@+id/edit_reading4"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="5"
+                android:digits="0123456789."/>
+            <EditText
+                android:id="@+id/edit_reading5"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="5"
+                android:digits="0123456789."/>
         </LinearLayout>
 
         <LinearLayout

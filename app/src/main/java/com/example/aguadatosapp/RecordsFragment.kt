@@ -252,7 +252,7 @@ class RecordsFragment : Fragment() {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_clarified_water_turbidity_entry,null)
             }
             is filteredWaterTurbidityEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_raw_water_turbidity_entry,null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_filtered_water_turbidity_entry,null)
             }
             is CoagulantCalibrationEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_coagulant_calibration_entry, null)
@@ -306,7 +306,16 @@ class RecordsFragment : Fragment() {
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
                 dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
-                dialogView.findViewById<EditText>(R.id.edit_turbidity).setText("${entry.turbidityReadings[0]}")
+                val editTextViews = intArrayOf(R.id.edit_reading0,R.id.edit_reading1,
+                    R.id.edit_reading2,R.id.edit_reading3,R.id.edit_reading4,R.id.edit_reading5)
+                for (i in 0 until 6) {
+                    val editTextView = dialogView.findViewById<EditText>(editTextViews[i])
+                    if (i < entry.turbidityReadings.size) {
+                        editTextView.setText("${entry.turbidityReadings[i]}")
+                    } else {
+//                        editTextView.visibility = View.INVISIBLE
+                    }
+                }
             }
             is CoagulantCalibrationEntry -> {
                 titleText.text = entry.entryName
