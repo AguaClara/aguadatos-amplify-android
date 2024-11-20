@@ -27,6 +27,7 @@ class RecordsFragment : Fragment() {
     private lateinit var dummyRawWaterEntry: RawWaterTurbidityEntry
     private lateinit var dummyclarifiedWaterTurbidityEntry: clarifiedWaterTurbidityEntry
     private lateinit var dummyfilteredWaterTurbidityEntry: filteredWaterTurbidityEntry
+    private var isPopupOpen = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -166,7 +167,10 @@ class RecordsFragment : Fragment() {
         val timeStamp = entryLayout.findViewById<TextView>(R.id.timestamp)
         val editButton = entryLayout.findViewById<TextView>(R.id.edit_button)
         editButton.setOnClickListener {
-            showEditEntryDialog(entry)
+            if (!isPopupOpen) {
+                showEditEntryDialog(container, entryLayout, entry)
+            }
+            isPopupOpen = true
         }
 
         // Read data into front end display
@@ -240,7 +244,7 @@ class RecordsFragment : Fragment() {
         container.addView(entryLayout)
     }
 
-    private fun showEditEntryDialog(entry: Entry) {
+    private fun showEditEntryDialog(container: LinearLayout, entryLayout : View, entry: Entry) {
         val dialogView : View = when (entry) {
             is PlantFlowEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_plant_flow_entry, null)
@@ -378,20 +382,25 @@ class RecordsFragment : Fragment() {
             .create()
 
         closeButton.setOnClickListener {
-            dialog.dismiss()  // Close the dialog
+            isPopupOpen = false
+            dialog.dismiss()
         }
 
-        // FIXME
         deletedButton.setOnClickListener {
-            dialog.dismiss()  // Delete entry
+            container.removeView(entryLayout)
+            // TODO: Delete entry
+            isPopupOpen = false
+            dialog.dismiss()
         }
 
-        // FIXME
         saveButton.setOnClickListener {
-            dialog.dismiss()  // Close the dialog after saving
+            // TODO: Save entry
+            isPopupOpen = false
+            dialog.dismiss()
         }
 
         // Show the dialog
+        dialog.dismiss()
         dialog.show()
     }
 }
