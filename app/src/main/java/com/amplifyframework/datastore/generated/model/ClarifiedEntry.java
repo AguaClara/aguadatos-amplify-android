@@ -17,22 +17,24 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the FeedbackEntry type in your schema. */
+/** This is an auto generated class representing the ClarifiedEntry type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "FeedbackEntries", type = Model.Type.USER, version = 1)
-@Index(name = "FeedbackByPlant", fields = {"plantID","createdAt"})
-@Index(name = "FeedbackByOperator", fields = {"operatorID","createdAt"})
-public final class FeedbackEntry implements Model {
-  public static final QueryField ID = field("FeedbackEntry", "id");
-  public static final QueryField CREATED_AT = field("FeedbackEntry", "createdAt");
-  public static final QueryField PLANT_ID = field("FeedbackEntry", "plantID");
-  public static final QueryField OPERATOR_ID = field("FeedbackEntry", "operatorID");
-  public static final QueryField FEEDBACK = field("FeedbackEntry", "feedback");
+@ModelConfig(pluralName = "ClarifiedEntries", type = Model.Type.USER, version = 1)
+@Index(name = "ClarifiedByPlant", fields = {"plantID","createdAt"})
+@Index(name = "ClarifiedByOperator", fields = {"operatorID","createdAt"})
+public final class ClarifiedEntry implements Model {
+  public static final QueryField ID = field("ClarifiedEntry", "id");
+  public static final QueryField CREATED_AT = field("ClarifiedEntry", "createdAt");
+  public static final QueryField PLANT_ID = field("ClarifiedEntry", "plantID");
+  public static final QueryField OPERATOR_ID = field("ClarifiedEntry", "operatorID");
+  public static final QueryField TURBIDITY = field("ClarifiedEntry", "turbidity");
+  public static final QueryField NOTES = field("ClarifiedEntry", "notes");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="AWSDateTime", isRequired = true) Temporal.DateTime createdAt;
   private final @ModelField(targetType="ID", isRequired = true) String plantID;
   private final @ModelField(targetType="ID", isRequired = true) String operatorID;
-  private final @ModelField(targetType="String", isRequired = true) String feedback;
+  private final @ModelField(targetType="Float", isRequired = true) Double turbidity;
+  private final @ModelField(targetType="String") String notes;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   /** @deprecated This API is internal to Amplify and should not be used. */
   @Deprecated
@@ -56,20 +58,25 @@ public final class FeedbackEntry implements Model {
       return operatorID;
   }
   
-  public String getFeedback() {
-      return feedback;
+  public Double getTurbidity() {
+      return turbidity;
+  }
+  
+  public String getNotes() {
+      return notes;
   }
   
   public Temporal.DateTime getUpdatedAt() {
       return updatedAt;
   }
   
-  private FeedbackEntry(String id, Temporal.DateTime createdAt, String plantID, String operatorID, String feedback) {
+  private ClarifiedEntry(String id, Temporal.DateTime createdAt, String plantID, String operatorID, Double turbidity, String notes) {
     this.id = id;
     this.createdAt = createdAt;
     this.plantID = plantID;
     this.operatorID = operatorID;
-    this.feedback = feedback;
+    this.turbidity = turbidity;
+    this.notes = notes;
   }
   
   @Override
@@ -79,13 +86,14 @@ public final class FeedbackEntry implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      FeedbackEntry feedbackEntry = (FeedbackEntry) obj;
-      return ObjectsCompat.equals(getId(), feedbackEntry.getId()) &&
-              ObjectsCompat.equals(getCreatedAt(), feedbackEntry.getCreatedAt()) &&
-              ObjectsCompat.equals(getPlantId(), feedbackEntry.getPlantId()) &&
-              ObjectsCompat.equals(getOperatorId(), feedbackEntry.getOperatorId()) &&
-              ObjectsCompat.equals(getFeedback(), feedbackEntry.getFeedback()) &&
-              ObjectsCompat.equals(getUpdatedAt(), feedbackEntry.getUpdatedAt());
+      ClarifiedEntry clarifiedEntry = (ClarifiedEntry) obj;
+      return ObjectsCompat.equals(getId(), clarifiedEntry.getId()) &&
+              ObjectsCompat.equals(getCreatedAt(), clarifiedEntry.getCreatedAt()) &&
+              ObjectsCompat.equals(getPlantId(), clarifiedEntry.getPlantId()) &&
+              ObjectsCompat.equals(getOperatorId(), clarifiedEntry.getOperatorId()) &&
+              ObjectsCompat.equals(getTurbidity(), clarifiedEntry.getTurbidity()) &&
+              ObjectsCompat.equals(getNotes(), clarifiedEntry.getNotes()) &&
+              ObjectsCompat.equals(getUpdatedAt(), clarifiedEntry.getUpdatedAt());
       }
   }
   
@@ -96,7 +104,8 @@ public final class FeedbackEntry implements Model {
       .append(getCreatedAt())
       .append(getPlantId())
       .append(getOperatorId())
-      .append(getFeedback())
+      .append(getTurbidity())
+      .append(getNotes())
       .append(getUpdatedAt())
       .toString()
       .hashCode();
@@ -105,12 +114,13 @@ public final class FeedbackEntry implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("FeedbackEntry {")
+      .append("ClarifiedEntry {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("plantID=" + String.valueOf(getPlantId()) + ", ")
       .append("operatorID=" + String.valueOf(getOperatorId()) + ", ")
-      .append("feedback=" + String.valueOf(getFeedback()) + ", ")
+      .append("turbidity=" + String.valueOf(getTurbidity()) + ", ")
+      .append("notes=" + String.valueOf(getNotes()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
@@ -128,9 +138,10 @@ public final class FeedbackEntry implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    */
-  public static FeedbackEntry justId(String id) {
-    return new FeedbackEntry(
+  public static ClarifiedEntry justId(String id) {
+    return new ClarifiedEntry(
       id,
+      null,
       null,
       null,
       null,
@@ -143,7 +154,8 @@ public final class FeedbackEntry implements Model {
       createdAt,
       plantID,
       operatorID,
-      feedback);
+      turbidity,
+      notes);
   }
   public interface CreatedAtStep {
     PlantIdStep createdAt(Temporal.DateTime createdAt);
@@ -156,49 +168,53 @@ public final class FeedbackEntry implements Model {
   
 
   public interface OperatorIdStep {
-    FeedbackStep operatorId(String operatorId);
+    TurbidityStep operatorId(String operatorId);
   }
   
 
-  public interface FeedbackStep {
-    BuildStep feedback(String feedback);
+  public interface TurbidityStep {
+    BuildStep turbidity(Double turbidity);
   }
   
 
   public interface BuildStep {
-    FeedbackEntry build();
+    ClarifiedEntry build();
     BuildStep id(String id);
+    BuildStep notes(String notes);
   }
   
 
-  public static class Builder implements CreatedAtStep, PlantIdStep, OperatorIdStep, FeedbackStep, BuildStep {
+  public static class Builder implements CreatedAtStep, PlantIdStep, OperatorIdStep, TurbidityStep, BuildStep {
     private String id;
     private Temporal.DateTime createdAt;
     private String plantID;
     private String operatorID;
-    private String feedback;
+    private Double turbidity;
+    private String notes;
     public Builder() {
       
     }
     
-    private Builder(String id, Temporal.DateTime createdAt, String plantID, String operatorID, String feedback) {
+    private Builder(String id, Temporal.DateTime createdAt, String plantID, String operatorID, Double turbidity, String notes) {
       this.id = id;
       this.createdAt = createdAt;
       this.plantID = plantID;
       this.operatorID = operatorID;
-      this.feedback = feedback;
+      this.turbidity = turbidity;
+      this.notes = notes;
     }
     
     @Override
-     public FeedbackEntry build() {
+     public ClarifiedEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new FeedbackEntry(
+        return new ClarifiedEntry(
           id,
           createdAt,
           plantID,
           operatorID,
-          feedback);
+          turbidity,
+          notes);
     }
     
     @Override
@@ -216,16 +232,22 @@ public final class FeedbackEntry implements Model {
     }
     
     @Override
-     public FeedbackStep operatorId(String operatorId) {
+     public TurbidityStep operatorId(String operatorId) {
         Objects.requireNonNull(operatorId);
         this.operatorID = operatorId;
         return this;
     }
     
     @Override
-     public BuildStep feedback(String feedback) {
-        Objects.requireNonNull(feedback);
-        this.feedback = feedback;
+     public BuildStep turbidity(Double turbidity) {
+        Objects.requireNonNull(turbidity);
+        this.turbidity = turbidity;
+        return this;
+    }
+    
+    @Override
+     public BuildStep notes(String notes) {
+        this.notes = notes;
         return this;
     }
     
@@ -241,12 +263,12 @@ public final class FeedbackEntry implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, Temporal.DateTime createdAt, String plantId, String operatorId, String feedback) {
-      super(id, createdAt, plantID, operatorID, feedback);
+    private CopyOfBuilder(String id, Temporal.DateTime createdAt, String plantId, String operatorId, Double turbidity, String notes) {
+      super(id, createdAt, plantID, operatorID, turbidity, notes);
       Objects.requireNonNull(createdAt);
       Objects.requireNonNull(plantID);
       Objects.requireNonNull(operatorID);
-      Objects.requireNonNull(feedback);
+      Objects.requireNonNull(turbidity);
     }
     
     @Override
@@ -265,15 +287,20 @@ public final class FeedbackEntry implements Model {
     }
     
     @Override
-     public CopyOfBuilder feedback(String feedback) {
-      return (CopyOfBuilder) super.feedback(feedback);
+     public CopyOfBuilder turbidity(Double turbidity) {
+      return (CopyOfBuilder) super.turbidity(turbidity);
+    }
+    
+    @Override
+     public CopyOfBuilder notes(String notes) {
+      return (CopyOfBuilder) super.notes(notes);
     }
   }
   
 
-  public static class FeedbackEntryIdentifier extends ModelIdentifier<FeedbackEntry> {
+  public static class ClarifiedEntryIdentifier extends ModelIdentifier<ClarifiedEntry> {
     private static final long serialVersionUID = 1L;
-    public FeedbackEntryIdentifier(String id) {
+    public ClarifiedEntryIdentifier(String id) {
       super(id);
     }
   }
