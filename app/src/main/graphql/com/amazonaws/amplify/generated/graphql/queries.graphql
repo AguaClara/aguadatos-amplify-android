@@ -29,6 +29,16 @@ query GetPlant($id: ID!) {
       startedAt
       __typename
     }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     feedbackEntries {
       nextToken
       startedAt
@@ -114,6 +124,16 @@ query GetOperator($id: ID!) {
       __typename
     }
     filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
       nextToken
       startedAt
       __typename
@@ -566,6 +586,270 @@ query SyncFilteredEntries(
   }
 }
 
+query GetCalibrationEntry($id: ID!) {
+  getCalibrationEntry(id: $id) {
+    id
+    createdAt
+    plantID
+    operatorID
+    chemicalType
+    coagType
+    sliderPosition
+    inflowRate
+    startVolume
+    endVolume
+    timeElapsed
+    dose
+    flowRate
+    activeTank
+    tankVolume
+    doseEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    calibrationEntryDoseEntryId
+    __typename
+  }
+}
+
+query ListCalibrationEntries(
+  $filter: ModelCalibrationEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCalibrationEntries(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncCalibrationEntries(
+  $filter: ModelCalibrationEntryFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncCalibrationEntries(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query GetDoseEntry($id: ID!) {
+  getDoseEntry(id: $id) {
+    id
+    createdAt
+    plantID
+    operatorID
+    targetDose
+    updatedSliderPosition
+    updatedFlowRate
+    calibrationEntryID
+    calibrationEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+query ListDoseEntries(
+  $filter: ModelDoseEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoseEntries(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncDoseEntries(
+  $filter: ModelDoseEntryFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncDoseEntries(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
 query GetFeedbackEntry($id: ID!) {
   getFeedbackEntry(id: $id) {
     id
@@ -957,6 +1241,205 @@ query FilteredEntriesByOperatorIDAndCreatedAt(
       operatorID
       turbidities
       notes
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query CalibrationEntriesByPlantIDAndCreatedAt(
+  $plantID: ID!
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelCalibrationEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  calibrationEntriesByPlantIDAndCreatedAt(
+    plantID: $plantID
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query CalibrationEntriesByOperatorIDAndCreatedAt(
+  $operatorID: ID!
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelCalibrationEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  calibrationEntriesByOperatorIDAndCreatedAt(
+    operatorID: $operatorID
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query DoseEntriesByPlantIDAndCreatedAt(
+  $plantID: ID!
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoseEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doseEntriesByPlantIDAndCreatedAt(
+    plantID: $plantID
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query DoseEntriesByOperatorIDAndCreatedAt(
+  $operatorID: ID!
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoseEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doseEntriesByOperatorIDAndCreatedAt(
+    operatorID: $operatorID
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query DoseEntriesByCalibrationEntryID(
+  $calibrationEntryID: ID!
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoseEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doseEntriesByCalibrationEntryID(
+    calibrationEntryID: $calibrationEntryID
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
       updatedAt
       _version
       _deleted

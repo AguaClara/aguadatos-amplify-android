@@ -29,6 +29,16 @@ subscription OnCreatePlant($filter: ModelSubscriptionPlantFilterInput) {
       startedAt
       __typename
     }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     feedbackEntries {
       nextToken
       startedAt
@@ -68,6 +78,16 @@ subscription OnUpdatePlant($filter: ModelSubscriptionPlantFilterInput) {
       __typename
     }
     filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
       nextToken
       startedAt
       __typename
@@ -115,6 +135,16 @@ subscription OnDeletePlant($filter: ModelSubscriptionPlantFilterInput) {
       startedAt
       __typename
     }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     feedbackEntries {
       nextToken
       startedAt
@@ -150,6 +180,16 @@ subscription OnCreateOperator($filter: ModelSubscriptionOperatorFilterInput) {
       __typename
     }
     filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
       nextToken
       startedAt
       __typename
@@ -203,6 +243,16 @@ subscription OnUpdateOperator($filter: ModelSubscriptionOperatorFilterInput) {
       startedAt
       __typename
     }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     feedbackEntries {
       nextToken
       startedAt
@@ -248,6 +298,16 @@ subscription OnDeleteOperator($filter: ModelSubscriptionOperatorFilterInput) {
       __typename
     }
     filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
       nextToken
       startedAt
       __typename
@@ -709,6 +769,384 @@ subscription OnDeleteFilteredEntry(
     operatorID
     turbidities
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnCreateCalibrationEntry(
+  $filter: ModelSubscriptionCalibrationEntryFilterInput
+) {
+  onCreateCalibrationEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    chemicalType
+    coagType
+    sliderPosition
+    inflowRate
+    startVolume
+    endVolume
+    timeElapsed
+    dose
+    flowRate
+    activeTank
+    tankVolume
+    doseEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    calibrationEntryDoseEntryId
+    __typename
+  }
+}
+
+subscription OnUpdateCalibrationEntry(
+  $filter: ModelSubscriptionCalibrationEntryFilterInput
+) {
+  onUpdateCalibrationEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    chemicalType
+    coagType
+    sliderPosition
+    inflowRate
+    startVolume
+    endVolume
+    timeElapsed
+    dose
+    flowRate
+    activeTank
+    tankVolume
+    doseEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    calibrationEntryDoseEntryId
+    __typename
+  }
+}
+
+subscription OnDeleteCalibrationEntry(
+  $filter: ModelSubscriptionCalibrationEntryFilterInput
+) {
+  onDeleteCalibrationEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    chemicalType
+    coagType
+    sliderPosition
+    inflowRate
+    startVolume
+    endVolume
+    timeElapsed
+    dose
+    flowRate
+    activeTank
+    tankVolume
+    doseEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    calibrationEntryDoseEntryId
+    __typename
+  }
+}
+
+subscription OnCreateDoseEntry($filter: ModelSubscriptionDoseEntryFilterInput) {
+  onCreateDoseEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    targetDose
+    updatedSliderPosition
+    updatedFlowRate
+    calibrationEntryID
+    calibrationEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnUpdateDoseEntry($filter: ModelSubscriptionDoseEntryFilterInput) {
+  onUpdateDoseEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    targetDose
+    updatedSliderPosition
+    updatedFlowRate
+    calibrationEntryID
+    calibrationEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnDeleteDoseEntry($filter: ModelSubscriptionDoseEntryFilterInput) {
+  onDeleteDoseEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    targetDose
+    updatedSliderPosition
+    updatedFlowRate
+    calibrationEntryID
+    calibrationEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
     plant {
       id
       name

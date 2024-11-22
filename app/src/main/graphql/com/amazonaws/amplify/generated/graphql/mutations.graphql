@@ -32,6 +32,16 @@ mutation CreatePlant(
       startedAt
       __typename
     }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     feedbackEntries {
       nextToken
       startedAt
@@ -74,6 +84,16 @@ mutation UpdatePlant(
       __typename
     }
     filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
       nextToken
       startedAt
       __typename
@@ -124,6 +144,16 @@ mutation DeletePlant(
       startedAt
       __typename
     }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     feedbackEntries {
       nextToken
       startedAt
@@ -162,6 +192,16 @@ mutation CreateOperator(
       __typename
     }
     filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
       nextToken
       startedAt
       __typename
@@ -218,6 +258,16 @@ mutation UpdateOperator(
       startedAt
       __typename
     }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     feedbackEntries {
       nextToken
       startedAt
@@ -266,6 +316,16 @@ mutation DeleteOperator(
       __typename
     }
     filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    calibrationEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    doseEntries {
       nextToken
       startedAt
       __typename
@@ -745,6 +805,396 @@ mutation DeleteFilteredEntry(
     operatorID
     turbidities
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation CreateCalibrationEntry(
+  $input: CreateCalibrationEntryInput!
+  $condition: ModelCalibrationEntryConditionInput
+) {
+  createCalibrationEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    chemicalType
+    coagType
+    sliderPosition
+    inflowRate
+    startVolume
+    endVolume
+    timeElapsed
+    dose
+    flowRate
+    activeTank
+    tankVolume
+    doseEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    calibrationEntryDoseEntryId
+    __typename
+  }
+}
+
+mutation UpdateCalibrationEntry(
+  $input: UpdateCalibrationEntryInput!
+  $condition: ModelCalibrationEntryConditionInput
+) {
+  updateCalibrationEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    chemicalType
+    coagType
+    sliderPosition
+    inflowRate
+    startVolume
+    endVolume
+    timeElapsed
+    dose
+    flowRate
+    activeTank
+    tankVolume
+    doseEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    calibrationEntryDoseEntryId
+    __typename
+  }
+}
+
+mutation DeleteCalibrationEntry(
+  $input: DeleteCalibrationEntryInput!
+  $condition: ModelCalibrationEntryConditionInput
+) {
+  deleteCalibrationEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    chemicalType
+    coagType
+    sliderPosition
+    inflowRate
+    startVolume
+    endVolume
+    timeElapsed
+    dose
+    flowRate
+    activeTank
+    tankVolume
+    doseEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      targetDose
+      updatedSliderPosition
+      updatedFlowRate
+      calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    calibrationEntryDoseEntryId
+    __typename
+  }
+}
+
+mutation CreateDoseEntry(
+  $input: CreateDoseEntryInput!
+  $condition: ModelDoseEntryConditionInput
+) {
+  createDoseEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    targetDose
+    updatedSliderPosition
+    updatedFlowRate
+    calibrationEntryID
+    calibrationEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation UpdateDoseEntry(
+  $input: UpdateDoseEntryInput!
+  $condition: ModelDoseEntryConditionInput
+) {
+  updateDoseEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    targetDose
+    updatedSliderPosition
+    updatedFlowRate
+    calibrationEntryID
+    calibrationEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation DeleteDoseEntry(
+  $input: DeleteDoseEntryInput!
+  $condition: ModelDoseEntryConditionInput
+) {
+  deleteDoseEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    targetDose
+    updatedSliderPosition
+    updatedFlowRate
+    calibrationEntryID
+    calibrationEntry {
+      id
+      createdAt
+      plantID
+      operatorID
+      chemicalType
+      coagType
+      sliderPosition
+      inflowRate
+      startVolume
+      endVolume
+      timeElapsed
+      dose
+      flowRate
+      activeTank
+      tankVolume
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      calibrationEntryDoseEntryId
+      __typename
+    }
     plant {
       id
       name

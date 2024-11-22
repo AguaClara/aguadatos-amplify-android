@@ -31,6 +31,8 @@ public final class Plant implements Model {
   private final @ModelField(targetType="RawEntry") @HasMany(associatedWith = "plant", type = RawEntry.class) List<RawEntry> rawEntries = null;
   private final @ModelField(targetType="ClarifiedEntry") @HasMany(associatedWith = "plant", type = ClarifiedEntry.class) List<ClarifiedEntry> clarifiedEntries = null;
   private final @ModelField(targetType="FilteredEntry") @HasMany(associatedWith = "plant", type = FilteredEntry.class) List<FilteredEntry> filteredEntries = null;
+  private final @ModelField(targetType="CalibrationEntry") @HasMany(associatedWith = "plant", type = CalibrationEntry.class) List<CalibrationEntry> calibrationEntries = null;
+  private final @ModelField(targetType="DoseEntry") @HasMany(associatedWith = "plant", type = DoseEntry.class) List<DoseEntry> doseEntries = null;
   private final @ModelField(targetType="FeedbackEntry") @HasMany(associatedWith = "plant", type = FeedbackEntry.class) List<FeedbackEntry> feedbackEntries = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -66,6 +68,14 @@ public final class Plant implements Model {
   
   public List<FilteredEntry> getFilteredEntries() {
       return filteredEntries;
+  }
+  
+  public List<CalibrationEntry> getCalibrationEntries() {
+      return calibrationEntries;
+  }
+  
+  public List<DoseEntry> getDoseEntries() {
+      return doseEntries;
   }
   
   public List<FeedbackEntry> getFeedbackEntries() {

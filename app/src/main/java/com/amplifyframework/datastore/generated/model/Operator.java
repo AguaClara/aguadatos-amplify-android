@@ -33,6 +33,8 @@ public final class Operator implements Model {
   private final @ModelField(targetType="RawEntry") @HasMany(associatedWith = "operator", type = RawEntry.class) List<RawEntry> rawEntries = null;
   private final @ModelField(targetType="ClarifiedEntry") @HasMany(associatedWith = "operator", type = ClarifiedEntry.class) List<ClarifiedEntry> clarifiedEntries = null;
   private final @ModelField(targetType="FilteredEntry") @HasMany(associatedWith = "operator", type = FilteredEntry.class) List<FilteredEntry> filteredEntries = null;
+  private final @ModelField(targetType="CalibrationEntry") @HasMany(associatedWith = "operator", type = CalibrationEntry.class) List<CalibrationEntry> calibrationEntries = null;
+  private final @ModelField(targetType="DoseEntry") @HasMany(associatedWith = "operator", type = DoseEntry.class) List<DoseEntry> doseEntries = null;
   private final @ModelField(targetType="FeedbackEntry") @HasMany(associatedWith = "operator", type = FeedbackEntry.class) List<FeedbackEntry> feedbackEntries = null;
   private final @ModelField(targetType="Plant") @BelongsTo(targetName = "plantID", targetNames = {"plantID"}, type = Plant.class) Plant plant;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
@@ -65,6 +67,14 @@ public final class Operator implements Model {
   
   public List<FilteredEntry> getFilteredEntries() {
       return filteredEntries;
+  }
+  
+  public List<CalibrationEntry> getCalibrationEntries() {
+      return calibrationEntries;
+  }
+  
+  public List<DoseEntry> getDoseEntries() {
+      return doseEntries;
   }
   
   public List<FeedbackEntry> getFeedbackEntries() {
