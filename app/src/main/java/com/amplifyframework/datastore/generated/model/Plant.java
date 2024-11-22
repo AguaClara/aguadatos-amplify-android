@@ -26,10 +26,12 @@ public final class Plant implements Model {
   public static final QueryField NAME = field("Plant", "name");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
-  private final @ModelField(targetType="Operator") @HasMany(associatedWith = "plantID", type = Operator.class) List<Operator> operators = null;
+  private final @ModelField(targetType="Operator") @HasMany(associatedWith = "plant", type = Operator.class) List<Operator> operators = null;
   private final @ModelField(targetType="InflowEntry") @HasMany(associatedWith = "plant", type = InflowEntry.class) List<InflowEntry> inflowEntries = null;
   private final @ModelField(targetType="RawEntry") @HasMany(associatedWith = "plant", type = RawEntry.class) List<RawEntry> rawEntries = null;
   private final @ModelField(targetType="ClarifiedEntry") @HasMany(associatedWith = "plant", type = ClarifiedEntry.class) List<ClarifiedEntry> clarifiedEntries = null;
+  private final @ModelField(targetType="FilteredEntry") @HasMany(associatedWith = "plant", type = FilteredEntry.class) List<FilteredEntry> filteredEntries = null;
+  private final @ModelField(targetType="FeedbackEntry") @HasMany(associatedWith = "plant", type = FeedbackEntry.class) List<FeedbackEntry> feedbackEntries = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   /** @deprecated This API is internal to Amplify and should not be used. */
@@ -60,6 +62,14 @@ public final class Plant implements Model {
   
   public List<ClarifiedEntry> getClarifiedEntries() {
       return clarifiedEntries;
+  }
+  
+  public List<FilteredEntry> getFilteredEntries() {
+      return filteredEntries;
+  }
+  
+  public List<FeedbackEntry> getFeedbackEntries() {
+      return feedbackEntries;
   }
   
   public Temporal.DateTime getCreatedAt() {

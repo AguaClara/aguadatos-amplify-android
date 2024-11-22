@@ -24,6 +24,16 @@ subscription OnCreatePlant($filter: ModelSubscriptionPlantFilterInput) {
       startedAt
       __typename
     }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -53,6 +63,16 @@ subscription OnUpdatePlant($filter: ModelSubscriptionPlantFilterInput) {
       __typename
     }
     clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
       nextToken
       startedAt
       __typename
@@ -90,6 +110,16 @@ subscription OnDeletePlant($filter: ModelSubscriptionPlantFilterInput) {
       startedAt
       __typename
     }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -117,6 +147,26 @@ subscription OnCreateOperator($filter: ModelSubscriptionOperatorFilterInput) {
     clarifiedEntries {
       nextToken
       startedAt
+      __typename
+    }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
     createdAt
@@ -148,6 +198,26 @@ subscription OnUpdateOperator($filter: ModelSubscriptionOperatorFilterInput) {
       startedAt
       __typename
     }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -175,6 +245,26 @@ subscription OnDeleteOperator($filter: ModelSubscriptionOperatorFilterInput) {
     clarifiedEntries {
       nextToken
       startedAt
+      __typename
+    }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
     createdAt
@@ -502,6 +592,237 @@ subscription OnDeleteClarifiedEntry(
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnCreateFilteredEntry(
+  $filter: ModelSubscriptionFilteredEntryFilterInput
+) {
+  onCreateFilteredEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidities
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnUpdateFilteredEntry(
+  $filter: ModelSubscriptionFilteredEntryFilterInput
+) {
+  onUpdateFilteredEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidities
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnDeleteFilteredEntry(
+  $filter: ModelSubscriptionFilteredEntryFilterInput
+) {
+  onDeleteFilteredEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidities
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnCreateFeedbackEntry(
+  $filter: ModelSubscriptionFeedbackEntryFilterInput
+) {
+  onCreateFeedbackEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    feedback
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnUpdateFeedbackEntry(
+  $filter: ModelSubscriptionFeedbackEntryFilterInput
+) {
+  onUpdateFeedbackEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    feedback
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnDeleteFeedbackEntry(
+  $filter: ModelSubscriptionFeedbackEntryFilterInput
+) {
+  onDeleteFeedbackEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    feedback
     plant {
       id
       name

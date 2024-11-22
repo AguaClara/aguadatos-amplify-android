@@ -24,6 +24,16 @@ query GetPlant($id: ID!) {
       startedAt
       __typename
     }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -101,6 +111,26 @@ query GetOperator($id: ID!) {
     clarifiedEntries {
       nextToken
       startedAt
+      __typename
+    }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
     createdAt
@@ -443,6 +473,189 @@ query SyncClarifiedEntries(
   }
 }
 
+query GetFilteredEntry($id: ID!) {
+  getFilteredEntry(id: $id) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidities
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+query ListFilteredEntries(
+  $filter: ModelFilteredEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFilteredEntries(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      turbidities
+      notes
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncFilteredEntries(
+  $filter: ModelFilteredEntryFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncFilteredEntries(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      turbidities
+      notes
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query GetFeedbackEntry($id: ID!) {
+  getFeedbackEntry(id: $id) {
+    id
+    createdAt
+    plantID
+    operatorID
+    feedback
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+query ListFeedbackEntries(
+  $filter: ModelFeedbackEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFeedbackEntries(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      feedback
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncFeedbackEntries(
+  $filter: ModelFeedbackEntryFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncFeedbackEntries(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      feedback
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
 query OperatorsByPlantIDAndId(
   $plantID: ID!
   $id: ModelIDKeyConditionInput
@@ -674,6 +887,144 @@ query ClarifiedEntriesByOperatorIDAndCreatedAt(
       operatorID
       turbidity
       notes
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query FilteredEntriesByPlantIDAndCreatedAt(
+  $plantID: ID!
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelFilteredEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  filteredEntriesByPlantIDAndCreatedAt(
+    plantID: $plantID
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      turbidities
+      notes
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query FilteredEntriesByOperatorIDAndCreatedAt(
+  $operatorID: ID!
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelFilteredEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  filteredEntriesByOperatorIDAndCreatedAt(
+    operatorID: $operatorID
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      turbidities
+      notes
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query FeedbackEntriesByPlantIDAndCreatedAt(
+  $plantID: ID!
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelFeedbackEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  feedbackEntriesByPlantIDAndCreatedAt(
+    plantID: $plantID
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      feedback
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query FeedbackEntriesByOperatorIDAndCreatedAt(
+  $operatorID: ID!
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelFeedbackEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  feedbackEntriesByOperatorIDAndCreatedAt(
+    operatorID: $operatorID
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      createdAt
+      plantID
+      operatorID
+      feedback
       updatedAt
       _version
       _deleted

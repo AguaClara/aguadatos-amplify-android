@@ -66,6 +66,8 @@ type Plant @model {
     rawEntries: [RawEntry] @hasMany(indexName: "RawByPlant", fields: ["id"])
     clarifiedEntries: [ClarifiedEntry] @hasMany(indexName: "ClarifiedByPlant", fields: ["id"])
     filteredEntries: [FilteredEntry] @hasMany(indexName: "FilteredByPlant", fields: ["id"])
+    calibrationEntries: [CalibrationEntry] @hasMany(indexName: "CalibrationByPlant", fields: ["id"])
+    doseEntries: [DoseEntry] @hasMany(indexName: "DoseByPlant", fields: ["id"])
     feedbackEntries: [FeedbackEntry] @hasMany(indexName: "FeedbackByPlant", fields: ["id"])
 }
 
@@ -93,6 +95,8 @@ type Operator @model {
     rawEntries: [RawEntry] @hasMany(indexName: "RawByOperator", fields: ["id"])
     clarifiedEntries: [ClarifiedEntry] @hasMany(indexName: "ClarifiedByOperator", fields: ["id"])
     filteredEntries: [FilteredEntry] @hasMany(indexName: "FilteredByOperator", fields: ["id"])
+    calibrationEntries: [CalibrationEntry] @hasMany(indexName: "CalibrationByOperator", fields: ["id"])
+    doseEntries: [DoseEntry] @hasMany(indexName: "DoseByOperator", fields: ["id"])
     feedbackEntries: [FeedbackEntry] @hasMany(indexName: "FeedbackByOperator", fields: ["id"])
 
     # Inverse relationship where each Operator belongs to a Plant
@@ -181,6 +185,82 @@ type FilteredEntry @model {
     operatorID: ID! @index(name: "FilteredByOperator", sortKeyFields: ["createdAt"])
     turbidities: [Float]!
     notes: String
+    plant: Plant @belongsTo(fields: ["plantID"])
+    operator: Operator @belongsTo(fields: ["operatorID"])
+}
+
+type CalibrationEntry @model {
+    """
+    Represents an entry to capture calibrating dosing equipment data. The entry data are
+    partitioned into two sections - a required calibration, and an optional tank.
+
+    Fields:
+    inflowRate: Rate of water flow during calibration, which is different from InflowEntry.inflowRate.
+
+    Relationships:
+    Belongs to a Plant.
+    Belongs to an Operator.
+    Has a DoseEntry if available.
+    """
+    id: ID!
+    createdAt: AWSDateTime!
+    plantID: ID! @index(name: "CalibrationByPlant", sortKeyFields: ["createdAt"])
+    operatorID: ID! @index(name: "CalibrationByOperator", sortKeyFields: ["createdAt"])
+    chemicalType: ChemicalType!
+
+    # Calibration data
+    coagType: CoagType # Optional, only needed for COAGULANT
+    sliderPosition: Float!
+    inflowRate: Float!
+    startVolume: Float!
+    endVolume: Float!
+    timeElapsed: Int!
+    dose: Float!
+    flowRate: Float!
+
+    # Optional tank data
+    activeTank: ActiveTank
+    tankVolume: Float
+
+    # One-to-one relationship with DoseEntry
+    doseEntry: DoseEntry @hasOne
+
+    # Inverse relationship with Plant and Operator
+    plant: Plant @belongsTo(fields: ["plantID"])
+    operator: Operator @belongsTo(fields: ["operatorID"])
+}
+
+type DoseEntry @model {
+    """
+    Represents an entry to capture the dosing adjustments data.
+
+    Precondition
+    Dosing is conducted post-calibration, thus requires a identifier to its corresponding CalibrationEntry.
+
+    Fields:
+    calibrationEntryID: Identifier of the associated calibration entry.
+    calibrationEntry: The calibration entry a dose entry is based on.
+
+    Relationships:
+    Belongs to a Plant.
+    Belongs to an Operator.
+    Belongs to a CalibrationEntry.
+    """
+    id: ID!
+    createdAt: AWSDateTime!
+    plantID: ID! @index(name: "DoseByPlant", sortKeyFields: ["createdAt"])
+    operatorID: ID! @index(name: "DoseByOperator", sortKeyFields: ["createdAt"])
+
+    # Dosing data
+    targetDose: Float!
+    updatedSliderPosition: Float!
+    updatedFlowRate: Float!
+
+    # CalibrationEntry Inverse Relationships
+    calibrationEntryID: ID! @index(name: "DoseByCalibration")
+    calibrationEntry: CalibrationEntry @belongsTo(fields: ["calibrationEntryID"])
+
+    # Plant and Operator Inverse Relationships
     plant: Plant @belongsTo(fields: ["plantID"])
     operator: Operator @belongsTo(fields: ["operatorID"])
 }

@@ -27,6 +27,16 @@ mutation CreatePlant(
       startedAt
       __typename
     }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -59,6 +69,16 @@ mutation UpdatePlant(
       __typename
     }
     clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
       nextToken
       startedAt
       __typename
@@ -99,6 +119,16 @@ mutation DeletePlant(
       startedAt
       __typename
     }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -129,6 +159,26 @@ mutation CreateOperator(
     clarifiedEntries {
       nextToken
       startedAt
+      __typename
+    }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
     createdAt
@@ -163,6 +213,26 @@ mutation UpdateOperator(
       startedAt
       __typename
     }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -193,6 +263,26 @@ mutation DeleteOperator(
     clarifiedEntries {
       nextToken
       startedAt
+      __typename
+    }
+    filteredEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    feedbackEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
     createdAt
@@ -535,6 +625,243 @@ mutation DeleteClarifiedEntry(
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation CreateFilteredEntry(
+  $input: CreateFilteredEntryInput!
+  $condition: ModelFilteredEntryConditionInput
+) {
+  createFilteredEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidities
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation UpdateFilteredEntry(
+  $input: UpdateFilteredEntryInput!
+  $condition: ModelFilteredEntryConditionInput
+) {
+  updateFilteredEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidities
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation DeleteFilteredEntry(
+  $input: DeleteFilteredEntryInput!
+  $condition: ModelFilteredEntryConditionInput
+) {
+  deleteFilteredEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidities
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation CreateFeedbackEntry(
+  $input: CreateFeedbackEntryInput!
+  $condition: ModelFeedbackEntryConditionInput
+) {
+  createFeedbackEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    feedback
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation UpdateFeedbackEntry(
+  $input: UpdateFeedbackEntryInput!
+  $condition: ModelFeedbackEntryConditionInput
+) {
+  updateFeedbackEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    feedback
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation DeleteFeedbackEntry(
+  $input: DeleteFeedbackEntryInput!
+  $condition: ModelFeedbackEntryConditionInput
+) {
+  deleteFeedbackEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    feedback
     plant {
       id
       name
