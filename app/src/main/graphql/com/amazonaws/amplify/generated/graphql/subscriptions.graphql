@@ -1,311 +1,5 @@
 # this is an auto generated file. This will be overwritten
 
-subscription OnCreatePlant($filter: ModelSubscriptionPlantFilterInput) {
-  onCreatePlant(filter: $filter) {
-    id
-    name
-    operators {
-      nextToken
-      startedAt
-      __typename
-    }
-    inflowEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    rawEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    clarifiedEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    filteredEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    calibrationEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    doseEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    feedbackEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    __typename
-  }
-}
-
-subscription OnUpdatePlant($filter: ModelSubscriptionPlantFilterInput) {
-  onUpdatePlant(filter: $filter) {
-    id
-    name
-    operators {
-      nextToken
-      startedAt
-      __typename
-    }
-    inflowEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    rawEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    clarifiedEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    filteredEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    calibrationEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    doseEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    feedbackEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    __typename
-  }
-}
-
-subscription OnDeletePlant($filter: ModelSubscriptionPlantFilterInput) {
-  onDeletePlant(filter: $filter) {
-    id
-    name
-    operators {
-      nextToken
-      startedAt
-      __typename
-    }
-    inflowEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    rawEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    clarifiedEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    filteredEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    calibrationEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    doseEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    feedbackEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    __typename
-  }
-}
-
-subscription OnCreateOperator($filter: ModelSubscriptionOperatorFilterInput) {
-  onCreateOperator(filter: $filter) {
-    id
-    name
-    plantID
-    inflowEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    rawEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    clarifiedEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    filteredEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    calibrationEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    doseEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    feedbackEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    __typename
-  }
-}
-
-subscription OnUpdateOperator($filter: ModelSubscriptionOperatorFilterInput) {
-  onUpdateOperator(filter: $filter) {
-    id
-    name
-    plantID
-    inflowEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    rawEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    clarifiedEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    filteredEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    calibrationEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    doseEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    feedbackEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    __typename
-  }
-}
-
-subscription OnDeleteOperator($filter: ModelSubscriptionOperatorFilterInput) {
-  onDeleteOperator(filter: $filter) {
-    id
-    name
-    plantID
-    inflowEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    rawEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    clarifiedEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    filteredEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    calibrationEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    doseEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    feedbackEntries {
-      nextToken
-      startedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    __typename
-  }
-}
-
 subscription OnCreateInflowEntry(
   $filter: ModelSubscriptionInflowEntryFilterInput
 ) {
@@ -316,6 +10,27 @@ subscription OnCreateInflowEntry(
     operatorID
     inflowRate
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -334,6 +49,27 @@ subscription OnUpdateInflowEntry(
     operatorID
     inflowRate
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -352,6 +88,27 @@ subscription OnDeleteInflowEntry(
     operatorID
     inflowRate
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -368,6 +125,27 @@ subscription OnCreateRawEntry($filter: ModelSubscriptionRawEntryFilterInput) {
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -384,6 +162,27 @@ subscription OnUpdateRawEntry($filter: ModelSubscriptionRawEntryFilterInput) {
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -400,6 +199,27 @@ subscription OnDeleteRawEntry($filter: ModelSubscriptionRawEntryFilterInput) {
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -418,6 +238,27 @@ subscription OnCreateClarifiedEntry(
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -436,6 +277,27 @@ subscription OnUpdateClarifiedEntry(
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -454,6 +316,27 @@ subscription OnDeleteClarifiedEntry(
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -472,6 +355,27 @@ subscription OnCreateFilteredEntry(
     operatorID
     turbidities
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -490,6 +394,27 @@ subscription OnUpdateFilteredEntry(
     operatorID
     turbidities
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -508,6 +433,27 @@ subscription OnDeleteFilteredEntry(
     operatorID
     turbidities
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -540,11 +486,31 @@ subscription OnCreateCalibrationEntry(
       createdAt
       plantID
       operatorID
-      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
       updatedAt
       _version
       _deleted
@@ -584,11 +550,31 @@ subscription OnUpdateCalibrationEntry(
       createdAt
       plantID
       operatorID
-      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
       updatedAt
       _version
       _deleted
@@ -628,11 +614,31 @@ subscription OnDeleteCalibrationEntry(
       createdAt
       plantID
       operatorID
-      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
       updatedAt
       _version
       _deleted
@@ -654,7 +660,6 @@ subscription OnCreateDoseEntry($filter: ModelSubscriptionDoseEntryFilterInput) {
     createdAt
     plantID
     operatorID
-    chemicalType
     targetDose
     updatedSliderPosition
     updatedFlowRate
@@ -680,6 +685,27 @@ subscription OnCreateDoseEntry($filter: ModelSubscriptionDoseEntryFilterInput) {
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
     updatedAt
@@ -696,7 +722,6 @@ subscription OnUpdateDoseEntry($filter: ModelSubscriptionDoseEntryFilterInput) {
     createdAt
     plantID
     operatorID
-    chemicalType
     targetDose
     updatedSliderPosition
     updatedFlowRate
@@ -722,6 +747,27 @@ subscription OnUpdateDoseEntry($filter: ModelSubscriptionDoseEntryFilterInput) {
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
     updatedAt
@@ -738,7 +784,6 @@ subscription OnDeleteDoseEntry($filter: ModelSubscriptionDoseEntryFilterInput) {
     createdAt
     plantID
     operatorID
-    chemicalType
     targetDose
     updatedSliderPosition
     updatedFlowRate
@@ -766,57 +811,27 @@ subscription OnDeleteDoseEntry($filter: ModelSubscriptionDoseEntryFilterInput) {
       calibrationEntryDoseEntryId
       __typename
     }
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    __typename
-  }
-}
-
-subscription OnCreateFeedbackEntry(
-  $filter: ModelSubscriptionFeedbackEntryFilterInput
-) {
-  onCreateFeedbackEntry(filter: $filter) {
-    id
-    createdAt
-    plantID
-    operatorID
-    feedback
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    __typename
-  }
-}
-
-subscription OnUpdateFeedbackEntry(
-  $filter: ModelSubscriptionFeedbackEntryFilterInput
-) {
-  onUpdateFeedbackEntry(filter: $filter) {
-    id
-    createdAt
-    plantID
-    operatorID
-    feedback
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    __typename
-  }
-}
-
-subscription OnDeleteFeedbackEntry(
-  $filter: ModelSubscriptionFeedbackEntryFilterInput
-) {
-  onDeleteFeedbackEntry(filter: $filter) {
-    id
-    createdAt
-    plantID
-    operatorID
-    feedback
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted

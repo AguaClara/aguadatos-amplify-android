@@ -143,6 +143,16 @@ query GetOperator($id: ID!) {
       startedAt
       __typename
     }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -212,6 +222,27 @@ query GetInflowEntry($id: ID!) {
     operatorID
     inflowRate
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -284,6 +315,27 @@ query GetRawEntry($id: ID!) {
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -356,6 +408,27 @@ query GetClarifiedEntry($id: ID!) {
     operatorID
     turbidity
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -428,6 +501,27 @@ query GetFilteredEntry($id: ID!) {
     operatorID
     turbidities
     notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -514,11 +608,31 @@ query GetCalibrationEntry($id: ID!) {
       createdAt
       plantID
       operatorID
-      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
       updatedAt
       _version
       _deleted
@@ -620,7 +734,6 @@ query GetDoseEntry($id: ID!) {
     createdAt
     plantID
     operatorID
-    chemicalType
     targetDose
     updatedSliderPosition
     updatedFlowRate
@@ -648,6 +761,27 @@ query GetDoseEntry($id: ID!) {
       calibrationEntryDoseEntryId
       __typename
     }
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -667,7 +801,6 @@ query ListDoseEntries(
       createdAt
       plantID
       operatorID
-      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
@@ -701,7 +834,6 @@ query SyncDoseEntries(
       createdAt
       plantID
       operatorID
-      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
@@ -725,6 +857,27 @@ query GetFeedbackEntry($id: ID!) {
     plantID
     operatorID
     feedback
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
@@ -1211,7 +1364,6 @@ query DoseEntriesByPlantIDAndCreatedAt(
       createdAt
       plantID
       operatorID
-      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
@@ -1249,7 +1401,6 @@ query DoseEntriesByOperatorIDAndCreatedAt(
       createdAt
       plantID
       operatorID
-      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
@@ -1285,7 +1436,6 @@ query DoseEntriesByCalibrationEntryID(
       createdAt
       plantID
       operatorID
-      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
