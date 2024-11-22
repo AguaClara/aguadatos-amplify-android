@@ -27,6 +27,9 @@ public final class Plant implements Model {
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
   private final @ModelField(targetType="Operator") @HasMany(associatedWith = "plantID", type = Operator.class) List<Operator> operators = null;
+  private final @ModelField(targetType="InflowEntry") @HasMany(associatedWith = "plant", type = InflowEntry.class) List<InflowEntry> inflowEntries = null;
+  private final @ModelField(targetType="RawEntry") @HasMany(associatedWith = "plant", type = RawEntry.class) List<RawEntry> rawEntries = null;
+  private final @ModelField(targetType="ClarifiedEntry") @HasMany(associatedWith = "plant", type = ClarifiedEntry.class) List<ClarifiedEntry> clarifiedEntries = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   /** @deprecated This API is internal to Amplify and should not be used. */
@@ -45,6 +48,18 @@ public final class Plant implements Model {
   
   public List<Operator> getOperators() {
       return operators;
+  }
+  
+  public List<InflowEntry> getInflowEntries() {
+      return inflowEntries;
+  }
+  
+  public List<RawEntry> getRawEntries() {
+      return rawEntries;
+  }
+  
+  public List<ClarifiedEntry> getClarifiedEntries() {
+      return clarifiedEntries;
   }
   
   public Temporal.DateTime getCreatedAt() {

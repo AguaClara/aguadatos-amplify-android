@@ -9,6 +9,21 @@ subscription OnCreatePlant($filter: ModelSubscriptionPlantFilterInput) {
       startedAt
       __typename
     }
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -23,6 +38,21 @@ subscription OnUpdatePlant($filter: ModelSubscriptionPlantFilterInput) {
     id
     name
     operators {
+      nextToken
+      startedAt
+      __typename
+    }
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
       nextToken
       startedAt
       __typename
@@ -45,6 +75,21 @@ subscription OnDeletePlant($filter: ModelSubscriptionPlantFilterInput) {
       startedAt
       __typename
     }
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -59,6 +104,21 @@ subscription OnCreateOperator($filter: ModelSubscriptionOperatorFilterInput) {
     id
     name
     plantID
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -73,6 +133,21 @@ subscription OnUpdateOperator($filter: ModelSubscriptionOperatorFilterInput) {
     id
     name
     plantID
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -87,7 +162,367 @@ subscription OnDeleteOperator($filter: ModelSubscriptionOperatorFilterInput) {
     id
     name
     plantID
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnCreateInflowEntry(
+  $filter: ModelSubscriptionInflowEntryFilterInput
+) {
+  onCreateInflowEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    inflowRate
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnUpdateInflowEntry(
+  $filter: ModelSubscriptionInflowEntryFilterInput
+) {
+  onUpdateInflowEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    inflowRate
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnDeleteInflowEntry(
+  $filter: ModelSubscriptionInflowEntryFilterInput
+) {
+  onDeleteInflowEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    inflowRate
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnCreateRawEntry($filter: ModelSubscriptionRawEntryFilterInput) {
+  onCreateRawEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnUpdateRawEntry($filter: ModelSubscriptionRawEntryFilterInput) {
+  onUpdateRawEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnDeleteRawEntry($filter: ModelSubscriptionRawEntryFilterInput) {
+  onDeleteRawEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnCreateClarifiedEntry(
+  $filter: ModelSubscriptionClarifiedEntryFilterInput
+) {
+  onCreateClarifiedEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnUpdateClarifiedEntry(
+  $filter: ModelSubscriptionClarifiedEntryFilterInput
+) {
+  onUpdateClarifiedEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+subscription OnDeleteClarifiedEntry(
+  $filter: ModelSubscriptionClarifiedEntryFilterInput
+) {
+  onDeleteClarifiedEntry(filter: $filter) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted

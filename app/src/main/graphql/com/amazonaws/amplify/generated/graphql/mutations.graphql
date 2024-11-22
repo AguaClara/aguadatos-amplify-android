@@ -12,6 +12,21 @@ mutation CreatePlant(
       startedAt
       __typename
     }
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -29,6 +44,21 @@ mutation UpdatePlant(
     id
     name
     operators {
+      nextToken
+      startedAt
+      __typename
+    }
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
       nextToken
       startedAt
       __typename
@@ -54,6 +84,21 @@ mutation DeletePlant(
       startedAt
       __typename
     }
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -71,6 +116,21 @@ mutation CreateOperator(
     id
     name
     plantID
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -88,6 +148,21 @@ mutation UpdateOperator(
     id
     name
     plantID
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
     updatedAt
     _version
@@ -105,7 +180,382 @@ mutation DeleteOperator(
     id
     name
     plantID
+    inflowEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    rawEntries {
+      nextToken
+      startedAt
+      __typename
+    }
+    clarifiedEntries {
+      nextToken
+      startedAt
+      __typename
+    }
     createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation CreateInflowEntry(
+  $input: CreateInflowEntryInput!
+  $condition: ModelInflowEntryConditionInput
+) {
+  createInflowEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    inflowRate
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation UpdateInflowEntry(
+  $input: UpdateInflowEntryInput!
+  $condition: ModelInflowEntryConditionInput
+) {
+  updateInflowEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    inflowRate
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation DeleteInflowEntry(
+  $input: DeleteInflowEntryInput!
+  $condition: ModelInflowEntryConditionInput
+) {
+  deleteInflowEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    inflowRate
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation CreateRawEntry(
+  $input: CreateRawEntryInput!
+  $condition: ModelRawEntryConditionInput
+) {
+  createRawEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation UpdateRawEntry(
+  $input: UpdateRawEntryInput!
+  $condition: ModelRawEntryConditionInput
+) {
+  updateRawEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation DeleteRawEntry(
+  $input: DeleteRawEntryInput!
+  $condition: ModelRawEntryConditionInput
+) {
+  deleteRawEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation CreateClarifiedEntry(
+  $input: CreateClarifiedEntryInput!
+  $condition: ModelClarifiedEntryConditionInput
+) {
+  createClarifiedEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation UpdateClarifiedEntry(
+  $input: UpdateClarifiedEntryInput!
+  $condition: ModelClarifiedEntryConditionInput
+) {
+  updateClarifiedEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+mutation DeleteClarifiedEntry(
+  $input: DeleteClarifiedEntryInput!
+  $condition: ModelClarifiedEntryConditionInput
+) {
+  deleteClarifiedEntry(input: $input, condition: $condition) {
+    id
+    createdAt
+    plantID
+    operatorID
+    turbidity
+    notes
+    plant {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    operator {
+      id
+      name
+      plantID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
     updatedAt
     _version
     _deleted
