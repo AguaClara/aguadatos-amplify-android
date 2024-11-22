@@ -1,6 +1,5 @@
 package com.amplifyframework.datastore.generated.model;
 
-import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.core.model.ModelIdentifier;
 
@@ -29,13 +28,6 @@ public final class Operator implements Model {
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
   private final @ModelField(targetType="ID", isRequired = true) String plantID;
-  private final @ModelField(targetType="InflowEntry") @HasMany(associatedWith = "operatorID", type = InflowEntry.class) List<InflowEntry> inflowEntries = null;
-  private final @ModelField(targetType="RawEntry") @HasMany(associatedWith = "operatorID", type = RawEntry.class) List<RawEntry> rawEntries = null;
-  private final @ModelField(targetType="ClarifiedEntry") @HasMany(associatedWith = "operatorID", type = ClarifiedEntry.class) List<ClarifiedEntry> clarifiedEntries = null;
-  private final @ModelField(targetType="FilteredEntry") @HasMany(associatedWith = "operatorID", type = FilteredEntry.class) List<FilteredEntry> filteredEntries = null;
-  private final @ModelField(targetType="CalibrationEntry") @HasMany(associatedWith = "operatorID", type = CalibrationEntry.class) List<CalibrationEntry> calibrationEntries = null;
-  private final @ModelField(targetType="DoseEntry") @HasMany(associatedWith = "operatorID", type = DoseEntry.class) List<DoseEntry> doseEntries = null;
-  private final @ModelField(targetType="FeedbackEntry") @HasMany(associatedWith = "operatorID", type = FeedbackEntry.class) List<FeedbackEntry> feedbackEntries = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   /** @deprecated This API is internal to Amplify and should not be used. */
@@ -54,34 +46,6 @@ public final class Operator implements Model {
   
   public String getPlantId() {
       return plantID;
-  }
-  
-  public List<InflowEntry> getInflowEntries() {
-      return inflowEntries;
-  }
-  
-  public List<RawEntry> getRawEntries() {
-      return rawEntries;
-  }
-  
-  public List<ClarifiedEntry> getClarifiedEntries() {
-      return clarifiedEntries;
-  }
-  
-  public List<FilteredEntry> getFilteredEntries() {
-      return filteredEntries;
-  }
-  
-  public List<CalibrationEntry> getCalibrationEntries() {
-      return calibrationEntries;
-  }
-  
-  public List<DoseEntry> getDoseEntries() {
-      return doseEntries;
-  }
-  
-  public List<FeedbackEntry> getFeedbackEntries() {
-      return feedbackEntries;
   }
   
   public Temporal.DateTime getCreatedAt() {

@@ -27,13 +27,6 @@ public final class Plant implements Model {
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
   private final @ModelField(targetType="Operator") @HasMany(associatedWith = "plantID", type = Operator.class) List<Operator> operators = null;
-  private final @ModelField(targetType="InflowEntry") @HasMany(associatedWith = "plantID", type = InflowEntry.class) List<InflowEntry> inflowEntries = null;
-  private final @ModelField(targetType="RawEntry") @HasMany(associatedWith = "plantID", type = RawEntry.class) List<RawEntry> rawEntries = null;
-  private final @ModelField(targetType="ClarifiedEntry") @HasMany(associatedWith = "plantID", type = ClarifiedEntry.class) List<ClarifiedEntry> clarifiedEntries = null;
-  private final @ModelField(targetType="FilteredEntry") @HasMany(associatedWith = "plantID", type = FilteredEntry.class) List<FilteredEntry> filteredEntries = null;
-  private final @ModelField(targetType="CalibrationEntry") @HasMany(associatedWith = "plantID", type = CalibrationEntry.class) List<CalibrationEntry> calibrationEntries = null;
-  private final @ModelField(targetType="DoseEntry") @HasMany(associatedWith = "plantID", type = DoseEntry.class) List<DoseEntry> doseEntries = null;
-  private final @ModelField(targetType="FeedbackEntry") @HasMany(associatedWith = "plantID", type = FeedbackEntry.class) List<FeedbackEntry> feedbackEntries = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   /** @deprecated This API is internal to Amplify and should not be used. */
@@ -52,34 +45,6 @@ public final class Plant implements Model {
   
   public List<Operator> getOperators() {
       return operators;
-  }
-  
-  public List<InflowEntry> getInflowEntries() {
-      return inflowEntries;
-  }
-  
-  public List<RawEntry> getRawEntries() {
-      return rawEntries;
-  }
-  
-  public List<ClarifiedEntry> getClarifiedEntries() {
-      return clarifiedEntries;
-  }
-  
-  public List<FilteredEntry> getFilteredEntries() {
-      return filteredEntries;
-  }
-  
-  public List<CalibrationEntry> getCalibrationEntries() {
-      return calibrationEntries;
-  }
-  
-  public List<DoseEntry> getDoseEntries() {
-      return doseEntries;
-  }
-  
-  public List<FeedbackEntry> getFeedbackEntries() {
-      return feedbackEntries;
   }
   
   public Temporal.DateTime getCreatedAt() {
