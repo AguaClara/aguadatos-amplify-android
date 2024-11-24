@@ -8,7 +8,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
-
         <!-- Grid layout for main buttons -->
         <GridLayout
                 android:layout_width="match_parent"
