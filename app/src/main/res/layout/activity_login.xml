@@ -133,7 +133,7 @@
 
                 <EditText
                     android:id="@+id/passwordField"
-                    android:layout_width="301dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:autofillHints="password"
                     android:background="@null"

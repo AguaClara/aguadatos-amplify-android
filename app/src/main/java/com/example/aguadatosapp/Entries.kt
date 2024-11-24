@@ -131,6 +131,6 @@ data class FeedbackEntry(
     val operatorName: String,
     val entryName: String,
     val creationDateTime: String,
-    val additionalNotes: String,
+    val additionalNotes: String, // Remove?
     val operatorFeedback: String
 ) : Entry(entryType = "9")

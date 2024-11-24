@@ -132,7 +132,7 @@ class RecordsFragment : Fragment() {
             entryName = "Filtered Water Turbidity",
             plantName = "Plant",
             operatorName = "Operator",
-            turbidityReadings = doubleArrayOf(2.0),
+            turbidityReadings = doubleArrayOf(0.0,1.0,2.0,3.0,4.0,5.0),
             additionalNotes = "Hello, I am a Note",
             creationDateTime = "09-27-24 05:31:27",
             chemicalType = "PAC"
@@ -258,23 +258,17 @@ class RecordsFragment : Fragment() {
             is filteredWaterTurbidityEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_filtered_water_turbidity_entry,null)
             }
-            is CoagulantCalibrationEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_coagulant_calibration_entry, null)
+            is CoagulantCalibrationEntry, is ChlorineCalibrationEntry -> {
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
             }
-            is CoagulantChangeDoseEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_coagulant_change_dosage_entry, null)
-            }
-            is ChlorineCalibrationEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_chlorine_calibration_entry, null)
-            }
-            is ChlorineChangeDoseEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_chlorine_change_dosage_entry, null)
+            is CoagulantChangeDoseEntry, is ChlorineChangeDoseEntry -> {
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_change_dosage_entry, null)
             }
             is FeedbackEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_feedback_entry, null)
             }
             else -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_coagulant_calibration_entry, null)
+                throw IllegalArgumentException("Unexpected entry type $entry")
             }
         }
         val closeButton = dialogView.findViewById<Button>(R.id.close_button)
@@ -334,17 +328,6 @@ class RecordsFragment : Fragment() {
                 dialogView.findViewById<EditText>(R.id.chemical_flow_rate).setText("${entry.chemicalFlowRate}")
                 dialogView.findViewById<EditText>(R.id.active_tank_volume).setText("${entry.activeTankVolume}")
             }
-            is CoagulantChangeDoseEntry -> {
-                titleText.text = entry.entryName
-                timeText.text = entry.creationDateTime
-                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
-                dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
-                dialogView.findViewById<EditText>(R.id.updated_slider_position).setText("${entry.updatedSliderPosition}")
-                dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
-                dialogView.findViewById<EditText>(R.id.target_chemical_dose).setText("${entry.targetChemicalDose}")
-                dialogView.findViewById<EditText>(R.id.chemical_flow_rate).setText("${entry.chemicalFlowRate}")
-                dialogView.findViewById<EditText>(R.id.updated_chemical_flow_rate).setText("${entry.updatedChemicalFlowRate}")
-            }
             is ChlorineCalibrationEntry -> {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
@@ -357,6 +340,17 @@ class RecordsFragment : Fragment() {
                 dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
                 dialogView.findViewById<EditText>(R.id.chemical_flow_rate).setText("${entry.chemicalFlowRate}")
                 dialogView.findViewById<EditText>(R.id.active_tank_volume).setText("${entry.activeTankVolume}")
+            }
+            is CoagulantChangeDoseEntry -> {
+                titleText.text = entry.entryName
+                timeText.text = entry.creationDateTime
+                dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
+                dialogView.findViewById<EditText>(R.id.slider_position).setText("${entry.sliderPosition}")
+                dialogView.findViewById<EditText>(R.id.updated_slider_position).setText("${entry.updatedSliderPosition}")
+                dialogView.findViewById<EditText>(R.id.chemical_dose).setText("${entry.chemicalDose}")
+                dialogView.findViewById<EditText>(R.id.target_chemical_dose).setText("${entry.targetChemicalDose}")
+                dialogView.findViewById<EditText>(R.id.chemical_flow_rate).setText("${entry.chemicalFlowRate}")
+                dialogView.findViewById<EditText>(R.id.updated_chemical_flow_rate).setText("${entry.updatedChemicalFlowRate}")
             }
             is ChlorineChangeDoseEntry -> {
                 titleText.text = entry.entryName
