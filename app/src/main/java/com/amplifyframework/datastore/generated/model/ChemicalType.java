@@ -1,7 +1,7 @@
 package com.amplifyframework.datastore.generated.model;
 /** Auto generated enum from GraphQL schema. */
 @SuppressWarnings("all")
-public enum ChemType {
+public enum ChemicalType {
   COAGULANT,
   CHLORINE
 }
