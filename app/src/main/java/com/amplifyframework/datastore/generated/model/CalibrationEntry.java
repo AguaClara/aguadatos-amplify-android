@@ -2,6 +2,7 @@ package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.core.model.annotations.HasOne;
+import com.amplifyframework.core.model.annotations.BelongsTo;
 import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
@@ -26,8 +27,6 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 public final class CalibrationEntry implements Model {
   public static final QueryField ID = field("CalibrationEntry", "id");
   public static final QueryField CREATED_AT = field("CalibrationEntry", "createdAt");
-  public static final QueryField PLANT_ID = field("CalibrationEntry", "plantID");
-  public static final QueryField OPERATOR_ID = field("CalibrationEntry", "operatorID");
   public static final QueryField CHEMICAL_TYPE = field("CalibrationEntry", "chemicalType");
   public static final QueryField COAG_TYPE = field("CalibrationEntry", "coagType");
   public static final QueryField SLIDER_POSITION = field("CalibrationEntry", "sliderPosition");
@@ -39,11 +38,11 @@ public final class CalibrationEntry implements Model {
   public static final QueryField FLOW_RATE = field("CalibrationEntry", "flowRate");
   public static final QueryField ACTIVE_TANK = field("CalibrationEntry", "activeTank");
   public static final QueryField TANK_VOLUME = field("CalibrationEntry", "tankVolume");
+  public static final QueryField PLANT = field("CalibrationEntry", "plantID");
+  public static final QueryField OPERATOR = field("CalibrationEntry", "operatorID");
   public static final QueryField CALIBRATION_ENTRY_DOSE_ENTRY_ID = field("CalibrationEntry", "calibrationEntryDoseEntryId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="AWSDateTime", isRequired = true) Temporal.DateTime createdAt;
-  private final @ModelField(targetType="ID", isRequired = true) String plantID;
-  private final @ModelField(targetType="ID", isRequired = true) String operatorID;
   private final @ModelField(targetType="ChemicalType", isRequired = true) ChemicalType chemicalType;
   private final @ModelField(targetType="CoagType") CoagType coagType;
   private final @ModelField(targetType="Float", isRequired = true) Double sliderPosition;
@@ -56,6 +55,8 @@ public final class CalibrationEntry implements Model {
   private final @ModelField(targetType="ActiveTank") ActiveTank activeTank;
   private final @ModelField(targetType="Float") Double tankVolume;
   private final @ModelField(targetType="DoseEntry") @HasOne(associatedWith = "calibrationEntry", type = DoseEntry.class) DoseEntry doseEntry = null;
+  private final @ModelField(targetType="Plant") @BelongsTo(targetName = "plantID", targetNames = {"plantID"}, type = Plant.class) Plant plant;
+  private final @ModelField(targetType="Operator") @BelongsTo(targetName = "operatorID", targetNames = {"operatorID"}, type = Operator.class) Operator operator;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   private final @ModelField(targetType="ID") String calibrationEntryDoseEntryId;
   /** @deprecated This API is internal to Amplify and should not be used. */
@@ -70,14 +71,6 @@ public final class CalibrationEntry implements Model {
   
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
-  }
-  
-  public String getPlantId() {
-      return plantID;
-  }
-  
-  public String getOperatorId() {
-      return operatorID;
   }
   
   public ChemicalType getChemicalType() {
@@ -128,6 +121,14 @@ public final class CalibrationEntry implements Model {
       return doseEntry;
   }
   
+  public Plant getPlant() {
+      return plant;
+  }
+  
+  public Operator getOperator() {
+      return operator;
+  }
+  
   public Temporal.DateTime getUpdatedAt() {
       return updatedAt;
   }
@@ -136,11 +137,9 @@ public final class CalibrationEntry implements Model {
       return calibrationEntryDoseEntryId;
   }
   
-  private CalibrationEntry(String id, Temporal.DateTime createdAt, String plantID, String operatorID, ChemicalType chemicalType, CoagType coagType, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double dose, Double flowRate, ActiveTank activeTank, Double tankVolume, String calibrationEntryDoseEntryId) {
+  private CalibrationEntry(String id, Temporal.DateTime createdAt, ChemicalType chemicalType, CoagType coagType, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double dose, Double flowRate, ActiveTank activeTank, Double tankVolume, Plant plant, Operator operator, String calibrationEntryDoseEntryId) {
     this.id = id;
     this.createdAt = createdAt;
-    this.plantID = plantID;
-    this.operatorID = operatorID;
     this.chemicalType = chemicalType;
     this.coagType = coagType;
     this.sliderPosition = sliderPosition;
@@ -152,6 +151,8 @@ public final class CalibrationEntry implements Model {
     this.flowRate = flowRate;
     this.activeTank = activeTank;
     this.tankVolume = tankVolume;
+    this.plant = plant;
+    this.operator = operator;
     this.calibrationEntryDoseEntryId = calibrationEntryDoseEntryId;
   }
   
@@ -165,8 +166,6 @@ public final class CalibrationEntry implements Model {
       CalibrationEntry calibrationEntry = (CalibrationEntry) obj;
       return ObjectsCompat.equals(getId(), calibrationEntry.getId()) &&
               ObjectsCompat.equals(getCreatedAt(), calibrationEntry.getCreatedAt()) &&
-              ObjectsCompat.equals(getPlantId(), calibrationEntry.getPlantId()) &&
-              ObjectsCompat.equals(getOperatorId(), calibrationEntry.getOperatorId()) &&
               ObjectsCompat.equals(getChemicalType(), calibrationEntry.getChemicalType()) &&
               ObjectsCompat.equals(getCoagType(), calibrationEntry.getCoagType()) &&
               ObjectsCompat.equals(getSliderPosition(), calibrationEntry.getSliderPosition()) &&
@@ -178,6 +177,8 @@ public final class CalibrationEntry implements Model {
               ObjectsCompat.equals(getFlowRate(), calibrationEntry.getFlowRate()) &&
               ObjectsCompat.equals(getActiveTank(), calibrationEntry.getActiveTank()) &&
               ObjectsCompat.equals(getTankVolume(), calibrationEntry.getTankVolume()) &&
+              ObjectsCompat.equals(getPlant(), calibrationEntry.getPlant()) &&
+              ObjectsCompat.equals(getOperator(), calibrationEntry.getOperator()) &&
               ObjectsCompat.equals(getUpdatedAt(), calibrationEntry.getUpdatedAt()) &&
               ObjectsCompat.equals(getCalibrationEntryDoseEntryId(), calibrationEntry.getCalibrationEntryDoseEntryId());
       }
@@ -188,8 +189,6 @@ public final class CalibrationEntry implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getCreatedAt())
-      .append(getPlantId())
-      .append(getOperatorId())
       .append(getChemicalType())
       .append(getCoagType())
       .append(getSliderPosition())
@@ -201,6 +200,8 @@ public final class CalibrationEntry implements Model {
       .append(getFlowRate())
       .append(getActiveTank())
       .append(getTankVolume())
+      .append(getPlant())
+      .append(getOperator())
       .append(getUpdatedAt())
       .append(getCalibrationEntryDoseEntryId())
       .toString()
@@ -213,8 +214,6 @@ public final class CalibrationEntry implements Model {
       .append("CalibrationEntry {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
-      .append("plantID=" + String.valueOf(getPlantId()) + ", ")
-      .append("operatorID=" + String.valueOf(getOperatorId()) + ", ")
       .append("chemicalType=" + String.valueOf(getChemicalType()) + ", ")
       .append("coagType=" + String.valueOf(getCoagType()) + ", ")
       .append("sliderPosition=" + String.valueOf(getSliderPosition()) + ", ")
@@ -226,6 +225,8 @@ public final class CalibrationEntry implements Model {
       .append("flowRate=" + String.valueOf(getFlowRate()) + ", ")
       .append("activeTank=" + String.valueOf(getActiveTank()) + ", ")
       .append("tankVolume=" + String.valueOf(getTankVolume()) + ", ")
+      .append("plant=" + String.valueOf(getPlant()) + ", ")
+      .append("operator=" + String.valueOf(getOperator()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()) + ", ")
       .append("calibrationEntryDoseEntryId=" + String.valueOf(getCalibrationEntryDoseEntryId()))
       .append("}")
@@ -268,8 +269,6 @@ public final class CalibrationEntry implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       createdAt,
-      plantID,
-      operatorID,
       chemicalType,
       coagType,
       sliderPosition,
@@ -281,20 +280,12 @@ public final class CalibrationEntry implements Model {
       flowRate,
       activeTank,
       tankVolume,
+      plant,
+      operator,
       calibrationEntryDoseEntryId);
   }
   public interface CreatedAtStep {
-    PlantIdStep createdAt(Temporal.DateTime createdAt);
-  }
-  
-
-  public interface PlantIdStep {
-    OperatorIdStep plantId(String plantId);
-  }
-  
-
-  public interface OperatorIdStep {
-    ChemicalTypeStep operatorId(String operatorId);
+    ChemicalTypeStep createdAt(Temporal.DateTime createdAt);
   }
   
 
@@ -344,15 +335,15 @@ public final class CalibrationEntry implements Model {
     BuildStep coagType(CoagType coagType);
     BuildStep activeTank(ActiveTank activeTank);
     BuildStep tankVolume(Double tankVolume);
+    BuildStep plant(Plant plant);
+    BuildStep operator(Operator operator);
     BuildStep calibrationEntryDoseEntryId(String calibrationEntryDoseEntryId);
   }
   
 
-  public static class Builder implements CreatedAtStep, PlantIdStep, OperatorIdStep, ChemicalTypeStep, SliderPositionStep, InflowRateStep, StartVolumeStep, EndVolumeStep, TimeElapsedStep, DoseStep, FlowRateStep, BuildStep {
+  public static class Builder implements CreatedAtStep, ChemicalTypeStep, SliderPositionStep, InflowRateStep, StartVolumeStep, EndVolumeStep, TimeElapsedStep, DoseStep, FlowRateStep, BuildStep {
     private String id;
     private Temporal.DateTime createdAt;
-    private String plantID;
-    private String operatorID;
     private ChemicalType chemicalType;
     private Double sliderPosition;
     private Double inflowRate;
@@ -364,16 +355,16 @@ public final class CalibrationEntry implements Model {
     private CoagType coagType;
     private ActiveTank activeTank;
     private Double tankVolume;
+    private Plant plant;
+    private Operator operator;
     private String calibrationEntryDoseEntryId;
     public Builder() {
       
     }
     
-    private Builder(String id, Temporal.DateTime createdAt, String plantID, String operatorID, ChemicalType chemicalType, CoagType coagType, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double dose, Double flowRate, ActiveTank activeTank, Double tankVolume, String calibrationEntryDoseEntryId) {
+    private Builder(String id, Temporal.DateTime createdAt, ChemicalType chemicalType, CoagType coagType, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double dose, Double flowRate, ActiveTank activeTank, Double tankVolume, Plant plant, Operator operator, String calibrationEntryDoseEntryId) {
       this.id = id;
       this.createdAt = createdAt;
-      this.plantID = plantID;
-      this.operatorID = operatorID;
       this.chemicalType = chemicalType;
       this.coagType = coagType;
       this.sliderPosition = sliderPosition;
@@ -385,6 +376,8 @@ public final class CalibrationEntry implements Model {
       this.flowRate = flowRate;
       this.activeTank = activeTank;
       this.tankVolume = tankVolume;
+      this.plant = plant;
+      this.operator = operator;
       this.calibrationEntryDoseEntryId = calibrationEntryDoseEntryId;
     }
     
@@ -395,8 +388,6 @@ public final class CalibrationEntry implements Model {
         return new CalibrationEntry(
           id,
           createdAt,
-          plantID,
-          operatorID,
           chemicalType,
           coagType,
           sliderPosition,
@@ -408,27 +399,15 @@ public final class CalibrationEntry implements Model {
           flowRate,
           activeTank,
           tankVolume,
+          plant,
+          operator,
           calibrationEntryDoseEntryId);
     }
     
     @Override
-     public PlantIdStep createdAt(Temporal.DateTime createdAt) {
+     public ChemicalTypeStep createdAt(Temporal.DateTime createdAt) {
         Objects.requireNonNull(createdAt);
         this.createdAt = createdAt;
-        return this;
-    }
-    
-    @Override
-     public OperatorIdStep plantId(String plantId) {
-        Objects.requireNonNull(plantId);
-        this.plantID = plantId;
-        return this;
-    }
-    
-    @Override
-     public ChemicalTypeStep operatorId(String operatorId) {
-        Objects.requireNonNull(operatorId);
-        this.operatorID = operatorId;
         return this;
     }
     
@@ -507,6 +486,18 @@ public final class CalibrationEntry implements Model {
     }
     
     @Override
+     public BuildStep plant(Plant plant) {
+        this.plant = plant;
+        return this;
+    }
+    
+    @Override
+     public BuildStep operator(Operator operator) {
+        this.operator = operator;
+        return this;
+    }
+    
+    @Override
      public BuildStep calibrationEntryDoseEntryId(String calibrationEntryDoseEntryId) {
         this.calibrationEntryDoseEntryId = calibrationEntryDoseEntryId;
         return this;
@@ -524,11 +515,9 @@ public final class CalibrationEntry implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, Temporal.DateTime createdAt, String plantId, String operatorId, ChemicalType chemicalType, CoagType coagType, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double dose, Double flowRate, ActiveTank activeTank, Double tankVolume, String calibrationEntryDoseEntryId) {
-      super(id, createdAt, plantID, operatorID, chemicalType, coagType, sliderPosition, inflowRate, startVolume, endVolume, timeElapsed, dose, flowRate, activeTank, tankVolume, calibrationEntryDoseEntryId);
+    private CopyOfBuilder(String id, Temporal.DateTime createdAt, ChemicalType chemicalType, CoagType coagType, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double dose, Double flowRate, ActiveTank activeTank, Double tankVolume, Plant plant, Operator operator, String calibrationEntryDoseEntryId) {
+      super(id, createdAt, chemicalType, coagType, sliderPosition, inflowRate, startVolume, endVolume, timeElapsed, dose, flowRate, activeTank, tankVolume, plant, operator, calibrationEntryDoseEntryId);
       Objects.requireNonNull(createdAt);
-      Objects.requireNonNull(plantID);
-      Objects.requireNonNull(operatorID);
       Objects.requireNonNull(chemicalType);
       Objects.requireNonNull(sliderPosition);
       Objects.requireNonNull(inflowRate);
@@ -542,16 +531,6 @@ public final class CalibrationEntry implements Model {
     @Override
      public CopyOfBuilder createdAt(Temporal.DateTime createdAt) {
       return (CopyOfBuilder) super.createdAt(createdAt);
-    }
-    
-    @Override
-     public CopyOfBuilder plantId(String plantId) {
-      return (CopyOfBuilder) super.plantId(plantId);
-    }
-    
-    @Override
-     public CopyOfBuilder operatorId(String operatorId) {
-      return (CopyOfBuilder) super.operatorId(operatorId);
     }
     
     @Override
@@ -607,6 +586,16 @@ public final class CalibrationEntry implements Model {
     @Override
      public CopyOfBuilder tankVolume(Double tankVolume) {
       return (CopyOfBuilder) super.tankVolume(tankVolume);
+    }
+    
+    @Override
+     public CopyOfBuilder plant(Plant plant) {
+      return (CopyOfBuilder) super.plant(plant);
+    }
+    
+    @Override
+     public CopyOfBuilder operator(Operator operator) {
+      return (CopyOfBuilder) super.operator(operator);
     }
     
     @Override
