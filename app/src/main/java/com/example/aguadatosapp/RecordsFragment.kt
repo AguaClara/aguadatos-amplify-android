@@ -291,7 +291,7 @@ class RecordsFragment : Fragment() {
                 dialogView.findViewById<TextView>(R.id.chemical_type).setText(entry.chemicalType)
                 dialogView.findViewById<EditText>(R.id.edit_inflow_rate).setText("${entry.inflowRate}")
             }
-            is RawWaterTurbidityEntry -> {
+            is RawWaterTurbidityEntry-> {
                 titleText.text = entry.entryName
                 timeText.text = entry.creationDateTime
                 dialogView.findViewById<EditText>(R.id.edit_notes).setText(entry.additionalNotes)
@@ -316,8 +316,6 @@ class RecordsFragment : Fragment() {
                     val editTextView = dialogView.findViewById<EditText>(editTextViews[i])
                     if (i < entry.turbidityReadings.size) {
                         editTextView.setText("${entry.turbidityReadings[i]}")
-                    } else {
-//                        editTextView.visibility = View.INVISIBLE
                     }
                 }
             }

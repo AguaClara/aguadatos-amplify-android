@@ -109,7 +109,7 @@
             <EditText
                 android:id="@+id/slider_position"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="3"
                 android:digits="0123456789" />
@@ -139,7 +139,7 @@
             <EditText
                 android:id="@+id/inflow_rate"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 />
 
@@ -169,7 +169,7 @@
             <EditText
                 android:id="@+id/start_height"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="5"
                 android:digits="0123456789" />
@@ -200,7 +200,7 @@
             <EditText
                 android:id="@+id/end_height"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="5"
                 android:digits="0123456789" />
@@ -231,7 +231,7 @@
             <EditText
                 android:id="@+id/time_elapsed"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="5"
                 android:digits="0123456789" />
@@ -261,7 +261,7 @@
             <EditText
                 android:id="@+id/chemical_dose"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="5"
                 android:digits="0123456789."/>
@@ -290,7 +290,7 @@
             <EditText
                 android:id="@+id/chemical_flow_rate"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="5"
                 android:digits="0123456789."/>
@@ -319,7 +319,7 @@
             <EditText
                 android:id="@+id/active_tank_volume"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="5"
                 android:digits="0123456789."/>
