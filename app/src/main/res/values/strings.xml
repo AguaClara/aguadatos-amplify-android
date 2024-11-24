@@ -35,7 +35,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="plant_flow">Plant Flow</string>
-    <string name="raw_water_turbidity">Raw\n Water Turbidity</string>
+    <string name="raw_water_turbidity">Raw Water Turbidity</string>
     <string name="coagulant_dosage">Coagulant Dosage</string>
     <string name="filtered_water_turbidity">Filtered Water Turbidity</string>
     <string name="clarified_water_turbidity">Clarified Water Turbidity</string>
@@ -223,4 +223,9 @@
     <string name="active_tank_volume_bullet">• Active Tank Volume:</string>
     <string name="turbidity_reading_bullet">• Turbidity Reading:</string>
     <string name="additional_notes_bullet">• Additional Notes:</string>
+    <string name="turbidity_readings_bullet">• Turbidity Readings:</string>
+    <string name="chlorine_calibration">Chlorine Calibration</string>
+    <string name="coagulant_calibration">Coagulant Calibration</string>
+    <string name="coagulant_change_dosage">Coagulant Change Dosage</string>
+    <string name="chlorine_change_dosage">Chlorine Change Dosage</string>
 </resources>

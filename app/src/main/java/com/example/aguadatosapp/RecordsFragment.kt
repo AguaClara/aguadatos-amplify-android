@@ -258,11 +258,17 @@ class RecordsFragment : Fragment() {
             is filteredWaterTurbidityEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_filtered_water_turbidity_entry,null)
             }
-            is CoagulantCalibrationEntry, is ChlorineCalibrationEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_calibration_entry, null)
+            is CoagulantCalibrationEntry-> {
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_coagulant_calibration_entry, null)
             }
-            is CoagulantChangeDoseEntry, is ChlorineChangeDoseEntry -> {
-                LayoutInflater.from(requireContext()).inflate(R.layout.edit_change_dosage_entry, null)
+            is ChlorineCalibrationEntry -> {
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_chlorine_calibration_entry, null)
+            }
+            is CoagulantChangeDoseEntry-> {
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_coagulant_change_dosage_entry, null)
+            }
+            is ChlorineChangeDoseEntry -> {
+                LayoutInflater.from(requireContext()).inflate(R.layout.edit_chlorine_change_dosage_entry, null)
             }
             is FeedbackEntry -> {
                 LayoutInflater.from(requireContext()).inflate(R.layout.edit_feedback_entry, null)
