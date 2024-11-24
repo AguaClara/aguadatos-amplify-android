@@ -1,7 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
-import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -37,9 +36,7 @@ public final class RawWaterEntry implements Model {
   private final @ModelField(targetType="Float", isRequired = true) Double turbidity;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  /** @deprecated This API is internal to Amplify and should not be used. */
-  @Deprecated
-   public String resolveIdentifier() {
+  public String resolveIdentifier() {
     return id;
   }
   
@@ -203,19 +200,6 @@ public final class RawWaterEntry implements Model {
     private Temporal.DateTime creationDateTime;
     private String additionalNotes;
     private Double turbidity;
-    public Builder() {
-      
-    }
-    
-    private Builder(String id, String plantID, String operatorID, Temporal.DateTime creationDateTime, String additionalNotes, Double turbidity) {
-      this.id = id;
-      this.plantID = plantID;
-      this.operatorID = operatorID;
-      this.creationDateTime = creationDateTime;
-      this.additionalNotes = additionalNotes;
-      this.turbidity = turbidity;
-    }
-    
     @Override
      public RawWaterEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -277,12 +261,12 @@ public final class RawWaterEntry implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, String plantId, String operatorId, Temporal.DateTime creationDateTime, String additionalNotes, Double turbidity) {
-      super(id, plantID, operatorID, creationDateTime, additionalNotes, turbidity);
-      Objects.requireNonNull(plantID);
-      Objects.requireNonNull(operatorID);
-      Objects.requireNonNull(creationDateTime);
-      Objects.requireNonNull(additionalNotes);
-      Objects.requireNonNull(turbidity);
+      super.id(id);
+      super.plantId(plantId)
+        .operatorId(operatorId)
+        .creationDateTime(creationDateTime)
+        .additionalNotes(additionalNotes)
+        .turbidity(turbidity);
     }
     
     @Override
@@ -308,14 +292,6 @@ public final class RawWaterEntry implements Model {
     @Override
      public CopyOfBuilder turbidity(Double turbidity) {
       return (CopyOfBuilder) super.turbidity(turbidity);
-    }
-  }
-  
-
-  public static class RawWaterEntryIdentifier extends ModelIdentifier<RawWaterEntry> {
-    private static final long serialVersionUID = 1L;
-    public RawWaterEntryIdentifier(String id) {
-      super(id);
     }
   }
   

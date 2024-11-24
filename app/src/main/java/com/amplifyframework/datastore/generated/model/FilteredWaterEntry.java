@@ -1,7 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
-import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -37,9 +36,7 @@ public final class FilteredWaterEntry implements Model {
   private final @ModelField(targetType="Float") List<Double> turbidityValues;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  /** @deprecated This API is internal to Amplify and should not be used. */
-  @Deprecated
-   public String resolveIdentifier() {
+  public String resolveIdentifier() {
     return id;
   }
   
@@ -199,19 +196,6 @@ public final class FilteredWaterEntry implements Model {
     private Temporal.DateTime creationDateTime;
     private String additionalNotes;
     private List<Double> turbidityValues;
-    public Builder() {
-      
-    }
-    
-    private Builder(String id, String plantID, String operatorID, Temporal.DateTime creationDateTime, String additionalNotes, List<Double> turbidityValues) {
-      this.id = id;
-      this.plantID = plantID;
-      this.operatorID = operatorID;
-      this.creationDateTime = creationDateTime;
-      this.additionalNotes = additionalNotes;
-      this.turbidityValues = turbidityValues;
-    }
-    
     @Override
      public FilteredWaterEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -272,11 +256,12 @@ public final class FilteredWaterEntry implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, String plantId, String operatorId, Temporal.DateTime creationDateTime, String additionalNotes, List<Double> turbidityValues) {
-      super(id, plantID, operatorID, creationDateTime, additionalNotes, turbidityValues);
-      Objects.requireNonNull(plantID);
-      Objects.requireNonNull(operatorID);
-      Objects.requireNonNull(creationDateTime);
-      Objects.requireNonNull(additionalNotes);
+      super.id(id);
+      super.plantId(plantId)
+        .operatorId(operatorId)
+        .creationDateTime(creationDateTime)
+        .additionalNotes(additionalNotes)
+        .turbidityValues(turbidityValues);
     }
     
     @Override
@@ -302,14 +287,6 @@ public final class FilteredWaterEntry implements Model {
     @Override
      public CopyOfBuilder turbidityValues(List<Double> turbidityValues) {
       return (CopyOfBuilder) super.turbidityValues(turbidityValues);
-    }
-  }
-  
-
-  public static class FilteredWaterEntryIdentifier extends ModelIdentifier<FilteredWaterEntry> {
-    private static final long serialVersionUID = 1L;
-    public FilteredWaterEntryIdentifier(String id) {
-      super(id);
     }
   }
   

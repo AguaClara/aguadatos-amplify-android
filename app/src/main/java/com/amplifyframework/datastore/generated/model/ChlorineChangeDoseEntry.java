@@ -1,7 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
-import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -47,9 +46,7 @@ public final class ChlorineChangeDoseEntry implements Model {
   private final @ModelField(targetType="Float", isRequired = true) Double chemicalType;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  /** @deprecated This API is internal to Amplify and should not be used. */
-  @Deprecated
-   public String resolveIdentifier() {
+  public String resolveIdentifier() {
     return id;
   }
   
@@ -293,24 +290,6 @@ public final class ChlorineChangeDoseEntry implements Model {
     private Double updatedSliderPosition;
     private Double updatedChemicalFlowRate;
     private Double chemicalType;
-    public Builder() {
-      
-    }
-    
-    private Builder(String id, String plantID, String operatorID, Temporal.DateTime creationDateTime, Double chemicalFlowRate, Double chemicalDose, Double sliderPosition, Double targetChemicalDose, Double updatedSliderPosition, Double updatedChemicalFlowRate, Double chemicalType) {
-      this.id = id;
-      this.plantID = plantID;
-      this.operatorID = operatorID;
-      this.creationDateTime = creationDateTime;
-      this.chemicalFlowRate = chemicalFlowRate;
-      this.chemicalDose = chemicalDose;
-      this.sliderPosition = sliderPosition;
-      this.targetChemicalDose = targetChemicalDose;
-      this.updatedSliderPosition = updatedSliderPosition;
-      this.updatedChemicalFlowRate = updatedChemicalFlowRate;
-      this.chemicalType = chemicalType;
-    }
-    
     @Override
      public ChlorineChangeDoseEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -412,17 +391,17 @@ public final class ChlorineChangeDoseEntry implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, String plantId, String operatorId, Temporal.DateTime creationDateTime, Double chemicalFlowRate, Double chemicalDose, Double sliderPosition, Double targetChemicalDose, Double updatedSliderPosition, Double updatedChemicalFlowRate, Double chemicalType) {
-      super(id, plantID, operatorID, creationDateTime, chemicalFlowRate, chemicalDose, sliderPosition, targetChemicalDose, updatedSliderPosition, updatedChemicalFlowRate, chemicalType);
-      Objects.requireNonNull(plantID);
-      Objects.requireNonNull(operatorID);
-      Objects.requireNonNull(creationDateTime);
-      Objects.requireNonNull(chemicalFlowRate);
-      Objects.requireNonNull(chemicalDose);
-      Objects.requireNonNull(sliderPosition);
-      Objects.requireNonNull(targetChemicalDose);
-      Objects.requireNonNull(updatedSliderPosition);
-      Objects.requireNonNull(updatedChemicalFlowRate);
-      Objects.requireNonNull(chemicalType);
+      super.id(id);
+      super.plantId(plantId)
+        .operatorId(operatorId)
+        .creationDateTime(creationDateTime)
+        .chemicalFlowRate(chemicalFlowRate)
+        .chemicalDose(chemicalDose)
+        .sliderPosition(sliderPosition)
+        .targetChemicalDose(targetChemicalDose)
+        .updatedSliderPosition(updatedSliderPosition)
+        .updatedChemicalFlowRate(updatedChemicalFlowRate)
+        .chemicalType(chemicalType);
     }
     
     @Override
@@ -473,14 +452,6 @@ public final class ChlorineChangeDoseEntry implements Model {
     @Override
      public CopyOfBuilder chemicalType(Double chemicalType) {
       return (CopyOfBuilder) super.chemicalType(chemicalType);
-    }
-  }
-  
-
-  public static class ChlorineChangeDoseEntryIdentifier extends ModelIdentifier<ChlorineChangeDoseEntry> {
-    private static final long serialVersionUID = 1L;
-    public ChlorineChangeDoseEntryIdentifier(String id) {
-      super(id);
     }
   }
   

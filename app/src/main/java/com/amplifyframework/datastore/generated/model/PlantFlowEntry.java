@@ -1,7 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
-import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -37,9 +36,7 @@ public final class PlantFlowEntry implements Model {
   private final @ModelField(targetType="Float", isRequired = true) Double inflowRate;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  /** @deprecated This API is internal to Amplify and should not be used. */
-  @Deprecated
-   public String resolveIdentifier() {
+  public String resolveIdentifier() {
     return id;
   }
   
@@ -203,19 +200,6 @@ public final class PlantFlowEntry implements Model {
     private Temporal.DateTime creationDateTime;
     private String additionalNotes;
     private Double inflowRate;
-    public Builder() {
-      
-    }
-    
-    private Builder(String id, String plantID, String operatorID, Temporal.DateTime creationDateTime, String additionalNotes, Double inflowRate) {
-      this.id = id;
-      this.plantID = plantID;
-      this.operatorID = operatorID;
-      this.creationDateTime = creationDateTime;
-      this.additionalNotes = additionalNotes;
-      this.inflowRate = inflowRate;
-    }
-    
     @Override
      public PlantFlowEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -277,12 +261,12 @@ public final class PlantFlowEntry implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, String plantId, String operatorId, Temporal.DateTime creationDateTime, String additionalNotes, Double inflowRate) {
-      super(id, plantID, operatorID, creationDateTime, additionalNotes, inflowRate);
-      Objects.requireNonNull(plantID);
-      Objects.requireNonNull(operatorID);
-      Objects.requireNonNull(creationDateTime);
-      Objects.requireNonNull(additionalNotes);
-      Objects.requireNonNull(inflowRate);
+      super.id(id);
+      super.plantId(plantId)
+        .operatorId(operatorId)
+        .creationDateTime(creationDateTime)
+        .additionalNotes(additionalNotes)
+        .inflowRate(inflowRate);
     }
     
     @Override
@@ -308,14 +292,6 @@ public final class PlantFlowEntry implements Model {
     @Override
      public CopyOfBuilder inflowRate(Double inflowRate) {
       return (CopyOfBuilder) super.inflowRate(inflowRate);
-    }
-  }
-  
-
-  public static class PlantFlowEntryIdentifier extends ModelIdentifier<PlantFlowEntry> {
-    private static final long serialVersionUID = 1L;
-    public PlantFlowEntryIdentifier(String id) {
-      super(id);
     }
   }
   

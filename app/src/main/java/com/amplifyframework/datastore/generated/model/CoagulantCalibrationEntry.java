@@ -1,7 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
-import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -51,9 +50,7 @@ public final class CoagulantCalibrationEntry implements Model {
   private final @ModelField(targetType="Float", isRequired = true) Double chemicalType;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  /** @deprecated This API is internal to Amplify and should not be used. */
-  @Deprecated
-   public String resolveIdentifier() {
+  public String resolveIdentifier() {
     return id;
   }
   
@@ -329,26 +326,6 @@ public final class CoagulantCalibrationEntry implements Model {
     private Double chemicalFlowRate;
     private Double activeTankVolume;
     private Double chemicalType;
-    public Builder() {
-      
-    }
-    
-    private Builder(String id, String plantID, String operatorID, Temporal.DateTime creationDateTime, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double chemicalDose, Double chemicalFlowRate, Double activeTankVolume, Double chemicalType) {
-      this.id = id;
-      this.plantID = plantID;
-      this.operatorID = operatorID;
-      this.creationDateTime = creationDateTime;
-      this.sliderPosition = sliderPosition;
-      this.inflowRate = inflowRate;
-      this.startVolume = startVolume;
-      this.endVolume = endVolume;
-      this.timeElapsed = timeElapsed;
-      this.chemicalDose = chemicalDose;
-      this.chemicalFlowRate = chemicalFlowRate;
-      this.activeTankVolume = activeTankVolume;
-      this.chemicalType = chemicalType;
-    }
-    
     @Override
      public CoagulantCalibrationEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -466,19 +443,19 @@ public final class CoagulantCalibrationEntry implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, String plantId, String operatorId, Temporal.DateTime creationDateTime, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double chemicalDose, Double chemicalFlowRate, Double activeTankVolume, Double chemicalType) {
-      super(id, plantID, operatorID, creationDateTime, sliderPosition, inflowRate, startVolume, endVolume, timeElapsed, chemicalDose, chemicalFlowRate, activeTankVolume, chemicalType);
-      Objects.requireNonNull(plantID);
-      Objects.requireNonNull(operatorID);
-      Objects.requireNonNull(creationDateTime);
-      Objects.requireNonNull(sliderPosition);
-      Objects.requireNonNull(inflowRate);
-      Objects.requireNonNull(startVolume);
-      Objects.requireNonNull(endVolume);
-      Objects.requireNonNull(timeElapsed);
-      Objects.requireNonNull(chemicalDose);
-      Objects.requireNonNull(chemicalFlowRate);
-      Objects.requireNonNull(activeTankVolume);
-      Objects.requireNonNull(chemicalType);
+      super.id(id);
+      super.plantId(plantId)
+        .operatorId(operatorId)
+        .creationDateTime(creationDateTime)
+        .sliderPosition(sliderPosition)
+        .inflowRate(inflowRate)
+        .startVolume(startVolume)
+        .endVolume(endVolume)
+        .timeElapsed(timeElapsed)
+        .chemicalDose(chemicalDose)
+        .chemicalFlowRate(chemicalFlowRate)
+        .activeTankVolume(activeTankVolume)
+        .chemicalType(chemicalType);
     }
     
     @Override
@@ -539,14 +516,6 @@ public final class CoagulantCalibrationEntry implements Model {
     @Override
      public CopyOfBuilder chemicalType(Double chemicalType) {
       return (CopyOfBuilder) super.chemicalType(chemicalType);
-    }
-  }
-  
-
-  public static class CoagulantCalibrationEntryIdentifier extends ModelIdentifier<CoagulantCalibrationEntry> {
-    private static final long serialVersionUID = 1L;
-    public CoagulantCalibrationEntryIdentifier(String id) {
-      super(id);
     }
   }
   
