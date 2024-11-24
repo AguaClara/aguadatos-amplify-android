@@ -221,4 +221,6 @@
     <string name="end_volume_bullet">• End Volume:</string>
     <string name="time_elapsed_bullet">• Time Elapsed:</string>
     <string name="active_tank_volume_bullet">• Active Tank Volume:</string>
+    <string name="turbidity_reading_bullet">• Turbidity Reading:</string>
+    <string name="additional_notes_bullet">• Additional Notes:</string>
 </resources>

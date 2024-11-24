@@ -13,7 +13,7 @@
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginTop="10dp"
         android:paddingVertical="5dp"
         android:textSize="22sp"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
         android:paddingVertical="10dp"
-        android:text="Feedback"
+        android:text="@string/feedback"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/dark_gray"
-            android:text="DELETE"
+            android:text="@string/delete"
             android:textColor="@android:color/white" />
 
         <Button
@@ -98,7 +98,7 @@
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:backgroundTint="@color/button_green"
-            android:text="SAVE"
+            android:text="@string/save"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
