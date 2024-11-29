@@ -52,7 +52,7 @@ class ConfigurationFragment : Fragment() {
         var switchChecked = false
 
         //set up UI using current configuration
-        if (sharedPreferences != null) {
+        if (sharedPreferences != null) { //TODO: op name not working?
             opNameInput.setText(sharedPreferences.getString("operatorName", null))
             plantNameInput.setText(sharedPreferences.getString("plantName", null))
         }
@@ -117,37 +117,11 @@ class ConfigurationFragment : Fragment() {
                             editor.putString("plantName", currentPlantName)
                             editor.apply()
                         }
-                    } else {
-                        createPlant(currentPlantName) { result ->
-                            result.onSuccess { plantId ->
-                                println("Plant added successfully with ID: $plantId")
-                                currentPlantId = plantId
-                                val editor = sharedPreferences?.edit()
-                                if (editor != null) {
-                                    editor.putString("plantID", plantId)
-                                    editor.putString("plantName", currentPlantName)
-                                    editor.apply()
-                                }
-                            }.onFailure { error ->
-                                println("Error: ${error.message}")
-                                Toast.makeText(context,"Error: ${error.message}",Toast.LENGTH_SHORT).show()
-                            }
+                        if (sharedPreferences != null) {
+                            Log.d("msg","plantId after creation: ${sharedPreferences.getString("plantID", null).toString()}")
                         }
-                    }
-                }
-                getOperatorIdByNameAndPlantId(currentOperatorName,currentPlantId) { operatorId ->
-                    if (operatorId != null) {
-                        currentOperatorId = operatorId
-                        val editor = sharedPreferences?.edit()
-                        if (editor != null) {
-                            editor.putString("operatorID", operatorId)
-                            editor.putString("operatorName", currentOperatorName)
-                            editor.apply()
-                        }
-                    } else {
-                        createOperator(currentPlantId, currentOperatorName) { result ->
-                            result.onSuccess { operatorId ->
-                                println("Operator added successfully with ID: $operatorId")
+                        getOperatorIdByNameAndPlantId(currentOperatorName,currentPlantId) { operatorId ->
+                            if (operatorId != null) {
                                 currentOperatorId = operatorId
                                 val editor = sharedPreferences?.edit()
                                 if (editor != null) {
@@ -155,16 +129,72 @@ class ConfigurationFragment : Fragment() {
                                     editor.putString("operatorName", currentOperatorName)
                                     editor.apply()
                                 }
+                            } else {
+                                createOperator(currentOperatorName,currentPlantId) { result ->
+                                    result.onSuccess { operatorId ->
+                                        Log.d("msg","Operator added successfully with ID: $operatorId")
+                                        currentOperatorId = operatorId
+                                        val editor = sharedPreferences?.edit()
+                                        if (editor != null) {
+                                            editor.putString("operatorID", operatorId)
+                                            editor.putString("operatorName", currentOperatorName)
+                                            editor.apply()
+                                        }
+                                    }.onFailure { error ->
+                                        Log.d("msg","Error: ${error.message}")
+                                        Toast.makeText(context,"Error: ${error.message}",Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        createPlant(currentPlantName) { result ->
+                            result.onSuccess { plantId ->
+                                Log.d("msg","Plant added successfully with ID: $plantId")
+                                currentPlantId = plantId
+                                val editor = sharedPreferences?.edit()
+                                if (editor != null) {
+                                    editor.putString("plantID", plantId)
+                                    editor.putString("plantName", currentPlantName)
+                                    editor.apply()
+                                }
+                                if (sharedPreferences != null) {
+                                    Log.d("msg","plantId after creation: ${sharedPreferences.getString("plantId", null).toString()}")
+                                }
+                                getOperatorIdByNameAndPlantId(currentOperatorName,currentPlantId) { operatorId ->
+                                    if (operatorId != null) {
+                                        currentOperatorId = operatorId
+                                        val editor = sharedPreferences?.edit()
+                                        if (editor != null) {
+                                            editor.putString("operatorID", operatorId)
+                                            editor.putString("operatorName", currentOperatorName)
+                                            editor.apply()
+                                        }
+                                    } else {
+                                        createOperator(currentOperatorName,currentPlantId) { result ->
+                                            result.onSuccess { operatorId ->
+                                                Log.d("msg","Operator added successfully with ID: $operatorId")
+                                                currentOperatorId = operatorId
+                                                val editor = sharedPreferences?.edit()
+                                                if (editor != null) {
+                                                    editor.putString("operatorID", operatorId)
+                                                    editor.putString("operatorName", currentOperatorName)
+                                                    editor.apply()
+                                                }
+                                            }.onFailure { error ->
+                                                Log.d("msg","Error: ${error.message}")
+                                                Toast.makeText(context,"Error: ${error.message}",Toast.LENGTH_SHORT).show()
+                                            }
+                                        }
+                                    }
+                                }
                             }.onFailure { error ->
-                                println("Error: ${error.message}")
-                                Toast.makeText(context,"Error: ${error.message}",Toast.LENGTH_SHORT).show()
+                                Log.d("msg","Error: ${error.message}")
                             }
                         }
                     }
                 }
-
             }
-
             // pop a toast to let user know changes are saved
             Toast.makeText(context,"Your changes have been saved.",Toast.LENGTH_SHORT).show()
         }
@@ -184,13 +214,14 @@ class ConfigurationFragment : Fragment() {
             .name(plantName)
             .build()
 
-        println("Saved plant: ${newPlant.id}")
+        Log.d("msg","Saved plant: ${newPlant.id}")
 
         // Save the Plant to DataStore
             DataStore.save(newPlant, {
-                println("Successfully saved Plant: ${newPlant.id}")
+                Log.d("msg","Successfully saved Plant: ${newPlant.id}")
+                callback(Result.success(newPlant.id))
             }, { error ->
-                println("Failed to save Plant: ${error.message}")
+                Log.d("msg","Failed to save Plant: ${error.message}")
                 callback(Result.failure(Exception("Failed to save Plant: ${error.message}")))
             })
     }
@@ -203,16 +234,17 @@ class ConfigurationFragment : Fragment() {
         // Create an Operator instance
         val newOperator = Operator.builder()
             .name(operatorName)
-            .plantId(plantId)
+            .plant(Plant.justId(plantId)) // Reference Plant by ID
             .build()
 
-        println("Saved operator: ${newOperator.id}")
+        Log.d("msg","Saved operator: ${newOperator.id}")
 
         // Save the operator to DataStore
         DataStore.save(newOperator, {
-            println("Successfully saved Operator: ${newOperator.id}")
+            Log.d("msg","Successfully saved Operator: ${newOperator.id}")
+            callback(Result.success(newOperator.id))
         }, { error ->
-            println("Failed to save Operator: ${error.message}")
+            Log.d("msg","Failed to save Operator: ${error.message}")
             callback(Result.failure(Exception("Failed to save Operator: ${error.message}")))
         })
     }
@@ -230,40 +262,54 @@ class ConfigurationFragment : Fragment() {
                     val plant = iterator.next() // Get the first matching Plant
                     callback(plant.id) // Return the plant ID
                 } else {
-                    println("No plant found with the name: $plantName")
+                    Log.d("msg","No plant found with the name: $plantName")
                     callback(null) // No match found
                 }
             },
             { error ->
-                println("Failed to query Plant: ${error.message}")
+                Log.d("msg","Failed to query Plant: ${error.message}")
                 callback(null) // Handle query failure
             }
         )
     }
 
     private fun getOperatorIdByNameAndPlantId(operatorName: String, plantId: String, callback: (String?) -> Unit) {
-        // Query DataStore for operators where the name matches operatorName
-        Amplify.DataStore.query(Operator::class.java,
-            // Query by operatorName first
-            QueryField.field("name").eq(operatorName),
-            { operators ->
-                // Iterate over the results to filter by plantId manually
-                var foundOperatorId: String? = null
-                while (operators.hasNext()) {
-                    val operator = operators.next()
-                    if (operator.plantId == plantId) {
-                        foundOperatorId = operator.id
-                        break  // Stop once we find the matching operator
-                    }
-                }
+        // Create a predicate to filter by plant name
+        val predicate1: QueryPredicate = Plant.ID.eq(plantId)
+        val predicate2: QueryPredicate = Operator.NAME.eq(operatorName)
 
-                // Pass the result to the callback function
-                callback(foundOperatorId)
+        // Query the DataStore
+        DataStore.query(
+            Plant::class.java,
+            predicate1,
+            { iterator ->
+                if (iterator.hasNext()) {
+                    val plant = iterator.next() // Get the first matching Plant
+                    DataStore.query(
+                        Operator::class.java,
+                        predicate2,
+                        { iterator ->
+                            if (iterator.hasNext()) {
+                                val op = iterator.next()
+                                callback(op.id)
+                            } else {
+                                Log.d("msg","No operator found with the name: $operatorName")
+                                callback(null) // No match found
+                            }
+                        },
+                        { error ->
+                            Log.d("msg","Failed to query Operator: ${error.message}")
+                            callback(null) // Handle query failure
+                        }
+                    )
+                } else {
+                    Log.d("msg","No plant found with the ID: $plantId")
+                    callback(null) // No match found
+                }
             },
             { error ->
-                println("Error querying operators: ${error.message}")
-                // Return null if there's an error
-                callback(null)
+                Log.d("msg","Failed to query Plant: ${error.message}")
+                callback(null) // Handle query failure
             }
         )
     }

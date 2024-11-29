@@ -3,6 +3,7 @@ package com.example.aguadatosapp
 import android.content.Context
 import android.os.Bundle
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,10 @@ import androidx.navigation.fragment.findNavController
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.core.model.temporal.Temporal
 import com.amplifyframework.datastore.generated.model.InflowEntry
+import com.amplifyframework.datastore.generated.model.Operator
+import com.amplifyframework.datastore.generated.model.Plant
 import java.time.LocalDate
-import java.time.LocalDateTime
+import java.time.Instant
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
@@ -38,10 +41,19 @@ class PlantFlowConfirmEntryFragment : Fragment() {
         }
         //handle logic for confirm entry button
         view.findViewById<Button>(R.id.plant_flow_confirm_button).setOnClickListener {
-            //add time to submission
             val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
             val timeText = LocalTime.now().format(timeFormatter)
             viewModel.time.value = timeText
+
+            val sharedPreferences = context?.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+            var plantId = ""
+            var opId = ""
+            if (sharedPreferences != null) {
+                plantId = sharedPreferences.getString("plantID", null).toString()
+                opId = sharedPreferences.getString("operatorID", null).toString()
+            }
+            viewModel.plantFlowData.value?.let { it1 -> createInflowEntry(Temporal.DateTime(Instant.now().toString()), plantId, opId, it1.toFloat(), viewModel.plantFlowNotes.value) }
+
             findNavController().navigate(R.id.action_plant_flow_confirm_to_plant_flow_view)
         }
 
@@ -88,24 +100,24 @@ class PlantFlowConfirmEntryFragment : Fragment() {
     }
 
     // this function sends entry data to backend
-    fun createInflowEntry(createdAt: Temporal.DateTime, plantId: String, operatorId: String, inflowRate: Float, notes: String?) {
+    private fun createInflowEntry(createdAt: Temporal.DateTime, plantId: String, operatorId: String, inflowRate: Float, notes: String?) {
         // Create an InflowEntry instance
         val newInflowEntry = InflowEntry.builder()
-            .createdAt(createdAt)
-            .plantId(plantId)
-            .operatorId(operatorId)
-            .inflowRate(inflowRate.toDouble())
-            .notes(notes)
+            .createdAt(createdAt) // Temporal.DateTime object
+            .inflowRate(inflowRate.toDouble()) // Double value
+            .notes(notes) // Optional, can be null
+            .plant(Plant.justId(plantId)) // Reference Plant by ID
+            .operator(Operator.justId(operatorId)) // Reference Operator by ID
             .build()
 
         // Save the InflowEntry to DataStore
         Amplify.DataStore.save(newInflowEntry, {
                 // Success callback
-                println("Successfully saved InflowEntry with ID: ${newInflowEntry.id}")
+                Log.d("msg","Successfully saved InflowEntry with ID: ${newInflowEntry.id}")
             },
             { error ->
                 // Error callback
-                println("Failed to save InflowEntry: ${error.message}")
+                Log.d("msg","Failed to save InflowEntry: ${error.message}")
             }
         )
     }

@@ -1,6 +1,7 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
+import com.amplifyframework.core.model.annotations.BelongsTo;
 
 import java.util.List;
 import java.util.UUID;
@@ -24,16 +25,16 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 public final class FilteredEntry implements Model {
   public static final QueryField ID = field("FilteredEntry", "id");
   public static final QueryField CREATED_AT = field("FilteredEntry", "createdAt");
-  public static final QueryField PLANT_ID = field("FilteredEntry", "plantID");
-  public static final QueryField OPERATOR_ID = field("FilteredEntry", "operatorID");
   public static final QueryField TURBIDITIES = field("FilteredEntry", "turbidities");
   public static final QueryField NOTES = field("FilteredEntry", "notes");
+  public static final QueryField PLANT = field("FilteredEntry", "plantID");
+  public static final QueryField OPERATOR = field("FilteredEntry", "operatorID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="AWSDateTime", isRequired = true) Temporal.DateTime createdAt;
-  private final @ModelField(targetType="ID", isRequired = true) String plantID;
-  private final @ModelField(targetType="ID", isRequired = true) String operatorID;
   private final @ModelField(targetType="Float", isRequired = true) List<Double> turbidities;
   private final @ModelField(targetType="String") String notes;
+  private final @ModelField(targetType="Plant") @BelongsTo(targetName = "plantID", targetNames = {"plantID"}, type = Plant.class) Plant plant;
+  private final @ModelField(targetType="Operator") @BelongsTo(targetName = "operatorID", targetNames = {"operatorID"}, type = Operator.class) Operator operator;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String resolveIdentifier() {
     return id;
@@ -47,14 +48,6 @@ public final class FilteredEntry implements Model {
       return createdAt;
   }
   
-  public String getPlantId() {
-      return plantID;
-  }
-  
-  public String getOperatorId() {
-      return operatorID;
-  }
-  
   public List<Double> getTurbidities() {
       return turbidities;
   }
@@ -63,17 +56,25 @@ public final class FilteredEntry implements Model {
       return notes;
   }
   
+  public Plant getPlant() {
+      return plant;
+  }
+  
+  public Operator getOperator() {
+      return operator;
+  }
+  
   public Temporal.DateTime getUpdatedAt() {
       return updatedAt;
   }
   
-  private FilteredEntry(String id, Temporal.DateTime createdAt, String plantID, String operatorID, List<Double> turbidities, String notes) {
+  private FilteredEntry(String id, Temporal.DateTime createdAt, List<Double> turbidities, String notes, Plant plant, Operator operator) {
     this.id = id;
     this.createdAt = createdAt;
-    this.plantID = plantID;
-    this.operatorID = operatorID;
     this.turbidities = turbidities;
     this.notes = notes;
+    this.plant = plant;
+    this.operator = operator;
   }
   
   @Override
@@ -86,10 +87,10 @@ public final class FilteredEntry implements Model {
       FilteredEntry filteredEntry = (FilteredEntry) obj;
       return ObjectsCompat.equals(getId(), filteredEntry.getId()) &&
               ObjectsCompat.equals(getCreatedAt(), filteredEntry.getCreatedAt()) &&
-              ObjectsCompat.equals(getPlantId(), filteredEntry.getPlantId()) &&
-              ObjectsCompat.equals(getOperatorId(), filteredEntry.getOperatorId()) &&
               ObjectsCompat.equals(getTurbidities(), filteredEntry.getTurbidities()) &&
               ObjectsCompat.equals(getNotes(), filteredEntry.getNotes()) &&
+              ObjectsCompat.equals(getPlant(), filteredEntry.getPlant()) &&
+              ObjectsCompat.equals(getOperator(), filteredEntry.getOperator()) &&
               ObjectsCompat.equals(getUpdatedAt(), filteredEntry.getUpdatedAt());
       }
   }
@@ -99,10 +100,10 @@ public final class FilteredEntry implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getCreatedAt())
-      .append(getPlantId())
-      .append(getOperatorId())
       .append(getTurbidities())
       .append(getNotes())
+      .append(getPlant())
+      .append(getOperator())
       .append(getUpdatedAt())
       .toString()
       .hashCode();
@@ -114,10 +115,10 @@ public final class FilteredEntry implements Model {
       .append("FilteredEntry {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
-      .append("plantID=" + String.valueOf(getPlantId()) + ", ")
-      .append("operatorID=" + String.valueOf(getOperatorId()) + ", ")
       .append("turbidities=" + String.valueOf(getTurbidities()) + ", ")
       .append("notes=" + String.valueOf(getNotes()) + ", ")
+      .append("plant=" + String.valueOf(getPlant()) + ", ")
+      .append("operator=" + String.valueOf(getOperator()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
@@ -149,23 +150,13 @@ public final class FilteredEntry implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       createdAt,
-      plantID,
-      operatorID,
       turbidities,
-      notes);
+      notes,
+      plant,
+      operator);
   }
   public interface CreatedAtStep {
-    PlantIdStep createdAt(Temporal.DateTime createdAt);
-  }
-  
-
-  public interface PlantIdStep {
-    OperatorIdStep plantId(String plantId);
-  }
-  
-
-  public interface OperatorIdStep {
-    TurbiditiesStep operatorId(String operatorId);
+    TurbiditiesStep createdAt(Temporal.DateTime createdAt);
   }
   
 
@@ -178,16 +169,18 @@ public final class FilteredEntry implements Model {
     FilteredEntry build();
     BuildStep id(String id);
     BuildStep notes(String notes);
+    BuildStep plant(Plant plant);
+    BuildStep operator(Operator operator);
   }
   
 
-  public static class Builder implements CreatedAtStep, PlantIdStep, OperatorIdStep, TurbiditiesStep, BuildStep {
+  public static class Builder implements CreatedAtStep, TurbiditiesStep, BuildStep {
     private String id;
     private Temporal.DateTime createdAt;
-    private String plantID;
-    private String operatorID;
     private List<Double> turbidities;
     private String notes;
+    private Plant plant;
+    private Operator operator;
     @Override
      public FilteredEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -195,30 +188,16 @@ public final class FilteredEntry implements Model {
         return new FilteredEntry(
           id,
           createdAt,
-          plantID,
-          operatorID,
           turbidities,
-          notes);
+          notes,
+          plant,
+          operator);
     }
     
     @Override
-     public PlantIdStep createdAt(Temporal.DateTime createdAt) {
+     public TurbiditiesStep createdAt(Temporal.DateTime createdAt) {
         Objects.requireNonNull(createdAt);
         this.createdAt = createdAt;
-        return this;
-    }
-    
-    @Override
-     public OperatorIdStep plantId(String plantId) {
-        Objects.requireNonNull(plantId);
-        this.plantID = plantId;
-        return this;
-    }
-    
-    @Override
-     public TurbiditiesStep operatorId(String operatorId) {
-        Objects.requireNonNull(operatorId);
-        this.operatorID = operatorId;
         return this;
     }
     
@@ -235,6 +214,18 @@ public final class FilteredEntry implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep plant(Plant plant) {
+        this.plant = plant;
+        return this;
+    }
+    
+    @Override
+     public BuildStep operator(Operator operator) {
+        this.operator = operator;
+        return this;
+    }
+    
     /**
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -247,28 +238,18 @@ public final class FilteredEntry implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, Temporal.DateTime createdAt, String plantId, String operatorId, List<Double> turbidities, String notes) {
+    private CopyOfBuilder(String id, Temporal.DateTime createdAt, List<Double> turbidities, String notes, Plant plant, Operator operator) {
       super.id(id);
       super.createdAt(createdAt)
-        .plantId(plantId)
-        .operatorId(operatorId)
         .turbidities(turbidities)
-        .notes(notes);
+        .notes(notes)
+        .plant(plant)
+        .operator(operator);
     }
     
     @Override
      public CopyOfBuilder createdAt(Temporal.DateTime createdAt) {
       return (CopyOfBuilder) super.createdAt(createdAt);
-    }
-    
-    @Override
-     public CopyOfBuilder plantId(String plantId) {
-      return (CopyOfBuilder) super.plantId(plantId);
-    }
-    
-    @Override
-     public CopyOfBuilder operatorId(String operatorId) {
-      return (CopyOfBuilder) super.operatorId(operatorId);
     }
     
     @Override
@@ -279,6 +260,16 @@ public final class FilteredEntry implements Model {
     @Override
      public CopyOfBuilder notes(String notes) {
       return (CopyOfBuilder) super.notes(notes);
+    }
+    
+    @Override
+     public CopyOfBuilder plant(Plant plant) {
+      return (CopyOfBuilder) super.plant(plant);
+    }
+    
+    @Override
+     public CopyOfBuilder operator(Operator operator) {
+      return (CopyOfBuilder) super.operator(operator);
     }
   }
   
