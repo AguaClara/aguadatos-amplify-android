@@ -1,6 +1,8 @@
 package com.example.aguadatosapp
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +11,17 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.core.model.temporal.Temporal
+import com.amplifyframework.datastore.generated.model.ChemicalType
+import com.amplifyframework.datastore.generated.model.DoseEntry
+import com.amplifyframework.datastore.generated.model.Operator
+import com.amplifyframework.datastore.generated.model.Plant
+import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-// CoagCalibrationConfirmEntryFragment.kt
+// CoagChangeDoseConfirmEntryFragment.kt
 class CoagChangeDoseConfirmEntryFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
     override fun onCreateView(
@@ -29,12 +38,23 @@ class CoagChangeDoseConfirmEntryFragment : Fragment() {
         }
         // handle logic for confirm entry button
         view.findViewById<Button>(R.id.confirm_button).setOnClickListener {
-            //TODO: @POST TEAM FA'24, this is where variables in ViewModel will be sent to backend
             //add time to submission
             val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
             val timeText = LocalTime.now().format(timeFormatter)
             viewModel.time.value = timeText
 
+            val sharedPreferences = context?.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+            var plantId = ""
+            var opId = ""
+            if (sharedPreferences != null) {
+                plantId = sharedPreferences.getString("plantID", null).toString()
+                opId = sharedPreferences.getString("operatorID", null).toString()
+            }
+            viewModel.coagChangeDoseData.value?.let { it1 ->
+                createCoagChangeDoseEntry(Temporal.DateTime( Instant.now().toString()),
+                    it1[2], it1[3], it1[4], plantId, opId)
+            }
+            //TODO: need to link to calibration entry?
             //navigate to next page
             findNavController().navigate(R.id.action_change_dose_confirm_entry_to_view_entry)
         }
@@ -98,4 +118,29 @@ class CoagChangeDoseConfirmEntryFragment : Fragment() {
         dateView.text = getString(R.string.date,dateText)
     }
 
+    // this function sends entry data to backend
+    private fun createCoagChangeDoseEntry(createdAt: Temporal.DateTime, targetDose: Double, sliderPos: Double,
+                                           flowRate: Double, plantId: String, operatorId: String) {
+        // Create a doseEntry instance
+        val newDoseEntry = DoseEntry.builder()
+            .createdAt(createdAt) // Temporal.DateTime object
+            .chemicalType(ChemicalType.COAGULANT) //ChemicalType object
+            .targetDose(targetDose) // Double value
+            .updatedSliderPosition(sliderPos) // Double value
+            .updatedFlowRate(flowRate) // Double value
+            .plant(Plant.justId(plantId)) // Reference Plant by ID
+            .operator(Operator.justId(operatorId)) // Reference Operator by ID
+            .build()
+
+        // Save the DoseEntry to DataStore
+        Amplify.DataStore.save(newDoseEntry, {
+            // Success callback
+            Log.d("msg","Successfully saved DoseEntry with ID: ${newDoseEntry.id}")
+        },
+            { error ->
+                // Error callback
+                Log.d("msg","Failed to save DoseEntry: ${error.message}")
+            }
+        )
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.aguadatosapp
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.core.model.temporal.Temporal
+import com.amplifyframework.datastore.generated.model.ClarifiedEntry
+import com.amplifyframework.datastore.generated.model.Operator
+import com.amplifyframework.datastore.generated.model.Plant
+import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -31,11 +39,20 @@ class ClarifiedWaterConfirmEntryFragment : Fragment() {
         }
         // Handle logic for confirm entry button
         view.findViewById<Button>(R.id.clarified_water_confirm_button).setOnClickListener {
-            //TODO: @POST TEAM FA'24, this is where data from the ViewModel will be sent to the backend
             //add time to submission
             val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
             val timeText = LocalTime.now().format(timeFormatter)
             viewModel.time.value = timeText
+
+            val sharedPreferences = context?.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+            var plantId = ""
+            var opId = ""
+            if (sharedPreferences != null) {
+                plantId = sharedPreferences.getString("plantID", null).toString()
+                opId = sharedPreferences.getString("operatorID", null).toString()
+            }
+            viewModel.clarifiedWaterData.value?.let { it1 -> createClarifiedWaterEntry(Temporal.DateTime(Instant.now().toString()), plantId, opId, it1.toFloat(), viewModel.clarifiedWaterNotes.value) }
+
             findNavController().navigate(R.id.action_clarified_water_confirm_to_clarified_water_view)
         }
 
@@ -81,4 +98,26 @@ class ClarifiedWaterConfirmEntryFragment : Fragment() {
         dateView.text = getString(R.string.date,dateText)
     }
 
+    // this function sends entry data to backend
+    private fun createClarifiedWaterEntry(createdAt: Temporal.DateTime, plantId: String, operatorId: String, turbidity: Float, notes: String?) {
+        // Create a clarifiedWaterEntry instance
+        val newClarifiedWaterEntry = ClarifiedEntry.builder()
+            .createdAt(createdAt) // Temporal.DateTime object
+            .turbidity(turbidity.toDouble()) // Double value
+            .notes(notes) // Optional, can be null
+            .plant(Plant.justId(plantId)) // Reference Plant by ID
+            .operator(Operator.justId(operatorId)) // Reference Operator by ID
+            .build()
+
+        // Save the ClarifiedWaterEntry to DataStore
+        Amplify.DataStore.save(newClarifiedWaterEntry, {
+            // Success callback
+            Log.d("msg","Successfully saved ClarifiedWaterEntry with ID: ${newClarifiedWaterEntry.id}")
+        },
+            { error ->
+                // Error callback
+                Log.d("msg","Failed to save ClarifiedWaterEntry: ${error.message}")
+            }
+        )
+    }
 }

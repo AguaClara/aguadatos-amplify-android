@@ -250,6 +250,7 @@ type DoseEntry @model {
     createdAt: AWSDateTime!
     plantID: ID! @index(name: "DoseByPlant", sortKeyFields: ["createdAt"])
     operatorID: ID! @index(name: "DoseByOperator", sortKeyFields: ["createdAt"])
+    chemicalType: ChemicalType!
 
     # Dosing data
     targetDose: Float!

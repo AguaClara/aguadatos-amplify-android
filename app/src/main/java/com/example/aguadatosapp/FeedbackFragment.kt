@@ -1,18 +1,22 @@
 package com.example.aguadatosapp
 
+import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.core.model.temporal.Temporal
+import com.amplifyframework.datastore.generated.model.FeedbackEntry
+import com.amplifyframework.datastore.generated.model.Operator
+import com.amplifyframework.datastore.generated.model.Plant
+import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -46,7 +50,39 @@ class FeedbackFragment : Fragment() {
             val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val dateText = LocalDate.now().format(dateFormatter)
             viewModel.date.value = dateText
+
+            val sharedPreferences = context?.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+            var plantId = ""
+            var opId = ""
+            if (sharedPreferences != null) {
+                plantId = sharedPreferences.getString("plantID", null).toString()
+                opId = sharedPreferences.getString("operatorID", null).toString()
+            }
+            createFeedbackEntry(Temporal.DateTime( Instant.now().toString()), plantId, opId, viewModel.feedback.value)
+
         }
         return view
+    }
+
+    // this function sends entry data to backend
+    private fun createFeedbackEntry(createdAt: Temporal.DateTime, plantId: String, operatorId: String, feedback: String?) {
+        // Create a FeedbackEntry instance
+        val newFeedbackEntry = FeedbackEntry.builder()
+            .createdAt(createdAt) // Temporal.DateTime object
+            .feedback(feedback) // String value
+            .plant(Plant.justId(plantId)) // Reference Plant by ID
+            .operator(Operator.justId(operatorId)) // Reference Operator by ID
+            .build()
+
+        // Save the FeedbackEntry to DataStore
+        Amplify.DataStore.save(newFeedbackEntry, {
+            // Success callback
+            Log.d("msg","Successfully saved FeedbackEntry with ID: ${newFeedbackEntry.id}")
+        },
+            { error ->
+                // Error callback
+                Log.d("msg","Failed to save FeedbackEntry: ${error.message}")
+            }
+        )
     }
 }

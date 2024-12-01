@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.core.model.temporal.Temporal
-import com.amplifyframework.datastore.generated.model.InflowEntry
 import com.amplifyframework.datastore.generated.model.Operator
 import com.amplifyframework.datastore.generated.model.Plant
 import com.amplifyframework.datastore.generated.model.RawEntry
@@ -54,7 +53,6 @@ class RawWaterConfirmEntryFragment : Fragment() {
                 opId = sharedPreferences.getString("operatorID", null).toString()
             }
             viewModel.rawWaterData.value?.let { it1 -> createRawWaterEntry(Temporal.DateTime(Instant.now().toString()), plantId, opId, it1.toFloat(), viewModel.rawWaterNotes.value) }
-
 
             findNavController().navigate(R.id.action_raw_water_confirm_to_raw_water_view)
         }
@@ -111,7 +109,7 @@ class RawWaterConfirmEntryFragment : Fragment() {
             .operator(Operator.justId(operatorId)) // Reference Operator by ID
             .build()
 
-        // Save the InflowEntry to DataStore
+        // Save the RawWaterEntry to DataStore
         Amplify.DataStore.save(newRawWaterEntry, {
             // Success callback
             Log.d("msg","Successfully saved RawWaterEntry with ID: ${newRawWaterEntry.id}")

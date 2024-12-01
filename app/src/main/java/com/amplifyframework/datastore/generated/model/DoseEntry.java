@@ -26,6 +26,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 public final class DoseEntry implements Model {
   public static final QueryField ID = field("DoseEntry", "id");
   public static final QueryField CREATED_AT = field("DoseEntry", "createdAt");
+  public static final QueryField CHEMICAL_TYPE = field("DoseEntry", "chemicalType");
   public static final QueryField TARGET_DOSE = field("DoseEntry", "targetDose");
   public static final QueryField UPDATED_SLIDER_POSITION = field("DoseEntry", "updatedSliderPosition");
   public static final QueryField UPDATED_FLOW_RATE = field("DoseEntry", "updatedFlowRate");
@@ -34,6 +35,7 @@ public final class DoseEntry implements Model {
   public static final QueryField OPERATOR = field("DoseEntry", "operatorID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="AWSDateTime", isRequired = true) Temporal.DateTime createdAt;
+  private final @ModelField(targetType="ChemicalType", isRequired = true) ChemicalType chemicalType;
   private final @ModelField(targetType="Float", isRequired = true) Double targetDose;
   private final @ModelField(targetType="Float", isRequired = true) Double updatedSliderPosition;
   private final @ModelField(targetType="Float", isRequired = true) Double updatedFlowRate;
@@ -51,6 +53,10 @@ public final class DoseEntry implements Model {
   
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
+  }
+  
+  public ChemicalType getChemicalType() {
+      return chemicalType;
   }
   
   public Double getTargetDose() {
@@ -81,9 +87,10 @@ public final class DoseEntry implements Model {
       return updatedAt;
   }
   
-  private DoseEntry(String id, Temporal.DateTime createdAt, Double targetDose, Double updatedSliderPosition, Double updatedFlowRate, CalibrationEntry calibrationEntry, Plant plant, Operator operator) {
+  private DoseEntry(String id, Temporal.DateTime createdAt, ChemicalType chemicalType, Double targetDose, Double updatedSliderPosition, Double updatedFlowRate, CalibrationEntry calibrationEntry, Plant plant, Operator operator) {
     this.id = id;
     this.createdAt = createdAt;
+    this.chemicalType = chemicalType;
     this.targetDose = targetDose;
     this.updatedSliderPosition = updatedSliderPosition;
     this.updatedFlowRate = updatedFlowRate;
@@ -102,6 +109,7 @@ public final class DoseEntry implements Model {
       DoseEntry doseEntry = (DoseEntry) obj;
       return ObjectsCompat.equals(getId(), doseEntry.getId()) &&
               ObjectsCompat.equals(getCreatedAt(), doseEntry.getCreatedAt()) &&
+              ObjectsCompat.equals(getChemicalType(), doseEntry.getChemicalType()) &&
               ObjectsCompat.equals(getTargetDose(), doseEntry.getTargetDose()) &&
               ObjectsCompat.equals(getUpdatedSliderPosition(), doseEntry.getUpdatedSliderPosition()) &&
               ObjectsCompat.equals(getUpdatedFlowRate(), doseEntry.getUpdatedFlowRate()) &&
@@ -117,6 +125,7 @@ public final class DoseEntry implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getCreatedAt())
+      .append(getChemicalType())
       .append(getTargetDose())
       .append(getUpdatedSliderPosition())
       .append(getUpdatedFlowRate())
@@ -134,6 +143,7 @@ public final class DoseEntry implements Model {
       .append("DoseEntry {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
+      .append("chemicalType=" + String.valueOf(getChemicalType()) + ", ")
       .append("targetDose=" + String.valueOf(getTargetDose()) + ", ")
       .append("updatedSliderPosition=" + String.valueOf(getUpdatedSliderPosition()) + ", ")
       .append("updatedFlowRate=" + String.valueOf(getUpdatedFlowRate()) + ", ")
@@ -166,6 +176,7 @@ public final class DoseEntry implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -173,6 +184,7 @@ public final class DoseEntry implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       createdAt,
+      chemicalType,
       targetDose,
       updatedSliderPosition,
       updatedFlowRate,
@@ -181,7 +193,12 @@ public final class DoseEntry implements Model {
       operator);
   }
   public interface CreatedAtStep {
-    TargetDoseStep createdAt(Temporal.DateTime createdAt);
+    ChemicalTypeStep createdAt(Temporal.DateTime createdAt);
+  }
+  
+
+  public interface ChemicalTypeStep {
+    TargetDoseStep chemicalType(ChemicalType chemicalType);
   }
   
 
@@ -209,9 +226,10 @@ public final class DoseEntry implements Model {
   }
   
 
-  public static class Builder implements CreatedAtStep, TargetDoseStep, UpdatedSliderPositionStep, UpdatedFlowRateStep, BuildStep {
+  public static class Builder implements CreatedAtStep, ChemicalTypeStep, TargetDoseStep, UpdatedSliderPositionStep, UpdatedFlowRateStep, BuildStep {
     private String id;
     private Temporal.DateTime createdAt;
+    private ChemicalType chemicalType;
     private Double targetDose;
     private Double updatedSliderPosition;
     private Double updatedFlowRate;
@@ -225,6 +243,7 @@ public final class DoseEntry implements Model {
         return new DoseEntry(
           id,
           createdAt,
+          chemicalType,
           targetDose,
           updatedSliderPosition,
           updatedFlowRate,
@@ -234,9 +253,16 @@ public final class DoseEntry implements Model {
     }
     
     @Override
-     public TargetDoseStep createdAt(Temporal.DateTime createdAt) {
+     public ChemicalTypeStep createdAt(Temporal.DateTime createdAt) {
         Objects.requireNonNull(createdAt);
         this.createdAt = createdAt;
+        return this;
+    }
+    
+    @Override
+     public TargetDoseStep chemicalType(ChemicalType chemicalType) {
+        Objects.requireNonNull(chemicalType);
+        this.chemicalType = chemicalType;
         return this;
     }
     
@@ -291,9 +317,10 @@ public final class DoseEntry implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, Temporal.DateTime createdAt, Double targetDose, Double updatedSliderPosition, Double updatedFlowRate, CalibrationEntry calibrationEntry, Plant plant, Operator operator) {
+    private CopyOfBuilder(String id, Temporal.DateTime createdAt, ChemicalType chemicalType, Double targetDose, Double updatedSliderPosition, Double updatedFlowRate, CalibrationEntry calibrationEntry, Plant plant, Operator operator) {
       super.id(id);
       super.createdAt(createdAt)
+        .chemicalType(chemicalType)
         .targetDose(targetDose)
         .updatedSliderPosition(updatedSliderPosition)
         .updatedFlowRate(updatedFlowRate)
@@ -305,6 +332,11 @@ public final class DoseEntry implements Model {
     @Override
      public CopyOfBuilder createdAt(Temporal.DateTime createdAt) {
       return (CopyOfBuilder) super.createdAt(createdAt);
+    }
+    
+    @Override
+     public CopyOfBuilder chemicalType(ChemicalType chemicalType) {
+      return (CopyOfBuilder) super.chemicalType(chemicalType);
     }
     
     @Override
