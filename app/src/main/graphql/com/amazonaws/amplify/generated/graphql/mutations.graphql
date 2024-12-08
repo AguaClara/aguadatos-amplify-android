@@ -8,54 +8,150 @@ mutation CreatePlant(
     id
     name
     operators {
+      items {
+        id
+        name
+        plantID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     inflowEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        inflowRate
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     rawEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     clarifiedEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     filteredEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidities
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     calibrationEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       nextToken
       startedAt
-      __typename
     }
     doseEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     feedbackEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        feedback
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation UpdatePlant(
   $input: UpdatePlantInput!
   $condition: ModelPlantConditionInput
@@ -64,54 +160,150 @@ mutation UpdatePlant(
     id
     name
     operators {
+      items {
+        id
+        name
+        plantID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     inflowEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        inflowRate
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     rawEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     clarifiedEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     filteredEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidities
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     calibrationEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       nextToken
       startedAt
-      __typename
     }
     doseEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     feedbackEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        feedback
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation DeletePlant(
   $input: DeletePlantInput!
   $condition: ModelPlantConditionInput
@@ -120,54 +312,150 @@ mutation DeletePlant(
     id
     name
     operators {
+      items {
+        id
+        name
+        plantID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     inflowEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        inflowRate
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     rawEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     clarifiedEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     filteredEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidities
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     calibrationEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       nextToken
       startedAt
-      __typename
     }
     doseEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     feedbackEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        feedback
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation CreateOperator(
   $input: CreateOperatorInput!
   $condition: ModelOperatorConditionInput
@@ -177,59 +465,136 @@ mutation CreateOperator(
     name
     plantID
     inflowEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        inflowRate
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     rawEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     clarifiedEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     filteredEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidities
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     calibrationEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       nextToken
       startedAt
-      __typename
     }
     doseEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     feedbackEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        feedback
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation UpdateOperator(
   $input: UpdateOperatorInput!
   $condition: ModelOperatorConditionInput
@@ -239,59 +604,136 @@ mutation UpdateOperator(
     name
     plantID
     inflowEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        inflowRate
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     rawEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     clarifiedEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     filteredEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidities
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     calibrationEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       nextToken
       startedAt
-      __typename
     }
     doseEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     feedbackEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        feedback
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation DeleteOperator(
   $input: DeleteOperatorInput!
   $condition: ModelOperatorConditionInput
@@ -301,59 +743,136 @@ mutation DeleteOperator(
     name
     plantID
     inflowEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        inflowRate
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     rawEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     clarifiedEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     filteredEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidities
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     calibrationEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       nextToken
       startedAt
-      __typename
     }
     doseEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     feedbackEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        feedback
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation CreateInflowEntry(
   $input: CreateInflowEntryInput!
   $condition: ModelInflowEntryConditionInput
@@ -365,35 +884,12 @@ mutation CreateInflowEntry(
     operatorID
     inflowRate
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation UpdateInflowEntry(
   $input: UpdateInflowEntryInput!
   $condition: ModelInflowEntryConditionInput
@@ -405,35 +901,12 @@ mutation UpdateInflowEntry(
     operatorID
     inflowRate
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation DeleteInflowEntry(
   $input: DeleteInflowEntryInput!
   $condition: ModelInflowEntryConditionInput
@@ -445,35 +918,12 @@ mutation DeleteInflowEntry(
     operatorID
     inflowRate
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation CreateRawEntry(
   $input: CreateRawEntryInput!
   $condition: ModelRawEntryConditionInput
@@ -485,35 +935,12 @@ mutation CreateRawEntry(
     operatorID
     turbidity
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation UpdateRawEntry(
   $input: UpdateRawEntryInput!
   $condition: ModelRawEntryConditionInput
@@ -525,35 +952,12 @@ mutation UpdateRawEntry(
     operatorID
     turbidity
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation DeleteRawEntry(
   $input: DeleteRawEntryInput!
   $condition: ModelRawEntryConditionInput
@@ -565,35 +969,12 @@ mutation DeleteRawEntry(
     operatorID
     turbidity
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation CreateClarifiedEntry(
   $input: CreateClarifiedEntryInput!
   $condition: ModelClarifiedEntryConditionInput
@@ -605,35 +986,12 @@ mutation CreateClarifiedEntry(
     operatorID
     turbidity
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation UpdateClarifiedEntry(
   $input: UpdateClarifiedEntryInput!
   $condition: ModelClarifiedEntryConditionInput
@@ -645,35 +1003,12 @@ mutation UpdateClarifiedEntry(
     operatorID
     turbidity
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation DeleteClarifiedEntry(
   $input: DeleteClarifiedEntryInput!
   $condition: ModelClarifiedEntryConditionInput
@@ -685,35 +1020,12 @@ mutation DeleteClarifiedEntry(
     operatorID
     turbidity
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation CreateFilteredEntry(
   $input: CreateFilteredEntryInput!
   $condition: ModelFilteredEntryConditionInput
@@ -725,35 +1037,12 @@ mutation CreateFilteredEntry(
     operatorID
     turbidities
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation UpdateFilteredEntry(
   $input: UpdateFilteredEntryInput!
   $condition: ModelFilteredEntryConditionInput
@@ -765,35 +1054,12 @@ mutation UpdateFilteredEntry(
     operatorID
     turbidities
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation DeleteFilteredEntry(
   $input: DeleteFilteredEntryInput!
   $condition: ModelFilteredEntryConditionInput
@@ -805,35 +1071,12 @@ mutation DeleteFilteredEntry(
     operatorID
     turbidities
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation CreateCalibrationEntry(
   $input: CreateCalibrationEntryInput!
   $condition: ModelCalibrationEntryConditionInput
@@ -859,46 +1102,45 @@ mutation CreateCalibrationEntry(
       createdAt
       plantID
       operatorID
+      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      calibrationEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     updatedAt
     _version
     _deleted
     _lastChangedAt
     calibrationEntryDoseEntryId
-    __typename
   }
 }
-
 mutation UpdateCalibrationEntry(
   $input: UpdateCalibrationEntryInput!
   $condition: ModelCalibrationEntryConditionInput
@@ -924,46 +1166,45 @@ mutation UpdateCalibrationEntry(
       createdAt
       plantID
       operatorID
+      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      calibrationEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     updatedAt
     _version
     _deleted
     _lastChangedAt
     calibrationEntryDoseEntryId
-    __typename
   }
 }
-
 mutation DeleteCalibrationEntry(
   $input: DeleteCalibrationEntryInput!
   $condition: ModelCalibrationEntryConditionInput
@@ -989,46 +1230,45 @@ mutation DeleteCalibrationEntry(
       createdAt
       plantID
       operatorID
+      chemicalType
       targetDose
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      calibrationEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     updatedAt
     _version
     _deleted
     _lastChangedAt
     calibrationEntryDoseEntryId
-    __typename
   }
 }
-
 mutation CreateDoseEntry(
   $input: CreateDoseEntryInput!
   $condition: ModelDoseEntryConditionInput
@@ -1038,6 +1278,7 @@ mutation CreateDoseEntry(
     createdAt
     plantID
     operatorID
+    chemicalType
     targetDose
     updatedSliderPosition
     updatedFlowRate
@@ -1058,42 +1299,33 @@ mutation CreateDoseEntry(
       flowRate
       activeTank
       tankVolume
+      doseEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation UpdateDoseEntry(
   $input: UpdateDoseEntryInput!
   $condition: ModelDoseEntryConditionInput
@@ -1103,6 +1335,7 @@ mutation UpdateDoseEntry(
     createdAt
     plantID
     operatorID
+    chemicalType
     targetDose
     updatedSliderPosition
     updatedFlowRate
@@ -1123,42 +1356,33 @@ mutation UpdateDoseEntry(
       flowRate
       activeTank
       tankVolume
+      doseEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation DeleteDoseEntry(
   $input: DeleteDoseEntryInput!
   $condition: ModelDoseEntryConditionInput
@@ -1168,6 +1392,7 @@ mutation DeleteDoseEntry(
     createdAt
     plantID
     operatorID
+    chemicalType
     targetDose
     updatedSliderPosition
     updatedFlowRate
@@ -1188,42 +1413,33 @@ mutation DeleteDoseEntry(
       flowRate
       activeTank
       tankVolume
+      doseEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation CreateFeedbackEntry(
   $input: CreateFeedbackEntryInput!
   $condition: ModelFeedbackEntryConditionInput
@@ -1234,35 +1450,12 @@ mutation CreateFeedbackEntry(
     plantID
     operatorID
     feedback
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation UpdateFeedbackEntry(
   $input: UpdateFeedbackEntryInput!
   $condition: ModelFeedbackEntryConditionInput
@@ -1273,35 +1466,12 @@ mutation UpdateFeedbackEntry(
     plantID
     operatorID
     feedback
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 mutation DeleteFeedbackEntry(
   $input: DeleteFeedbackEntryInput!
   $condition: ModelFeedbackEntryConditionInput
@@ -1312,31 +1482,9 @@ mutation DeleteFeedbackEntry(
     plantID
     operatorID
     feedback
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }

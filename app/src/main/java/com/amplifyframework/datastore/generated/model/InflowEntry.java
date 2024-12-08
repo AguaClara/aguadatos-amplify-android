@@ -2,7 +2,6 @@ package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.core.model.annotations.BelongsTo;
-import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -37,9 +36,7 @@ public final class InflowEntry implements Model {
   private final @ModelField(targetType="Plant") @BelongsTo(targetName = "plantID", targetNames = {"plantID"}, type = Plant.class) Plant plant;
   private final @ModelField(targetType="Operator") @BelongsTo(targetName = "operatorID", targetNames = {"operatorID"}, type = Operator.class) Operator operator;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  /** @deprecated This API is internal to Amplify and should not be used. */
-  @Deprecated
-   public String resolveIdentifier() {
+  public String resolveIdentifier() {
     return id;
   }
   
@@ -184,19 +181,6 @@ public final class InflowEntry implements Model {
     private String notes;
     private Plant plant;
     private Operator operator;
-    public Builder() {
-      
-    }
-    
-    private Builder(String id, Temporal.DateTime createdAt, Double inflowRate, String notes, Plant plant, Operator operator) {
-      this.id = id;
-      this.createdAt = createdAt;
-      this.inflowRate = inflowRate;
-      this.notes = notes;
-      this.plant = plant;
-      this.operator = operator;
-    }
-    
     @Override
      public InflowEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -255,9 +239,12 @@ public final class InflowEntry implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, Temporal.DateTime createdAt, Double inflowRate, String notes, Plant plant, Operator operator) {
-      super(id, createdAt, inflowRate, notes, plant, operator);
-      Objects.requireNonNull(createdAt);
-      Objects.requireNonNull(inflowRate);
+      super.id(id);
+      super.createdAt(createdAt)
+        .inflowRate(inflowRate)
+        .notes(notes)
+        .plant(plant)
+        .operator(operator);
     }
     
     @Override
@@ -283,14 +270,6 @@ public final class InflowEntry implements Model {
     @Override
      public CopyOfBuilder operator(Operator operator) {
       return (CopyOfBuilder) super.operator(operator);
-    }
-  }
-  
-
-  public static class InflowEntryIdentifier extends ModelIdentifier<InflowEntry> {
-    private static final long serialVersionUID = 1L;
-    public InflowEntryIdentifier(String id) {
-      super(id);
     }
   }
   
