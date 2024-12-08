@@ -10,6 +10,17 @@ projects:
         codeGenTarget: 'android'
         generatedFileName: ''
         docsFilePath: app/src/main/graphql/com/amazonaws/amplify/generated/graphql
+  aguadatosamplify:
+    schemaPath: app/src/main/graphql/schema.json
+    includes:
+      - ''
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: ''
+        generatedFileName: ''
+        docsFilePath: app/src/main/graphql/com/amazonaws/amplify/generated/graphql
 extensions:
   amplify:
     version: 3
