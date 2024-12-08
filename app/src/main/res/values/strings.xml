@@ -207,5 +207,5 @@
     <string name="feedback_with_input">Feedback: %s</string>
     <string name="delete">DELETE</string>
     <string name="enter_verification_code">Enter Verification Code</string>
-    <string name="enter_4_digit_code">Enter 4-digit code</string>
+    <string name="enter_6_digit_code">Enter 6-digit code</string>
 </resources>

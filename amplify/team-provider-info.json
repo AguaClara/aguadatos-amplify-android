@@ -10,6 +10,11 @@
       "StackName": "amplify-aguadatosamplify-authtest-adcbc",
       "StackId": "arn:aws:cloudformation:us-east-2:767397891564:stack/amplify-aguadatosamplify-authtest-adcbc/0392c940-b131-11ef-abe1-0255eb6396c3",
       "AmplifyAppId": "d10r8djtlz2in9"
+    },
+    "categories": {
+      "auth": {
+        "aguadatosAmplify": {}
+      }
     }
   },
   "dev": {

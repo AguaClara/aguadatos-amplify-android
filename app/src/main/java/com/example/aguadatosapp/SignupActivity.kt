@@ -60,14 +60,14 @@ class SignupActivity : ComponentActivity() {
             try {
                 val result = Amplify.Auth.signUp(email, password, options)
                 withContext(Dispatchers.Main) {
+                    Toast.makeText(this@SignupActivity, "Sign-up successful! Please check your email for a confirmation code.", Toast.LENGTH_LONG).show()
+
+                    // Navigate to confirmation activity if necessary
+                    val intent = Intent(this@SignupActivity, ConfirmSignUpActivity::class.java)
+                    intent.putExtra("email", email)
+                    startActivity(intent)
                     if (result.isSignUpComplete) {
                         Log.i("SignupActivity", "Sign-up succeeded")
-                        Toast.makeText(this@SignupActivity, "Sign-up successful! Please check your email for a confirmation code.", Toast.LENGTH_LONG).show()
-
-                        // Navigate to confirmation activity if necessary
-                        val intent = Intent(this@SignupActivity, ConfirmSignUpActivity::class.java)
-                        intent.putExtra("email", email)
-                        startActivity(intent)
                     } else {
                         Log.i("SignupActivity", "Sign-up requires confirmation")
                     }
