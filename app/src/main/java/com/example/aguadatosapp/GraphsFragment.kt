@@ -15,6 +15,8 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import org.json.JSONArray
+import org.json.JSONException
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -142,37 +144,34 @@ class GraphsFragment : Fragment() {
         return buttonLayout
     }
 
-    // Function to create a dataset for overlay graphs with specific color (will be changed to query data later)
+    // Function to create a dataset for overlay graphs with specific color from JSON
     private fun createDataSet(graphTitle: String, color: Int): LineDataSet? {
-        val filePath = "datalog_8-7-2024.csv"
+        val filePath = "datalog_8-7-2024.json"
         try {
             val assetManager = requireContext().assets
             val inputStream = assetManager.open(filePath)
             val reader = BufferedReader(InputStreamReader(inputStream))
+            val jsonString = reader.readText()
+            reader.close()
+
             val data = ArrayList<Entry>()
-            Log.d("CSVReader", "Opened file: $filePath")
+            Log.d("JSONReader", "Opened file: $filePath")
 
-            val headerLine = reader.readLine()
-            val headers = headerLine.split(",")
-            val columnIndex = headers.indexOf(graphTitle)
-            val dayFractionIndex = headers.indexOf("Day fraction since midnight on 8/7/2024")
+            val jsonArray = JSONArray(jsonString)
 
-            if (columnIndex == -1 || dayFractionIndex == -1) {
-                Log.e("CSVReader", "Column '$graphTitle' or 'Day fraction' not found in CSV.")
-                return null
-            }
+            val dayFractionKey = "Day fraction since midnight on 8/7/2024"
 
-            reader.forEachLine { line ->
-                val tokens = line.split(",")
-                if (tokens.size > columnIndex) {
-                    val dayFraction = tokens[dayFractionIndex].toFloatOrNull() ?: return@forEachLine
-                    val value = tokens[columnIndex].toFloatOrNull() ?: return@forEachLine
+            for (i in 0 until jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(i)
+                if (jsonObject.has(graphTitle) && jsonObject.has(dayFractionKey)) {
+                    val dayFraction = jsonObject.getDouble(dayFractionKey).toFloat()
+                    val value = jsonObject.getDouble(graphTitle).toFloat()
                     data.add(Entry(dayFraction, value))
                 }
             }
 
             if (data.isEmpty()) {
-                Log.d("Graph", "No data was read from the CSV.")
+                Log.d("Graph", "No data was read from the JSON.")
                 return null
             }
 
@@ -183,7 +182,11 @@ class GraphsFragment : Fragment() {
             return dataSet
         } catch (e: IOException) {
             e.printStackTrace()
-            Log.e("Graph", "Error reading CSV: ${e.message}")
+            Log.e("Graph", "Error reading JSON: ${e.message}")
+            return null
+        } catch (e: JSONException) {
+            e.printStackTrace()
+            Log.e("Graph", "Error parsing JSON: ${e.message}")
             return null
         }
     }
