@@ -1,4 +1,17 @@
 {
+  "authtest": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-aguadatosamplify-authtest-adcbc-authRole",
+      "UnauthRoleArn": "arn:aws:iam::767397891564:role/amplify-aguadatosamplify-authtest-adcbc-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::767397891564:role/amplify-aguadatosamplify-authtest-adcbc-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-aguadatosamplify-authtest-adcbc-deployment",
+      "UnauthRoleName": "amplify-aguadatosamplify-authtest-adcbc-unauthRole",
+      "StackName": "amplify-aguadatosamplify-authtest-adcbc",
+      "StackId": "arn:aws:cloudformation:us-east-2:767397891564:stack/amplify-aguadatosamplify-authtest-adcbc/0392c940-b131-11ef-abe1-0255eb6396c3",
+      "AmplifyAppId": "d10r8djtlz2in9"
+    }
+  },
   "dev": {
     "awscloudformation": {
       "AuthRoleName": "amplify-aguadatosamplify-dev-c1bed-authRole",
