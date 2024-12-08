@@ -1,8 +1,8 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.annotations.HasMany;
+import com.amplifyframework.core.model.annotations.BelongsTo;
 import com.amplifyframework.core.model.temporal.Temporal;
-import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,29 +21,24 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 /** This is an auto generated class representing the Operator type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "Operators", type = Model.Type.USER, version = 1)
-@Index(name = "byName", fields = {"name","id"})
-@Index(name = "byPlant", fields = {"plantID","id"})
+@Index(name = "OperatorByPlant", fields = {"plantID","id"})
 public final class Operator implements Model {
   public static final QueryField ID = field("Operator", "id");
   public static final QueryField NAME = field("Operator", "name");
-  public static final QueryField PLANT_ID = field("Operator", "plantID");
+  public static final QueryField PLANT = field("Operator", "plantID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
-  private final @ModelField(targetType="ID", isRequired = true) String plantID;
-  private final @ModelField(targetType="PlantFlowEntry") @HasMany(associatedWith = "plantID", type = PlantFlowEntry.class) List<PlantFlowEntry> plantFlowEntries = null;
-  private final @ModelField(targetType="RawWaterEntry") @HasMany(associatedWith = "plantID", type = RawWaterEntry.class) List<RawWaterEntry> rawWaterEntries = null;
-  private final @ModelField(targetType="ClarifiedWaterEntry") @HasMany(associatedWith = "plantID", type = ClarifiedWaterEntry.class) List<ClarifiedWaterEntry> clarifiedWaterEntries = null;
-  private final @ModelField(targetType="FilteredWaterEntry") @HasMany(associatedWith = "plantID", type = FilteredWaterEntry.class) List<FilteredWaterEntry> filteredWaterEntries = null;
-  private final @ModelField(targetType="CoagulantCalibrationEntry") @HasMany(associatedWith = "plantID", type = CoagulantCalibrationEntry.class) List<CoagulantCalibrationEntry> coagulantCalibrationEntries = null;
-  private final @ModelField(targetType="CoagulantChangeDoseEntry") @HasMany(associatedWith = "plantID", type = CoagulantChangeDoseEntry.class) List<CoagulantChangeDoseEntry> coagulantChangeDoseEntries = null;
-  private final @ModelField(targetType="ChlorineCalibrationEntry") @HasMany(associatedWith = "plantID", type = ChlorineCalibrationEntry.class) List<ChlorineCalibrationEntry> chlorineCalibrationEntries = null;
-  private final @ModelField(targetType="ChlorineChangeDoseEntry") @HasMany(associatedWith = "plantID", type = ChlorineChangeDoseEntry.class) List<ChlorineChangeDoseEntry> chlorineChangeDoseEntries = null;
-  private final @ModelField(targetType="FeedbackEntry") @HasMany(associatedWith = "plantID", type = FeedbackEntry.class) List<FeedbackEntry> feedbackEntries = null;
+  private final @ModelField(targetType="InflowEntry") @HasMany(associatedWith = "operator", type = InflowEntry.class) List<InflowEntry> inflowEntries = null;
+  private final @ModelField(targetType="RawEntry") @HasMany(associatedWith = "operator", type = RawEntry.class) List<RawEntry> rawEntries = null;
+  private final @ModelField(targetType="ClarifiedEntry") @HasMany(associatedWith = "operator", type = ClarifiedEntry.class) List<ClarifiedEntry> clarifiedEntries = null;
+  private final @ModelField(targetType="FilteredEntry") @HasMany(associatedWith = "operator", type = FilteredEntry.class) List<FilteredEntry> filteredEntries = null;
+  private final @ModelField(targetType="CalibrationEntry") @HasMany(associatedWith = "operator", type = CalibrationEntry.class) List<CalibrationEntry> calibrationEntries = null;
+  private final @ModelField(targetType="DoseEntry") @HasMany(associatedWith = "operator", type = DoseEntry.class) List<DoseEntry> doseEntries = null;
+  private final @ModelField(targetType="FeedbackEntry") @HasMany(associatedWith = "operator", type = FeedbackEntry.class) List<FeedbackEntry> feedbackEntries = null;
+  private final @ModelField(targetType="Plant") @BelongsTo(targetName = "plantID", targetNames = {"plantID"}, type = Plant.class) Plant plant;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  /** @deprecated This API is internal to Amplify and should not be used. */
-  @Deprecated
-   public String resolveIdentifier() {
+  public String resolveIdentifier() {
     return id;
   }
   
@@ -55,44 +50,36 @@ public final class Operator implements Model {
       return name;
   }
   
-  public String getPlantId() {
-      return plantID;
+  public List<InflowEntry> getInflowEntries() {
+      return inflowEntries;
   }
   
-  public List<PlantFlowEntry> getPlantFlowEntries() {
-      return plantFlowEntries;
+  public List<RawEntry> getRawEntries() {
+      return rawEntries;
   }
   
-  public List<RawWaterEntry> getRawWaterEntries() {
-      return rawWaterEntries;
+  public List<ClarifiedEntry> getClarifiedEntries() {
+      return clarifiedEntries;
   }
   
-  public List<ClarifiedWaterEntry> getClarifiedWaterEntries() {
-      return clarifiedWaterEntries;
+  public List<FilteredEntry> getFilteredEntries() {
+      return filteredEntries;
   }
   
-  public List<FilteredWaterEntry> getFilteredWaterEntries() {
-      return filteredWaterEntries;
+  public List<CalibrationEntry> getCalibrationEntries() {
+      return calibrationEntries;
   }
   
-  public List<CoagulantCalibrationEntry> getCoagulantCalibrationEntries() {
-      return coagulantCalibrationEntries;
-  }
-  
-  public List<CoagulantChangeDoseEntry> getCoagulantChangeDoseEntries() {
-      return coagulantChangeDoseEntries;
-  }
-  
-  public List<ChlorineCalibrationEntry> getChlorineCalibrationEntries() {
-      return chlorineCalibrationEntries;
-  }
-  
-  public List<ChlorineChangeDoseEntry> getChlorineChangeDoseEntries() {
-      return chlorineChangeDoseEntries;
+  public List<DoseEntry> getDoseEntries() {
+      return doseEntries;
   }
   
   public List<FeedbackEntry> getFeedbackEntries() {
       return feedbackEntries;
+  }
+  
+  public Plant getPlant() {
+      return plant;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -103,10 +90,10 @@ public final class Operator implements Model {
       return updatedAt;
   }
   
-  private Operator(String id, String name, String plantID) {
+  private Operator(String id, String name, Plant plant) {
     this.id = id;
     this.name = name;
-    this.plantID = plantID;
+    this.plant = plant;
   }
   
   @Override
@@ -119,7 +106,7 @@ public final class Operator implements Model {
       Operator operator = (Operator) obj;
       return ObjectsCompat.equals(getId(), operator.getId()) &&
               ObjectsCompat.equals(getName(), operator.getName()) &&
-              ObjectsCompat.equals(getPlantId(), operator.getPlantId()) &&
+              ObjectsCompat.equals(getPlant(), operator.getPlant()) &&
               ObjectsCompat.equals(getCreatedAt(), operator.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), operator.getUpdatedAt());
       }
@@ -130,7 +117,7 @@ public final class Operator implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getName())
-      .append(getPlantId())
+      .append(getPlant())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -143,7 +130,7 @@ public final class Operator implements Model {
       .append("Operator {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("name=" + String.valueOf(getName()) + ", ")
-      .append("plantID=" + String.valueOf(getPlantId()) + ", ")
+      .append("plant=" + String.valueOf(getPlant()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -173,38 +160,24 @@ public final class Operator implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       name,
-      plantID);
+      plant);
   }
   public interface NameStep {
-    PlantIdStep name(String name);
-  }
-  
-
-  public interface PlantIdStep {
-    BuildStep plantId(String plantId);
+    BuildStep name(String name);
   }
   
 
   public interface BuildStep {
     Operator build();
     BuildStep id(String id);
+    BuildStep plant(Plant plant);
   }
   
 
-  public static class Builder implements NameStep, PlantIdStep, BuildStep {
+  public static class Builder implements NameStep, BuildStep {
     private String id;
     private String name;
-    private String plantID;
-    public Builder() {
-      
-    }
-    
-    private Builder(String id, String name, String plantID) {
-      this.id = id;
-      this.name = name;
-      this.plantID = plantID;
-    }
-    
+    private Plant plant;
     @Override
      public Operator build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -212,20 +185,19 @@ public final class Operator implements Model {
         return new Operator(
           id,
           name,
-          plantID);
+          plant);
     }
     
     @Override
-     public PlantIdStep name(String name) {
+     public BuildStep name(String name) {
         Objects.requireNonNull(name);
         this.name = name;
         return this;
     }
     
     @Override
-     public BuildStep plantId(String plantId) {
-        Objects.requireNonNull(plantId);
-        this.plantID = plantId;
+     public BuildStep plant(Plant plant) {
+        this.plant = plant;
         return this;
     }
     
@@ -241,10 +213,10 @@ public final class Operator implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String name, String plantId) {
-      super(id, name, plantID);
-      Objects.requireNonNull(name);
-      Objects.requireNonNull(plantID);
+    private CopyOfBuilder(String id, String name, Plant plant) {
+      super.id(id);
+      super.name(name)
+        .plant(plant);
     }
     
     @Override
@@ -253,16 +225,8 @@ public final class Operator implements Model {
     }
     
     @Override
-     public CopyOfBuilder plantId(String plantId) {
-      return (CopyOfBuilder) super.plantId(plantId);
-    }
-  }
-  
-
-  public static class OperatorIdentifier extends ModelIdentifier<Operator> {
-    private static final long serialVersionUID = 1L;
-    public OperatorIdentifier(String id) {
-      super(id);
+     public CopyOfBuilder plant(Plant plant) {
+      return (CopyOfBuilder) super.plant(plant);
     }
   }
   

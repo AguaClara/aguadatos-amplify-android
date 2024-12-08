@@ -1,6 +1,7 @@
 package com.example.aguadatosapp
-
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,14 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.core.model.temporal.Temporal
+import com.amplifyframework.datastore.generated.model.ActiveTank
+import com.amplifyframework.datastore.generated.model.CalibrationEntry
+import com.amplifyframework.datastore.generated.model.ChemicalType
+import com.amplifyframework.datastore.generated.model.Operator
+import com.amplifyframework.datastore.generated.model.Plant
+import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -29,11 +38,30 @@ class ChlorineCalibrationConfirmEntryFragment : Fragment() {
         }
         // handle logic for confirm entry button
         view.findViewById<Button>(R.id.confirm_button).setOnClickListener {
-            //TODO: @POST TEAM FA'24, this is where variables in ViewModel will be sent to backend
             //add time to submission
             val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
             val timeText = LocalTime.now().format(timeFormatter)
             viewModel.time.value = timeText
+
+            val sharedPreferences = context?.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+            var plantId = ""
+            var opId = ""
+            if (sharedPreferences != null) {
+                plantId = sharedPreferences.getString("plantID", null).toString()
+                opId = sharedPreferences.getString("operatorID", null).toString()
+            }
+            val tankVolumes = viewModel.chlorineTankVolumes.value
+            var activeTank = "1"
+            var tankVol = 0.0
+            if(tankVolumes?.get(1)!! > 0.0) {
+                activeTank = "2"
+                tankVol = tankVolumes[1]
+            }
+            viewModel.chlorineCalibrationData.value?.let { it1 ->
+                createChlorineCalibrationEntry(Temporal.DateTime( Instant.now().toString()), it1[0], it1[1],
+                                                it1[2], it1[3], it1[4].toInt(), it1[5], it1[6], activeTank,
+                                                tankVol, plantId, opId)
+            }
 
             //navigate to next page
             findNavController().navigate(R.id.action_chlorine_confirm_to_chlorine_view_submission)
@@ -99,5 +127,38 @@ class ChlorineCalibrationConfirmEntryFragment : Fragment() {
         //display date
         val dateView: TextView = view.findViewById(R.id.date_text)
         dateView.text = getString(R.string.date,dateText)
+    }
+
+    // this function sends entry data to backend
+    private fun createChlorineCalibrationEntry(createdAt: Temporal.DateTime, sliderPos: Double, inflowRate: Double,
+                                               sV: Double, eV: Double, timeElapsed: Int, dose: Double, flowRate: Double,
+                                               activeTank: String, tV: Double, plantId: String, operatorId: String) {
+        // Create a calibrationEntry instance
+        val newCalibrationEntry = CalibrationEntry.builder()
+            .createdAt(createdAt) // Temporal.DateTime object
+            .chemicalType(ChemicalType.CHLORINE) //ChemicalType object
+            .sliderPosition(sliderPos) //Double value
+            .inflowRate(inflowRate) //Double value
+            .startVolume(sV) //Double value
+            .endVolume(eV) //Double value
+            .timeElapsed(timeElapsed) //Integer value
+            .dose(dose) //Double value
+            .flowRate(flowRate) //Double value
+            .activeTank(if (activeTank == "1") ActiveTank.TANK_A else ActiveTank.TANK_B) //ActiveTank object
+            .tankVolume(tV) //Double value
+            .plant(Plant.justId(plantId)) // Reference Plant by ID
+            .operator(Operator.justId(operatorId)) // Reference Operator by ID
+            .build()
+
+        // Save the CalibrationEntry to DataStore
+        Amplify.DataStore.save(newCalibrationEntry, {
+            // Success callback
+            Log.d("msg","Successfully saved CalibrationEntry with ID: ${newCalibrationEntry.id}")
+        },
+            { error ->
+                // Error callback
+                Log.d("msg","Failed to save CalibrationEntry: ${error.message}")
+            }
+        )
     }
 }

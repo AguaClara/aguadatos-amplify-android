@@ -1,8 +1,10 @@
 package com.example.aguadatosapp
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.core.model.temporal.Temporal
+import com.amplifyframework.datastore.generated.model.ClarifiedEntry
+import com.amplifyframework.datastore.generated.model.FilteredEntry
+import com.amplifyframework.datastore.generated.model.Operator
+import com.amplifyframework.datastore.generated.model.Plant
+import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -36,11 +45,29 @@ class FilteredWaterConfirmEntryFragment : Fragment() {
         }
         // Handle logic for confirm entry button
         view.findViewById<Button>(R.id.filtered_water_confirm_button).setOnClickListener {
-            //TODO: @POST TEAM FA'24, this is where data from the ViewModel will be sent to the backend
             //add time to submission
             val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
             val timeText = LocalTime.now().format(timeFormatter)
             viewModel.time.value = timeText
+
+            val sharedPreferences = context?.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+            var plantId = ""
+            var opId = ""
+            if (sharedPreferences != null) {
+                plantId = sharedPreferences.getString("plantID", null).toString()
+                opId = sharedPreferences.getString("operatorID", null).toString()
+            }
+            viewModel.filteredWaterData.value?.let { filteredWaterData ->
+                val doubleList = filteredWaterData.map { it.toDouble() } // Convert list of Float to list of Double
+                createFilteredWaterEntry(
+                    Temporal.DateTime(Instant.now().toString()),
+                    plantId,
+                    opId,
+                    doubleList,
+                    viewModel.clarifiedWaterNotes.value
+                )
+            }
+
             findNavController().navigate(R.id.action_filtered_water_confirm_to_filtered_water_view)
         }
 
@@ -111,4 +138,26 @@ class FilteredWaterConfirmEntryFragment : Fragment() {
         dateView.text = getString(R.string.date,dateText)
     }
 
+    // this function sends entry data to backend
+    private fun createFilteredWaterEntry(createdAt: Temporal.DateTime, plantId: String, operatorId: String, turbidityValues: List<Double>, notes: String?) {
+        // Create a FilteredWaterEntry instance
+        val newFilteredWaterEntry = FilteredEntry.builder()
+            .createdAt(createdAt) // Temporal.DateTime object
+            .turbidities(turbidityValues) // List<Double> value
+            .notes(notes) // Optional, can be null
+            .plant(Plant.justId(plantId)) // Reference Plant by ID
+            .operator(Operator.justId(operatorId)) // Reference Operator by ID
+            .build()
+
+        // Save the FilteredWaterEntry to DataStore
+        Amplify.DataStore.save(newFilteredWaterEntry, {
+            // Success callback
+            Log.d("msg","Successfully saved FilteredWaterEntry with ID: ${newFilteredWaterEntry.id}")
+        },
+            { error ->
+                // Error callback
+                Log.d("msg","Failed to save FilteredWaterEntry: ${error.message}")
+            }
+        )
+    }
 }

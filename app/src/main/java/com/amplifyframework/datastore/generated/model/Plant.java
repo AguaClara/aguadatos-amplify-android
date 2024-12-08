@@ -2,7 +2,6 @@ package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.temporal.Temporal;
-import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,13 +22,20 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 @ModelConfig(pluralName = "Plants", type = Model.Type.USER, version = 1)
 public final class Plant implements Model {
   public static final QueryField ID = field("Plant", "id");
+  public static final QueryField NAME = field("Plant", "name");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="Operator") @HasMany(associatedWith = "plantID", type = Operator.class) List<Operator> operators = null;
+  private final @ModelField(targetType="String", isRequired = true) String name;
+  private final @ModelField(targetType="Operator") @HasMany(associatedWith = "plant", type = Operator.class) List<Operator> operators = null;
+  private final @ModelField(targetType="InflowEntry") @HasMany(associatedWith = "plant", type = InflowEntry.class) List<InflowEntry> inflowEntries = null;
+  private final @ModelField(targetType="RawEntry") @HasMany(associatedWith = "plant", type = RawEntry.class) List<RawEntry> rawEntries = null;
+  private final @ModelField(targetType="ClarifiedEntry") @HasMany(associatedWith = "plant", type = ClarifiedEntry.class) List<ClarifiedEntry> clarifiedEntries = null;
+  private final @ModelField(targetType="FilteredEntry") @HasMany(associatedWith = "plant", type = FilteredEntry.class) List<FilteredEntry> filteredEntries = null;
+  private final @ModelField(targetType="CalibrationEntry") @HasMany(associatedWith = "plant", type = CalibrationEntry.class) List<CalibrationEntry> calibrationEntries = null;
+  private final @ModelField(targetType="DoseEntry") @HasMany(associatedWith = "plant", type = DoseEntry.class) List<DoseEntry> doseEntries = null;
+  private final @ModelField(targetType="FeedbackEntry") @HasMany(associatedWith = "plant", type = FeedbackEntry.class) List<FeedbackEntry> feedbackEntries = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  /** @deprecated This API is internal to Amplify and should not be used. */
-  @Deprecated
-   public String resolveIdentifier() {
+  public String resolveIdentifier() {
     return id;
   }
   
@@ -37,8 +43,40 @@ public final class Plant implements Model {
       return id;
   }
   
+  public String getName() {
+      return name;
+  }
+  
   public List<Operator> getOperators() {
       return operators;
+  }
+  
+  public List<InflowEntry> getInflowEntries() {
+      return inflowEntries;
+  }
+  
+  public List<RawEntry> getRawEntries() {
+      return rawEntries;
+  }
+  
+  public List<ClarifiedEntry> getClarifiedEntries() {
+      return clarifiedEntries;
+  }
+  
+  public List<FilteredEntry> getFilteredEntries() {
+      return filteredEntries;
+  }
+  
+  public List<CalibrationEntry> getCalibrationEntries() {
+      return calibrationEntries;
+  }
+  
+  public List<DoseEntry> getDoseEntries() {
+      return doseEntries;
+  }
+  
+  public List<FeedbackEntry> getFeedbackEntries() {
+      return feedbackEntries;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -49,8 +87,9 @@ public final class Plant implements Model {
       return updatedAt;
   }
   
-  private Plant(String id) {
+  private Plant(String id, String name) {
     this.id = id;
+    this.name = name;
   }
   
   @Override
@@ -62,6 +101,7 @@ public final class Plant implements Model {
       } else {
       Plant plant = (Plant) obj;
       return ObjectsCompat.equals(getId(), plant.getId()) &&
+              ObjectsCompat.equals(getName(), plant.getName()) &&
               ObjectsCompat.equals(getCreatedAt(), plant.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), plant.getUpdatedAt());
       }
@@ -71,6 +111,7 @@ public final class Plant implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
+      .append(getName())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -82,13 +123,14 @@ public final class Plant implements Model {
     return new StringBuilder()
       .append("Plant {")
       .append("id=" + String.valueOf(getId()) + ", ")
+      .append("name=" + String.valueOf(getName()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
   
-  public static BuildStep builder() {
+  public static NameStep builder() {
       return new Builder();
   }
   
@@ -102,35 +144,43 @@ public final class Plant implements Model {
    */
   public static Plant justId(String id) {
     return new Plant(
-      id
+      id,
+      null
     );
   }
   
   public CopyOfBuilder copyOfBuilder() {
-    return new CopyOfBuilder(id);
+    return new CopyOfBuilder(id,
+      name);
   }
+  public interface NameStep {
+    BuildStep name(String name);
+  }
+  
+
   public interface BuildStep {
     Plant build();
     BuildStep id(String id);
   }
   
 
-  public static class Builder implements BuildStep {
+  public static class Builder implements NameStep, BuildStep {
     private String id;
-    public Builder() {
-      
-    }
-    
-    private Builder(String id) {
-      this.id = id;
-    }
-    
+    private String name;
     @Override
      public Plant build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
         return new Plant(
-          id);
+          id,
+          name);
+    }
+    
+    @Override
+     public BuildStep name(String name) {
+        Objects.requireNonNull(name);
+        this.name = name;
+        return this;
     }
     
     /**
@@ -145,17 +195,14 @@ public final class Plant implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id) {
-      super(id);
-      
+    private CopyOfBuilder(String id, String name) {
+      super.id(id);
+      super.name(name);
     }
-  }
-  
-
-  public static class PlantIdentifier extends ModelIdentifier<Plant> {
-    private static final long serialVersionUID = 1L;
-    public PlantIdentifier(String id) {
-      super(id);
+    
+    @Override
+     public CopyOfBuilder name(String name) {
+      return (CopyOfBuilder) super.name(name);
     }
   }
   
