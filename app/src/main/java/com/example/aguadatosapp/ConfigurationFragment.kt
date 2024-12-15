@@ -40,7 +40,6 @@ class ConfigurationFragment : Fragment() {
         val chemConcInput: EditText = view.findViewById(R.id.chem_conc_input)
         val numFiltersInput: EditText = view.findViewById(R.id.num_filters_input)
         val saveButton: Button = view.findViewById(R.id.save_button)
-        val syncButton: Button = view.findViewById(R.id.sync_button)
         var switchChecked = false
 
         //set up UI using current configuration
@@ -93,11 +92,6 @@ class ConfigurationFragment : Fragment() {
             }
             // pop a toast to let user know changes are saved
             Toast.makeText(context,"Your changes have been saved.",Toast.LENGTH_SHORT).show()
-        }
-
-        // handle logic for sync button
-        syncButton.setOnClickListener {
-            //TODO: @POST TEAM FA'24, this is where data will be sent from local backend to AWS (?)
         }
     }
 
