@@ -3,6 +3,7 @@ package com.amplifyframework.datastore.generated.model;
 import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.core.model.annotations.HasOne;
 import com.amplifyframework.core.model.annotations.BelongsTo;
+import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -58,7 +59,9 @@ public final class CalibrationEntry implements Model {
   private final @ModelField(targetType="Operator") @BelongsTo(targetName = "operatorID", targetNames = {"operatorID"}, type = Operator.class) Operator operator;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   private final @ModelField(targetType="ID") String calibrationEntryDoseEntryId;
-  public String resolveIdentifier() {
+  /** @deprecated This API is internal to Amplify and should not be used. */
+  @Deprecated
+   public String resolveIdentifier() {
     return id;
   }
   
@@ -355,6 +358,29 @@ public final class CalibrationEntry implements Model {
     private Plant plant;
     private Operator operator;
     private String calibrationEntryDoseEntryId;
+    public Builder() {
+      
+    }
+    
+    private Builder(String id, Temporal.DateTime createdAt, ChemicalType chemicalType, CoagType coagType, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double dose, Double flowRate, ActiveTank activeTank, Double tankVolume, Plant plant, Operator operator, String calibrationEntryDoseEntryId) {
+      this.id = id;
+      this.createdAt = createdAt;
+      this.chemicalType = chemicalType;
+      this.coagType = coagType;
+      this.sliderPosition = sliderPosition;
+      this.inflowRate = inflowRate;
+      this.startVolume = startVolume;
+      this.endVolume = endVolume;
+      this.timeElapsed = timeElapsed;
+      this.dose = dose;
+      this.flowRate = flowRate;
+      this.activeTank = activeTank;
+      this.tankVolume = tankVolume;
+      this.plant = plant;
+      this.operator = operator;
+      this.calibrationEntryDoseEntryId = calibrationEntryDoseEntryId;
+    }
+    
     @Override
      public CalibrationEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -490,22 +516,16 @@ public final class CalibrationEntry implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, Temporal.DateTime createdAt, ChemicalType chemicalType, CoagType coagType, Double sliderPosition, Double inflowRate, Double startVolume, Double endVolume, Integer timeElapsed, Double dose, Double flowRate, ActiveTank activeTank, Double tankVolume, Plant plant, Operator operator, String calibrationEntryDoseEntryId) {
-      super.id(id);
-      super.createdAt(createdAt)
-        .chemicalType(chemicalType)
-        .sliderPosition(sliderPosition)
-        .inflowRate(inflowRate)
-        .startVolume(startVolume)
-        .endVolume(endVolume)
-        .timeElapsed(timeElapsed)
-        .dose(dose)
-        .flowRate(flowRate)
-        .coagType(coagType)
-        .activeTank(activeTank)
-        .tankVolume(tankVolume)
-        .plant(plant)
-        .operator(operator)
-        .calibrationEntryDoseEntryId(calibrationEntryDoseEntryId);
+      super(id, createdAt, chemicalType, coagType, sliderPosition, inflowRate, startVolume, endVolume, timeElapsed, dose, flowRate, activeTank, tankVolume, plant, operator, calibrationEntryDoseEntryId);
+      Objects.requireNonNull(createdAt);
+      Objects.requireNonNull(chemicalType);
+      Objects.requireNonNull(sliderPosition);
+      Objects.requireNonNull(inflowRate);
+      Objects.requireNonNull(startVolume);
+      Objects.requireNonNull(endVolume);
+      Objects.requireNonNull(timeElapsed);
+      Objects.requireNonNull(dose);
+      Objects.requireNonNull(flowRate);
     }
     
     @Override
@@ -581,6 +601,14 @@ public final class CalibrationEntry implements Model {
     @Override
      public CopyOfBuilder calibrationEntryDoseEntryId(String calibrationEntryDoseEntryId) {
       return (CopyOfBuilder) super.calibrationEntryDoseEntryId(calibrationEntryDoseEntryId);
+    }
+  }
+  
+
+  public static class CalibrationEntryIdentifier extends ModelIdentifier<CalibrationEntry> {
+    private static final long serialVersionUID = 1L;
+    public CalibrationEntryIdentifier(String id) {
+      super(id);
     }
   }
   
