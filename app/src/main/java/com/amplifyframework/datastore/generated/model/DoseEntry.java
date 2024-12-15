@@ -2,6 +2,7 @@ package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.core.model.annotations.BelongsTo;
+import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -43,7 +44,9 @@ public final class DoseEntry implements Model {
   private final @ModelField(targetType="Plant") @BelongsTo(targetName = "plantID", targetNames = {"plantID"}, type = Plant.class) Plant plant;
   private final @ModelField(targetType="Operator") @BelongsTo(targetName = "operatorID", targetNames = {"operatorID"}, type = Operator.class) Operator operator;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  public String resolveIdentifier() {
+  /** @deprecated This API is internal to Amplify and should not be used. */
+  @Deprecated
+   public String resolveIdentifier() {
     return id;
   }
   
@@ -236,6 +239,22 @@ public final class DoseEntry implements Model {
     private CalibrationEntry calibrationEntry;
     private Plant plant;
     private Operator operator;
+    public Builder() {
+      
+    }
+    
+    private Builder(String id, Temporal.DateTime createdAt, ChemicalType chemicalType, Double targetDose, Double updatedSliderPosition, Double updatedFlowRate, CalibrationEntry calibrationEntry, Plant plant, Operator operator) {
+      this.id = id;
+      this.createdAt = createdAt;
+      this.chemicalType = chemicalType;
+      this.targetDose = targetDose;
+      this.updatedSliderPosition = updatedSliderPosition;
+      this.updatedFlowRate = updatedFlowRate;
+      this.calibrationEntry = calibrationEntry;
+      this.plant = plant;
+      this.operator = operator;
+    }
+    
     @Override
      public DoseEntry build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -318,15 +337,12 @@ public final class DoseEntry implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, Temporal.DateTime createdAt, ChemicalType chemicalType, Double targetDose, Double updatedSliderPosition, Double updatedFlowRate, CalibrationEntry calibrationEntry, Plant plant, Operator operator) {
-      super.id(id);
-      super.createdAt(createdAt)
-        .chemicalType(chemicalType)
-        .targetDose(targetDose)
-        .updatedSliderPosition(updatedSliderPosition)
-        .updatedFlowRate(updatedFlowRate)
-        .calibrationEntry(calibrationEntry)
-        .plant(plant)
-        .operator(operator);
+      super(id, createdAt, chemicalType, targetDose, updatedSliderPosition, updatedFlowRate, calibrationEntry, plant, operator);
+      Objects.requireNonNull(createdAt);
+      Objects.requireNonNull(chemicalType);
+      Objects.requireNonNull(targetDose);
+      Objects.requireNonNull(updatedSliderPosition);
+      Objects.requireNonNull(updatedFlowRate);
     }
     
     @Override
@@ -367,6 +383,14 @@ public final class DoseEntry implements Model {
     @Override
      public CopyOfBuilder operator(Operator operator) {
       return (CopyOfBuilder) super.operator(operator);
+    }
+  }
+  
+
+  public static class DoseEntryIdentifier extends ModelIdentifier<DoseEntry> {
+    private static final long serialVersionUID = 1L;
+    public DoseEntryIdentifier(String id) {
+      super(id);
     }
   }
   
