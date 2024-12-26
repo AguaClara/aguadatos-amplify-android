@@ -32,7 +32,7 @@ class ConfirmSignUpActivity : ComponentActivity() {
             if (codeInput.isNotEmpty()) {
                 confirmSignUp(email, codeInput)
             } else {
-                Toast.makeText(this, "Please enter the confirmation code.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.enter_confirmation_code), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -43,19 +43,19 @@ class ConfirmSignUpActivity : ComponentActivity() {
                 val result = Amplify.Auth.confirmSignUp(username, code)
                 withContext(Dispatchers.Main) {
                     if (result.isSignUpComplete) {
-                        Toast.makeText(this@ConfirmSignUpActivity, "Confirmation successful!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ConfirmSignUpActivity, getString(R.string.confirm_success), Toast.LENGTH_SHORT).show()
                         // Navigate to MainActivity after successful confirmation
                         val intent = Intent(this@ConfirmSignUpActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this@ConfirmSignUpActivity, "Confirmation required", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ConfirmSignUpActivity, getString(R.string.confirm_required), Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (error: Exception) {
                 Log.e("ConfirmSignUpActivity", "Confirmation failed", error)
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@ConfirmSignUpActivity, "Confirmation failed: ${error.localizedMessage}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@ConfirmSignUpActivity, getString(R.string.confirm_fail,error.localizedMessage), Toast.LENGTH_LONG).show()
                     // Show the verification popup again if needed
                     makeVerificationPopup(code)
                 }
@@ -78,13 +78,13 @@ class ConfirmSignUpActivity : ComponentActivity() {
         dialogView.findViewById<Button>(R.id.submit_button).setOnClickListener {
             val enteredCode = codeInput.text.toString()
             if (enteredCode == expectedCode) {
-                Toast.makeText(this, "Verification successful", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.verification_success), Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 dialog.dismiss()
                 finish()
             } else {
-                Toast.makeText(this, "Incorrect verification code", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.verification_wrong), Toast.LENGTH_SHORT).show()
             }
         }
 

@@ -41,7 +41,7 @@ class SignupActivity : ComponentActivity() {
             if (name.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty()) {
                 signUpUser(name, password, email)
             } else {
-                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.fields_required), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -60,7 +60,7 @@ class SignupActivity : ComponentActivity() {
             try {
                 val result = Amplify.Auth.signUp(email, password, options)
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@SignupActivity, "Sign-up successful! Please check your email for a confirmation code.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@SignupActivity, getString(R.string.signup_success), Toast.LENGTH_LONG).show()
 
                     // Navigate to confirmation activity if necessary
                     val intent = Intent(this@SignupActivity, ConfirmSignUpActivity::class.java)
@@ -75,7 +75,7 @@ class SignupActivity : ComponentActivity() {
             } catch (error: Exception) {
                 Log.e("SignupActivity", "Sign-up failed", error)
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@SignupActivity, "Sign-up failed: ${error.localizedMessage}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@SignupActivity, getString(R.string.signup_fail,error.localizedMessage), Toast.LENGTH_LONG).show()
                 }
             }
         }

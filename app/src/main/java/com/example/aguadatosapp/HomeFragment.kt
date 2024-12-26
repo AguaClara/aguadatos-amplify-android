@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         // Initialize graph container
+        /*
         val graphContainerContent: LinearLayout = root.findViewById(R.id.graphContainerContent)
         graph = LineChart(requireContext())
         graph.layoutParams = LinearLayout.LayoutParams(
@@ -53,7 +54,7 @@ class HomeFragment : Fragment() {
         root.findViewById<Button>(R.id.btn7D).setOnClickListener { updateTimeScale("7D") }
         root.findViewById<Button>(R.id.btn1M).setOnClickListener { updateTimeScale("1M") }
         root.findViewById<Button>(R.id.btnYTD).setOnClickListener { updateTimeScale("YTD") }
-
+        */
         // Navigation buttons
         root.findViewById<Button>(R.id.plantFlowNavButton).setOnClickListener {
             findNavController().navigate(R.id.action_home_to_plant_flow_page)

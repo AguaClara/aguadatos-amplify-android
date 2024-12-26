@@ -2,7 +2,6 @@ package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.temporal.Temporal;
-import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -36,9 +35,7 @@ public final class Plant implements Model {
   private final @ModelField(targetType="FeedbackEntry") @HasMany(associatedWith = "plant", type = FeedbackEntry.class) List<FeedbackEntry> feedbackEntries = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  /** @deprecated This API is internal to Amplify and should not be used. */
-  @Deprecated
-   public String resolveIdentifier() {
+  public String resolveIdentifier() {
     return id;
   }
   
@@ -170,15 +167,6 @@ public final class Plant implements Model {
   public static class Builder implements NameStep, BuildStep {
     private String id;
     private String name;
-    public Builder() {
-      
-    }
-    
-    private Builder(String id, String name) {
-      this.id = id;
-      this.name = name;
-    }
-    
     @Override
      public Plant build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -208,21 +196,13 @@ public final class Plant implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, String name) {
-      super(id, name);
-      Objects.requireNonNull(name);
+      super.id(id);
+      super.name(name);
     }
     
     @Override
      public CopyOfBuilder name(String name) {
       return (CopyOfBuilder) super.name(name);
-    }
-  }
-  
-
-  public static class PlantIdentifier extends ModelIdentifier<Plant> {
-    private static final long serialVersionUID = 1L;
-    public PlantIdentifier(String id) {
-      super(id);
     }
   }
   

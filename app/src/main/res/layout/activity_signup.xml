@@ -84,6 +84,7 @@
                         android:layout_height="50dp"
                         android:background="@null"
                         android:ems="10"
+                        android:textColor="@color/black"
                         android:inputType="textPersonName"
                         android:autofillHints="username"/>
             </LinearLayout>
@@ -121,6 +122,7 @@
                         android:layout_height="50dp"
                         android:background="@null"
                         android:ems="10"
+                        android:textColor="@color/black"
                         android:inputType="textEmailAddress"
                         android:autofillHints="emailAddress"/>
             </LinearLayout>
@@ -160,6 +162,7 @@
                     android:autofillHints=""
                     android:background="@null"
                     android:ems="10"
+                    android:textColor="@color/black"
                     android:inputType="textPassword" />
             </LinearLayout>
 
@@ -197,6 +200,7 @@
                     android:layout_height="50dp"
                     android:autofillHints="no"
                     android:background="@null"
+                    android:textColor="@color/black"
                     android:ems="10"
                     android:inputType="textPassword" />
             </LinearLayout>
