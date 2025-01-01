@@ -18,7 +18,43 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/entriesContainerScrollView" />
+            app:layout_constraintBottom_toTopOf="@id/date_container" />
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/records_title"
+            android:id="@+id/date_container"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/entriesContainerScrollView" >
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/date_back_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/records_back_button"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/date_label"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="@string/today" />
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/date_forward_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/records_forward_button"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+    </LinearLayout>
     <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -26,7 +62,7 @@
             app:layout_constraintWidth_percent="0.9"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/records_title"
+            app:layout_constraintTop_toBottomOf="@id/date_container"
             app:layout_constraintBottom_toBottomOf="parent" >
         <LinearLayout
                 android:layout_width="match_parent"

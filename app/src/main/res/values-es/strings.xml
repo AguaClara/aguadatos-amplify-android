@@ -202,6 +202,30 @@
     <string name="entry_timestamp">Marca de tiempo: %s</string>
     <string name="feedback_with_input">Retroalimentación: %s</string>
     <string name="delete">ELIMINAR</string>
-    <string name="enter_verification_code">Ingrese el Código de Verificación</string>
+    <string name="entry_plant_flow">Entrada: Flujo de Planta</string>
+    <string name="entry_raw_water">Entrada: Agua Cruda</string>
+    <string name="entry_clarified_water">Entrada: Agua Clarificada</string>
+    <string name="entry_filtered_water">Entrada: Agua Filtrada</string>
+    <string name="entry_calib">Entrada: Calibración de Dosificación de %s</string>
+    <string name="entry_change_dose">Entrada: Ajuste de Dosificación de %s</string>
+    <string name="coagulant">Coagulante</string>
+    <string name="chlorine">Cloro</string>
+    <string name="today">HOY</string>
+
+    <!-- login and signup -->
+    <string name="enter_verification_code">Ingrese el código de verificación</string>
     <string name="enter_6_digit_code">Ingrese el código de 6 dígitos</string>
+    <string name="under_construction">En construcción</string>
+    <string name="login_msg">¡Inicio de sesión exitoso!</string>
+    <string name="further_steps_required">Pasos adicionales requeridos: %s</string>
+    <string name="login_failed">Error en el inicio de sesión: %s</string>
+    <string name="fields_required">Todos los campos son obligatorios</string>
+    <string name="signup_success">¡Registro exitoso! Por favor, revise su correo electrónico para obtener un código de confirmación.</string>
+    <string name="signup_fail">Error en el registro: %s</string>
+    <string name="enter_confirmation_code">Por favor, ingrese el código de confirmación.</string>
+    <string name="confirm_success">¡Confirmación exitosa!</string>
+    <string name="confirm_required">Confirmación requerida</string>
+    <string name="confirm_fail">Error en la confirmación: %s</string>
+    <string name="verification_success">Verificación exitosa</string>
+    <string name="verification_wrong">Código de verificación incorrecto</string>
 </resources>

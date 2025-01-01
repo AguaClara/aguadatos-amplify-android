@@ -21,6 +21,16 @@ class LoginActivity : ComponentActivity() {
         val logInButton = findViewById<Button>(R.id.logInButton)
         val signUpButton = findViewById<Button>(R.id.signUpButton)
 
+        //sign out any current user before attempting to login
+        lifecycleScope.launch {
+            try {
+                Amplify.Auth.signOut()
+                Log.d("msg", "Successfully signed out")
+            } catch (error: Exception) {
+                Log.e("msg", "Failed to sign out: ${error.message}", error)
+            }
+        }
+
         signUpButton.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
@@ -38,16 +48,16 @@ class LoginActivity : ComponentActivity() {
                     // Check the next step to determine if the sign-in is complete
                     if (result.nextStep.signInStep?.name == "DONE") {
                         Log.i("LoginActivity", "Login succeeded")
-                        Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, getString(R.string.login_msg), Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                     } else {
                         Log.i("LoginActivity", "Additional steps required: ${result.nextStep.signInStep}")
-                        Toast.makeText(this@LoginActivity, "Further steps required: ${result.nextStep.signInStep}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LoginActivity, getString(R.string.further_steps_required,result.nextStep.signInStep), Toast.LENGTH_LONG).show()
                     }
                 } catch (error: Exception) {
                     Log.e("LoginActivity", "Login failed", error)
-                    Toast.makeText(this@LoginActivity, "Login failed: ${error.localizedMessage}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LoginActivity, getString(R.string.login_failed,error.localizedMessage), Toast.LENGTH_LONG).show()
                 }
             }
         }
