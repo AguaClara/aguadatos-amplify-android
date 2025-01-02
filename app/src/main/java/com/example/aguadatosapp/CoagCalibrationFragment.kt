@@ -1,5 +1,6 @@
 package com.example.aguadatosapp
 
+import android.content.Context
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -106,6 +107,7 @@ class CoagCalibrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+        val sharedPreferences = context?.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
         val entry = viewModel.coagCalibrationData.value
 
         if(entry != null) {
@@ -117,6 +119,16 @@ class CoagCalibrationFragment : Fragment() {
                 }
             }
             // set variables to access each necessary element
+            // read prior saved calibration into viewmodel
+            if (sharedPreferences != null) {
+                entry[0] = sharedPreferences.getString("coagSliderPosition", null)?.toDouble()!!
+                entry[1] = sharedPreferences.getString("coagInflowRate",null)?.toDouble()!!
+                entry[2] = sharedPreferences.getString("coagStartVolume",null)?.toDouble()!!
+                entry[3] = sharedPreferences.getString("coagEndVolume",null)?.toDouble()!!
+                entry[4] = sharedPreferences.getString("coagTimeElapsed",null)?.toDouble()!!
+                entry[5] = sharedPreferences.getString("coagDose",null)?.toDouble()!!
+                entry[6] = sharedPreferences.getString("coagFlowRate",null)?.toDouble()!!
+            }
             // if data is already entered, display on UI
             val sliderSeekbar: SeekBar = view.findViewById(R.id.slider_seek_bar)
             if(entry[0] >= 0.0) {
@@ -233,6 +245,7 @@ class CoagCalibrationFragment : Fragment() {
                         }
                     }
                     // if calibration form is filled, calculate and display outputs
+                    // if calibration form is filled, send to sharedPreferences
                     if (viewModel.coagAccessAdjustDosage.value == true) {
                         entry[6] = (entry[2] - entry[3]) / entry[4]
                         entry[5] = entry[6] * viewModel.chemConcentration.value!!
@@ -240,6 +253,18 @@ class CoagCalibrationFragment : Fragment() {
                         chemFlowRate.text = String.format("%.${6}f", entry[6])
                         // Update coagulant run out time message
                         viewModel.triggerCoagRunOutTimeCalculation.value = true
+
+                        val editor = sharedPreferences?.edit()
+                        if (editor != null) {
+                            editor.putString("coagSliderPosition", entry[0].toString())
+                            editor.putString("coagInflowRate", entry[1].toString())
+                            editor.putString("coagStartVolume",entry[2].toString())
+                            editor.putString("coagEndVolume",entry[3].toString())
+                            editor.putString("coagTimeElapsed",entry[4].toString())
+                            editor.putString("coagDose",entry[5].toString())
+                            editor.putString("coagFlowRate",entry[6].toString())
+                            editor.apply()
+                        }
                     }
                 }
 

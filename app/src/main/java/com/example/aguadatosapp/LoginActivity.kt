@@ -74,11 +74,11 @@ class LoginActivity : ComponentActivity() {
             if (isPasswordVisible) {
                 // Show password
                 passwordField.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                togglePasswordVisibility.setImageResource(R.drawable.ic_eye_open) // Replace with your "eye open" icon
+                togglePasswordVisibility.setImageResource(R.drawable.ic_eye_closed) // Replace with your "eye open" icon
             } else {
                 // Hide password
                 passwordField.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                togglePasswordVisibility.setImageResource(R.drawable.ic_eye_closed) // Replace with your "eye closed" icon
+                togglePasswordVisibility.setImageResource(R.drawable.ic_eye_open) // Replace with your "eye closed" icon
             }
             // Keep cursor at the end of the text
             passwordField.setSelection(passwordField.text.length)
