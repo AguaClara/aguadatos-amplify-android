@@ -107,7 +107,7 @@ class ChlorineCalibrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        val sharedPreferences = context?.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        //val sharedPreferences = context?.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
         val entry = viewModel.chlorineCalibrationData.value
 
         if(entry != null) {
@@ -120,15 +120,16 @@ class ChlorineCalibrationFragment : Fragment() {
             }
             // set variables to access each necessary element
             // read prior saved calibration into viewmodel
+            /*
             if (sharedPreferences != null) {
-                entry[0] = sharedPreferences.getString("coagSliderPosition", null)?.toDouble()!!
-                entry[1] = sharedPreferences.getString("coagInflowRate",null)?.toDouble()!!
-                entry[2] = sharedPreferences.getString("coagStartVolume",null)?.toDouble()!!
-                entry[3] = sharedPreferences.getString("coagEndVolume",null)?.toDouble()!!
-                entry[4] = sharedPreferences.getString("coagTimeElapsed",null)?.toDouble()!!
-                entry[5] = sharedPreferences.getString("coagDose",null)?.toDouble()!!
-                entry[6] = sharedPreferences.getString("coagFlowRate",null)?.toDouble()!!
-            }
+                entry[0] = sharedPreferences.getString("chlorineSliderPosition", null)?.toDouble()!!
+                entry[1] = sharedPreferences.getString("chlorineInflowRate",null)?.toDouble()!!
+                entry[2] = sharedPreferences.getString("chlorineStartVolume",null)?.toDouble()!!
+                entry[3] = sharedPreferences.getString("chlorineEndVolume",null)?.toDouble()!!
+                entry[4] = sharedPreferences.getString("chlorineTimeElapsed",null)?.toDouble()!!
+                entry[5] = sharedPreferences.getString("chlorineDose",null)?.toDouble()!!
+                entry[6] = sharedPreferences.getString("chlorineFlowRate",null)?.toDouble()!!
+            } */
             // if data is already entered, display on UI
             val sliderSeekbar: SeekBar = view.findViewById(R.id.slider_seek_bar)
             if(entry[0] >= 0.0) {
@@ -251,17 +252,18 @@ class ChlorineCalibrationFragment : Fragment() {
                         chemDose.text = String.format("%.${6}f", entry[5])
                         chemFlowRate.text = String.format("%.${6}f", entry[6])
                     }
+                    /*
                     val editor = sharedPreferences?.edit()
                     if (editor != null) {
-                        editor.putString("coagSliderPosition", entry[0].toString())
-                        editor.putString("coagInflowRate", entry[1].toString())
-                        editor.putString("coagStartVolume",entry[2].toString())
-                        editor.putString("coagEndVolume",entry[3].toString())
-                        editor.putString("coagTimeElapsed",entry[4].toString())
-                        editor.putString("coagDose",entry[5].toString())
-                        editor.putString("coagFlowRate",entry[6].toString())
+                        editor.putString("chlorineSliderPosition", entry[0].toString())
+                        editor.putString("chlorineInflowRate", entry[1].toString())
+                        editor.putString("chlorineStartVolume",entry[2].toString())
+                        editor.putString("chlorineEndVolume",entry[3].toString())
+                        editor.putString("chlorineTimeElapsed",entry[4].toString())
+                        editor.putString("chlorineDose",entry[5].toString())
+                        editor.putString("chlorineFlowRate",entry[6].toString())
                         editor.apply()
-                    }
+                    }*/
                 }
 
                 override fun afterTextChanged(s: Editable?) {
