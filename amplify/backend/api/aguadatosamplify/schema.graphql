@@ -42,7 +42,7 @@ enum ActiveTank {
     TANK_B
 }
 
-type Plant @model {
+type Plant @model(subscriptions: null) {
     """
     Represents a water treatment plant.
 
@@ -71,7 +71,7 @@ type Plant @model {
     feedbackEntries: [FeedbackEntry] @hasMany(indexName: "FeedbackByPlant", fields: ["id"])
 }
 
-type Operator @model {
+type Operator @model(subscriptions: null) {
     """
     Represents an operator working at a plant.
 
@@ -266,7 +266,7 @@ type DoseEntry @model {
     operator: Operator @belongsTo(fields: ["operatorID"])
 }
 
-type FeedbackEntry @model {
+type FeedbackEntry @model(subscriptions: null) {
     """
     Represents an entry to capture operator feedbacks.
 

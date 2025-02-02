@@ -191,6 +191,9 @@
     <string name="chlorine_flow_rate_with_input">Chlorine Flow Rate: %.1f mL/s</string>
     <string name="target_chlorine_dose_with_input">Target Chlorine Dosage: %.1f mg/L</string>
     <string name="new_chlorine_flow_rate_with_input">New Chlorine Flow Rate: %.1f mL/s</string>
+  
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- fragment_feedback -->
     <string name="feedback_caps">FEEDBACK</string>
@@ -203,32 +206,4 @@
     <string name="entry_timestamp">Timestamp: %s</string>
     <string name="feedback_with_input">Feedback: %s</string>
     <string name="delete">DELETE</string>
-    <string name="entry_plant_flow">Entry: Plant Flow</string>
-    <string name="entry_raw_water">Entry: Raw Water</string>
-    <string name="entry_clarified_water">Entry: Clarified Water</string>
-    <string name="entry_filtered_water">Entry: Filtered Water</string>
-    <string name="entry_calib">Entry: %s Dosage Calibration</string>
-    <string name="entry_change_dose">Entry: %s Dosage Adjustment</string>
-    <string name="coagulant">Coagulant</string>
-    <string name="chlorine">Chlorine</string>
-    <string name="today">TODAY</string>
-
-    <!-- login and signup -->
-    <string name="enter_verification_code">Enter Verification Code</string>
-    <string name="enter_6_digit_code">Enter 6-digit code</string>
-    <string name="under_construction">Under Construction</string>
-    <string name="login_msg">Login successful!</string>
-    <string name="further_steps_required">Further steps required: %s</string>
-    <string name="login_failed">Login failed: %s</string>
-    <string name="fields_required">All fields are required</string>
-    <string name="signup_success">Sign-up successful! Please check your email for a confirmation code.</string>
-    <string name="signup_fail">Sign-up failed: %s</string>
-    <string name="enter_confirmation_code">Please enter the confirmation code.</string>
-    <string name="confirm_success">Confirmation successful!</string>
-    <string name="confirm_required">Confirmation required</string>
-    <string name="confirm_fail">Confirmation failed: %s</string>
-    <string name="verification_success">Verification successful</string>
-    <string name="verification_wrong">Incorrect verification code</string>
-
-
 </resources>

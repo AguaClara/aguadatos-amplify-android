@@ -1,111 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_blue"
-        android:layout_marginBottom="55dp"
-        tools:context=".HomeFragment">
-
-    <!-- Header -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_blue"
+    android:layout_marginBottom="55dp"
+    tools:context="HomeFragment" >
     <LinearLayout
-            android:id="@+id/home_header"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
-            android:paddingVertical="10dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/home_header"
+        android:paddingVertical="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" >
         <ImageView
-                android:id="@+id/logo_pic"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="7"
-                android:layout_gravity="center_vertical"
-                android:contentDescription="@string/aguadatos_label"
-                android:src="@drawable/black_logo" />
+            android:id="@+id/logo_pic"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:layout_weight="7"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/aguadatos_label"
+            android:src="@drawable/black_logo"
+            app:layout_constraintBottom_toTopOf="@id/text_home"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/profile_button"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            />
+        <ImageButton
+            android:id="@+id/profile_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.8"
+            android:layout_marginHorizontal="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/background_blue"
+            android:contentDescription="@string/account"
+            android:src="@drawable/account_icon"
+            app:layout_constraintBottom_toTopOf="@+id/text_home"
+            app:layout_constraintLeft_toRightOf="@+id/logo_pic"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.094" />
     </LinearLayout>
-    <!-- Navigation Buttons -->
-    <GridLayout
-            android:id="@+id/navigation_buttons"
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="21sp"
+        android:text="@string/home_page_msg"
+        android:textColor="@color/dark_gray"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/graph_placeholder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_header" />
+    <ImageView
+        android:id="@+id/graph_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:contentDescription="@string/graph_placeholder"
+        android:padding="10dp"
+        android:src="@drawable/graph_placeholder"
+        app:layout_constraintBottom_toTopOf="@id/buttons_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_home" />
+    <LinearLayout
+        android:id="@+id/buttons_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/graph_placeholder"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" >
+        <LinearLayout
+            android:id="@+id/top_home_buttons"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:columnCount="2"
-            android:rowCount="3"
-            android:layout_gravity="center"
-            android:paddingVertical="8dp"
-            app:layout_constraintTop_toBottomOf="@id/home_header"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-        <Button
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/bottom_home_buttons"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_home">
+            <Button
                 android:id="@+id/plantFlowNavButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_margin="8dp"
-                android:background="@drawable/rounded_green"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:textSize="13sp"
+                android:background="@drawable/rounded_white"
+                android:paddingVertical="12dp"
                 android:text="@string/plant_flow"
-                android:textColor="@android:color/black" />
-
-        <Button
+                android:textColor="@color/dark_gray" />
+            <Button
                 android:id="@+id/rawWaterNavButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_margin="8dp"
-                android:background="@drawable/rounded_green"
-                android:text="@string/raw_water_caps"
-                android:textColor="@android:color/black" />
-
-        <Button
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:textSize="13sp"
+                android:background="@drawable/rounded_white"
+                android:text="@string/raw_water_turbidity"
+                android:textColor="@color/dark_gray" />
+            <Button
                 android:id="@+id/coagNavButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_margin="8dp"
-                android:background="@drawable/rounded_green"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:textSize="13sp"
+                android:background="@drawable/rounded_white"
+                android:paddingHorizontal="0dp"
+                android:paddingVertical="12dp"
                 android:text="@string/coagulant_dosage"
-                android:textColor="@android:color/black" />
-
-        <Button
+                android:textColor="@color/dark_gray" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bottom_home_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/top_home_buttons"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" >
+            <Button
                 android:id="@+id/filteredTurbNavButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_margin="8dp"
-                android:background="@drawable/rounded_green"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/dark_gray"
+                android:textSize="13sp"
                 android:text="@string/filtered_water_turbidity"
-                android:textColor="@android:color/black" />
-
-        <Button
+                android:background="@drawable/rounded_white" />
+            <Button
                 android:id="@+id/clarifiedTurbNavButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_margin="8dp"
-                android:background="@drawable/rounded_green"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textSize="13sp"
+                android:layout_height="match_parent"
+                android:textColor="@color/dark_gray"
                 android:text="@string/clarified_water_turbidity"
-                android:textColor="@android:color/black" />
-
-        <Button
+                android:background="@drawable/rounded_white" />
+            <Button
                 android:id="@+id/chlorineNavButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_margin="8dp"
-                android:background="@drawable/rounded_green"
+                android:layout_weight="1"
+                android:textSize="13sp"
+                android:layout_margin="5dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/dark_gray"
                 android:text="@string/chlorine_dosage"
-                android:textColor="@android:color/black" />
-    </GridLayout>
+                android:paddingVertical="12dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/rounded_white" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

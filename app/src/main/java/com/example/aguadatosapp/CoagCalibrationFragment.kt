@@ -18,7 +18,6 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import java.util.Locale
-import kotlin.math.abs
 
 // CoagCalibrationFragment.kt
 class CoagCalibrationFragment : Fragment() {
@@ -216,8 +215,14 @@ class CoagCalibrationFragment : Fragment() {
                     val endVolumeText = endVolume.text.toString()
                     if (endVolumeText.isNotEmpty() && isDouble(endVolumeText)) {
                         val endVol = endVolumeText.toDouble()
-                        entry[3] = endVolumeText.toDouble()
-                        viewModel.triggerCoagRunOutTimeCalculation.value = true
+                        if(endVol < entry[2]) {
+                            entry[3] = endVolumeText.toDouble()
+                            // Update coagulant run out time message when end volume is changed
+                            //viewModel.triggerCoagRunOutTimeCalculation.value = true
+                        }
+                        else {
+                            Toast.makeText(context,"End volume must be less than start volume.",Toast.LENGTH_SHORT).show()
+                        }
                     }
 
                     //check if accessAdjustDosage has changed
@@ -229,7 +234,7 @@ class CoagCalibrationFragment : Fragment() {
                     }
                     // if calibration form is filled, calculate and display outputs
                     if (viewModel.coagAccessAdjustDosage.value == true) {
-                        entry[6] = abs(entry[2] - entry[3]) / entry[4]
+                        entry[6] = (entry[2] - entry[3]) / entry[4]
                         entry[5] = entry[6] * viewModel.chemConcentration.value!!
                         chemDose.text = String.format("%.${6}f", entry[5])
                         chemFlowRate.text = String.format("%.${6}f", entry[6])

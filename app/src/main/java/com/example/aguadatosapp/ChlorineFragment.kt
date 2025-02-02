@@ -197,14 +197,52 @@ class ChlorineFragment : Fragment() {
         //handle tank volumes
         // set variables to access each necessary UI element
         val tankSwitch: SwitchCompat = view.findViewById(R.id.tank_switch)
-        val text1: TextView = view.findViewById(R.id.vol_tank_text)
-        val input1: EditText = view.findViewById(R.id.vol_tank_input)
+        val text1: TextView = view.findViewById(R.id.vol_tank1_text)
+        val input1: EditText = view.findViewById(R.id.vol_tank1_input)
+        val unit1: TextView = view.findViewById(R.id.l1)
+        val text2: TextView = view.findViewById(R.id.vol_tank2_text)
+        val input2: EditText = view.findViewById(R.id.vol_tank2_input)
+        val unit2: TextView = view.findViewById(R.id.l2)
 
+        //active tank is 1 to begin with
+        text1.setTextColor(Color.BLACK)
+        unit1.setTextColor(Color.BLACK)
+        input1.setTextColor(Color.BLACK)
+        input1.isEnabled = true
+        input1.setText("")
+        text2.setTextColor(Color.GRAY)
+        unit2.setTextColor(Color.GRAY)
+        input2.setTextColor(Color.GRAY)
+        input2.isEnabled = false
+        input2.setText("0.0")
+
+        //update if switch is changed
         tankSwitch.setOnClickListener {
-            if(tankSwitch.isChecked)
-                text1.text = getString(R.string.volume_of_tank_2)
-            else
-                text1.text = getString(R.string.volume_of_tank_1)
+            if (tankSwitch.isChecked) {
+                //active tank is 2
+                text2.setTextColor(Color.BLACK)
+                unit2.setTextColor(Color.BLACK)
+                input2.setTextColor(Color.BLACK)
+                input2.isEnabled = true
+                input2.setText("")
+                text1.setTextColor(Color.GRAY)
+                unit1.setTextColor(Color.GRAY)
+                input1.setTextColor(Color.GRAY)
+                input1.isEnabled = false
+                input1.setText("0.0")
+            } else {
+                //active tank is 1
+                text1.setTextColor(Color.BLACK)
+                unit1.setTextColor(Color.BLACK)
+                input1.setTextColor(Color.BLACK)
+                input1.isEnabled = true
+                input1.setText("")
+                text2.setTextColor(Color.GRAY)
+                unit2.setTextColor(Color.GRAY)
+                input2.setTextColor(Color.GRAY)
+                input2.isEnabled = false
+                input2.setText("0.0")
+            }
         }
 
         //get active tank volumes from EditTexts
@@ -216,11 +254,9 @@ class ChlorineFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 //ensure inputs are non-null decimals, if so read into ViewModel
-                if(volumesEntry != null && isDouble(input1.text.toString())) {
-                    if(!tankSwitch.isChecked)
-                        volumesEntry[0] = input1.text.toString().toDouble()
-                    else
-                        volumesEntry[1] = input1.text.toString().toDouble()
+                if(volumesEntry != null && isDouble(input1.text.toString()) && isDouble(input2.text.toString())) {
+                    volumesEntry[0] = input1.text.toString().toDouble()
+                    volumesEntry[1] = input2.text.toString().toDouble()
                     viewModel.chlorineTankVolumes.value = volumesEntry
                     tank1vol = volumesEntry[0]
                     tank2vol = volumesEntry[1]
@@ -235,6 +271,7 @@ class ChlorineFragment : Fragment() {
 
         //add text changed listeners to each input field
         input1.addTextChangedListener(textWatcher)
+        input2.addTextChangedListener(textWatcher)
 
         // if endVolume is updated changed, try to calculate run out time
         viewModel.triggerChlorineRunOutTimeCalculation.observe(viewLifecycleOwner) {

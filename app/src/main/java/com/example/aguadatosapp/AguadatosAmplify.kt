@@ -23,8 +23,6 @@ class AguadatosAmplify : Application() {
             Amplify.addPlugin(AWSDataStorePlugin())
             // Adds AWSApiPlugin for API interactions with AWS services.
             Amplify.addPlugin(AWSApiPlugin())
-            // Adds AWSCognitoAuthPlugin for user authentication.
-            Amplify.addPlugin(AWSCognitoAuthPlugin())
             // Configures Amplify with the current application context.
             Amplify.configure(applicationContext)
 

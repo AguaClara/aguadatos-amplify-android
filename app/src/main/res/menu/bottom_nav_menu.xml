@@ -12,7 +12,7 @@
             android:title="@string/records" />
 
     <item
-            android:id="@+id/navigation_graphs_temp"
+            android:id="@+id/navigation_graphs"
             android:icon="@drawable/graph_icon"
             android:title="@string/graphs" />
 

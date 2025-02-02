@@ -19,7 +19,7 @@ public final class AmplifyModelProvider implements ModelProvider {
     
   }
   
-  public static synchronized AmplifyModelProvider getInstance() {
+  public static AmplifyModelProvider getInstance() {
     if (amplifyGeneratedModelInstance == null) {
       amplifyGeneratedModelInstance = new AmplifyModelProvider();
     }

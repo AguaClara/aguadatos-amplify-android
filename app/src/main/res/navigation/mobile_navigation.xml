@@ -38,11 +38,6 @@
                 app:destination="@id/navigation_home" />
     </fragment>
     <fragment
-            android:id="@+id/navigation_graphs_temp"
-            android:name="com.example.aguadatosapp.GraphsTempFragment"
-            android:label="Graphs Temp"
-            tools:layout="@layout/graph_page_temp" />
-    <fragment
             android:id="@+id/navigation_configuration"
             android:name="com.example.aguadatosapp.ConfigurationFragment"
             android:label="Configuration"

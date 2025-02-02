@@ -52,7 +52,7 @@ class ConfigurationFragment : Fragment() {
         var switchChecked = false
 
         //set up UI using current configuration
-        if (sharedPreferences != null) {
+        if (sharedPreferences != null) { //TODO: op name not working?
             opNameInput.setText(sharedPreferences.getString("operatorName", null))
             plantNameInput.setText(sharedPreferences.getString("plantName", null))
         }

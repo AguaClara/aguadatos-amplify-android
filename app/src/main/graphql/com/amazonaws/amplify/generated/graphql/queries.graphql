@@ -1,58 +1,153 @@
 # this is an auto generated file. This will be overwritten
-
 query GetPlant($id: ID!) {
   getPlant(id: $id) {
     id
     name
     operators {
+      items {
+        id
+        name
+        plantID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     inflowEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        inflowRate
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     rawEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     clarifiedEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     filteredEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidities
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     calibrationEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       nextToken
       startedAt
-      __typename
     }
     doseEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     feedbackEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        feedback
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 query ListPlants(
   $filter: ModelPlantFilterInput
   $limit: Int
@@ -62,19 +157,48 @@ query ListPlants(
     items {
       id
       name
+      operators {
+        nextToken
+        startedAt
+      }
+      inflowEntries {
+        nextToken
+        startedAt
+      }
+      rawEntries {
+        nextToken
+        startedAt
+      }
+      clarifiedEntries {
+        nextToken
+        startedAt
+      }
+      filteredEntries {
+        nextToken
+        startedAt
+      }
+      calibrationEntries {
+        nextToken
+        startedAt
+      }
+      doseEntries {
+        nextToken
+        startedAt
+      }
+      feedbackEntries {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query SyncPlants(
   $filter: ModelPlantFilterInput
   $limit: Int
@@ -90,78 +214,184 @@ query SyncPlants(
     items {
       id
       name
+      operators {
+        nextToken
+        startedAt
+      }
+      inflowEntries {
+        nextToken
+        startedAt
+      }
+      rawEntries {
+        nextToken
+        startedAt
+      }
+      clarifiedEntries {
+        nextToken
+        startedAt
+      }
+      filteredEntries {
+        nextToken
+        startedAt
+      }
+      calibrationEntries {
+        nextToken
+        startedAt
+      }
+      doseEntries {
+        nextToken
+        startedAt
+      }
+      feedbackEntries {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query GetOperator($id: ID!) {
   getOperator(id: $id) {
     id
     name
     plantID
     inflowEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        inflowRate
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     rawEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     clarifiedEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidity
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     filteredEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        turbidities
+        notes
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     calibrationEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       nextToken
       startedAt
-      __typename
     }
     doseEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
     }
     feedbackEntries {
+      items {
+        id
+        createdAt
+        plantID
+        operatorID
+        feedback
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       nextToken
       startedAt
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 query ListOperators(
   $filter: ModelOperatorFilterInput
   $limit: Int
@@ -172,19 +402,44 @@ query ListOperators(
       id
       name
       plantID
+      inflowEntries {
+        nextToken
+        startedAt
+      }
+      rawEntries {
+        nextToken
+        startedAt
+      }
+      clarifiedEntries {
+        nextToken
+        startedAt
+      }
+      filteredEntries {
+        nextToken
+        startedAt
+      }
+      calibrationEntries {
+        nextToken
+        startedAt
+      }
+      doseEntries {
+        nextToken
+        startedAt
+      }
+      feedbackEntries {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query SyncOperators(
   $filter: ModelOperatorFilterInput
   $limit: Int
@@ -201,19 +456,44 @@ query SyncOperators(
       id
       name
       plantID
+      inflowEntries {
+        nextToken
+        startedAt
+      }
+      rawEntries {
+        nextToken
+        startedAt
+      }
+      clarifiedEntries {
+        nextToken
+        startedAt
+      }
+      filteredEntries {
+        nextToken
+        startedAt
+      }
+      calibrationEntries {
+        nextToken
+        startedAt
+      }
+      doseEntries {
+        nextToken
+        startedAt
+      }
+      feedbackEntries {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query GetInflowEntry($id: ID!) {
   getInflowEntry(id: $id) {
     id
@@ -222,35 +502,12 @@ query GetInflowEntry($id: ID!) {
     operatorID
     inflowRate
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 query ListInflowEntries(
   $filter: ModelInflowEntryFilterInput
   $limit: Int
@@ -268,14 +525,11 @@ query ListInflowEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query SyncInflowEntries(
   $filter: ModelInflowEntryFilterInput
   $limit: Int
@@ -299,14 +553,11 @@ query SyncInflowEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query GetRawEntry($id: ID!) {
   getRawEntry(id: $id) {
     id
@@ -315,35 +566,12 @@ query GetRawEntry($id: ID!) {
     operatorID
     turbidity
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 query ListRawEntries(
   $filter: ModelRawEntryFilterInput
   $limit: Int
@@ -361,14 +589,11 @@ query ListRawEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query SyncRawEntries(
   $filter: ModelRawEntryFilterInput
   $limit: Int
@@ -392,14 +617,11 @@ query SyncRawEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query GetClarifiedEntry($id: ID!) {
   getClarifiedEntry(id: $id) {
     id
@@ -408,35 +630,12 @@ query GetClarifiedEntry($id: ID!) {
     operatorID
     turbidity
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 query ListClarifiedEntries(
   $filter: ModelClarifiedEntryFilterInput
   $limit: Int
@@ -454,14 +653,11 @@ query ListClarifiedEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query SyncClarifiedEntries(
   $filter: ModelClarifiedEntryFilterInput
   $limit: Int
@@ -485,14 +681,11 @@ query SyncClarifiedEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query GetFilteredEntry($id: ID!) {
   getFilteredEntry(id: $id) {
     id
@@ -501,35 +694,12 @@ query GetFilteredEntry($id: ID!) {
     operatorID
     turbidities
     notes
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 query ListFilteredEntries(
   $filter: ModelFilteredEntryFilterInput
   $limit: Int
@@ -547,14 +717,11 @@ query ListFilteredEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query SyncFilteredEntries(
   $filter: ModelFilteredEntryFilterInput
   $limit: Int
@@ -578,14 +745,11 @@ query SyncFilteredEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query GetCalibrationEntry($id: ID!) {
   getCalibrationEntry(id: $id) {
     id
@@ -613,42 +777,40 @@ query GetCalibrationEntry($id: ID!) {
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      calibrationEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     updatedAt
     _version
     _deleted
     _lastChangedAt
     calibrationEntryDoseEntryId
-    __typename
   }
 }
-
 query ListCalibrationEntries(
   $filter: ModelCalibrationEntryFilterInput
   $limit: Int
@@ -675,19 +837,31 @@ query ListCalibrationEntries(
       flowRate
       activeTank
       tankVolume
+      doseEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query SyncCalibrationEntries(
   $filter: ModelCalibrationEntryFilterInput
   $limit: Int
@@ -716,19 +890,31 @@ query SyncCalibrationEntries(
       flowRate
       activeTank
       tankVolume
+      doseEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query GetDoseEntry($id: ID!) {
   getDoseEntry(id: $id) {
     id
@@ -756,42 +942,33 @@ query GetDoseEntry($id: ID!) {
       flowRate
       activeTank
       tankVolume
+      doseEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
-      __typename
-    }
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
     }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 query ListDoseEntries(
   $filter: ModelDoseEntryFilterInput
   $limit: Int
@@ -808,18 +985,37 @@ query ListDoseEntries(
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      calibrationEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query SyncDoseEntries(
   $filter: ModelDoseEntryFilterInput
   $limit: Int
@@ -842,18 +1038,37 @@ query SyncDoseEntries(
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      calibrationEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query GetFeedbackEntry($id: ID!) {
   getFeedbackEntry(id: $id) {
     id
@@ -861,35 +1076,12 @@ query GetFeedbackEntry($id: ID!) {
     plantID
     operatorID
     feedback
-    plant {
-      id
-      name
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    operator {
-      id
-      name
-      plantID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    __typename
   }
 }
-
 query ListFeedbackEntries(
   $filter: ModelFeedbackEntryFilterInput
   $limit: Int
@@ -906,14 +1098,11 @@ query ListFeedbackEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query SyncFeedbackEntries(
   $filter: ModelFeedbackEntryFilterInput
   $limit: Int
@@ -936,14 +1125,11 @@ query SyncFeedbackEntries(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query OperatorsByPlantIDAndId(
   $plantID: ID!
   $id: ModelIDKeyConditionInput
@@ -964,19 +1150,44 @@ query OperatorsByPlantIDAndId(
       id
       name
       plantID
+      inflowEntries {
+        nextToken
+        startedAt
+      }
+      rawEntries {
+        nextToken
+        startedAt
+      }
+      clarifiedEntries {
+        nextToken
+        startedAt
+      }
+      filteredEntries {
+        nextToken
+        startedAt
+      }
+      calibrationEntries {
+        nextToken
+        startedAt
+      }
+      doseEntries {
+        nextToken
+        startedAt
+      }
+      feedbackEntries {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query InflowEntriesByPlantIDAndCreatedAt(
   $plantID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1004,14 +1215,11 @@ query InflowEntriesByPlantIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query InflowEntriesByOperatorIDAndCreatedAt(
   $operatorID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1039,14 +1247,11 @@ query InflowEntriesByOperatorIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query RawEntriesByPlantIDAndCreatedAt(
   $plantID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1074,14 +1279,11 @@ query RawEntriesByPlantIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query RawEntriesByOperatorIDAndCreatedAt(
   $operatorID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1109,14 +1311,11 @@ query RawEntriesByOperatorIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query ClarifiedEntriesByPlantIDAndCreatedAt(
   $plantID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1144,14 +1343,11 @@ query ClarifiedEntriesByPlantIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query ClarifiedEntriesByOperatorIDAndCreatedAt(
   $operatorID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1179,14 +1375,11 @@ query ClarifiedEntriesByOperatorIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query FilteredEntriesByPlantIDAndCreatedAt(
   $plantID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1214,14 +1407,11 @@ query FilteredEntriesByPlantIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query FilteredEntriesByOperatorIDAndCreatedAt(
   $operatorID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1249,14 +1439,11 @@ query FilteredEntriesByOperatorIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query CalibrationEntriesByPlantIDAndCreatedAt(
   $plantID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1289,19 +1476,31 @@ query CalibrationEntriesByPlantIDAndCreatedAt(
       flowRate
       activeTank
       tankVolume
+      doseEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query CalibrationEntriesByOperatorIDAndCreatedAt(
   $operatorID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1334,19 +1533,31 @@ query CalibrationEntriesByOperatorIDAndCreatedAt(
       flowRate
       activeTank
       tankVolume
+      doseEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        targetDose
+        updatedSliderPosition
+        updatedFlowRate
+        calibrationEntryID
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
       calibrationEntryDoseEntryId
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query DoseEntriesByPlantIDAndCreatedAt(
   $plantID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1373,18 +1584,37 @@ query DoseEntriesByPlantIDAndCreatedAt(
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      calibrationEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query DoseEntriesByOperatorIDAndCreatedAt(
   $operatorID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1411,18 +1641,37 @@ query DoseEntriesByOperatorIDAndCreatedAt(
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      calibrationEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query DoseEntriesByCalibrationEntryID(
   $calibrationEntryID: ID!
   $sortDirection: ModelSortDirection
@@ -1447,18 +1696,37 @@ query DoseEntriesByCalibrationEntryID(
       updatedSliderPosition
       updatedFlowRate
       calibrationEntryID
+      calibrationEntry {
+        id
+        createdAt
+        plantID
+        operatorID
+        chemicalType
+        coagType
+        sliderPosition
+        inflowRate
+        startVolume
+        endVolume
+        timeElapsed
+        dose
+        flowRate
+        activeTank
+        tankVolume
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        calibrationEntryDoseEntryId
+      }
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query FeedbackEntriesByPlantIDAndCreatedAt(
   $plantID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1485,14 +1753,11 @@ query FeedbackEntriesByPlantIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
-
 query FeedbackEntriesByOperatorIDAndCreatedAt(
   $operatorID: ID!
   $createdAt: ModelStringKeyConditionInput
@@ -1519,10 +1784,8 @@ query FeedbackEntriesByOperatorIDAndCreatedAt(
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt
-    __typename
   }
 }
