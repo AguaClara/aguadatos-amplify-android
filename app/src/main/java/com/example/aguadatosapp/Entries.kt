@@ -5,47 +5,38 @@ abstract class Entry(
     val entryType: String
 )
 data class PlantFlowEntry(
-    val plantName: String,
-    val operatorName: String,
+    val entryTitle: String,
     val creationDateTime: String,
     val additionalNotes: String,
-    val inflowRate: Float,
-    val chemicalType: String
+    val inflowRate: Float
 ) : Entry(entryType = "1")
 data class RawWaterTurbidityEntry(
-    val plantName: String,
-    val operatorName: String,
+    val entryTitle: String,
     val creationDateTime: String,
     val additionalNotes: String,
-    val turbidityReadings: Double,
-    val chemicalType: String
+    val turbidityReadings: Double
 ) : Entry(entryType = "2")
 
 data class clarifiedWaterTurbidityEntry(
-    val plantName: String,
-    val operatorName: String,
+    val entryTitle: String,
     val creationDateTime: String,
     val additionalNotes: String,
-    val turbidityReadings: Double,
-    val chemicalType: String
+    val turbidityReadings: Double
 ) : Entry(entryType = "3")
 
-data class filteredWaterTurbidityEntry(
-    val plantName: String,
-    val operatorName: String,
+data class FilteredWaterTurbidityEntry(
+    val entryTitle: String,
     val creationDateTime: String,
     val additionalNotes: String,
-    val turbidityReadings: DoubleArray,
-    val chemicalType: String
+    val turbidityReadings: DoubleArray
 ) : Entry(entryType = "4") {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as filteredWaterTurbidityEntry
+        other as FilteredWaterTurbidityEntry
 
-        if (plantName != other.plantName) return false
-        if (operatorName != other.operatorName) return false
+        if (entryTitle != other.entryTitle) return false
         if (creationDateTime != other.creationDateTime) return false
         if (additionalNotes != other.additionalNotes) return false
         if (!turbidityReadings.contentEquals(other.turbidityReadings)) return false
@@ -54,8 +45,7 @@ data class filteredWaterTurbidityEntry(
     }
 
     override fun hashCode(): Int {
-        var result = plantName.hashCode()
-        result = 31 * result + operatorName.hashCode()
+        var result = entryTitle.hashCode()
         result = 31 * result + creationDateTime.hashCode()
         result = 31 * result + additionalNotes.hashCode()
         result = 31 * result + turbidityReadings.contentHashCode()
@@ -63,69 +53,34 @@ data class filteredWaterTurbidityEntry(
     }
 }
 
-data class CoagulantCalibrationEntry(
-    val plantName: String,
-    val operatorName: String,
+data class CoagChlorCalibrationEntry(
+    val entryTitle: String,
     val creationDateTime: String,
-    val additionalNotes: String,
     val sliderPosition: Double,
     val inflowRate: Double,
     val startVolume: Double,
     val endVolume: Double,
     val timeElapsed: Int,
     val chemicalDose: Double,
+    val chemicalType: String,
     val chemicalFlowRate: Double,
-    val activeTankVolume: Double,
-    val chemicalType: String
+    val activeTankVolume: Double
 ) : Entry(entryType = "5")
 
-data class CoagulantChangeDoseEntry(
-    val plantName: String,
-    val operatorName: String,
+data class ChangeDoseEntry(
+    val entryTitle: String,
     val creationDateTime: String,
-    val additionalNotes: String,
     val chemicalFlowRate: Double,
     val chemicalDose: Double,
     val sliderPosition: Double,
     val targetChemicalDose: Double,
+    val chemicalType: String,
     val updatedSliderPosition: Double,
-    val updatedChemicalFlowRate: Double,
-    val chemicalType: String
+    val updatedChemicalFlowRate: Double
 ) : Entry(entryType = "6")
-
-data class ChlorineCalibrationEntry(
-    val plantName: String,
-    val operatorName: String,
-    val creationDateTime: String,
-    val additionalNotes: String,
-    val sliderPosition: Double,
-    val inflowRate: Double,
-    val startVolume: Double,
-    val endVolume: Double,
-    val timeElapsed: Int,
-    val chemicalDose: Double,
-    val chemicalFlowRate: Double,
-    val activeTankVolume: Double,
-    val chemicalType: String
-) : Entry(entryType = "7")
-
-data class ChlorineChangeDoseEntry(
-    val plantName: String,
-    val operatorName: String,
-    val creationDateTime: String,
-    val additionalNotes: String,
-    val chemicalFlowRate: Double,
-    val chemicalDose: Double,
-    val sliderPosition: Double,
-    val targetChemicalDose: Double,
-    val updatedSliderPosition: Double,
-    val updatedChemicalFlowRate: Double,
-    val chemicalType: String
-) : Entry(entryType = "8")
 data class FeedbackEntry(
-    val plantName: String,
-    val operatorName: String,
+    val entryTitle: String,
     val creationDateTime: String,
     val additionalNotes: String,
     val operatorFeedback: String
-) : Entry(entryType = "9")
+) : Entry(entryType = "7")

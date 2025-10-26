@@ -3,6 +3,7 @@ package com.amplifyframework.datastore.generated.model;
 import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.annotations.BelongsTo;
 import com.amplifyframework.core.model.temporal.Temporal;
+import com.amplifyframework.core.model.ModelIdentifier;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +39,9 @@ public final class Operator implements Model {
   private final @ModelField(targetType="Plant") @BelongsTo(targetName = "plantID", targetNames = {"plantID"}, type = Plant.class) Plant plant;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  public String resolveIdentifier() {
+  /** @deprecated This API is internal to Amplify and should not be used. */
+  @Deprecated
+   public String resolveIdentifier() {
     return id;
   }
   
@@ -178,6 +181,16 @@ public final class Operator implements Model {
     private String id;
     private String name;
     private Plant plant;
+    public Builder() {
+      
+    }
+    
+    private Builder(String id, String name, Plant plant) {
+      this.id = id;
+      this.name = name;
+      this.plant = plant;
+    }
+    
     @Override
      public Operator build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -214,9 +227,8 @@ public final class Operator implements Model {
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, String name, Plant plant) {
-      super.id(id);
-      super.name(name)
-        .plant(plant);
+      super(id, name, plant);
+      Objects.requireNonNull(name);
     }
     
     @Override
@@ -227,6 +239,14 @@ public final class Operator implements Model {
     @Override
      public CopyOfBuilder plant(Plant plant) {
       return (CopyOfBuilder) super.plant(plant);
+    }
+  }
+  
+
+  public static class OperatorIdentifier extends ModelIdentifier<Operator> {
+    private static final long serialVersionUID = 1L;
+    public OperatorIdentifier(String id) {
+      super(id);
     }
   }
   

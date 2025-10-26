@@ -25,12 +25,13 @@
                 android:id="@+id/entry_title"
                 android:text=""
                 android:textSize="22sp" />
+        <!--
         <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:id="@+id/edit_button"
-                android:background="@drawable/edit_button_drawable" />
+                android:background="@drawable/edit_button_drawable" /> -->
     </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnToggle"
